@@ -1,0 +1,10 @@
+{
+  "keywordFileContentHash": "257822CFAEF31B2D38E602A7D153BD9D",
+  "keywordClasses": [
+    {
+      "name": "sendEmail.ConfigOutlook",
+      "keywordMethods": []
+    }
+  ],
+  "javadocParsed": true
+}

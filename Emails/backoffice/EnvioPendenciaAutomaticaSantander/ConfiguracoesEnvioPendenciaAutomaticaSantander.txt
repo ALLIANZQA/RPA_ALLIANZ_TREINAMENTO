@@ -1,0 +1,5 @@
+C:/Users/Public/RPA_ALLIANZ/Emails/backoffice/EnvioPendenciaAutomaticaSantander/EnvioPendenciaAutomaticaSantander.txt
+denilson.inmetricsext@allpronet.com.br
+az202001
+smtp.intrallianz.es
+25

@@ -1,0 +1,10 @@
+{
+  "keywordFileContentHash": "6861F9ACC3803DA5E5F2C0921672FDDC",
+  "keywordClasses": [
+    {
+      "name": "auxiliares.Levenshtein",
+      "keywordMethods": []
+    }
+  ],
+  "javadocParsed": true
+}

@@ -1,0 +1,10 @@
+{
+  "keywordFileContentHash": "E673769A35FCFD59DD089BF8382F6645",
+  "keywordClasses": [
+    {
+      "name": "webservice.RequestSoap",
+      "keywordMethods": []
+    }
+  ],
+  "javadocParsed": true
+}

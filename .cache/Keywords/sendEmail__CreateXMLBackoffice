@@ -1,0 +1,10 @@
+{
+  "keywordFileContentHash": "C512EB749E7DB981A16C81AEC82C266E",
+  "keywordClasses": [
+    {
+      "name": "sendEmail.CreateXMLBackoffice",
+      "keywordMethods": []
+    }
+  ],
+  "javadocParsed": true
+}

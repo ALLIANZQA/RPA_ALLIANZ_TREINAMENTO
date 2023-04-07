@@ -1,0 +1,5 @@
+C:\\Users\\Public\\RPA_ALLIANZ\\Emails\\Saude\\InativacaoMATMED\\InativacaoMATMED.txt
+rpa@allianz.com.br
+az202001
+smtp.intrallianz.es
+25

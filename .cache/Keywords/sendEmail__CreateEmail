@@ -1,0 +1,10 @@
+{
+  "keywordFileContentHash": "4673BD1D428F80F312C397853C1382BC",
+  "keywordClasses": [
+    {
+      "name": "sendEmail.CreateEmail",
+      "keywordMethods": []
+    }
+  ],
+  "javadocParsed": true
+}

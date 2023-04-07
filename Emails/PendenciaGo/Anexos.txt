@@ -1,0 +1,10 @@
+C:/Users/Public/RPA_ALLIANZ/MassaAuto/userSenhaBloqueioFiel.xlsx
+userSenhaBloqueioFiel.xlsx
+C:/Users/Public/AllianzPDF.pdf
+AllianzPDF.pdf
+C:/Users/Public/RPA_ALLIANZ/MassaAuto/BackOfficeMacroEmissoesCorporate.xlsx
+BackOfficeMacroEmissoesCorporate.xlsx
+C:/Users/Public/retrievedoc.pdf
+retrievedoc.pdf
+C:/Users/T_DCDias/Downloads/historiadacomputacao.pdf
+historiadacomputacao.pdf

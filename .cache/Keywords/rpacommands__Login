@@ -1,0 +1,10 @@
+{
+  "keywordFileContentHash": "1C319CC9839D2357BC8F92FC4315AF68",
+  "keywordClasses": [
+    {
+      "name": "rpacommands.Login",
+      "keywordMethods": []
+    }
+  ],
+  "javadocParsed": true
+}

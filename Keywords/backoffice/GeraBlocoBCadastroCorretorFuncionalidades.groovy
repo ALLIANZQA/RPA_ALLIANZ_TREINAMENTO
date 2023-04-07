@@ -1,0 +1,431 @@
+package backoffice
+
+import static com.kms.katalon.core.checkpoint.CheckpointFactory.findCheckpoint
+import static com.kms.katalon.core.testcase.TestCaseFactory.findTestCase
+import static com.kms.katalon.core.testdata.TestDataFactory.findTestData
+import static com.kms.katalon.core.testobject.ObjectRepository.findTestObject
+import static com.kms.katalon.core.testobject.ObjectRepository.findWindowsObject
+
+import java.util.List
+
+import org.openqa.selenium.WebElement
+
+import com.kms.katalon.core.annotation.Keyword
+import com.kms.katalon.core.checkpoint.Checkpoint
+import com.kms.katalon.core.cucumber.keyword.CucumberBuiltinKeywords as CucumberKW
+import com.kms.katalon.core.mobile.keyword.MobileBuiltInKeywords as Mobile
+import com.kms.katalon.core.model.FailureHandling
+import com.kms.katalon.core.testcase.TestCase
+import com.kms.katalon.core.testdata.TestData
+import com.kms.katalon.core.testobject.TestObject
+import com.kms.katalon.core.webservice.keyword.WSBuiltInKeywords as WS
+import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
+import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
+import auxiliares.FileInput
+import auxiliares.StringFormatter
+import auxiliares.switchAtualizarExcel
+import auxiliares.switchLeitorExcel
+import auxiliares.RegrasEmailDestination
+import auxiliares.MenuMatriz
+import internal.GlobalVariable
+import rpacommands.rpaCommands
+
+public class GeraBlocoBCadastroCorretorFuncionalidades extends rpaCommands{
+
+	private static TestData data
+	private static TestData dataRamos
+	private static String testDataPath = 'Data Files/Backoffce/GeraBlocoBCadastroCorretorData/GeraBlocoBCadastroCorretor'
+	private static String testDataPathRamos = 'Data Files/Backoffce/GeraBlocoBCadastroCorretorData/RamosBlocoB (1)'
+	private static String path
+	private static String alerta
+	private static int cellCheck = 2
+
+	/**
+	 * @author T_DCDias
+	 * @return
+	 */
+	public static initDataFiles(){
+		dataRamos = findTestData(testDataPathRamos)
+		data = findTestData(testDataPath)
+		path = data.sourceUrl
+	}
+
+	/**
+	 * @author T_DCDias
+	 * @param tipoAba
+	 * @return
+	 */
+	public static boolean validaDados(int cellStatus){
+		boolean value
+		for (int i = 1; i <= data.getRowNumbers(); i++) {
+			if (data.getValue(cellStatus, i).equals('Processar')) {
+				value = true
+				break;
+			} else {
+				value = false
+			}
+		}
+		System.err.println('Data ['+value+']')
+		return value
+	}
+
+	/**
+	 * @author ALZ_ServiceQA
+	 * @param sinistro
+	 * @param v
+	 * @return
+	 */
+	public static List<String> lista( List<String> registros , int v){
+		for (int i = 1; i <= data.getColumnNumbers(); i++) {
+			int d = i -1
+			registros[d] = data.getValue(i, v).trim()
+		}
+
+		for (int j = 0; j < registros.size();j++ ){
+			System.err.println("["+j+"] ["+registros[j]+"]")
+		}
+
+		return registros
+	}
+
+	/**
+	 * @author ALZ_ServiceQA
+	 * @param aba
+	 * @return
+	 */
+	public static acessoAmbiente(String aba){
+		iniciaAplicacaoMatrizCommands('IntranetProdução');
+		realizaLoginIntraNetProducaoCommands(aba);
+	}
+
+	/**
+	 * @author be54955
+	 * @param aba
+	 * @return
+	 */
+	public static fluxoGeraBlocoBCadastroCorretor(String aba){
+		initDataFiles()
+		fluxoCompletoGeraBlocoBCadastroCorretor(aba)
+		reprocessaFalhas(aba)
+		enviarEmailGeraBlocoBCadastroCorretor(aba)
+	}
+
+	/**
+	 * @author be54955
+	 * @param aba
+	 * @return
+	 */
+	public static fluxoCompletoGeraBlocoBCadastroCorretor(aba){
+		if(validaDados(cellCheck)){
+			acessoAmbiente(aba)
+			WebUI.delay(10);
+			MenuMatriz.gestaoMarketing()
+			MenuMatriz.subMenu("/*/body/div/div/app-root/app-private/app-displayed-menu/div/app-teaser/div/div[1]/div/div[2]/ul", "a", "Gestão Corretores")
+			WebUI.delay(17);
+
+			for(int i = 1; i <= data.getRowNumbers(); i++) {
+				int j =  i - 1
+
+				if (data.getValue(cellCheck, i).equals('Processar')) {
+					List<String> registros = new ArrayList<>();
+					lista( registros , i)
+					if(geraBlocoB(registros, aba)) {
+						try{
+							auxiliares.WriteExcelFactory.updateSheetLine("", j, path, "Processado", 1, aba);
+							auxiliares.WriteExcelFactory.updateSheetLine("", j, path, alerta, 2, aba);
+						} catch (Exception e){}
+					} else {
+						try{
+							auxiliares.WriteExcelFactory.updateSheetLine("", j, path, "Processado", 1, aba);
+							auxiliares.WriteExcelFactory.updateSheetLine("", j, path,alerta, 3, aba);
+						} catch (Exception e){}
+					}
+				}
+			}
+		} else {
+			System.err.println('Não existem dados para processar')
+		}
+	}
+
+	/**
+	 * @author be54955
+	 * @param emaildestination
+	 * @param corretor
+	 * @param intermediario
+	 * @param cpfcnpj
+	 * @param user
+	 * @param pwr
+	 * @param ramo
+	 * @return
+	 */
+	public static boolean geraBlocoB( List<String> registros, String aba){
+		System.out.println()
+		boolean enviado
+		try{
+			alerta=""
+
+			/**
+			 * TELA - GESTÃO PROCESSOS
+			 */
+			alteraJanejaGenerica(1, 5)
+			WebUI.maximizeWindow()
+
+			/**
+			 * GESTÃO DE MEDIADORES
+			 */
+			//Tipo de seleção
+			/**
+			 * @author be54955
+			 * String tipo,String xpath , String tag, String attrib
+			 * Tipo de seleção 
+			 */
+			selecionaItemListaAtributo("codigo",'//*[@id="SeleccionContent"]/table[1]/tbody/tr' , 'input', "value" )
+			//Preenche Codigo
+			preencheXpath('//*[@id="codigo"]', registros[0], 5);
+			//Pesquisar
+			clickXpath('//*[@id="buscar"]', 1);
+			//Mediador
+			//sucUCMediador("Alterar Código")
+			/**
+			 * @author be54955
+			 * String tipo,String xpath , String tag, String attrib
+			 * Mediador 
+			 */
+			selecionaItemListaAtributo("Alterar Código",'//*[@id="listaCodigos_tbody"]' , 'img', "title" )
+			//Info. Geral
+			clickXpath('//*[@id="informacionGenerica"]/div[1]', 1);
+			//Dados Allianz
+			clickXpath('//*[@id="datosAllianz"]/div[1]', 1);
+			//Encerra produção
+			limpaCampo('//*[@id="fechaCierreProduccion"]',1)
+			WebUI.delay(3);
+			//Aceitar
+			selecionaItemLista("Aceitar",'//*[@id="datosAllianzViewForm"]/table' , "div" )
+			//Info. Comercial
+			clickXpath('//*[@id="informacionComercial"]/div[1]/span', 1);
+			//Comissões
+			clickXpath('//*[@id="comisiones"]/div[1]/span', 1);
+			alerta = recuperaValor('//*[@id="dataErrorSection"]/table/tbody/tr/td[2]','innerText', 2)
+			if(!alertListBlock(alerta)){
+				/**
+				 * @author be54955
+				 * String tipo,String xpath , String tag, String attrib
+				 * Bloco
+				 */
+				selecionaItemListaAtributo("B",'//*[@id="bloque1"]' , 'option', 'value' )
+				//Aceitar Bloqueios
+				selecionaItemLista("Aceitar Bloqueios",'//*[@id="bloquesComisionesSectionBar"]/table/tbody/tr/td/table' , "div" )
+				//Comissões Ramo
+				selecionaItemLista("Comissões Ramo",'//*[@id="bloquesComisionesSectionBar"]/table/tbody/tr/td/table' , "div" )
+				//Aceitar comissões
+				selecionaItemLista("Aceitar comissões",'//*[@id="comisionesRamoSectionBar"]/table/tbody/tr/td/table' , "div" )
+				//Info. Geral
+				clickXpath('//*[@id="informacionGenerica"]/div[1]', 1);
+				//Dados Allianz
+				clickXpath('//*[@id="datosAllianz"]/div[1]', 1);
+				/**
+				 * @author be54955
+				 * String tipo,String xpath , String tag, String attrib 
+				 * Comissão Antecipada
+				 */
+				selecionaItemListaAtributo("imgComisionAnticipada",'//*[@id="otrasCondicionesProd"]/table' , 'img', 'id' )
+				selecionaAgrupamentoRamos()
+
+				if(ramoSelecionados(dataRamos.getRowNumbers())){
+					enviado = true
+					alerta ="Ramos ativados"
+				} else{
+					enviado = false
+				}
+				//Home
+				clickXpath('//*[@id="imgOptMenuBackHome"]', 1);
+			} else {
+				//Home
+				clickXpath('//*[@id="imgOptMenuBackHome"]', 1);
+				enviado = false
+			}
+		} catch (Exception e){
+			enviado = false
+		}
+		return enviado
+	}
+
+	/**
+	 * @author be54955
+	 * @return
+	 */
+	public static selecionaAgrupamentoRamos(){
+		
+		for (int i = 1; i <= dataRamos.getRowNumbers(); i++) {
+			System.out.println("["+i+"] SELECIONAR RAMO ["+dataRamos.getValue(1, i)+"]")
+			if(agrupamentos(dataRamos.getValue(1, i))){
+
+			}
+		}
+	}
+
+	/**
+	 * @author be54955
+	 * @param ramo
+	 * @return
+	 */
+	public static boolean agrupamentos(String ramo){
+		boolean sel = false
+		String xpath ='//*[@id="secAgrupacionesContent"]/table[2]/tbody/tr/td[1]/table'
+		String tag = 'input'
+		String attrib = 'value'
+		try{
+			selecionaListaDeElementos(xpath,tag)
+			for(int i = 0; i < listOfElements.size(); i++){
+				if(listOfElements[i].getAttribute(attrib).equals(ramo)){
+					boolean s =  ramoSelecionado(ramo)
+					System.out.println("["+s+"]")
+					if(s.equals(false)){
+						listOfElements[i].click()
+						clickXpath('//*[@id="bAnadir"]', 1);
+						sel = true
+					}
+				}
+			}
+		}catch (Exception e){}
+		return sel
+	}
+
+	/**
+	 * @author be54955
+	 * @param ramo
+	 * @return
+	 */
+	public static boolean  ramoSelecionados(int totalRamos){
+		boolean sel = false
+		String xpath ='//*[@id="secAgrupacionesContent"]/table[2]/tbody/tr/td[5]/table'
+		String tag = 'input'
+		String attrib = 'value'
+		try{
+			List<WebElement> listOfElements= listaDeElementos(xpath, tag)
+			System.out.println("RAMOs SELECIONADOs ["+listOfElements.size()+"] RAMOS LISTA ["+totalRamos+"]")
+			if(listOfElements.size()==totalRamos){
+				sel = true
+			}
+		}catch (Exception e){
+			sel = false
+		}
+		return sel
+	}
+
+	/**
+	 * @author be54955
+	 * @param ramo
+	 * @return
+	 */
+	public static boolean  ramoSelecionado(String ramo){
+		boolean sel = false
+		String xpath ='//*[@id="secAgrupacionesContent"]/table[2]/tbody/tr/td[5]/table'
+		String tag = 'input'
+		String attrib = 'value'
+		try{
+			List<WebElement> listOfElements= listaDeElementos(xpath, tag)
+			for(int i = 0; i < listOfElements.size(); i++){
+				if(listOfElements[i].getAttribute(attrib).equals(ramo)){
+					sel = true
+					System.out.println("RAMO ATIVADO["+i+"] ["+listOfElements[i].getAttribute(attrib)+"] ["+ramo+"] ["+sel+"]")
+				}
+			}
+		}catch (Exception e){
+			sel = false
+		}
+		return sel
+	}
+
+	/**
+	 * @author T_dvlopes
+	 * @param tipoAba
+	 * @return
+	 */
+	public static enviarEmailGeraBlocoBCadastroCorretor(String tipoAba){
+		initDataFiles()
+		if(!validaDados(cellCheck)){
+			pathTxtEmail = "C:\\Users\\Public\\RPA_ALLIANZ\\Emails\\backoffice\\GeraBlocoBCadastroCorretor\\ConfiguracoesGeraBlocoBCadastroCorretor.txt";
+			lerConfigurações(pathTxtEmail)
+			String emaildestination = StringFormatter.formatterEmailDestination(FileInput.readFile(pathTxtEmail));
+			List<String> anexos = new ArrayList<>();
+			anexos[0] = path
+			anexos[1] = "GeraBlocoBCadastroCorretor.xlsx"
+			sendEmail.CreateEmail.createEmailSendMultipleFiles(sender, emaildestination, pwdsender, anexos, host, porta, tipoAba)
+		}
+	}
+
+	/**
+	 * @author be54955
+	 * @param aba
+	 * @return
+	 */
+	public static reprocessaFalhas(String aba){
+		System.err.println('Reprocessa Falhas')
+		initDataFiles()
+		if(validaDados(cellCheck)){
+			fluxoGeraBlocoBCadastroCorretor(aba)
+			reprocessaFalhas(aba)
+		}
+	}
+
+	/**
+	 * @author be54955
+	 * @param alert
+	 * @return
+	 */
+	public static boolean alertListBlock(String alert){
+		System.err.println("\nalertListBloc ["+alert+"]\n")
+		boolean r = false
+		List<String> listOfAlerts = new ArrayList<String>()
+		listOfAlerts.add(" 991306 - O código de mediador não tem comissões.")
+
+
+		System.out.println("Alert ["+alert+"]\n")
+		for(int i = 0; i < listOfAlerts.size(); i++){
+			System.err.println("["+i+"] ["+listOfAlerts[i]+"]")
+			if(listOfAlerts[i].contains(alert.toString())){
+				System.err.println("FOUND ALERT TO BLOC ["+i+"] ["+listOfAlerts[i]+"]")
+				r = true
+				break
+			}
+		}
+		System.out.println("\nAlert ["+r+"]")
+		return  r
+	}
+
+	/**
+	 * @author be54955
+	 * @param alert
+	 * @return
+	 */
+	public static boolean alertListContinue(String alert){
+		System.err.println("\nalertListContinue ["+alert+"]")
+		boolean r = false
+		List<String> listOfAlerts = new ArrayList<String>()
+		listOfAlerts.add(" 121: Restrição Técnica - Risco sem Aceitação")
+		listOfAlerts.add(" Já existe cotação para esse CNPJ, número - ")
+		listOfAlerts.add(" Existe(m) item(ns) com aviso(s)")
+		listOfAlerts.add(" 103: Recusa Técnica Segmento Sem aceitação para AZ")
+		listOfAlerts.add(" Restrição técnica para o segurado")
+		listOfAlerts.add(" 110: Sistema momentaneamente indisponível - Tente mais tarde")
+		listOfAlerts.add(" Existe(m) item(ns) com erro(s)")
+
+		System.out.println("Alert ["+alert+"]\n")
+		for(int i = 0; i < listOfAlerts.size(); i++){
+			System.err.println("["+i+"] ["+listOfAlerts[i]+"]")
+			if(listOfAlerts[i].contains(alert.toString())){
+				System.err.println("FOUND ALERT TO BLOC ["+i+"] ["+listOfAlerts[i]+"]")
+				r = true
+				break
+			}
+		}
+		System.out.println("\nAlert ["+r+"]")
+		return  r
+	}
+
+
+
+
+
+}

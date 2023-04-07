@@ -1,0 +1,10 @@
+{
+  "keywordFileContentHash": "B65B48E4617DC4C3AA19EDE38D9946B8",
+  "keywordClasses": [
+    {
+      "name": "webservice.WebServiceError",
+      "keywordMethods": []
+    }
+  ],
+  "javadocParsed": true
+}

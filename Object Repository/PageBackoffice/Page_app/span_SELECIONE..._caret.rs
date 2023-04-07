@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebElementEntity>
+   <description></description>
+   <name>span_SELECIONE..._caret</name>
+   <tag></tag>
+   <elementGuidId>cf3e3709-4437-46f1-adf1-fa75b238760c</elementGuidId>
+   <selectorCollection>
+      <entry>
+         <key>XPATH</key>
+         <value>//div[@id='sectionEstadoCivil']/div/div[2]/div/div/button/span[2]/span</value>
+      </entry>
+      <entry>
+         <key>BASIC</key>
+         <value>id(&quot;sectionEstadoCivil&quot;)/div[@class=&quot;row&quot;]/div[@class=&quot;genericCol errorClass col-md-6 col-sm-8 col-xs-12&quot;]/div[@class=&quot;alz-form-group form-group alz-select-form-group&quot;]/div[@class=&quot;btn-group bootstrap-select block&quot;]/button[@class=&quot;btn dropdown-toggle selectpicker btn-default btn-lg btn-block&quot;]/span[@class=&quot;bs-caret&quot;]/span[@class=&quot;caret&quot;]</value>
+      </entry>
+      <entry>
+         <key>CSS</key>
+      </entry>
+   </selectorCollection>
+   <selectorMethod>XPATH</selectorMethod>
+   <useRalativeImagePath>false</useRalativeImagePath>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>tag</name>
+      <type>Main</type>
+      <value>span</value>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>class</name>
+      <type>Main</type>
+      <value>caret</value>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath</name>
+      <type>Main</type>
+      <value>id(&quot;sectionEstadoCivil&quot;)/div[@class=&quot;row&quot;]/div[@class=&quot;genericCol errorClass col-md-6 col-sm-8 col-xs-12&quot;]/div[@class=&quot;alz-form-group form-group alz-select-form-group&quot;]/div[@class=&quot;btn-group bootstrap-select block&quot;]/button[@class=&quot;btn dropdown-toggle selectpicker btn-default btn-lg btn-block&quot;]/span[@class=&quot;bs-caret&quot;]/span[@class=&quot;caret&quot;]</value>
+   </webElementProperties>
+   <webElementXpaths>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:idRelative</name>
+      <value>//div[@id='sectionEstadoCivil']/div/div[2]/div/div/button/span[2]/span</value>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='[SELECIONE...]'])[5]/following::span[2]</value>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Estado civil do condutor:'])[1]/following::span[3]</value>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='[SELECIONE...]'])[6]/preceding::span[1]</value>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Casado[a] ou convive em união estável'])[2]/preceding::span[3]</value>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:position</name>
+      <value>//div[15]/div/div/div[2]/div/div/button/span[2]/span</value>
+   </webElementXpaths>
+</WebElementEntity>

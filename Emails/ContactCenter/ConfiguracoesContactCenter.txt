@@ -1,0 +1,5 @@
+C:/Users/Public/RPA_ALLIANZ/Emails/ContactCenter/ContactCenter.txt
+rpa@allianz.com.br
+
+smtp.intrallianz.es
+25

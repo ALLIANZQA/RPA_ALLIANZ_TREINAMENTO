@@ -1,0 +1,10 @@
+{
+  "keywordFileContentHash": "F5DB5C8B65DB5CB9BA10D9E6B853F551",
+  "keywordClasses": [
+    {
+      "name": "sendEmail.ConfigParameters",
+      "keywordMethods": []
+    }
+  ],
+  "javadocParsed": true
+}

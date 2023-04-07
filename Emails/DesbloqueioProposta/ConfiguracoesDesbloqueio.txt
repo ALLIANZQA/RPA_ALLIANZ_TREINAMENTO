@@ -1,0 +1,5 @@
+C:/Users/Public/RPA_ALLIANZ/Emails/DesbloqueioProposta/Desbloqueio.txt
+DesbloqueioProposta@allianz.com.br
+
+smtp.intrallianz.es
+25

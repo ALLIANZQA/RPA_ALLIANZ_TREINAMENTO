@@ -1,0 +1,2 @@
+C:\\Users\\Public\\RPA_ALLIANZ\\Emails\\backoffice\\DesbloqueioPropostaAgroFielDepositario\\ConfiguracoesDesbloqueioPropostaAgroFielDepositario.txt
+EmissaoFielDepositario.xlsx

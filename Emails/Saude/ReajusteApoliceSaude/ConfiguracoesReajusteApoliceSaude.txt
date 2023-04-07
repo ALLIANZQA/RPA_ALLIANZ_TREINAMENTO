@@ -1,0 +1,5 @@
+C:\\Users\\Public\\RPA_ALLIANZ\\Emails\\Saude\\ReajusteApoliceSaude\\ReajusteApoliceSaude.txt
+rpa@allianz.com.br
+az202002
+smtp.intrallianz.es
+25

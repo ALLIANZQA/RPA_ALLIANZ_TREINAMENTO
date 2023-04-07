@@ -1,0 +1,5 @@
+C:/Users/Public/RPA_ALLIANZ/Emails/Transporte/EmissaoTransportes.txt
+Rpa_Transporte@allianz.com.br
+
+smtp.intrallianz.es
+25

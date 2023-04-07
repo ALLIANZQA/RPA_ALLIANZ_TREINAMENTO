@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebElementEntity>
+   <description></description>
+   <name>strong_Login</name>
+   <tag></tag>
+   <elementGuidId>7f6ff56e-3020-453c-adbb-d2a9a414dc35</elementGuidId>
+   <selectorMethod>BASIC</selectorMethod>
+   <useRalativeImagePath>false</useRalativeImagePath>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>tag</name>
+      <type>Main</type>
+      <value>strong</value>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>text</name>
+      <type>Main</type>
+      <value>Login</value>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath</name>
+      <type>Main</type>
+      <value>id(&quot;p_p_id_56_INSTANCE_wukIjVQ3opZY_&quot;)/div[@class=&quot;portlet-borderless-container&quot;]/div[@class=&quot;portlet-body&quot;]/div[@class=&quot;journal-content-article&quot;]/div[@id=&quot;metaNav&quot;]/ul[1]/li[2]/a[1]/strong[1]</value>
+   </webElementProperties>
+</WebElementEntity>

@@ -1,0 +1,10 @@
+{
+  "keywordFileContentHash": "A3BBDFC11EF7A0074236E0B058F73F46",
+  "keywordClasses": [
+    {
+      "name": "sendEmail.MessageFactory",
+      "keywordMethods": []
+    }
+  ],
+  "javadocParsed": true
+}

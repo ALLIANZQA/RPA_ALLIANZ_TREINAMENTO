@@ -1,0 +1,5 @@
+C:/Users/Public/RPA_ALLIANZ/Emails/infraestrutura/cadastroPerfilCor.txt
+denilson.inmetricsext@allpronet.com.br
+be549557
+smtp.intrallianz.es
+25

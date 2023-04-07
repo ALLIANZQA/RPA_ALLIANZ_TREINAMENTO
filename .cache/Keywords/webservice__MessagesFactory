@@ -1,0 +1,10 @@
+{
+  "keywordFileContentHash": "2FF62F1F652FBC111A377602E7267D8A",
+  "keywordClasses": [
+    {
+      "name": "webservice.MessagesFactory",
+      "keywordMethods": []
+    }
+  ],
+  "javadocParsed": true
+}

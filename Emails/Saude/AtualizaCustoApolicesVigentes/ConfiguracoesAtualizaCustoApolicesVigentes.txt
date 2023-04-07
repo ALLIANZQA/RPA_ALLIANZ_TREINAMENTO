@@ -1,0 +1,5 @@
+C:\\Users\\Public\\RPA_ALLIANZ\\Emails\\Saude\\AtualizaCustoApolicesVigentes\\AtualizaCustoApolicesVigentes.txt
+denilson.inmetricsext@allpronet.com.br
+be549556
+smtp.intrallianz.es
+25

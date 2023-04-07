@@ -1,0 +1,10 @@
+{
+  "keywordFileContentHash": "F245FBA09B616761C70EC04538F39EC5",
+  "keywordClasses": [
+    {
+      "name": "webservice.AutomacaoException",
+      "keywordMethods": []
+    }
+  ],
+  "javadocParsed": true
+}

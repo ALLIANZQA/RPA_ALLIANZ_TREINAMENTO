@@ -1,0 +1,10 @@
+{
+  "keywordFileContentHash": "6AD273A810D56BECD51D84C9726F2597",
+  "keywordClasses": [
+    {
+      "name": "sendEmail.XMLCommandRules",
+      "keywordMethods": []
+    }
+  ],
+  "javadocParsed": true
+}

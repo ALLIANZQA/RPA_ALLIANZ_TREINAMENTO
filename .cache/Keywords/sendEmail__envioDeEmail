@@ -1,0 +1,10 @@
+{
+  "keywordFileContentHash": "6572751429462B08F0939657C3129563",
+  "keywordClasses": [
+    {
+      "name": "sendEmail.envioDeEmail",
+      "keywordMethods": []
+    }
+  ],
+  "javadocParsed": true
+}

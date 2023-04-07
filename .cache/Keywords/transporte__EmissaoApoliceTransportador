@@ -1,0 +1,10 @@
+{
+  "keywordFileContentHash": "E8C842C553867FA239AB1F022C2EAEDB",
+  "keywordClasses": [
+    {
+      "name": "transporte.EmissaoApoliceTransportador",
+      "keywordMethods": []
+    }
+  ],
+  "javadocParsed": true
+}
