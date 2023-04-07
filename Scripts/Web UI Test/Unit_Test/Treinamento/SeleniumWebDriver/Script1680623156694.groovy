@@ -143,43 +143,7 @@ String xpath
 String valorTelaSolicitacao
 
 
-//Seguros 
-clickXpath('//*[@id="seguros"]', 0)
-//Auto
-clickXpath('/html/body/div[1]/div/div[1]/div/div/div/header/div[2]/div/div/div/nav/ul/li[1]/div/div/ul/li[1]/ul/li[1]/a', 0)
-//SOLICITE UMA COTAÇÃO
-clickXpath('/html/body/div[1]/div/main/div[1]/div/div/div[2]/div/div[4]/div/div/a/span', 0)
-rpaCommands.alteraJanejaGenerica(1, 2)
-//Nome
-preencheXpath( '//*[@id="i-name"]','Arnold Schwarzenegger', 0)
-//CPF
-preencheXpath( '//*[@id="i-registrationNumber"]','11795879874', 0)
-//EMAIL
-preencheXpath( '//*[@id="i-email"]','ArnoldSchwarzenegger@email.com', 0)
-//CONFIRMAR EMAIL
-preencheXpath( '//*[@id="i-confirm_email"]','ArnoldSchwarzenegger@email.com', 0)
-//TELEFONE
-preencheXpath( '//*[@id="i-phone"]','11972428752', 0)
-//ALETA DE COOKIES
-clickXpath('//*[@id="onetrust-reject-all-handler"]', 0)
-//MENSAGEM
-clickXpath('//*[@id="r-whatsapp-contact"]', 0)
-//PROXIMO
-clickXpath('//*[@id="step1"]/div[2]/button', 0)
-//CEP
-preencheXpath( '//*[@id="i-zipCode"]','06753320', 0)
-//PROXIMO
-clickXpath('//*[@id="step2"]/div[2]/button[1]', 0)
-//SELECIONA TIPO DE VEICULO 
-rpaCommands.selecionaItemListaEquals('Carro','//*[@id="interest1Title"]' , 'option' )
-//Selecione se é nacional ou importado
-rpaCommands.selecionaItemListaEquals('Nacional','//*[@id="nationality"]' , 'option' )
-//PLACA
-preencheXpath( '//*[@id="i-interest5Title"]','FKR6557', 0)
-//SEGURO NOVO
-clickXpath('//*[@id="safeNew"]/div/label', 0)
-// ACEITAR DECLARAÇÃO 
-clickXpath('//*[@id="c-consent"]', 0)
+
 
 System.out.println()
 
