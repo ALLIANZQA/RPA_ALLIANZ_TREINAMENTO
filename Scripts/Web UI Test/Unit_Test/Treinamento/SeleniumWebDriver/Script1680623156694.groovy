@@ -122,7 +122,7 @@ public static void abreBrowser(String url){
  * rpaCommands.alteraJanejaGenerica(1, 2)
  * 
  * 06/04/2023
- * selecionaItemListaEquals(String tipo,String xpath , String tag )
+ * 
  * Explicando o método acima
  * List<WebElement> listOfElements
  * 
@@ -175,14 +175,18 @@ xpath  ='//*[@id="i-email"]'
 preencheXpath( xpath,'victor.slima@outlook.com.br', 0)
 
 //CONFIRMAR E-MAIL
+xpath  ='//*[@id="i-confirm_email"]'
 preencheXpath( xpath,'victor.slima@outlook.com.br', 0)
 
 //TELEFONE
+xpath  ='//*[@id="i-phone"]'
 preencheXpath( xpath,'11991394134', 0)
 
+
 //Mensagem
-xpath = '//*[@id="r-whatsapp-contact"]'
+WebUI.delay(10);
 clickXpath(xpath, 0)
+xpath = '//*[@id="r-whatsapp-contact"]'
 
 //Proximo
 xpath = '//*[@id="step1"]/div[2]/button'
@@ -203,14 +207,12 @@ preencheXpath( xpath,'', 0)
 
 
 //Proximo
+WebUI.delay(10);
 xpath = '//*[@id="step2"]/div[2]/button[1]'
 clickXpath(xpath, 0)
 
-gsedgdrhrtddzx
 
-//Proximo
-xpath = '//*[@id="step2"]/div[2]/button[1]'
-clickXpath(xpath, 0)
+
 
 System.out.println()
 
