@@ -206,8 +206,11 @@ preencheXpath( xpath,'', 0)
 xpath = '//*[@id="step2"]/div[2]/button[1]'
 clickXpath(xpath, 0)
 
+gsedgdrhrtddzx
 
-
+//Proximo
+xpath = '//*[@id="step2"]/div[2]/button[1]'
+clickXpath(xpath, 0)
 
 System.out.println()
 
