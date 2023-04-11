@@ -184,11 +184,13 @@ preencheXpath( xpath,'11991394134', 0)
 
 
 //Mensagem
-WebUI.delay(10);
+WebUI.delay(5);
+xpath = '//*[@id="whatsapp-contact"]/div/label/span'
 clickXpath(xpath, 0)
-xpath = '//*[@id="r-whatsapp-contact"]'
+
 
 //Proximo
+WebUI.delay(15);
 xpath = '//*[@id="step1"]/div[2]/button'
 clickXpath(xpath, 0)
 
