@@ -114,28 +114,45 @@ public static void abreBrowser(String url){
 /**
  * Cenário : SOLICITE UMA COTAÇÃO
  * 
- * O que usar :
+ * O que usar:
  * 
- * 05/04/2023
+ * 
  * clickXpath(xpath, 0)
  * preencheXpath( xpath,'Arnold Schwarzenegger', 0)
  * rpaCommands.alteraJanejaGenerica(1, 2)
  * 
- * 06/04/2023
- * 
- * Explicando o método acima
- * List<WebElement> listOfElements
- * 
  * https://www.guru99.com/find-element-selenium.html
  * https://stackoverflow.com/questions/30773431/how-to-use-listwebelement-webdriver
+ * 
+ *  
+ * Método selecionaItemListaEquals:
+ * 
+ * Utilizado para receber uma seleção de elementos de uma página web selecionados por uma tag.
+ * Exemplos de tags:  div, a, li, span. Dentre outros.
+ *  
+ * Lista de elemntos:
+ * List<WebElement> listOfElements
+ * https://stackoverflow.com/questions/30773431/how-to-use-listwebelement-webdriver*  
+ * 
+ * Especificações:
+ * valor = texto á ser localizado na tag da lista de elementos 
+ * tag =   div, a, li, span. Dentre outros 
+ * xpath = usado para navegar por elementos e atributos 
+ *  
+ * selecionaItemListaEquals('Valor','xpath' , 'tag' )
+ * 
+ * 
+ * Instrução import
+ * https://www.geeksforgeeks.org/import-statement-in-java/
+ * 
+ * 
+ * 
  * 
  * 
  */
 
-System.out.println()
-
 /**
- * Exemplo
+ * Métodos
  */
 String url = "https://www.allianz.com.br/"
 abreBrowser(url)
@@ -145,8 +162,8 @@ WebUI.delay(10);
 
 //banner X 
 xpath  = '//*[@id="onetrust-close-btn-container"]/button'
- clickXpath(xpath, 0)
- WebUI.delay(05);
+clickXpath(xpath, 0)
+WebUI.delay(05);
  
 //SEGUROS
 xpath  = '//*[@id="seguros"]'
@@ -165,8 +182,8 @@ WebUI.delay(05);
 
 //banner X
 xpath  = '//*[@id="onetrust-close-btn-container"]/button'
- clickXpath(xpath, 0)
- WebUI.delay(05);
+clickXpath(xpath, 0)
+WebUI.delay(05);
 
 // Nome
 xpath  = '//*[@id="name"]/div/div/label'
