@@ -141,23 +141,32 @@ String url = "https://www.allianz.com.br/"
 abreBrowser(url)
 String xpath
 String valorTelaSolicitacao
+WebUI.delay(10);
 
+//banner X 
+xpath  = '//*[@id="onetrust-close-btn-container"]/button'
+ clickXpath(xpath, 0)
+ WebUI.delay(05);
+ 
 //SEGUROS
 xpath  = '//*[@id="seguros"]'
 clickXpath(xpath, 0)
-WebUI.delay(10);
+WebUI.delay(05);
 
 //auto
 xpath = '/html/body/div[1]/div/div[1]/div/div/div/header/div[2]/div/div/div/nav/ul/li[1]/div/div/ul/li[1]/ul/li[1]/a'
 clickXpath(xpath, 0)
 
-
-
 //Solicitaçao uma cotaçao
 xpath = '/html/body/div[1]/div/main/div[1]/div/div/div[2]/div/div[4]/div/div/a'
 clickXpath(xpath, 0)
 rpaCommands.alteraJanejaGenerica(1, 2)
+WebUI.delay(05);
 
+//banner X
+xpath  = '//*[@id="onetrust-close-btn-container"]/button'
+ clickXpath(xpath, 0)
+ WebUI.delay(05);
 
 // Nome
 xpath  = '//*[@id="name"]/div/div/label'
@@ -182,15 +191,12 @@ preencheXpath( xpath,'victor.slima@outlook.com.br', 0)
 xpath  ='//*[@id="i-phone"]'
 preencheXpath( xpath,'11991394134', 0)
 
-
 //Mensagem
-WebUI.delay(5);
 xpath = '//*[@id="whatsapp-contact"]/div/label/span'
 clickXpath(xpath, 0)
-
+WebUI.delay(03);
 
 //Proximo
-WebUI.delay(15);
 xpath = '//*[@id="step1"]/div[2]/button'
 clickXpath(xpath, 0)
 
@@ -207,14 +213,10 @@ preencheXpath( xpath,'', 0)
 //CIDADE
 preencheXpath( xpath,'', 0)
 
-
 //Proximo
-WebUI.delay(10);
+WebUI.delay(02);
 xpath = '//*[@id="step2"]/div[2]/button[1]'
 clickXpath(xpath, 0)
-
-
-
 
 System.out.println()
 
