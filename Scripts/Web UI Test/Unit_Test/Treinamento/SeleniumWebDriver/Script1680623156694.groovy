@@ -18,6 +18,9 @@ import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 import internal.GlobalVariable as GlobalVariable
 import com.kms.katalon.core.webui.driver.DriverFactory
+import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
+import org.openqa.selenium.WebElement
+
 
 
 
@@ -109,6 +112,10 @@ public static void abreBrowser(String url){
 	WebUI.maximizeWindow();// Maximisa o Chrome 
 	WebUI.navigateToUrl(url); // Preenche a URL no Brwouser
 }
+
+public static selecionaItemListaEquals(String tipo,String xpath , String tag ){
+
+		}
 
 
 /**
@@ -211,7 +218,7 @@ preencheXpath( xpath,'11991394134', 0)
 //Mensagem
 xpath = '//*[@id="whatsapp-contact"]/div/label/span'
 clickXpath(xpath, 0)
-WebUI.delay(03);
+WebUI.delay(05);
 
 //Proximo
 xpath = '//*[@id="step1"]/div[2]/button'
@@ -234,6 +241,27 @@ preencheXpath( xpath,'', 0)
 WebUI.delay(02);
 xpath = '//*[@id="step2"]/div[2]/button[1]'
 clickXpath(xpath, 0)
+
+
+//selecionaItemListaEquals('Valor','xpath' , 'tag' )
+//Solicite aqui sua cotação!
+selecionaItemListaEquals('Carro','//*[@id="interest1Title"]' , '//*[@id="interest1Title"]/option[2]' )
+WebUI.delay(02);
+
+//Nacional
+selecionaItemListaEquals('Nacional','//*[@id="nationality"]' , '//*[@id="nationality"]/option[2]' )
+WebUI.delay(02);
+
+//0km
+selecionaItemListaEquals('0Km','//*[@id="interest6Title"]' , '//*[@id="interest6Title"]/option[2]' )
+WebUI.delay(02);
+
+//Honda 
+selecionaItemListaEquals('Honda','//*[@id="i-interest3Title"]'  )
+ WebUI.delay(02);
+ 
+xpath  ='//*[@id="i-interest5Title"]'
+preencheXpath( xpath,'hvl30i20', 0)
 
 System.out.println()
 
