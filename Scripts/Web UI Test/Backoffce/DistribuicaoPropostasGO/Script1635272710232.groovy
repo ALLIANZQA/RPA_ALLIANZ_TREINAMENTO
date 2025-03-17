@@ -21,6 +21,7 @@ try {
 	 backoffice.DistribuicaoPropostasGOFuncionalidades.fluxoDistribuicaoPropostasGO('distribuicaoPropostasGO');
 	 WebUI.closeBrowser();
 	} catch (Exception e) {
+	  backoffice.DistribuicaoPropostasGOFuncionalidades.enviarEmailError("Error", 'distribuicaoPropostasGO' );
 	  System.err.println("Falha ao Realizar Distribuição de propostas pelo GO"+e);
 	  WebUI.closeBrowser();
    }

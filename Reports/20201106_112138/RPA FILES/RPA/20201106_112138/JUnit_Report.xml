@@ -1,0 +1,2045 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="RPA" time="5828.983" tests="3" failures="0" errors="0">
+   <testsuite name="RPA" tests="3" failures="0" errors="0" time="5828.983" timestamp="2020-11-06 11:21:40" hostname="ALZ_ServiceQA - BRSPVLRPA01.agf.com.br" id="Test Suites/RPA FILES/RPA">
+      <properties>
+         <property name="deviceName" value=""/>
+         <property name="devicePlatform" value=""/>
+         <property name="logFolder" value="C:\\Users\\Public\\RPA_ALLIANZ\\Reports\\20201106_112138\\RPA FILES\\RPA\\20201106_112138"/>
+         <property name="logFiles" value="C:\\Users\\Public\\RPA_ALLIANZ\\Reports\\20201106_112138\\RPA FILES\\RPA\\20201106_112138\\execution0.log"/>
+         <property name="attachments" value=""/>
+         <property name="hostName" value="ALZ_ServiceQA - BRSPVLRPA01.agf.com.br"/>
+         <property name="os" value="Windows Server 2016 64bit"/>
+         <property name="katalonVersion" value="7.2.1.1"/>
+         <property name="browser" value="Chrome 86.0.4240.111"/>
+         <property name="hostAddress" value="10.189.212.24"/>
+         <property name="sessionId" value="65ac6e5c879043357a1dd29711e535c9"/>
+         <property name="seleniumVersion" value="3.141.59"/>
+         <property name="proxyInformation" value="ProxyInformation{proxyOption=MANUAL_CONFIG, proxyServerType=HTTP, password=, proxyServerAddress=prxazb.allianz.com.br, proxyServerPort=8080, executionList=}"/>
+         <property name="platform" value="Windows Server 2016"/>
+      </properties>
+      <testcase name="Test Cases/Web UI Test/Backoffce/SeguroFuncionarioRenovAuto" time="1371.281" classname="Test Cases/Web UI Test/Backoffce/SeguroFuncionarioRenovAuto" status="PASSED">
+         <system-out><![CDATA[2020-11-06 11:21:40 - [TEST_CASE][PASSED] - Test Cases/Web UI Test/Backoffce/SeguroFuncionarioRenovAuto: Test Cases/Web UI Test/Backoffce/SeguroFuncionarioRenovAuto
+
+2020-11-06 11:21:41 - [TEST_STEP][PASSED] - try: Browser is closed
+
+2020-11-06 11:21:41 - [TEST_STEP][PASSED] - SeguroFuncionarioRenovAuto.fluxoSeguroFuncionario("SeguroRenovAuto"): Delayed 1 second(s)
+
+2020-11-06 11:21:42 - [MESSAGE][INFO] - Starting 'Chrome' driver
+
+2020-11-06 11:21:42 - [MESSAGE][INFO] - User set preference: ['prefs', '{download.default_directory=C:\Users\Public\, profile.default_content_settings.popups=0.0, download.prompt_for_download=false, download.directory_upgrade=true, plugins.always_open_pdf_externally=true, pdfjs.disabled=true, safebrowsing.enabled=true}']
+
+2020-11-06 11:21:42 - [MESSAGE][INFO] - User set preference: ['args', '[--start-maximized, --disable-infobars,  safebrowsing-disable-download-protection,  safebrowsing-disable-extension-blacklist, --test-type, --disable-extensions]']
+
+2020-11-06 11:21:42 - [MESSAGE][INFO] - User set preference: ['CapabilityType.ACCEPT_SSL_CERTS', 'true']
+
+2020-11-06 11:21:42 - [MESSAGE][INFO] - User set preference: ['pageLoadStrategy', 'normal']
+
+2020-11-06 11:21:42 - [MESSAGE][INFO] - Action delay is set to 0 seconds
+
+2020-11-06 11:21:45 - [MESSAGE][PASSED] - Browser is opened with url: ''
+
+2020-11-06 11:22:00 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2020-11-06 11:22:01 - [MESSAGE][PASSED] - Current window maximized
+
+2020-11-06 11:22:02 - [MESSAGE][PASSED] - Navigate to 'https://www.allianznet.com.br' successfully
+
+2020-11-06 11:22:22 - [MESSAGE][PASSED] - Delayed 20 second(s)
+
+2020-11-06 11:22:23 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:22:23 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-11-06 11:22:40 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2020-11-06 11:22:55 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2020-11-06 11:23:00 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:23:05 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:23:10 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:23:15 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:23:20 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:23:25 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:23:26 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:23:27 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:23:35 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:23:43 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:23:48 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:23:49 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:23:55 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:23:56 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:23:57 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:23:58 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:23:59 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:24:06 - [MESSAGE][PASSED] - Delayed 7 second(s)
+
+2020-11-06 11:24:17 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 11:24:33 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2020-11-06 11:24:34 - [MESSAGE][PASSED] - Current window maximized
+
+2020-11-06 11:24:54 - [MESSAGE][PASSED] - Delayed 20 second(s)
+
+2020-11-06 11:25:18 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 11:25:20 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 11:25:31 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 11:25:32 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:25:32 - [MESSAGE][WARNING] - A browser is already opened. Closing browser and opening a new one
+
+2020-11-06 11:25:33 - [MESSAGE][INFO] - Starting 'Chrome' driver
+
+2020-11-06 11:25:33 - [MESSAGE][INFO] - User set preference: ['prefs', '{download.default_directory=C:\Users\Public\, profile.default_content_settings.popups=0.0, download.prompt_for_download=false, download.directory_upgrade=true, plugins.always_open_pdf_externally=true, pdfjs.disabled=true, safebrowsing.enabled=true}']
+
+2020-11-06 11:25:33 - [MESSAGE][INFO] - User set preference: ['args', '[--start-maximized, --disable-infobars,  safebrowsing-disable-download-protection,  safebrowsing-disable-extension-blacklist, --test-type, --disable-extensions]']
+
+2020-11-06 11:25:33 - [MESSAGE][INFO] - User set preference: ['CapabilityType.ACCEPT_SSL_CERTS', 'true']
+
+2020-11-06 11:25:33 - [MESSAGE][INFO] - User set preference: ['pageLoadStrategy', 'normal']
+
+2020-11-06 11:25:36 - [MESSAGE][PASSED] - Browser is opened with url: ''
+
+2020-11-06 11:25:51 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2020-11-06 11:25:52 - [MESSAGE][PASSED] - Current window maximized
+
+2020-11-06 11:25:53 - [MESSAGE][PASSED] - Navigate to 'https://www.allianznet.com.br' successfully
+
+2020-11-06 11:26:13 - [MESSAGE][PASSED] - Delayed 20 second(s)
+
+2020-11-06 11:26:14 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:26:15 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-11-06 11:26:21 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:26:26 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:26:31 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:26:36 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:26:41 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:26:46 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:26:47 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:26:48 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:26:55 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:27:05 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:27:11 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:27:12 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:27:17 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:27:18 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:27:19 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:27:21 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:27:22 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:27:29 - [MESSAGE][PASSED] - Delayed 7 second(s)
+
+2020-11-06 11:27:41 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 11:27:57 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2020-11-06 11:27:58 - [MESSAGE][PASSED] - Current window maximized
+
+2020-11-06 11:28:18 - [MESSAGE][PASSED] - Delayed 20 second(s)
+
+2020-11-06 11:28:40 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 11:28:42 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 11:29:02 - [MESSAGE][PASSED] - Delayed 20 second(s)
+
+2020-11-06 11:29:08 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:29:28 - [MESSAGE][PASSED] - Delayed 20 second(s)
+
+2020-11-06 11:29:38 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 11:29:48 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 11:29:53 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:30:06 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:30:11 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:30:16 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:30:21 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:30:26 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:30:31 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:30:32 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:30:34 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:30:41 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:30:42 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:30:48 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:30:49 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:30:55 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:30:56 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:30:57 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:30:58 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:30:59 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:31:06 - [MESSAGE][PASSED] - Delayed 7 second(s)
+
+2020-11-06 11:31:16 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 11:31:32 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2020-11-06 11:31:34 - [MESSAGE][PASSED] - Current window maximized
+
+2020-11-06 11:31:54 - [MESSAGE][PASSED] - Delayed 20 second(s)
+
+2020-11-06 11:32:12 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 11:32:14 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 11:32:24 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 11:32:25 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:32:25 - [MESSAGE][WARNING] - A browser is already opened. Closing browser and opening a new one
+
+2020-11-06 11:32:26 - [MESSAGE][INFO] - Starting 'Chrome' driver
+
+2020-11-06 11:32:26 - [MESSAGE][INFO] - User set preference: ['prefs', '{download.default_directory=C:\Users\Public\, profile.default_content_settings.popups=0.0, download.prompt_for_download=false, download.directory_upgrade=true, plugins.always_open_pdf_externally=true, pdfjs.disabled=true, safebrowsing.enabled=true}']
+
+2020-11-06 11:32:26 - [MESSAGE][INFO] - User set preference: ['args', '[--start-maximized, --disable-infobars,  safebrowsing-disable-download-protection,  safebrowsing-disable-extension-blacklist, --test-type, --disable-extensions]']
+
+2020-11-06 11:32:26 - [MESSAGE][INFO] - User set preference: ['CapabilityType.ACCEPT_SSL_CERTS', 'true']
+
+2020-11-06 11:32:26 - [MESSAGE][INFO] - User set preference: ['pageLoadStrategy', 'normal']
+
+2020-11-06 11:32:29 - [MESSAGE][PASSED] - Browser is opened with url: ''
+
+2020-11-06 11:32:44 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2020-11-06 11:32:45 - [MESSAGE][PASSED] - Current window maximized
+
+2020-11-06 11:32:46 - [MESSAGE][PASSED] - Navigate to 'https://www.allianznet.com.br' successfully
+
+2020-11-06 11:33:06 - [MESSAGE][PASSED] - Delayed 20 second(s)
+
+2020-11-06 11:33:07 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:33:08 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-11-06 11:33:14 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:33:19 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:33:24 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:33:29 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:33:34 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:33:39 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:33:40 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:33:41 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:33:48 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:33:56 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:34:01 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:34:02 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:34:08 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:34:09 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:34:10 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:34:11 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:34:12 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:34:19 - [MESSAGE][PASSED] - Delayed 7 second(s)
+
+2020-11-06 11:34:30 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 11:34:46 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2020-11-06 11:34:47 - [MESSAGE][PASSED] - Current window maximized
+
+2020-11-06 11:35:07 - [MESSAGE][PASSED] - Delayed 20 second(s)
+
+2020-11-06 11:35:29 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 11:35:31 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 11:35:51 - [MESSAGE][PASSED] - Delayed 20 second(s)
+
+2020-11-06 11:35:56 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:36:16 - [MESSAGE][PASSED] - Delayed 20 second(s)
+
+2020-11-06 11:36:27 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 11:36:37 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 11:36:42 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:36:52 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:36:57 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:37:02 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:37:07 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:37:12 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:37:17 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:37:18 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:37:19 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:37:27 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:37:28 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:37:33 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:37:34 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:37:40 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:37:41 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:37:42 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:37:43 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:37:44 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:37:51 - [MESSAGE][PASSED] - Delayed 7 second(s)
+
+2020-11-06 11:38:02 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 11:38:18 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2020-11-06 11:38:19 - [MESSAGE][PASSED] - Current window maximized
+
+2020-11-06 11:38:39 - [MESSAGE][PASSED] - Delayed 20 second(s)
+
+2020-11-06 11:38:59 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 11:39:01 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 11:39:12 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 11:39:13 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:39:13 - [MESSAGE][WARNING] - A browser is already opened. Closing browser and opening a new one
+
+2020-11-06 11:39:14 - [MESSAGE][INFO] - Starting 'Chrome' driver
+
+2020-11-06 11:39:14 - [MESSAGE][INFO] - User set preference: ['prefs', '{download.default_directory=C:\Users\Public\, profile.default_content_settings.popups=0.0, download.prompt_for_download=false, download.directory_upgrade=true, plugins.always_open_pdf_externally=true, pdfjs.disabled=true, safebrowsing.enabled=true}']
+
+2020-11-06 11:39:14 - [MESSAGE][INFO] - User set preference: ['args', '[--start-maximized, --disable-infobars,  safebrowsing-disable-download-protection,  safebrowsing-disable-extension-blacklist, --test-type, --disable-extensions]']
+
+2020-11-06 11:39:14 - [MESSAGE][INFO] - User set preference: ['CapabilityType.ACCEPT_SSL_CERTS', 'true']
+
+2020-11-06 11:39:14 - [MESSAGE][INFO] - User set preference: ['pageLoadStrategy', 'normal']
+
+2020-11-06 11:39:16 - [MESSAGE][PASSED] - Browser is opened with url: ''
+
+2020-11-06 11:39:31 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2020-11-06 11:39:32 - [MESSAGE][PASSED] - Current window maximized
+
+2020-11-06 11:39:33 - [MESSAGE][PASSED] - Navigate to 'https://www.allianznet.com.br' successfully
+
+2020-11-06 11:39:53 - [MESSAGE][PASSED] - Delayed 20 second(s)
+
+2020-11-06 11:39:55 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:39:55 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-11-06 11:40:01 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:40:06 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:40:11 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:40:16 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:40:21 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:40:26 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:40:27 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:40:28 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:40:35 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:40:44 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:40:49 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:40:50 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:40:56 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:40:57 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:40:58 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:40:59 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:41:00 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:41:07 - [MESSAGE][PASSED] - Delayed 7 second(s)
+
+2020-11-06 11:41:18 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 11:41:34 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2020-11-06 11:41:35 - [MESSAGE][PASSED] - Current window maximized
+
+2020-11-06 11:41:55 - [MESSAGE][PASSED] - Delayed 20 second(s)
+
+2020-11-06 11:42:19 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 11:42:21 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 11:42:32 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 11:42:33 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:42:33 - [MESSAGE][WARNING] - A browser is already opened. Closing browser and opening a new one
+
+2020-11-06 11:42:34 - [MESSAGE][INFO] - Starting 'Chrome' driver
+
+2020-11-06 11:42:34 - [MESSAGE][INFO] - User set preference: ['prefs', '{download.default_directory=C:\Users\Public\, profile.default_content_settings.popups=0.0, download.prompt_for_download=false, download.directory_upgrade=true, plugins.always_open_pdf_externally=true, pdfjs.disabled=true, safebrowsing.enabled=true}']
+
+2020-11-06 11:42:34 - [MESSAGE][INFO] - User set preference: ['args', '[--start-maximized, --disable-infobars,  safebrowsing-disable-download-protection,  safebrowsing-disable-extension-blacklist, --test-type, --disable-extensions]']
+
+2020-11-06 11:42:34 - [MESSAGE][INFO] - User set preference: ['CapabilityType.ACCEPT_SSL_CERTS', 'true']
+
+2020-11-06 11:42:34 - [MESSAGE][INFO] - User set preference: ['pageLoadStrategy', 'normal']
+
+2020-11-06 11:42:36 - [MESSAGE][PASSED] - Browser is opened with url: ''
+
+2020-11-06 11:42:51 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2020-11-06 11:42:52 - [MESSAGE][PASSED] - Current window maximized
+
+2020-11-06 11:42:54 - [MESSAGE][PASSED] - Navigate to 'https://www.allianznet.com.br' successfully
+
+2020-11-06 11:43:14 - [MESSAGE][PASSED] - Delayed 20 second(s)
+
+2020-11-06 11:43:15 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:43:15 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-11-06 11:43:19 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 11:43:20 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:43:20 - [MESSAGE][WARNING] - A browser is already opened. Closing browser and opening a new one
+
+2020-11-06 11:43:21 - [MESSAGE][INFO] - Starting 'Chrome' driver
+
+2020-11-06 11:43:21 - [MESSAGE][INFO] - User set preference: ['prefs', '{download.default_directory=C:\Users\Public\, profile.default_content_settings.popups=0.0, download.prompt_for_download=false, download.directory_upgrade=true, plugins.always_open_pdf_externally=true, pdfjs.disabled=true, safebrowsing.enabled=true}']
+
+2020-11-06 11:43:21 - [MESSAGE][INFO] - User set preference: ['args', '[--start-maximized, --disable-infobars,  safebrowsing-disable-download-protection,  safebrowsing-disable-extension-blacklist, --test-type, --disable-extensions]']
+
+2020-11-06 11:43:21 - [MESSAGE][INFO] - User set preference: ['CapabilityType.ACCEPT_SSL_CERTS', 'true']
+
+2020-11-06 11:43:21 - [MESSAGE][INFO] - User set preference: ['pageLoadStrategy', 'normal']
+
+2020-11-06 11:43:23 - [MESSAGE][PASSED] - Browser is opened with url: ''
+
+2020-11-06 11:43:38 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2020-11-06 11:43:39 - [MESSAGE][PASSED] - Current window maximized
+
+2020-11-06 11:43:40 - [MESSAGE][PASSED] - Navigate to 'https://www.allianznet.com.br' successfully
+
+2020-11-06 11:44:00 - [MESSAGE][PASSED] - Delayed 20 second(s)
+
+2020-11-06 11:44:01 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:44:02 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-11-06 11:44:18 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2020-11-06 11:44:20 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 11:44:21 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:44:27 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 11:44:28 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:44:30 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 11:44:31 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:44:31 - [TEST_STEP][PASSED] - closeBrowser(): Browser is closed
+
+2020-11-06 11:44:31 - [MESSAGE][PASSED] - Browser is closed]]></system-out>
+         <system-err><![CDATA[]]></system-err>
+      </testcase>
+      <testcase name="Test Cases/Web UI Test/Backoffce/SeguroFuncionarioRenovResidencia" time="1026.943" classname="Test Cases/Web UI Test/Backoffce/SeguroFuncionarioRenovResidencia" status="PASSED">
+         <system-out><![CDATA[2020-11-06 11:44:32 - [TEST_CASE][PASSED] - Test Cases/Web UI Test/Backoffce/SeguroFuncionarioRenovResidencia: Test Cases/Web UI Test/Backoffce/SeguroFuncionarioRenovResidencia
+
+2020-11-06 11:44:32 - [TEST_STEP][PASSED] - try: Browser is closed
+
+2020-11-06 11:44:32 - [TEST_STEP][PASSED] - SeguroFuncionarioRenovResidencia.fluxoSeguroFuncionario("SeguroRenovResidencia"): Delayed 1 second(s)
+
+2020-11-06 11:44:32 - [MESSAGE][INFO] - Starting 'Chrome' driver
+
+2020-11-06 11:44:32 - [MESSAGE][INFO] - User set preference: ['prefs', '{download.default_directory=C:\Users\Public\, profile.default_content_settings.popups=0.0, download.prompt_for_download=false, download.directory_upgrade=true, plugins.always_open_pdf_externally=true, pdfjs.disabled=true, safebrowsing.enabled=true}']
+
+2020-11-06 11:44:32 - [MESSAGE][INFO] - User set preference: ['args', '[--start-maximized, --disable-infobars,  safebrowsing-disable-download-protection,  safebrowsing-disable-extension-blacklist, --test-type, --disable-extensions]']
+
+2020-11-06 11:44:32 - [MESSAGE][INFO] - User set preference: ['CapabilityType.ACCEPT_SSL_CERTS', 'true']
+
+2020-11-06 11:44:32 - [MESSAGE][INFO] - User set preference: ['pageLoadStrategy', 'normal']
+
+2020-11-06 11:44:34 - [MESSAGE][PASSED] - Browser is opened with url: ''
+
+2020-11-06 11:44:49 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2020-11-06 11:44:50 - [MESSAGE][PASSED] - Current window maximized
+
+2020-11-06 11:44:52 - [MESSAGE][PASSED] - Navigate to 'https://www.allianznet.com.br' successfully
+
+2020-11-06 11:45:12 - [MESSAGE][PASSED] - Delayed 20 second(s)
+
+2020-11-06 11:45:13 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:45:13 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-11-06 11:45:29 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2020-11-06 11:45:44 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2020-11-06 11:45:49 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:45:54 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:45:59 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:46:04 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:46:05 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:46:07 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:46:14 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:46:21 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:46:27 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:46:28 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:46:34 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:46:35 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:46:36 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:46:41 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:46:46 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:46:47 - [MESSAGE][PASSED] - Current window maximized
+
+2020-11-06 11:46:49 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 11:46:54 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:47:00 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:47:20 - [MESSAGE][PASSED] - Delayed 20 second(s)
+
+2020-11-06 11:47:21 - [MESSAGE][PASSED] - Current window maximized
+
+2020-11-06 11:47:31 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 11:47:41 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:48:01 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2020-11-06 11:48:07 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:48:27 - [MESSAGE][PASSED] - Delayed 20 second(s)
+
+2020-11-06 11:48:37 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 11:48:47 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 11:48:52 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:49:02 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:49:07 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:49:12 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:49:17 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:49:18 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:49:19 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:49:26 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:49:27 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:49:33 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:49:34 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:49:40 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:49:41 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:49:42 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:49:47 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:49:52 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:49:52 - [MESSAGE][PASSED] - Current window maximized
+
+2020-11-06 11:49:54 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 11:49:59 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:50:05 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:50:25 - [MESSAGE][PASSED] - Delayed 20 second(s)
+
+2020-11-06 11:50:27 - [MESSAGE][PASSED] - Current window maximized
+
+2020-11-06 11:50:37 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 11:50:45 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:51:05 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2020-11-06 11:51:10 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:51:31 - [MESSAGE][PASSED] - Delayed 20 second(s)
+
+2020-11-06 11:51:41 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 11:51:51 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 11:51:56 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:52:17 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:52:22 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:52:27 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:52:32 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:52:33 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:52:34 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:52:41 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:52:42 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:52:48 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:52:49 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:52:55 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:52:56 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:52:57 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:53:02 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:53:07 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:53:07 - [MESSAGE][PASSED] - Current window maximized
+
+2020-11-06 11:53:09 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 11:53:15 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:53:21 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:53:41 - [MESSAGE][PASSED] - Delayed 20 second(s)
+
+2020-11-06 11:53:42 - [MESSAGE][PASSED] - Current window maximized
+
+2020-11-06 11:53:52 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 11:54:01 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:54:20 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2020-11-06 11:54:26 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:54:46 - [MESSAGE][PASSED] - Delayed 20 second(s)
+
+2020-11-06 11:54:56 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 11:55:06 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 11:55:11 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:55:20 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:55:25 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:55:30 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:55:35 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:55:36 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:55:38 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:55:45 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:55:46 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:55:52 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:55:53 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:55:58 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:55:59 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:56:00 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:56:06 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:56:11 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:56:11 - [MESSAGE][PASSED] - Current window maximized
+
+2020-11-06 11:56:13 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 11:56:18 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:56:24 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:56:44 - [MESSAGE][PASSED] - Delayed 20 second(s)
+
+2020-11-06 11:56:45 - [MESSAGE][PASSED] - Current window maximized
+
+2020-11-06 11:56:55 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 11:57:04 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:57:24 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2020-11-06 11:57:29 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:57:50 - [MESSAGE][PASSED] - Delayed 20 second(s)
+
+2020-11-06 11:58:00 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 11:58:10 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 11:58:15 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:58:24 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:58:29 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:58:34 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:58:39 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:58:40 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:58:42 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:58:50 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:58:51 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:58:57 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:58:58 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:59:03 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:59:04 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:59:05 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 11:59:10 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:59:15 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:59:16 - [MESSAGE][PASSED] - Current window maximized
+
+2020-11-06 11:59:18 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 11:59:23 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:59:29 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 11:59:49 - [MESSAGE][PASSED] - Delayed 20 second(s)
+
+2020-11-06 11:59:50 - [MESSAGE][PASSED] - Current window maximized
+
+2020-11-06 12:00:00 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:00:09 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:00:29 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2020-11-06 12:00:34 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:00:55 - [MESSAGE][PASSED] - Delayed 20 second(s)
+
+2020-11-06 12:01:05 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:01:15 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:01:20 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:01:27 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:01:28 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 12:01:33 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:01:34 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 12:01:36 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:01:37 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 12:01:37 - [TEST_STEP][PASSED] - closeBrowser(): Browser is closed
+
+2020-11-06 12:01:38 - [MESSAGE][PASSED] - Browser is closed]]></system-out>
+         <system-err><![CDATA[]]></system-err>
+      </testcase>
+      <testcase name="Test Cases/Web UI Test/Backoffce/FluxoEnvioPDF" time="3430.471" classname="Test Cases/Web UI Test/Backoffce/FluxoEnvioPDF" status="PASSED">
+         <system-out><![CDATA[2020-11-06 12:01:38 - [TEST_CASE][PASSED] - Test Cases/Web UI Test/Backoffce/FluxoEnvioPDF: Test Cases/Web UI Test/Backoffce/FluxoEnvioPDF
+
+2020-11-06 12:01:39 - [TEST_STEP][PASSED] - try: Browser is closed
+
+2020-11-06 12:01:39 - [TEST_STEP][PASSED] - FluxoEnvioPDF.fluxoEnvioDePDF("EnvioPDF"): Delayed 1 second(s)
+
+2020-11-06 12:01:44 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:01:49 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:01:54 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:01:59 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:01:59 - [MESSAGE][INFO] - Starting 'Chrome' driver
+
+2020-11-06 12:01:59 - [MESSAGE][INFO] - User set preference: ['prefs', '{download.default_directory=C:\Users\Public\, profile.default_content_settings.popups=0.0, download.prompt_for_download=false, download.directory_upgrade=true, plugins.always_open_pdf_externally=true, pdfjs.disabled=true, safebrowsing.enabled=true}']
+
+2020-11-06 12:01:59 - [MESSAGE][INFO] - User set preference: ['args', '[--start-maximized, --disable-infobars,  safebrowsing-disable-download-protection,  safebrowsing-disable-extension-blacklist, --test-type, --disable-extensions]']
+
+2020-11-06 12:01:59 - [MESSAGE][INFO] - User set preference: ['CapabilityType.ACCEPT_SSL_CERTS', 'true']
+
+2020-11-06 12:01:59 - [MESSAGE][INFO] - User set preference: ['pageLoadStrategy', 'normal']
+
+2020-11-06 12:02:01 - [MESSAGE][PASSED] - Browser is opened with url: ''
+
+2020-11-06 12:02:16 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2020-11-06 12:02:17 - [MESSAGE][PASSED] - Current window maximized
+
+2020-11-06 12:02:30 - [MESSAGE][PASSED] - Navigate to 'https://www.br.intrallianz.com/ngx-intranet/public/home' successfully
+
+2020-11-06 12:02:50 - [MESSAGE][PASSED] - Delayed 20 second(s)
+
+2020-11-06 12:02:51 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 12:02:52 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-11-06 12:03:02 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:03:04 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:03:07 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:03:24 - [MESSAGE][PASSED] - Delayed 17 second(s)
+
+2020-11-06 12:03:29 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:03:30 - [MESSAGE][PASSED] - Current window maximized
+
+2020-11-06 12:03:35 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:03:37 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:03:39 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 12:03:40 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 12:03:42 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 12:03:43 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 12:03:48 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:03:52 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:03:55 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:03:57 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:03:59 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:04:01 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:04:04 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:04:09 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:04:26 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2020-11-06 12:04:31 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:04:36 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:04:42 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:04:57 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2020-11-06 12:05:02 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:05:17 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2020-11-06 12:05:22 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:05:29 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:05:31 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:05:32 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 12:05:33 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 12:05:35 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 12:05:36 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 12:05:41 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:05:45 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:05:47 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:05:49 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:05:51 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:05:54 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:05:56 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:06:01 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:06:17 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2020-11-06 12:06:22 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:06:27 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:06:33 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:06:48 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2020-11-06 12:06:53 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:07:09 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2020-11-06 12:07:11 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:07:16 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:07:21 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:07:26 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:07:31 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:07:37 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:07:39 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:07:40 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 12:07:42 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 12:07:43 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 12:07:44 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 12:07:49 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:07:52 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:07:55 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:07:57 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:07:59 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:08:01 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:08:04 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:08:06 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:08:08 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:08:13 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:08:30 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2020-11-06 12:08:35 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:08:40 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:08:46 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:09:01 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2020-11-06 12:09:06 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:09:21 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2020-11-06 12:09:23 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:09:28 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:09:33 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:09:38 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:09:43 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:09:49 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:09:51 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:09:53 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 12:09:54 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 12:09:55 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 12:09:57 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 12:10:02 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:10:05 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:10:07 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:10:09 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:10:12 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:10:14 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:10:16 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:10:22 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:10:38 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2020-11-06 12:10:43 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:10:48 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:10:54 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:11:09 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2020-11-06 12:11:14 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:11:29 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2020-11-06 12:11:31 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:11:36 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:11:41 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:11:46 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:11:51 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:11:57 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:12:03 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:12:08 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:12:13 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:12:15 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:12:17 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:12:32 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2020-11-06 12:12:37 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:12:38 - [MESSAGE][PASSED] - Current window maximized
+
+2020-11-06 12:12:39 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 12:12:45 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:12:58 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:13:00 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:13:02 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:13:13 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:13:27 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:13:32 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:13:37 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:13:42 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:13:45 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 12:13:50 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:14:01 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:14:03 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:14:06 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:14:16 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:14:30 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:14:35 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:14:40 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:14:45 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:14:47 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 12:14:52 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:15:04 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:15:06 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:15:08 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:15:19 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:15:32 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:15:37 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:15:42 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:15:47 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:15:49 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 12:15:54 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:16:06 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:16:08 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:16:10 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:16:20 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:16:34 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:16:39 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:16:44 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:16:49 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:16:51 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 12:16:56 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:17:08 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:17:10 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:17:12 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:17:22 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:17:35 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:17:40 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:17:45 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:17:50 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:17:53 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 12:17:58 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:18:09 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:18:11 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:18:14 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:18:24 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:18:37 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:18:42 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:18:47 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:18:52 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:18:55 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 12:19:00 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:19:11 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:19:13 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:19:16 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:19:26 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:19:39 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:19:44 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:19:49 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:19:54 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:19:57 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 12:20:02 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:20:13 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:20:15 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:20:18 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:20:28 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:20:42 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:20:47 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:20:52 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:20:57 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:20:59 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 12:21:04 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:21:16 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:21:18 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:21:20 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:21:30 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:21:47 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:21:52 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:21:57 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:22:03 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:22:05 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 12:22:10 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:22:22 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:22:24 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:22:26 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:22:36 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:22:51 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:22:56 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:23:01 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:23:06 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:23:08 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 12:23:14 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:23:25 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:23:27 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:23:30 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:23:40 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:23:53 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:23:58 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:24:03 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:24:08 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:24:11 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 12:24:16 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:24:28 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:24:30 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:24:32 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:24:42 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:24:55 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:25:00 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:25:05 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:25:10 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:25:13 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 12:25:18 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:25:30 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:25:32 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:25:34 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:25:44 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:25:58 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:26:03 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:26:08 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:26:13 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:26:16 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 12:26:21 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:26:33 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:26:35 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:26:37 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:26:47 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:27:01 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:27:06 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:27:11 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:27:16 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:27:19 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 12:27:24 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:27:35 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:27:37 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:27:40 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:27:50 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:28:03 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:28:08 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:28:13 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:28:18 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:28:21 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 12:28:26 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:28:38 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:28:40 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:28:43 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:28:53 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:29:08 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:29:13 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:29:18 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:29:23 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:29:25 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 12:29:31 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:29:42 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:29:44 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:29:46 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:29:57 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:30:17 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:30:22 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:30:27 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:30:32 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:30:34 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 12:30:39 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:30:51 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:30:53 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:30:55 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:31:05 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:31:19 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:31:24 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:31:29 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:31:34 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:31:36 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 12:31:41 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:31:53 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:31:55 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:31:57 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:32:07 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:32:26 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:32:31 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:32:36 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:32:41 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:32:44 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 12:32:49 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:33:00 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:33:02 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:33:05 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:33:15 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:33:30 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:33:35 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:33:40 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:33:45 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:33:47 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 12:33:52 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:34:04 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:34:06 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:34:08 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:34:18 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:34:32 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:34:37 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:34:42 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:34:47 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:34:49 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 12:34:54 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:35:06 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:35:08 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:35:10 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:35:20 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:35:33 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:35:38 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:35:43 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:35:48 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:35:50 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 12:35:55 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:36:07 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:36:09 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:36:11 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:36:21 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:36:35 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:36:40 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:36:45 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:36:50 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:36:52 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 12:36:57 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:37:09 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:37:11 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:37:13 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:37:23 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:37:36 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:37:41 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:37:46 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:37:51 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:37:54 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 12:37:59 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:38:11 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:38:13 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:38:15 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:38:25 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:38:39 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:38:44 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:38:49 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:38:54 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:38:56 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 12:39:01 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:39:13 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:39:15 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:39:17 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:39:27 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:39:41 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:39:46 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:39:51 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:39:56 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:39:59 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 12:40:04 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:40:15 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:40:17 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:40:20 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:40:30 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:40:43 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:40:48 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:40:53 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:40:58 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:41:01 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 12:41:06 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:41:17 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:41:19 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:41:22 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:41:32 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:41:47 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:41:52 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:41:57 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:42:02 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:42:04 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 12:42:09 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:42:21 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:42:23 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:42:25 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:42:35 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:42:48 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:42:53 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:42:58 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:43:03 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:43:06 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 12:43:11 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:43:22 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:43:24 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:43:27 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:43:37 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:43:51 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:43:56 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:44:01 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:44:06 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:44:08 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 12:44:13 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:44:25 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:44:27 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:44:29 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:44:39 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:44:53 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:44:58 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:45:03 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:45:08 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:45:10 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 12:45:15 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:45:27 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:45:29 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:45:31 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:45:41 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:45:55 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:46:00 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:46:05 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:46:10 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:46:12 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 12:46:18 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:46:29 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:46:31 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:46:33 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:46:44 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:47:02 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:47:07 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:47:12 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:47:17 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:47:20 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 12:47:25 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:47:37 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:47:39 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:47:41 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:47:51 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:48:05 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:48:10 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:48:15 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:48:20 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:48:22 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 12:48:27 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:48:39 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:48:41 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:48:43 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:48:53 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:49:06 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:49:11 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:49:16 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:49:21 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:49:23 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 12:49:29 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:49:40 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:49:42 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:49:44 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:49:55 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:50:08 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:50:13 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:50:18 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:50:23 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:50:26 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 12:50:31 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:50:43 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:50:45 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:50:47 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:50:57 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:51:10 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:51:15 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:51:20 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:51:25 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:51:28 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 12:51:33 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:51:44 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:51:46 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:51:49 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:51:59 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:52:12 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:52:17 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:52:22 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:52:27 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:52:30 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 12:52:35 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:52:47 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:52:49 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:52:51 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:53:01 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:53:15 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:53:20 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:53:25 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:53:30 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:53:32 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 12:53:37 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:53:49 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:53:51 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:53:53 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:54:03 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:54:16 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:54:21 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:54:26 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:54:31 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:54:34 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 12:54:39 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:54:50 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:54:52 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:54:55 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:55:05 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:55:18 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:55:23 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:55:28 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:55:33 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:55:35 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 12:55:41 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:55:52 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:55:54 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:55:57 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:56:07 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:56:20 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:56:25 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:56:30 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:56:35 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:56:37 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 12:56:43 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:56:54 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:56:56 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:56:58 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:57:09 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:57:22 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:57:27 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:57:32 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:57:37 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:57:39 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 12:57:44 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:57:56 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:57:58 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:58:00 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:58:10 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:58:25 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-06 12:58:30 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:58:35 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:58:40 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-06 12:58:47 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-11-06 12:58:48 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-06 12:58:48 - [TEST_STEP][PASSED] - closeBrowser(): Browser is closed
+
+2020-11-06 12:58:49 - [MESSAGE][PASSED] - Browser is closed]]></system-out>
+         <system-err><![CDATA[]]></system-err>
+      </testcase>
+      <system-out><![CDATA[2020-11-06 11:21:40 - [TEST_SUITE][PASSED] - RPA: Test Cases/Web UI Test/Backoffce/FluxoEnvioPDF]]></system-out>
+      <system-err><![CDATA[]]></system-err>
+   </testsuite>
+</testsuites>

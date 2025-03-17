@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="RPA" time="140.629" tests="1" failures="0" errors="0">
+   <testsuite name="RPA" tests="1" failures="0" errors="0" time="140.629" timestamp="2020-08-31 18:15:37" hostname="ALZ_ServiceQA - BRSPVLRPA01.agf.com.br" id="Test Suites/RPA FILES/RPA">
+      <properties>
+         <property name="deviceName" value=""/>
+         <property name="devicePlatform" value=""/>
+         <property name="logFolder" value="C:\\Users\\Public\\RPA_ALLIANZ\\Reports\\20200831_181427\\RPA FILES\\RPA\\20200831_181427"/>
+         <property name="logFiles" value="C:\\Users\\Public\\RPA_ALLIANZ\\Reports\\20200831_181427\\RPA FILES\\RPA\\20200831_181427\\execution0.log"/>
+         <property name="attachments" value=""/>
+         <property name="hostName" value="ALZ_ServiceQA - BRSPVLRPA01.agf.com.br"/>
+         <property name="os" value="Windows Server 2016 64bit"/>
+         <property name="katalonVersion" value="7.2.1.1"/>
+         <property name="browser" value="Chrome 85.0.4183.83"/>
+         <property name="hostAddress" value="10.189.212.24"/>
+         <property name="sessionId" value="6e9acbf7fa4b9aa3218a8d4f00f85179"/>
+         <property name="seleniumVersion" value="3.141.59"/>
+         <property name="proxyInformation" value="ProxyInformation{proxyOption=NO_PROXY, proxyServerType=HTTP, password=, proxyServerAddress=, proxyServerPort=0, executionList=}"/>
+         <property name="platform" value="Windows Server 2016"/>
+      </properties>
+      <testcase name="Test Cases/Web UI Test/Backoffce/EnvioAvisoPendenciaGo" time="139.136" classname="Test Cases/Web UI Test/Backoffce/EnvioAvisoPendenciaGo" status="INCOMPLETE">
+         <system-out><![CDATA[2020-08-31 18:15:39 - [TEST_CASE][INCOMPLETE] - Test Cases/Web UI Test/Backoffce/EnvioAvisoPendenciaGo: null
+
+2020-08-31 18:15:41 - [TEST_STEP][INCOMPLETE] - try: Object: 'Object Repository/Page_Intranet Transacional/a_Ficha de Gesto' is clicked on
+
+2020-08-31 18:15:41 - [TEST_STEP][INCOMPLETE] - EnvioPendenciaGo.fluxoEnvioPendenciaGo("Bloqueios"): Object: 'Object Repository/Page_Intranet Transacional/a_Ficha de Gesto' is clicked on
+
+2020-08-31 18:15:48 - [MESSAGE][INFO] - Starting 'Chrome' driver
+
+2020-08-31 18:15:48 - [MESSAGE][INFO] - User set preference: ['prefs', '{download.default_directory=C:\Users\Public\, profile.default_content_settings.popups=0.0, download.prompt_for_download=false, download.directory_upgrade=true, plugins.always_open_pdf_externally=true, pdfjs.disabled=true, safebrowsing.enabled=true}']
+
+2020-08-31 18:15:49 - [MESSAGE][INFO] - User set preference: ['args', '[--start-maximized, --disable-infobars,  safebrowsing-disable-download-protection,  safebrowsing-disable-extension-blacklist, --test-type, --disable-extensions]']
+
+2020-08-31 18:15:49 - [MESSAGE][INFO] - User set preference: ['CapabilityType.ACCEPT_SSL_CERTS', 'true']
+
+2020-08-31 18:15:49 - [MESSAGE][INFO] - User set preference: ['pageLoadStrategy', 'normal']
+
+2020-08-31 18:15:49 - [MESSAGE][INFO] - Action delay is set to 0 seconds
+
+2020-08-31 18:16:12 - [MESSAGE][PASSED] - Browser is opened with url: ''
+
+2020-08-31 18:16:27 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2020-08-31 18:16:29 - [MESSAGE][PASSED] - Current window maximized
+
+2020-08-31 18:17:17 - [MESSAGE][PASSED] - Navigate to 'https://www.br.intrallianz.com/ngx-intranet/public/home' successfully
+
+2020-08-31 18:17:37 - [MESSAGE][PASSED] - Delayed 20 second(s)
+
+2020-08-31 18:17:40 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-08-31 18:17:41 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-08-31 18:17:52 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-08-31 18:17:53 - [MESSAGE][PASSED] - Object: 'Object Repository/Page_Intranet Transacional/a_Consultas  Estatsticas' is right clicked on
+
+2020-08-31 18:17:54 - [MESSAGE][PASSED] - Object: 'Object Repository/Page_Intranet Transacional/ul_ConsultasArquivo Digital' is clicked on
+
+2020-08-31 18:17:55 - [MESSAGE][PASSED] - Object: 'Object Repository/Page_Intranet Transacional/span_Arquivo Digital' is right clicked on
+
+2020-08-31 18:17:58 - [MESSAGE][PASSED] - Object: 'Object Repository/Page_Intranet Transacional/a_Ficha de Gesto' is clicked on]]></system-out>
+         <system-err><![CDATA[2020-08-31 18:15:39 - [TEST_CASE][INCOMPLETE] - Test Cases/Web UI Test/Backoffce/EnvioAvisoPendenciaGo: null]]></system-err>
+      </testcase>
+      <system-out><![CDATA[2020-08-31 18:15:37 - [TEST_SUITE][INCOMPLETE] - RPA: null]]></system-out>
+      <system-err><![CDATA[2020-08-31 18:15:37 - [TEST_SUITE][INCOMPLETE] - RPA: null]]></system-err>
+   </testsuite>
+</testsuites>

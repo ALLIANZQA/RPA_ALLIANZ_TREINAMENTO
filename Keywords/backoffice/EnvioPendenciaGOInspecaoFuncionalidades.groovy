@@ -6,6 +6,8 @@ import static com.kms.katalon.core.testdata.TestDataFactory.findTestData
 import static com.kms.katalon.core.testobject.ObjectRepository.findTestObject
 import static com.kms.katalon.core.testobject.ObjectRepository.findWindowsObject
 
+import java.time.Duration
+import java.time.Instant
 import java.util.List
 
 import com.kms.katalon.core.annotation.Keyword
@@ -39,6 +41,10 @@ public class EnvioPendenciaGOInspecaoFuncionalidades extends backofficeFuncional
 	private static texto
 	private static String status
 	private static String nota = "Demais Bloqueios BE53298"
+	
+	private static Instant start;
+	private static Instant end;
+	private static Duration timeLapnse;
 
 
 	/**
@@ -98,10 +104,18 @@ public class EnvioPendenciaGOInspecaoFuncionalidades extends backofficeFuncional
 	 * @return
 	 */
 	public static fluxoEnvioPendenciaGOInspecao(String aba){
+		
+		start = Instant.now();
 		initDataFiles()
 		fluxoCompletoEnvioPendenciaGOInspecao(aba)
 		reprocessaFalhas(aba)
 		enviaEmailEnvioPendenciaGOInspecao(aba)
+		end =  Instant.now();
+		timeLapnse = Duration.between(start, end);
+		System.out.println("Time Lapnse:\n"+"Hours "+timeLapnse.toHours()+" Minutes "+timeLapnse.toMinutes()+" Seconds "+timeLapnse.toSeconds());
+		
+		
+		
 	}
 
 	/**
@@ -116,7 +130,7 @@ public class EnvioPendenciaGOInspecaoFuncionalidades extends backofficeFuncional
 			realizaLoginIntraNetProducao(aba);
 			WebUI.delay(15);
 			MenuMatriz.newFluxoGestao('/*/body/div/div/app-root/app-private/app-displayed-menu/div/app-teaser/div/div[2]/div/div[1]/ul');
-			WebUI.delay(50);
+			WebUI.delay(10);
 
 			for(int i = 1; i <= data.getRowNumbers(); i++) {
 				int j =  i - 1
@@ -171,23 +185,19 @@ public class EnvioPendenciaGOInspecaoFuncionalidades extends backofficeFuncional
 				WebUI.delay(5);
 				alertaFG = recuperaValor('//*[@id="componenteReferencia"]/div/div[2]/div/nx-message/div', 'innerText', 1)
 				System.out.println("alertaFG ["+alertaFG+"]")
-
-
 				if(!verificaPendenciaSelectItem(nota)){
-
-
 					if(!alertListBlocList(ajusteMSGFG(alertaFG))){
-						WebUI.delay(10);
+						//WebUI.delay(10);
 						//Nota/Agenda - Ficha Gestão
 						MenuMatriz.subMenu('/html/body/div[1]/div/app-root/file-management/app-header/div/nx-ibl-header/nx-ibl-navigation/div/div[1]/nx-ibl-navigation-desktop/div[1]/div/div', 'span','Nota/Agenda')
 						alteraJanejaGenerica(2, 2)
 						String telaGestao
 						System.err.println("Ramo ["+registros[2]+"] Nota ["+registros[7]+"]")
 						//trocaJanela('Editor de Notas/Agenda')
-						WebUI.delay(20);
+						//WebUI.delay(20);
 						String telaEditor = recuperaValor('//*[@id="cellAppPromptHeaderArea"]', 'innerText', 1)
 						System.out.println(telaEditor)
-						WebUI.delay(10);
+						//WebUI.delay(10);
 						if(telaEditor.contains("EDITOR DE NOTAS/AGENDA")){
 							//Nota
 							preencheXpath('//*[@id="numModCodi"]', registros[7],0);
@@ -225,7 +235,6 @@ public class EnvioPendenciaGOInspecaoFuncionalidades extends backofficeFuncional
 							alerta="Tela 'EDITOR DE NOTAS/AGENDA' não apresentada"
 							status = "Processar"
 						}
-
 						//ALERTA FG
 					} else {
 						enviado = false
@@ -233,7 +242,6 @@ public class EnvioPendenciaGOInspecaoFuncionalidades extends backofficeFuncional
 						alerta = alertaFG
 						MenuMatriz.inicioFichaGestao()
 					}
-
 				} else {
 					alerta  = retornaLinhaTabelaFichaGestao(indexPendenciaSelectItem(nota))
 					System.out.println("["+alerta+"]")
@@ -245,7 +253,6 @@ public class EnvioPendenciaGOInspecaoFuncionalidades extends backofficeFuncional
 					MenuMatriz.inicioFichaGestao()
 					WebUI.delay(2);
 				}
-
 				//TELA FICHA GESTÃO - ELSE
 			} else {
 				enviado = false
@@ -258,10 +265,6 @@ public class EnvioPendenciaGOInspecaoFuncionalidades extends backofficeFuncional
 				MenuMatriz.newFluxoGestao('/*/body/div/div/app-root/app-private/app-displayed-menu/div/app-teaser/div/div[2]/div/div[1]/ul');
 				WebUI.delay(20);
 			}
-
-
-
-
 		} catch (Exception e) {
 			enviado = false
 			iniciaAplicacaoMatriz('IntranetProdução');
@@ -270,8 +273,6 @@ public class EnvioPendenciaGOInspecaoFuncionalidades extends backofficeFuncional
 			MenuMatriz.newFluxoGestao('/*/body/div/div/app-root/app-private/app-displayed-menu/div/app-teaser/div/div[2]/div/div[1]/ul');
 			WebUI.delay(30);
 		}
-
-
 		return enviado
 	}
 

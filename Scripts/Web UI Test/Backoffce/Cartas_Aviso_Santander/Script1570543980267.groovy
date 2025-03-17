@@ -18,9 +18,28 @@ try{
 	 * NR - Carta NR
 	 * 15 - Carta (-15d) 
 	 * 30 - Carta (-30d)
+	 * Atualização : 27/11/2023
 	 * 
+	 * * Atualização 11/04/2024 
+     * 
+     * PROD - Produção 
+     * DEV - Desenvolvimento 
+     * INT - Integração
+     * 
+     * Atualização: 20/05/2024
+     * 
+     * IBLBDM-49701 - [Nome Social]- Renov Autom Santander
+     * Desenvolvimento de regras para preenchimento do nome do segurado na ausência do nome social.
+     * 
+     * Atualização 08/08/2024 
+     * 
+     * 
+     * Remoção do texto : Você já sabe, mas vale lembrar, a SulAmérica Auto agora é Allianz!
+     * Do envio de cartas 15D 
+     * 
+     * 
 	 */
-	 backoffice.SantanderEnvioDeMensagens.enviaMensagem('RenovaSantander','15',"17/03/2023")
+	 backoffice.SantanderEnvioDeMensagens.enviaMensagem('PRD','RenovaSantander','30',"10/02/2025","11/02/2025","12/02/2025","13/02/2025","14/02/2025","15/02/2025","16/02/2025","17/02/2025","18/02/2025")
 	 WebUI.closeBrowser()
    } catch (Exception e){
 	 System.err.println("Falha ao enviar cartas de aviso santander")

@@ -28,6 +28,7 @@ public class UserPassword{
 	/**Recebe por parametro nome do RPA e imputa valores de usuario e senha equivalente;
 	 * @param nomeRpa
 	 * @return
+	 * Atualização : 30/10/2023 ás 10hs46
 	 */
 	public static getUsuarioSenha(String nomeRpa){
 
@@ -98,13 +99,22 @@ public class UserPassword{
 				senha = returnPwrd(1)
 				break;
 			case 'RecusaDeFrota':
-				user = returnUser(10)
-				senha = returnPwrd(10)
-				break;
-			case 'RenovaSantander':
 				user = returnUser(3)
 				senha = returnPwrd(3)
 				break;
+			case 'RenovaSantanderPRD':
+				user = returnUser(3)
+				senha = returnPwrd(3)
+				break;
+			case 'RenovaSantanderINT':
+				user = returnUser(3)
+				senha = returnPwrd(3)
+				break;
+			case 'RenovaSantanderDEV':
+				user = returnUser(3)
+				senha = returnPwrd(3)
+				break;
+
 			case 'SinistroDash':
 				user = returnUser(7)
 				senha = returnPwrd(7)
@@ -302,16 +312,12 @@ public class UserPassword{
 				senha = returnPwrd(3)
 				break;
 			case 'ContactCenterINT':
-			//user = returnUser(3)
-			//senha = returnPwrd(3)
-				user = returnUser(10)
-				senha = returnPwrd(10)
+				user = returnUser(3)
+				senha = returnPwrd(3)
 				break;
 			case 'ContactCenterPRD':
-			//user = returnUser(3)
-			//senha = returnPwrd(3)
-				user = returnUser(10)
-				senha = returnPwrd(10)
+				user = returnUser(3)
+				senha = returnPwrd(3)
 				break;
 			case 'ComunicacaoBloqueioPRD':
 				user = returnUser(3)
@@ -353,9 +359,112 @@ public class UserPassword{
 				user = returnUser(3)
 				senha = returnPwrd(3)
 				break;
+			case 'BaseCancelamentoPRD':
+				user = returnUser(3)
+				senha = returnPwrd(3)
+				break;
+			case 'BaseCancelamentoINT':
+				user = returnUser(3)
+				senha = returnPwrd(3)
+				break;
+			case 'DescredenciamentoDePrestadorPRD':
+				user = returnUser(3)
+				senha = returnPwrd(3)
+				break;
+			case 'DescredenciamentoDePrestadorINT':
+				user = returnUser(3)
+				senha = returnPwrd(3)
+				break;
+			case 'DescredenciamentoSinistroPRD':
+				user = returnUser(4)
+				senha = returnPwrd(4)
+				break;
+			case 'DescredenciamentoSinistroINT':
+				user = returnUser(4)
+				senha = returnPwrd(4)
+				break;
+			case 'OficinasPRD':
+				user = returnUser(4)
+				senha = returnPwrd(4)
+				break;
+			case 'OficinasINT':
+				user = returnUser(4)
+				senha = returnPwrd(4)
+				break;
+			case 'OficinasNaoReferenciadasPRD':
+				user = returnUser(4)
+				senha = returnPwrd(4)
+				break;
+			case 'OficinasNaoReferenciadasINT':
+				user = returnUser(4)
+				senha = returnPwrd(4)
+				break;
+			case 'EnvioVoucherCorretoresParceriasPRD':
+				user = returnUser(3)
+				senha = returnPwrd(3)
+				break;
+			case 'EnvioVoucherCorretoresParceriasINT':
+				user = returnUser(3)
+				senha = returnPwrd(3)
+				break;
+			case 'CadastroDeRestricao':
+				user = returnUser(4)
+				senha = returnPwrd(4)
+				break;
+			case 'IndexacaoFGPRD':
+				user = returnUser(3)
+				senha = returnPwrd(3)
+				break;
+			case 'IndexacaoFGINT':
+				user = returnUser(3)
+				senha = returnPwrd(3)
+				break;
+			case 'DescredenciamentoDePrestadorEfePRD':
+				user = returnUser(4)
+				senha = returnPwrd(4)
+				break;
+			case 'DescredenciamentoDePrestadorEfeINT':
+				user = returnUser(4)
+				senha = returnPwrd(4)
+				break;
+			case 'DescarteIncidenciaPRD':
+				user = returnUser(1)
+				senha = returnPwrd(1)
+				break;
+			case 'DescarteIncidenciaINT':
+				user = returnUser(1)
+				senha = returnPwrd(1)
+				break;
+			case 'RegularizarIncidenciasPRD':
+				user = returnUser(1)
+				senha = returnPwrd(1)
+				break;
+			case 'RegularizarIncidenciasINT':
+				user = returnUser(1)
+				senha = returnPwrd(1)
+				break;
+			case 'EditorCorrespondenciaPRD':
+				user = returnUser(3)
+				senha = returnPwrd(3)
+				break;
+			case 'EditorCorrespondenciaINT':
+				user = returnUser(3)
+				senha = returnPwrd(3)
+				break;
+			case 'DuplicadoRecibosPRD':
+				user = returnUser(3)
+				senha = returnPwrd(3)
+				break;
+			case 'DuplicadoRecibosINT':
+				user = returnUser(3)
+				senha = returnPwrd(3)
+				break;
+
+
+
+
 		}
 	}
-
 
 	/**
 	 * @author T_DCDias
@@ -378,7 +487,6 @@ public class UserPassword{
 		return user.get(id);
 	}
 
-
 	/**
 	 * @author T_DCDias
 	 * @param id
@@ -386,16 +494,16 @@ public class UserPassword{
 	 */
 	public static returnPwrd(int id){
 		Map<Integer, String> pwrd = new HashMap<Integer, String>()
-		pwrd.put(1, 'Allz202303' )
-		pwrd.put(2, 'Az202223' )
-		pwrd.put(3, 'Allz202303' )
-		pwrd.put(4, 'Allz202303' )
+		pwrd.put(1, 'Allz202502' )
+		pwrd.put(2, 'Allz202306' )
+		pwrd.put(3, 'Allz202504' )
+		pwrd.put(4, 'Allz202413' )
 		pwrd.put(5, 'Am@nda36' )
 		pwrd.put(6, 'Mari2005' )
 		pwrd.put(7, 'sinistro' )
 		pwrd.put(8, 'Caren045' )
 		pwrd.put(9, 'teste123' )
-		pwrd.put(10, 'Brsp202305' )
+		pwrd.put(10,'Brsp202305')
 
 		return pwrd.get(id);
 	}
@@ -416,7 +524,6 @@ public class UserPassword{
 	public static void setSenha(java.lang.Object senha) {
 		UserPassword.senha = senha;
 	}
-
 
 }
 

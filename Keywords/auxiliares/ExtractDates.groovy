@@ -301,4 +301,22 @@ public class ExtractDates {
 		}
 		return strdt
 	}
+
+	/**
+	 * @author be54955
+	 * @return
+	 * 
+	 * "yyyy-MM-dd 'at' HH:mm:ss z"
+	 * 
+	 */
+	public static String dataSetFormat(String f){
+		String strdt
+		try{
+			SimpleDateFormat formatter= new SimpleDateFormat(f);
+			Date date = new Date(System.currentTimeMillis());
+			strdt = formatter.format(date).toString()
+		} catch (Exception e){
+		}
+		return strdt
+	}
 }

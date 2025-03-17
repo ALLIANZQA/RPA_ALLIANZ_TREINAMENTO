@@ -119,6 +119,7 @@ public class EnvioRetornoGo  extends rpaCommands{
 					if(retorno(registros, aba)) {
 						try{
 							auxiliares.WriteExcelFactory.updateSheetLine("", j, path, "Processado", 3, aba);
+							auxiliares.WriteExcelFactory.updateSheetLine("", j, path, "Envio de e-mail retorno GO enviado para : "+registros[0].toString(), 4, aba);
 						} catch (Exception e){}
 					} else {
 						try{

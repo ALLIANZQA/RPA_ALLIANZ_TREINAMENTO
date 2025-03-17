@@ -21,6 +21,17 @@ import rpacommands.rpaCommands
 
 public class MenuMatriz extends rpaCommands{
 
+	
+	
+	/**
+	 * @author T_DCDias
+	 * @return
+	 */
+	public static gestaoArquivosBancarios(){
+		subMenu('/*/body/div/div/app-root/app-private/app-displayed-menu/div/app-teaser/div/div[2]/div/div[1]/ul', 'a',"Gestão Arquivos Bancários")
+	}
+	
+	
 	/**
 	 * @author T_DCDias
 	 * @return
@@ -158,6 +169,30 @@ public class MenuMatriz extends rpaCommands{
 	public static inicioFichaGestao(){
 		clickXpath("/*/body/div[1]/div/app-root/file-management/app-header/div/nx-ibl-header/nx-ibl-navigation/div/div[1]/nx-ibl-navigation-desktop/div[1]/div/a/img", 2)
 	}
+	
+	/**
+	 * @author be54955
+	 * @return
+	 */
+	public static prestadores(){
+		subMenuEquals('/*/body/div/div/app-root/app-private/app-displayed-menu/div/app-teaser/div/div/div/div[2]', "a", "Prestadores")
+	}
+	
+	/**
+	 * @author be54955
+	 * @return
+	 */
+	public static subMenuSinistroSaude(){
+		subMenuEquals('/*/body/div/div/app-root/app-private/app-displayed-menu/div/app-teaser/div/div/div/div[2]', "a", "Sinistros de Saude")
+	}
+	
+	/**
+	 * @author be54955
+	 * @return
+	 */
+	public static avisoDeCredito(){
+		subMenuEquals('/*/body/div/div/app-root/app-private/app-displayed-menu/div/app-teaser/div/div[1]/div/div[2]/ul', "a", "Aviso de Crédito")
+	}
 
 	/**
 	 * @author ALZ_ServiceQA
@@ -171,7 +206,7 @@ public class MenuMatriz extends rpaCommands{
 		selecionaListaDeElementos(xpath,tag)
 		for(int i = 0; i < listOfElements.size(); i++){
 			System.out.println("["+i+"] ["+listOfElements[i].getText()+"]" )
-			if(listOfElements[i].getText().contains(menu)){
+			if(listOfElements[i].getText().contains(menu.toString())){
 				listOfElements[i].click()
 				break
 			}

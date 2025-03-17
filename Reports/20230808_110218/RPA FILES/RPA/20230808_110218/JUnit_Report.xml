@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="RPA" time="8.406" tests="1" failures="0" errors="0">
+   <testsuite name="RPA" tests="1" failures="0" errors="0" time="8.406" timestamp="2023-08-08 11:02:22" hostname="BE54955 - XPE2-D68321.wwg00m.rootdom.net" id="Test Suites/RPA FILES/RPA">
+      <properties>
+         <property name="deviceName" value=""/>
+         <property name="devicePlatform" value=""/>
+         <property name="logFolder" value="C:\\Users\\Public\\RPA_ALLIANZ\\Reports\\20230808_110218\\RPA FILES\\RPA\\20230808_110218"/>
+         <property name="logFiles" value="C:\\Users\\Public\\RPA_ALLIANZ\\Reports\\20230808_110218\\RPA FILES\\RPA\\20230808_110218\\execution0.log"/>
+         <property name="attachments" value=""/>
+         <property name="hostName" value="BE54955 - XPE2-D68321.wwg00m.rootdom.net"/>
+         <property name="os" value="Windows 10 64bit"/>
+         <property name="katalonVersion" value="7.2.1.1"/>
+         <property name="browser" value="Chrome 106.0.0.0"/>
+         <property name="hostAddress" value="44.198.47.200"/>
+         <property name="sessionId" value="62c11ffe410e4b9fa3a682641bf151a4"/>
+         <property name="seleniumVersion" value="3.141.59"/>
+         <property name="proxyInformation" value="ProxyInformation{proxyOption=USE_SYSTEM, proxyServerType=HTTP, password=, proxyServerAddress=, proxyServerPort=0, executionList=}"/>
+         <property name="platform" value="Windows 10"/>
+      </properties>
+      <testcase name="Test Cases/Web UI Test/Backoffce/ComunicacaoBloqueio" time="8.096" classname="Test Cases/Web UI Test/Backoffce/ComunicacaoBloqueio" status="INCOMPLETE">
+         <system-out><![CDATA[2023-08-08 11:02:22 - [TEST_CASE][INCOMPLETE] - Test Cases/Web UI Test/Backoffce/ComunicacaoBloqueio: null
+
+2023-08-08 11:02:22 - [TEST_STEP][INCOMPLETE] - try: Browser is opened with url: ''
+
+2023-08-08 11:02:22 - [TEST_STEP][INCOMPLETE] - ComunicacaoBloqueioFuncionalidades.fluxoComunicacaoBloqueio("ComunicacaoBloqueio", "PRD"): Browser is opened with url: ''
+
+2023-08-08 11:02:24 - [MESSAGE][INFO] - Starting 'Chrome' driver
+
+2023-08-08 11:02:24 - [MESSAGE][INFO] - User set preference: ['prefs', '{download.default_directory=C:\Users\Public\, profile.default_content_settings.popups=0.0, download.prompt_for_download=false, download.directory_upgrade=true, plugins.always_open_pdf_externally=true, pdfjs.disabled=true, safebrowsing.enabled=true}']
+
+2023-08-08 11:02:24 - [MESSAGE][INFO] - User set preference: ['args', '[--start-maximized, --disable-infobars,  safebrowsing-disable-download-protection,  safebrowsing-disable-extension-blacklist, --test-type, --disable-extensions]']
+
+2023-08-08 11:02:24 - [MESSAGE][INFO] - User set preference: ['CapabilityType.ACCEPT_SSL_CERTS', 'true']
+
+2023-08-08 11:02:24 - [MESSAGE][INFO] - User set preference: ['pageLoadStrategy', 'normal']
+
+2023-08-08 11:02:24 - [MESSAGE][INFO] - Action delay is set to 0 seconds
+
+2023-08-08 11:02:30 - [MESSAGE][PASSED] - Browser is opened with url: '']]></system-out>
+         <system-err><![CDATA[2023-08-08 11:02:22 - [TEST_CASE][INCOMPLETE] - Test Cases/Web UI Test/Backoffce/ComunicacaoBloqueio: null]]></system-err>
+      </testcase>
+      <system-out><![CDATA[2023-08-08 11:02:22 - [TEST_SUITE][INCOMPLETE] - RPA: null]]></system-out>
+      <system-err><![CDATA[2023-08-08 11:02:22 - [TEST_SUITE][INCOMPLETE] - RPA: null]]></system-err>
+   </testsuite>
+</testsuites>

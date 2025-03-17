@@ -19,9 +19,9 @@ import rpacommands.rpaCommands
 
 
 
-String tipoAba = 'ContactCenter'
-String path = 'C:\\Users\\Public\\RPA_ALLIANZ\\Data Files\\ContactCenter\\ContactCenter_Original.xlsx'
-String file = "ContactCenter_Original.xlsx"
+String tipoAba = 'DescontosEspecíficosSinistro'
+String path = 'C:\\Users\\Public\\RPA_ALLIANZ\\Data Files\\Sinistro\\DescontosEspecíficosSinistro.xlsx'
+String file = "DescontosEspecíficosSinistro.xlsx"
 
 enviaEmailContactCenter(tipoAba, path, file)
 
@@ -32,12 +32,12 @@ public static enviaEmailContactCenter(String tipoAba, String path, String file){
 			List<String> anexos = new ArrayList<>();
 			anexos[0] = path
 			anexos[1] = file
-			sendEmail.CreateEmail.createEmailSendMultipleFiles('denilson.inmetricsext@allpronet.com.br', 
-				                                               'denilson.inmetricsext@allpronet.com.br', 
-															    '' , 
-																anexos, 
-																'smtp.intrallianz.es', 
-																'25', 
+			sendEmail.CreateEmail.createEmailSendMultipleFiles('denilson.inmetricsext@allpronet.com.br',
+															   'denilson.inmetricsext@allpronet.com.br',
+																'' ,
+																anexos,
+																'smtp.intrallianz.es',
+																'25',
 																tipoAba)
 	} catch (Exception e){
 	}

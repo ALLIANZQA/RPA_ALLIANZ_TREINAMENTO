@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="RPA" time="262.573" tests="1" failures="0" errors="0">
+   <testsuite name="RPA" tests="1" failures="0" errors="0" time="262.573" timestamp="2020-09-01 23:50:35" hostname="ALZ_ServiceQA - BRSPVLRPA01.agf.com.br" id="Test Suites/RPA FILES/RPA">
+      <properties>
+         <property name="deviceName" value=""/>
+         <property name="devicePlatform" value=""/>
+         <property name="logFolder" value="C:\\Users\\Public\\RPA_ALLIANZ\\Reports\\20200901_235027\\RPA FILES\\RPA\\20200901_235027"/>
+         <property name="logFiles" value="C:\\Users\\Public\\RPA_ALLIANZ\\Reports\\20200901_235027\\RPA FILES\\RPA\\20200901_235027\\execution0.log"/>
+         <property name="attachments" value=""/>
+         <property name="hostName" value="ALZ_ServiceQA - BRSPVLRPA01.agf.com.br"/>
+         <property name="os" value="Windows Server 2016 64bit"/>
+         <property name="katalonVersion" value="7.2.1.1"/>
+         <property name="browser" value="Chrome 85.0.4183.83"/>
+         <property name="hostAddress" value="10.189.212.24"/>
+         <property name="sessionId" value="7e7bedcbcc2142a627bbeefdf21f8017"/>
+         <property name="seleniumVersion" value="3.141.59"/>
+         <property name="proxyInformation" value="ProxyInformation{proxyOption=NO_PROXY, proxyServerType=HTTP, password=, proxyServerAddress=, proxyServerPort=0, executionList=}"/>
+         <property name="platform" value="Windows Server 2016"/>
+      </properties>
+      <testcase name="Test Cases/Web UI Test/Backoffce/DesbloqueioPropostaAgroFielDepositario" time="261.485" classname="Test Cases/Web UI Test/Backoffce/DesbloqueioPropostaAgroFielDepositario" status="INCOMPLETE">
+         <system-out><![CDATA[2020-09-01 23:50:36 - [TEST_CASE][INCOMPLETE] - Test Cases/Web UI Test/Backoffce/DesbloqueioPropostaAgroFielDepositario: null
+
+2020-09-01 23:50:38 - [TEST_STEP][INCOMPLETE] - try: Delayed 5 second(s)
+
+2020-09-01 23:50:38 - [TEST_STEP][INCOMPLETE] - DesbloqueioPropostaAgroFielDepositario.desbloqueioPropostaAgroFielDepositario(): Delayed 5 second(s)
+
+2020-09-01 23:50:39 - [MESSAGE][INFO] - Starting 'Chrome' driver
+
+2020-09-01 23:50:39 - [MESSAGE][INFO] - User set preference: ['prefs', '{download.default_directory=C:\Users\Public\, profile.default_content_settings.popups=0.0, download.prompt_for_download=false, download.directory_upgrade=true, plugins.always_open_pdf_externally=true, pdfjs.disabled=true, safebrowsing.enabled=true}']
+
+2020-09-01 23:50:39 - [MESSAGE][INFO] - User set preference: ['args', '[--start-maximized, --disable-infobars,  safebrowsing-disable-download-protection,  safebrowsing-disable-extension-blacklist, --test-type, --disable-extensions]']
+
+2020-09-01 23:50:39 - [MESSAGE][INFO] - User set preference: ['CapabilityType.ACCEPT_SSL_CERTS', 'true']
+
+2020-09-01 23:50:39 - [MESSAGE][INFO] - User set preference: ['pageLoadStrategy', 'normal']
+
+2020-09-01 23:50:39 - [MESSAGE][INFO] - Action delay is set to 0 seconds
+
+2020-09-01 23:50:46 - [MESSAGE][PASSED] - Browser is opened with url: ''
+
+2020-09-01 23:51:01 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2020-09-01 23:51:02 - [MESSAGE][PASSED] - Current window maximized
+
+2020-09-01 23:51:17 - [MESSAGE][PASSED] - Navigate to 'https://www.br.intrallianz.com/ngx-intranet/public/home' successfully
+
+2020-09-01 23:51:37 - [MESSAGE][PASSED] - Delayed 20 second(s)
+
+2020-09-01 23:51:39 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-01 23:51:40 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-01 23:51:58 - [MESSAGE][PASSED] - Delayed 17 second(s)
+
+2020-09-01 23:52:03 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-09-01 23:52:05 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-01 23:52:11 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-09-01 23:52:13 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-01 23:52:13 - [MESSAGE][PASSED] - Wait for page load successfully
+
+2020-09-01 23:52:13 - [MESSAGE][PASSED] - Switched to window with index: '1'
+
+2020-09-01 23:52:15 - [MESSAGE][PASSED] - Current window maximized
+
+2020-09-01 23:52:28 - [MESSAGE][PASSED] - Object: 'Object Repository/PageBackoffice/Page_E/div_Propostas Bloqueadas' is clicked on
+
+2020-09-01 23:52:28 - [MESSAGE][PASSED] - Wait for page load successfully
+
+2020-09-01 23:52:28 - [MESSAGE][PASSED] - Switched to window with title: 'Menu Produção'
+
+2020-09-01 23:52:28 - [MESSAGE][PASSED] - Current window maximized
+
+2020-09-01 23:52:40 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-09-01 23:52:40 - [MESSAGE][PASSED] - Text '114222352' is set on object 'Object Repository/PageBackoffice/Page_Menu Produo/input_poliza_Policy'
+
+2020-09-01 23:52:41 - [MESSAGE][PASSED] - Text '0' is set on object 'Object Repository/PageBackoffice/Page_Menu Produo/input_poliza_Application'
+
+2020-09-01 23:52:45 - [MESSAGE][PASSED] - Object: 'Object Repository/PageBackoffice/Page_Menu Produo/div_Pesquisar' is clicked on
+
+2020-09-01 23:52:54 - [MESSAGE][INFO] - Unable to find the element located by 'By.xpath: //td[(text() = ' Não foram encontrados dados para a ação selecionada.' or . = ' Não foram encontrados dados para a ação selecionada.')]'. Please recheck the objects properties to make sure the desired element is located. 
+
+2020-09-01 23:52:54 - [MESSAGE][WARNING] - Object 'Object Repository/PageBackoffice/Page_Menu Produo/td_No foram encontrados dados' is not present after 5 second(s)
+
+2020-09-01 23:52:54 - [MESSAGE][PASSED] - Object: 'Object Repository/PageBackoffice/Page_Menu Produo/img_fil20' is clicked on
+
+2020-09-01 23:52:54 - [MESSAGE][PASSED] - Alert accepted
+
+2020-09-01 23:53:04 - [MESSAGE][PASSED] - Wait for page load successfully
+
+2020-09-01 23:53:09 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-09-01 23:53:14 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-09-01 23:53:19 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-09-01 23:53:25 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-09-01 23:53:25 - [MESSAGE][PASSED] - Switched to window with index: '2'
+
+2020-09-01 23:53:26 - [MESSAGE][PASSED] - Current window maximized
+
+2020-09-01 23:53:29 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-01 23:53:30 - [MESSAGE][PASSED] - Text of object 'Object Repository/PageBackoffice/Page_Menu Produo/label_Operao realizada correta' is: 'Operação realizada corretamente.'
+
+2020-09-01 23:53:31 - [MESSAGE][PASSED] - Text of object 'Object Repository/PageBackoffice/Page_Menu Produo/label_susep' is: '5177-2020-2X-01-0005787/ 0'
+
+2020-09-01 23:53:34 - [MESSAGE][PASSED] - Object: 'Object Repository/PageBackoffice/Page_Menu Produo/div_Fechar' is clicked on
+
+2020-09-01 23:53:34 - [MESSAGE][PASSED] - Switched to window with title: 'Menu Produção'
+
+2020-09-01 23:53:36 - [MESSAGE][PASSED] - Object: 'Object Repository/PageBackoffice/Page_Menu Produo/div_Limpar' is clicked on
+
+2020-09-01 23:53:38 - [MESSAGE][PASSED] - Text '114374461' is set on object 'Object Repository/PageBackoffice/Page_Menu Produo/input_poliza_Policy'
+
+2020-09-01 23:53:39 - [MESSAGE][PASSED] - Text '0' is set on object 'Object Repository/PageBackoffice/Page_Menu Produo/input_poliza_Application'
+
+2020-09-01 23:53:41 - [MESSAGE][PASSED] - Object: 'Object Repository/PageBackoffice/Page_Menu Produo/div_Pesquisar' is clicked on
+
+2020-09-01 23:53:50 - [MESSAGE][INFO] - Unable to find the element located by 'By.xpath: //td[(text() = ' Não foram encontrados dados para a ação selecionada.' or . = ' Não foram encontrados dados para a ação selecionada.')]'. Please recheck the objects properties to make sure the desired element is located. 
+
+2020-09-01 23:53:50 - [MESSAGE][WARNING] - Object 'Object Repository/PageBackoffice/Page_Menu Produo/td_No foram encontrados dados' is not present after 5 second(s)
+
+2020-09-01 23:53:51 - [MESSAGE][PASSED] - Object: 'Object Repository/PageBackoffice/Page_Menu Produo/img_fil20' is clicked on
+
+2020-09-01 23:53:51 - [MESSAGE][PASSED] - Alert accepted
+
+2020-09-01 23:53:59 - [MESSAGE][PASSED] - Wait for page load successfully
+
+2020-09-01 23:54:04 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-09-01 23:54:09 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-09-01 23:54:14 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-09-01 23:54:20 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-09-01 23:54:20 - [MESSAGE][PASSED] - Switched to window with index: '2'
+
+2020-09-01 23:54:21 - [MESSAGE][PASSED] - Current window maximized
+
+2020-09-01 23:54:24 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-01 23:54:24 - [MESSAGE][PASSED] - Text of object 'Object Repository/PageBackoffice/Page_Menu Produo/label_Operao realizada correta' is: 'Operação realizada corretamente.'
+
+2020-09-01 23:54:25 - [MESSAGE][PASSED] - Text of object 'Object Repository/PageBackoffice/Page_Menu Produo/label_susep' is: '5177-2020-35-01-0005788/ 0'
+
+2020-09-01 23:54:26 - [MESSAGE][PASSED] - Object: 'Object Repository/PageBackoffice/Page_Menu Produo/div_Fechar' is clicked on
+
+2020-09-01 23:54:26 - [MESSAGE][PASSED] - Switched to window with title: 'Menu Produção'
+
+2020-09-01 23:54:27 - [MESSAGE][PASSED] - Object: 'Object Repository/PageBackoffice/Page_Menu Produo/div_Limpar' is clicked on
+
+2020-09-01 23:54:29 - [MESSAGE][PASSED] - Text '114374490' is set on object 'Object Repository/PageBackoffice/Page_Menu Produo/input_poliza_Policy'
+
+2020-09-01 23:54:29 - [MESSAGE][PASSED] - Text '0' is set on object 'Object Repository/PageBackoffice/Page_Menu Produo/input_poliza_Application'
+
+2020-09-01 23:54:31 - [MESSAGE][PASSED] - Object: 'Object Repository/PageBackoffice/Page_Menu Produo/div_Pesquisar' is clicked on
+
+2020-09-01 23:54:40 - [MESSAGE][INFO] - Unable to find the element located by 'By.xpath: //td[(text() = ' Não foram encontrados dados para a ação selecionada.' or . = ' Não foram encontrados dados para a ação selecionada.')]'. Please recheck the objects properties to make sure the desired element is located. 
+
+2020-09-01 23:54:40 - [MESSAGE][WARNING] - Object 'Object Repository/PageBackoffice/Page_Menu Produo/td_No foram encontrados dados' is not present after 5 second(s)
+
+2020-09-01 23:54:40 - [MESSAGE][PASSED] - Object: 'Object Repository/PageBackoffice/Page_Menu Produo/img_fil20' is clicked on
+
+2020-09-01 23:54:40 - [MESSAGE][PASSED] - Alert accepted
+
+2020-09-01 23:54:47 - [MESSAGE][PASSED] - Wait for page load successfully
+
+2020-09-01 23:54:52 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-09-01 23:54:57 - [MESSAGE][PASSED] - Delayed 5 second(s)]]></system-out>
+         <system-err><![CDATA[2020-09-01 23:50:36 - [TEST_CASE][INCOMPLETE] - Test Cases/Web UI Test/Backoffce/DesbloqueioPropostaAgroFielDepositario: null]]></system-err>
+      </testcase>
+      <system-out><![CDATA[2020-09-01 23:50:35 - [TEST_SUITE][INCOMPLETE] - RPA: null]]></system-out>
+      <system-err><![CDATA[2020-09-01 23:50:35 - [TEST_SUITE][INCOMPLETE] - RPA: null]]></system-err>
+   </testsuite>
+</testsuites>

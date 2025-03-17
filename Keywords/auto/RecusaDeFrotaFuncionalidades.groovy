@@ -57,18 +57,18 @@ public class RecusaDeFrotaFuncionalidades extends rpaCommands {
 	 */
 	public static fluxoCompletorecusaDeFrota(String tipoAba){
 		if(carregaDados()){
-		  iniciaAplicacaoMatrizCommands('IntranetProdução');
-		  realizaLoginIntraNetProducaoCommands(tipoAba);
-		  System.err.println()
-		  menu();
-		  pesquisaPedidoDeRecusa(tipoAba);
+			iniciaAplicacaoMatrizCommands('IntranetProdução');
+			realizaLoginIntraNetProducaoCommands(tipoAba);
+			System.err.println()
+			menu();
+			pesquisaPedidoDeRecusa(tipoAba);
 		}
 		finalizar();
 	}
 
-	
-	
-	
+
+
+
 	/**
 	 * @author T_DCDias
 	 * @param nomeArquivo
@@ -121,14 +121,14 @@ public class RecusaDeFrotaFuncionalidades extends rpaCommands {
 	 */
 	public static enviarEmailRecusaDeFrota(String tipoAba){
 		if(!carregaDados()){
-		  pathTxtEmail = "C:/Users/Public/RPA_ALLIANZ/Emails/Auto/RecusaDeFrota/ConfiguracoesRecusaDeFrota.txt";
-		  lerConfigurações(pathTxtEmail)
-		  String pathAnexos = "C:/Users/Public/RPA_ALLIANZ/Emails/Auto/RecusaDeFrota/Anexos.txt"
-		  String emaildestination = StringFormatter.formatterEmailDestination(FileInput.readFile(pathTxtEmail));
-		  data =  getData()
-		  if(validaExecutados(data, 'x', 3)){
-			 sendEmail.CreateEmail.createEmailSendMultipleFiles(sender, emaildestination, pwdsender, FileInput.readFile(pathAnexos), host, porta, tipoAba )
-		  }
+			pathTxtEmail = "C:/Users/Public/RPA_ALLIANZ/Emails/Auto/RecusaDeFrota/ConfiguracoesRecusaDeFrota.txt";
+			lerConfigurações(pathTxtEmail)
+			String pathAnexos = "C:/Users/Public/RPA_ALLIANZ/Emails/Auto/RecusaDeFrota/Anexos.txt"
+			String emaildestination = StringFormatter.formatterEmailDestination(FileInput.readFile(pathTxtEmail));
+			data =  getData()
+			if(validaExecutados(data, 'x', 3)){
+				sendEmail.CreateEmail.createEmailSendMultipleFiles(sender, emaildestination, pwdsender, FileInput.readFile(pathAnexos), host, porta, tipoAba )
+			}
 		}
 	}
 
@@ -177,7 +177,7 @@ public class RecusaDeFrotaFuncionalidades extends rpaCommands {
 							clickXpath("//div[@id='botonBuscar']", 5)
 						} catch (Exception e){}
 						if (WebUI.verifyElementNotPresent(findTestObject('Object Repository/PageAuto/RecusaFrotas/Page_Pesquisa Pedido/td_Solicitao de cotao recusada'),
-							3, FailureHandling.CONTINUE_ON_FAILURE)) {
+						3, FailureHandling.CONTINUE_ON_FAILURE)) {
 							sResult = 'Solicitação de Cotação Recusada'
 							WebUI.click(findTestObject('Object Repository/PageAuto/RecusaFrotas/Page_Pesquisa Pedido/img_idetalle'))
 							WebUI.waitForPageLoad(15)
@@ -201,7 +201,7 @@ public class RecusaDeFrotaFuncionalidades extends rpaCommands {
 							WebUI.click(findTestObject('Object Repository/PageAuto/RecusaFrotas/Page_Detalhe Pedido/div_Indeferir'))
 							WebUI.acceptAlert()
 							WebUI.click(findTestObject('Object Repository/PageAuto/RecusaFrotas/Page_Detalhe Pedido/div_Voltar'))
-							
+
 							sResult = 'Solicitação de Cotação Recusada'
 							WebUI.switchToWindowTitle('Pesquisa Pedido')
 							WebUI.click(findTestObject('Object Repository/PageAuto/RecusaFrotas/Page_Pesquisa Pedido/div_Limpar'))
@@ -209,23 +209,23 @@ public class RecusaDeFrotaFuncionalidades extends rpaCommands {
 							System.err.println()
 							updateExcel.atualizaRecusaDeFrotaFuncionalidades(tipoAba, sResult,"","x", i, path )
 							System.err.println()
-							
+
 						} else {
-						  sResult = 'Solicitação de Cotação ja foi Recusada'
-						  WebUI.switchToWindowTitle('Pesquisa Pedido')
-						  WebUI.click(findTestObject('Object Repository/PageAuto/RecusaFrotas/Page_Pesquisa Pedido/div_Limpar'))
-						  System.err.println("\n["+i+"] TIPO ABA ["+tipoAba+"] sResult ["+sResult+"]")
-						  System.err.println()
-						  updateExcel.atualizaRecusaDeFrotaFuncionalidades(tipoAba, sResult,"","x", i, path )
-						  System.err.println()
-					   }
+							sResult = 'Solicitação de Cotação ja foi Recusada'
+							WebUI.switchToWindowTitle('Pesquisa Pedido')
+							WebUI.click(findTestObject('Object Repository/PageAuto/RecusaFrotas/Page_Pesquisa Pedido/div_Limpar'))
+							System.err.println("\n["+i+"] TIPO ABA ["+tipoAba+"] sResult ["+sResult+"]")
+							System.err.println()
+							updateExcel.atualizaRecusaDeFrotaFuncionalidades(tipoAba, sResult,"","x", i, path )
+							System.err.println()
+						}
 					} else {
-					  WebUI.switchToWindowTitle('Pesquisa Pedido')
-					  WebUI.click(findTestObject('Object Repository/PageAuto/RecusaFrotas/Page_Pesquisa Pedido/div_Limpar'))
-					  System.err.println("\n["+i+"] TIPO ABA ["+tipoAba+"] sResult ["+sResult+"]")
-					  System.err.println()
-					  updateExcel.atualizaRecusaDeFrotaFuncionalidades(tipoAba, sResult,"","x", i, path )
-					  System.err.println()
+						WebUI.switchToWindowTitle('Pesquisa Pedido')
+						WebUI.click(findTestObject('Object Repository/PageAuto/RecusaFrotas/Page_Pesquisa Pedido/div_Limpar'))
+						System.err.println("\n["+i+"] TIPO ABA ["+tipoAba+"] sResult ["+sResult+"]")
+						System.err.println()
+						updateExcel.atualizaRecusaDeFrotaFuncionalidades(tipoAba, sResult,"","x", i, path )
+						System.err.println()
 					}
 				}
 			} catch (Exception e){}

@@ -23,7 +23,7 @@ import org.openqa.selenium.WebDriver
 import com.kms.katalon.core.webui.driver.DriverFactory
 import auxiliares.MenuMatriz
 import saude.StrategyCriticasSIB
-import auxiliares.MenuMatriz
+
 
 public class Endosso extends rpaCommands{
 

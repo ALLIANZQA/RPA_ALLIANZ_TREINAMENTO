@@ -208,7 +208,6 @@ public class XLSXcellRulesBackOfficeDecorator {
 				case 40:
 					massa.setNotaGerada(cell.getStringCellValue());
 					break;
-					
 			}
 			return massa;
 		} catch (Exception e){

@@ -1,0 +1,923 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="RPA" time="3351.331" tests="1" failures="0" errors="0">
+   <testsuite name="RPA" tests="1" failures="0" errors="0" time="3351.331" timestamp="2020-09-07 23:21:55" hostname="ALZ_ServiceQA - BRSPVLRPA01.agf.com.br" id="Test Suites/RPA FILES/RPA">
+      <properties>
+         <property name="deviceName" value=""/>
+         <property name="devicePlatform" value=""/>
+         <property name="logFolder" value="C:\\Users\\Public\\RPA_ALLIANZ\\Reports\\20200907_232131\\RPA FILES\\RPA\\20200907_232131"/>
+         <property name="logFiles" value="C:\\Users\\Public\\RPA_ALLIANZ\\Reports\\20200907_232131\\RPA FILES\\RPA\\20200907_232131\\execution0.log"/>
+         <property name="attachments" value=""/>
+         <property name="hostName" value="ALZ_ServiceQA - BRSPVLRPA01.agf.com.br"/>
+         <property name="os" value="Windows Server 2016 64bit"/>
+         <property name="katalonVersion" value="7.2.1.1"/>
+         <property name="browser" value="Chrome 85.0.4183.83"/>
+         <property name="hostAddress" value="10.189.212.24"/>
+         <property name="sessionId" value="1153caf3fbffcacfcdae75f60c546b16"/>
+         <property name="seleniumVersion" value="3.141.59"/>
+         <property name="proxyInformation" value="ProxyInformation{proxyOption=NO_PROXY, proxyServerType=HTTP, password=, proxyServerAddress=, proxyServerPort=0, executionList=}"/>
+         <property name="platform" value="Windows Server 2016"/>
+      </properties>
+      <testcase name="Test Cases/Web UI Test/Backoffce/EnvioAvisoPendenciaGo" time="3349.919" classname="Test Cases/Web UI Test/Backoffce/EnvioAvisoPendenciaGo" status="INCOMPLETE">
+         <system-out><![CDATA[2020-09-07 23:21:56 - [TEST_CASE][INCOMPLETE] - Test Cases/Web UI Test/Backoffce/EnvioAvisoPendenciaGo: null
+
+2020-09-07 23:21:58 - [TEST_STEP][INCOMPLETE] - try: Delayed 0 second(s)
+
+2020-09-07 23:21:58 - [TEST_STEP][INCOMPLETE] - EnvioPendenciaGo.fluxoEnvioPendenciaGo("Bloqueios"): Delayed 0 second(s)
+
+2020-09-07 23:22:05 - [MESSAGE][INFO] - Starting 'Chrome' driver
+
+2020-09-07 23:22:05 - [MESSAGE][INFO] - User set preference: ['prefs', '{download.default_directory=C:\Users\Public\, profile.default_content_settings.popups=0.0, download.prompt_for_download=false, download.directory_upgrade=true, plugins.always_open_pdf_externally=true, pdfjs.disabled=true, safebrowsing.enabled=true}']
+
+2020-09-07 23:22:05 - [MESSAGE][INFO] - User set preference: ['args', '[--start-maximized, --disable-infobars,  safebrowsing-disable-download-protection,  safebrowsing-disable-extension-blacklist, --test-type, --disable-extensions]']
+
+2020-09-07 23:22:05 - [MESSAGE][INFO] - User set preference: ['CapabilityType.ACCEPT_SSL_CERTS', 'true']
+
+2020-09-07 23:22:05 - [MESSAGE][INFO] - User set preference: ['pageLoadStrategy', 'normal']
+
+2020-09-07 23:22:05 - [MESSAGE][INFO] - Action delay is set to 0 seconds
+
+2020-09-07 23:22:18 - [MESSAGE][PASSED] - Browser is opened with url: ''
+
+2020-09-07 23:22:33 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2020-09-07 23:22:34 - [MESSAGE][PASSED] - Current window maximized
+
+2020-09-07 23:22:53 - [MESSAGE][PASSED] - Navigate to 'https://www.br.intrallianz.com/ngx-intranet/public/home' successfully
+
+2020-09-07 23:23:13 - [MESSAGE][PASSED] - Delayed 20 second(s)
+
+2020-09-07 23:23:15 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-07 23:23:15 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-07 23:23:26 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-09-07 23:23:27 - [MESSAGE][PASSED] - Object: 'Object Repository/Page_Intranet Transacional/a_Consultas  Estatsticas' is right clicked on
+
+2020-09-07 23:23:28 - [MESSAGE][PASSED] - Object: 'Object Repository/Page_Intranet Transacional/ul_ConsultasArquivo Digital' is clicked on
+
+2020-09-07 23:23:29 - [MESSAGE][PASSED] - Object: 'Object Repository/Page_Intranet Transacional/span_Arquivo Digital' is right clicked on
+
+2020-09-07 23:23:30 - [MESSAGE][PASSED] - Object: 'Object Repository/Page_Intranet Transacional/a_Ficha de Gesto' is clicked on
+
+2020-09-07 23:23:45 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2020-09-07 23:23:47 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:23:48 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-07 23:23:52 - [MESSAGE][PASSED] - Object: '' is clicked on
+
+2020-09-07 23:23:53 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-07 23:23:53 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-07 23:23:54 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-07 23:23:59 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:24:02 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:24:07 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:24:08 - [MESSAGE][PASSED] - Switched to window with title: 'Editor de Notas/Agenda'
+
+2020-09-07 23:24:10 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:24:12 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-07 23:24:14 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:24:20 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:24:20 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-07 23:28:31 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-07 23:28:32 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-07 23:28:34 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-07 23:28:39 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:28:42 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:28:47 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:28:48 - [MESSAGE][PASSED] - Switched to window with title: 'Editor de Notas/Agenda'
+
+2020-09-07 23:28:50 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:28:51 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-07 23:29:00 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:29:09 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:29:09 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-07 23:29:09 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-07 23:29:10 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-07 23:29:12 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-07 23:29:16 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:29:18 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:29:21 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:29:23 - [MESSAGE][PASSED] - Switched to window with title: 'Editor de Notas/Agenda'
+
+2020-09-07 23:29:25 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:29:26 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-07 23:29:29 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:29:33 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:29:34 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-07 23:29:34 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-07 23:29:36 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-07 23:29:37 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-07 23:29:43 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:29:45 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:29:49 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:29:50 - [MESSAGE][PASSED] - Switched to window with title: 'Editor de Notas/Agenda'
+
+2020-09-07 23:29:52 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:29:54 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-07 23:29:59 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:30:05 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:30:05 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-07 23:30:06 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-07 23:30:08 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-07 23:30:09 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-07 23:30:13 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:30:15 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:30:20 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:30:21 - [MESSAGE][PASSED] - Switched to window with title: 'Editor de Notas/Agenda'
+
+2020-09-07 23:30:23 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:30:24 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-07 23:30:26 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:30:29 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:30:29 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-07 23:36:14 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-07 23:36:15 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-07 23:36:16 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-07 23:36:22 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:36:24 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:36:28 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:36:30 - [MESSAGE][PASSED] - Switched to window with title: 'Editor de Notas/Agenda'
+
+2020-09-07 23:36:32 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:36:33 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-07 23:36:37 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:36:42 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:36:42 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-07 23:36:42 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-07 23:36:43 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-07 23:36:45 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-07 23:36:49 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:36:51 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:36:56 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:36:58 - [MESSAGE][PASSED] - Switched to window with title: 'Editor de Notas/Agenda'
+
+2020-09-07 23:37:00 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:37:01 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-07 23:37:07 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:37:14 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:37:14 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-07 23:37:15 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-07 23:37:17 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-07 23:37:18 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-07 23:37:23 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:37:25 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:37:29 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:37:30 - [MESSAGE][PASSED] - Switched to window with title: 'Editor de Notas/Agenda'
+
+2020-09-07 23:37:32 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:37:33 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-07 23:37:38 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:37:42 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:37:42 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-07 23:37:42 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-07 23:37:43 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-07 23:37:44 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-07 23:37:48 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:37:50 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:37:55 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:37:57 - [MESSAGE][PASSED] - Switched to window with title: 'Editor de Notas/Agenda'
+
+2020-09-07 23:37:59 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:38:00 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-07 23:38:07 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:38:14 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:38:14 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-07 23:38:14 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-07 23:38:15 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-07 23:38:16 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-07 23:38:21 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:38:23 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:38:27 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:38:28 - [MESSAGE][PASSED] - Switched to window with title: 'Editor de Notas/Agenda'
+
+2020-09-07 23:38:30 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:38:32 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-07 23:38:34 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:38:37 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:38:37 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-07 23:48:37 - [MESSAGE][WARNING] - A browser is already opened. Closing browser and opening a new one
+
+2020-09-07 23:48:39 - [MESSAGE][INFO] - Starting 'Chrome' driver
+
+2020-09-07 23:48:39 - [MESSAGE][INFO] - User set preference: ['prefs', '{download.default_directory=C:\Users\Public\, profile.default_content_settings.popups=0.0, download.prompt_for_download=false, download.directory_upgrade=true, plugins.always_open_pdf_externally=true, pdfjs.disabled=true, safebrowsing.enabled=true}']
+
+2020-09-07 23:48:39 - [MESSAGE][INFO] - User set preference: ['args', '[--start-maximized, --disable-infobars,  safebrowsing-disable-download-protection,  safebrowsing-disable-extension-blacklist, --test-type, --disable-extensions]']
+
+2020-09-07 23:48:39 - [MESSAGE][INFO] - User set preference: ['CapabilityType.ACCEPT_SSL_CERTS', 'true']
+
+2020-09-07 23:48:39 - [MESSAGE][INFO] - User set preference: ['pageLoadStrategy', 'normal']
+
+2020-09-07 23:48:44 - [MESSAGE][PASSED] - Browser is opened with url: ''
+
+2020-09-07 23:48:59 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2020-09-07 23:49:00 - [MESSAGE][PASSED] - Current window maximized
+
+2020-09-07 23:49:33 - [MESSAGE][PASSED] - Navigate to 'https://www.br.intrallianz.com/ngx-intranet/public/home' successfully
+
+2020-09-07 23:49:53 - [MESSAGE][PASSED] - Delayed 20 second(s)
+
+2020-09-07 23:49:54 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-07 23:49:55 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-07 23:50:03 - [MESSAGE][PASSED] - Object: 'Object Repository/Page_Intranet Transacional/a_Consultas  Estatsticas' is right clicked on
+
+2020-09-07 23:50:04 - [MESSAGE][PASSED] - Object: 'Object Repository/Page_Intranet Transacional/ul_ConsultasArquivo Digital' is clicked on
+
+2020-09-07 23:50:05 - [MESSAGE][PASSED] - Object: 'Object Repository/Page_Intranet Transacional/span_Arquivo Digital' is right clicked on
+
+2020-09-07 23:50:07 - [MESSAGE][PASSED] - Object: 'Object Repository/Page_Intranet Transacional/a_Ficha de Gesto' is clicked on
+
+2020-09-07 23:50:09 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:50:10 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-07 23:50:34 - [MESSAGE][PASSED] - Object: '' is clicked on
+
+2020-09-07 23:50:35 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-07 23:50:35 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-07 23:50:36 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-07 23:50:43 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:50:46 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:50:50 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:50:52 - [MESSAGE][PASSED] - Switched to window with title: 'Editor de Notas/Agenda'
+
+2020-09-07 23:50:54 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:50:56 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-07 23:51:07 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:51:12 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:51:12 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-07 23:51:13 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-07 23:51:14 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-07 23:51:16 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-07 23:51:20 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:51:22 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:51:26 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:51:27 - [MESSAGE][PASSED] - Switched to window with title: 'Editor de Notas/Agenda'
+
+2020-09-07 23:51:29 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:51:30 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-07 23:51:34 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:51:38 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:51:38 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-07 23:51:38 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-07 23:51:39 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-07 23:51:40 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-07 23:51:44 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:51:46 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:51:50 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:51:52 - [MESSAGE][PASSED] - Switched to window with title: 'Editor de Notas/Agenda'
+
+2020-09-07 23:51:54 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:51:55 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-07 23:51:57 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:52:00 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:52:00 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-07 23:56:11 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-07 23:56:12 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-07 23:56:13 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-07 23:56:18 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:56:20 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:56:23 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:56:25 - [MESSAGE][PASSED] - Switched to window with title: 'Editor de Notas/Agenda'
+
+2020-09-07 23:56:27 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:56:28 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-07 23:56:31 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:56:35 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:56:36 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-07 23:56:36 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-07 23:56:37 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-07 23:56:38 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-07 23:56:42 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:56:44 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:56:49 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:56:50 - [MESSAGE][PASSED] - Switched to window with title: 'Editor de Notas/Agenda'
+
+2020-09-07 23:56:52 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:56:53 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-07 23:56:57 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:57:01 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:57:01 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-07 23:57:01 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-07 23:57:02 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-07 23:57:04 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-07 23:57:08 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:57:10 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:57:14 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:57:15 - [MESSAGE][PASSED] - Switched to window with title: 'Editor de Notas/Agenda'
+
+2020-09-07 23:57:17 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:57:18 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-07 23:57:21 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:57:26 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:57:26 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-07 23:57:26 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-07 23:57:27 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-07 23:57:28 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-07 23:57:32 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:57:34 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:57:38 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:57:39 - [MESSAGE][PASSED] - Switched to window with title: 'Editor de Notas/Agenda'
+
+2020-09-07 23:57:41 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:57:43 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-07 23:57:46 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:57:50 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:57:50 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-07 23:57:50 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-07 23:57:51 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-07 23:57:53 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-07 23:57:57 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:57:59 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:58:03 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:58:04 - [MESSAGE][PASSED] - Switched to window with title: 'Editor de Notas/Agenda'
+
+2020-09-07 23:58:06 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:58:07 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-07 23:58:10 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:58:12 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-07 23:58:12 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-08 00:08:13 - [MESSAGE][WARNING] - A browser is already opened. Closing browser and opening a new one
+
+2020-09-08 00:08:14 - [MESSAGE][INFO] - Starting 'Chrome' driver
+
+2020-09-08 00:08:14 - [MESSAGE][INFO] - User set preference: ['prefs', '{download.default_directory=C:\Users\Public\, profile.default_content_settings.popups=0.0, download.prompt_for_download=false, download.directory_upgrade=true, plugins.always_open_pdf_externally=true, pdfjs.disabled=true, safebrowsing.enabled=true}']
+
+2020-09-08 00:08:14 - [MESSAGE][INFO] - User set preference: ['args', '[--start-maximized, --disable-infobars,  safebrowsing-disable-download-protection,  safebrowsing-disable-extension-blacklist, --test-type, --disable-extensions]']
+
+2020-09-08 00:08:14 - [MESSAGE][INFO] - User set preference: ['CapabilityType.ACCEPT_SSL_CERTS', 'true']
+
+2020-09-08 00:08:14 - [MESSAGE][INFO] - User set preference: ['pageLoadStrategy', 'normal']
+
+2020-09-08 00:08:24 - [MESSAGE][PASSED] - Browser is opened with url: ''
+
+2020-09-08 00:08:39 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2020-09-08 00:08:40 - [MESSAGE][PASSED] - Current window maximized
+
+2020-09-08 00:08:58 - [MESSAGE][PASSED] - Navigate to 'https://www.br.intrallianz.com/ngx-intranet/public/home' successfully
+
+2020-09-08 00:09:18 - [MESSAGE][PASSED] - Delayed 20 second(s)
+
+2020-09-08 00:09:20 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-08 00:09:20 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-08 00:09:25 - [MESSAGE][PASSED] - Object: 'Object Repository/Page_Intranet Transacional/a_Consultas  Estatsticas' is right clicked on
+
+2020-09-08 00:09:26 - [MESSAGE][PASSED] - Object: 'Object Repository/Page_Intranet Transacional/ul_ConsultasArquivo Digital' is clicked on
+
+2020-09-08 00:09:27 - [MESSAGE][PASSED] - Object: 'Object Repository/Page_Intranet Transacional/span_Arquivo Digital' is right clicked on
+
+2020-09-08 00:09:29 - [MESSAGE][PASSED] - Object: 'Object Repository/Page_Intranet Transacional/a_Ficha de Gesto' is clicked on
+
+2020-09-08 00:09:31 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 00:09:32 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-08 00:09:50 - [MESSAGE][PASSED] - Object: '' is clicked on
+
+2020-09-08 00:09:51 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-08 00:09:51 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-08 00:09:52 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-08 00:09:56 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 00:09:58 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 00:10:02 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 00:10:03 - [MESSAGE][PASSED] - Switched to window with title: 'Editor de Notas/Agenda'
+
+2020-09-08 00:10:05 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 00:10:07 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-08 00:10:09 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 00:10:12 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 00:10:12 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-08 00:10:54 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-08 00:10:55 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-08 00:10:57 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-08 00:11:01 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 00:11:03 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 00:11:06 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 00:11:08 - [MESSAGE][PASSED] - Switched to window with title: 'Editor de Notas/Agenda'
+
+2020-09-08 00:11:10 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 00:11:11 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-08 00:11:17 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 00:11:22 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 00:11:22 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-08 00:11:22 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-08 00:11:23 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-08 00:11:25 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-08 00:11:29 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 00:11:32 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 00:11:36 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 00:11:37 - [MESSAGE][PASSED] - Switched to window with title: 'Editor de Notas/Agenda'
+
+2020-09-08 00:11:39 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 00:11:41 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-08 00:11:45 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 00:11:48 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 00:11:49 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-08 00:11:49 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-08 00:11:50 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-08 00:11:52 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-08 00:11:56 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 00:11:58 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 00:12:02 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 00:12:04 - [MESSAGE][PASSED] - Switched to window with title: 'Editor de Notas/Agenda'
+
+2020-09-08 00:12:06 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 00:12:07 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-08 00:12:11 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 00:12:14 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 00:12:15 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-08 00:12:15 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-08 00:12:16 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-08 00:12:17 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-08 00:12:21 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 00:12:23 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 00:12:27 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 00:12:28 - [MESSAGE][PASSED] - Switched to window with title: 'Editor de Notas/Agenda'
+
+2020-09-08 00:12:30 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 00:12:32 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-08 00:12:36 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 00:12:40 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 00:12:40 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-08 00:12:40 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-08 00:12:41 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-08 00:12:43 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-08 00:12:46 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 00:12:49 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 00:12:54 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 00:12:55 - [MESSAGE][PASSED] - Switched to window with title: 'Editor de Notas/Agenda'
+
+2020-09-08 00:12:57 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 00:12:58 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-08 00:13:01 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 00:13:04 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 00:13:04 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-08 00:13:05 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-08 00:13:06 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-08 00:13:07 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-08 00:13:12 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 00:13:14 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 00:13:18 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 00:13:19 - [MESSAGE][PASSED] - Switched to window with title: 'Editor de Notas/Agenda'
+
+2020-09-08 00:13:21 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 00:13:22 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-08 00:13:25 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 00:13:29 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 00:13:29 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-08 00:13:30 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-08 00:13:31 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-08 00:13:32 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-08 00:13:35 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 00:13:38 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 00:13:42 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 00:13:43 - [MESSAGE][PASSED] - Switched to window with title: 'Editor de Notas/Agenda'
+
+2020-09-08 00:13:45 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 00:13:46 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-08 00:13:51 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 00:13:55 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 00:13:55 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-08 00:13:56 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-08 00:13:57 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-08 00:13:58 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-08 00:14:03 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 00:14:05 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 00:14:08 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 00:14:10 - [MESSAGE][PASSED] - Switched to window with title: 'Editor de Notas/Agenda'
+
+2020-09-08 00:14:12 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 00:14:13 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-08 00:14:16 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 00:14:21 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 00:14:21 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-08 00:14:21 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-08 00:14:22 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-08 00:14:23 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-08 00:14:28 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 00:14:30 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 00:14:34 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 00:14:36 - [MESSAGE][PASSED] - Switched to window with title: 'Editor de Notas/Agenda'
+
+2020-09-08 00:14:38 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 00:14:39 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-08 00:14:43 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 00:14:47 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 00:14:47 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-08 00:14:47 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-08 00:14:48 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-08 00:14:49 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-08 00:14:53 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 00:14:56 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 00:15:00 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 00:15:02 - [MESSAGE][PASSED] - Switched to window with title: 'Editor de Notas/Agenda'
+
+2020-09-08 00:15:04 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 00:15:05 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-08 00:15:08 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 00:15:10 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 00:15:11 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-08 00:16:30 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-08 00:16:31 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-08 00:16:33 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-08 00:16:37 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 00:16:39 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 00:16:44 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 00:16:45 - [MESSAGE][PASSED] - Switched to window with title: 'Editor de Notas/Agenda'
+
+2020-09-08 00:16:47 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 00:16:49 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-08 00:16:53 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 00:16:58 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 00:16:58 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-08 00:16:58 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-08 00:16:59 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-08 00:17:00 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-08 00:17:04 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 00:17:06 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 00:17:09 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 00:17:10 - [MESSAGE][PASSED] - Switched to window with title: 'Editor de Notas/Agenda'
+
+2020-09-08 00:17:12 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 00:17:13 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-08 00:17:17 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 00:17:22 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 00:17:23 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-08 00:17:23 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-08 00:17:25 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-08 00:17:26 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-08 00:17:29 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 00:17:32 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 00:17:36 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 00:17:38 - [MESSAGE][PASSED] - Switched to window with title: 'Editor de Notas/Agenda'
+
+2020-09-08 00:17:40 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 00:17:41 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-08 00:17:43 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 00:17:46 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 00:17:46 - [MESSAGE][PASSED] - Delayed 0 second(s)]]></system-out>
+         <system-err><![CDATA[2020-09-07 23:21:56 - [TEST_CASE][INCOMPLETE] - Test Cases/Web UI Test/Backoffce/EnvioAvisoPendenciaGo: null]]></system-err>
+      </testcase>
+      <system-out><![CDATA[2020-09-07 23:21:55 - [TEST_SUITE][INCOMPLETE] - RPA: null]]></system-out>
+      <system-err><![CDATA[2020-09-07 23:21:55 - [TEST_SUITE][INCOMPLETE] - RPA: null]]></system-err>
+   </testsuite>
+</testsuites>

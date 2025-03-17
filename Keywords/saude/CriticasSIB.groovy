@@ -221,41 +221,41 @@ public class CriticasSIB extends rpaCommands{
 	 */
 	public static alteraDados(String novoValor, String pis, String email, String critica){
 		System.err.println()
-      try{
-		//Email
-		String emailRecuperado = recuperaValor('//*[@id="cliente.dadosContacto.email1"]', 'value', 5)
-		println emailRecuperado
-		if(emailRecuperado.equals('')){
-			WebUI.delay(2);
-			String xpath = '//*[@id="cliente.dadosContacto.indicadorDocElectronica"]'
-			String tag = 'option'
-			selecionaListaDeElementos(xpath, tag)
-			for(int i = 0 ; i < listOfElements.size(); i++ ){
-				if(listOfElements.get(i).getText().equals('Não')){
-					listOfElements.get(i).click()
+		try{
+			//Email
+			String emailRecuperado = recuperaValor('//*[@id="cliente.dadosContacto.email1"]', 'value', 5)
+			println emailRecuperado
+			if(emailRecuperado.equals('')){
+				WebUI.delay(2);
+				String xpath = '//*[@id="cliente.dadosContacto.indicadorDocElectronica"]'
+				String tag = 'option'
+				selecionaListaDeElementos(xpath, tag)
+				for(int i = 0 ; i < listOfElements.size(); i++ ){
+					if(listOfElements.get(i).getText().equals('Não')){
+						listOfElements.get(i).click()
+					}
 				}
 			}
-		}
 
-		System.err.println('critica ['+critica+'] Novo valor ['+novoValor+"]")
-		WebUI.delay(10);
-		StrategyCriticasSIB.ajusteCriticaDadosGerais(critica, novoValor, pis)
-		//IOF
-		String IOF = recuperaValor('//*[@id="cliente.dadosEconomicosDemograficos.isencaoSelo"]', 'value', 1)
-		if(IOF.equals('')){
-			clickXpath('//*[@id="cliente.dadosEconomicosDemograficos.isencaoSelo"]', 0);
-			clickXpath('//*[@id="cliente.dadosEconomicosDemograficos.isencaoSelo"]/option[3]', 0);
-		}
+			System.err.println('critica ['+critica+'] Novo valor ['+novoValor+"]")
+			WebUI.delay(10);
+			StrategyCriticasSIB.ajusteCriticaDadosGerais(critica, novoValor, pis)
+			//IOF
+			String IOF = recuperaValor('//*[@id="cliente.dadosEconomicosDemograficos.isencaoSelo"]', 'value', 1)
+			if(IOF.equals('')){
+				clickXpath('//*[@id="cliente.dadosEconomicosDemograficos.isencaoSelo"]', 0);
+				clickXpath('//*[@id="cliente.dadosEconomicosDemograficos.isencaoSelo"]/option[3]', 0);
+			}
 
-		//salvar
-		clickXpath('//*[@id="o_11"]', 5);
-		WebUI.delay(10);
-		capturaAlertaGestao('//*[@id="blDadosGeraisCliente"]/table/tbody/tr[1]/td', 'innerText')
-		WebUI.delay(2);
-		alerta = false
-      } catch (Exception e){
-	    alerta = true
-	  }
+			//salvar
+			clickXpath('//*[@id="o_11"]', 5);
+			WebUI.delay(10);
+			capturaAlertaGestao('//*[@id="blDadosGeraisCliente"]/table/tbody/tr[1]/td', 'innerText')
+			WebUI.delay(2);
+			alerta = false
+		} catch (Exception e){
+			alerta = true
+		}
 
 	}
 
@@ -283,11 +283,11 @@ public class CriticasSIB extends rpaCommands{
 		WebUI.delay(5);
 		String alertalRecuperado
 		if(alerta.equals(false)){
-//			if(recuperaValor('//*[@id="dataErrorSection"]/table/tbody/tr', 'innerText', 5).contains('DADOS PESSOAIS'.toString())  ){
-				alertalRecuperado = 'Operação concluída com sucesso.'
-//			} else {
-//				alertalRecuperado = 'Operação não realizada.'+msgAlerta
-//			}
+			//			if(recuperaValor('//*[@id="dataErrorSection"]/table/tbody/tr', 'innerText', 5).contains('DADOS PESSOAIS'.toString())  ){
+			alertalRecuperado = 'Operação concluída com sucesso.'
+			//			} else {
+			//				alertalRecuperado = 'Operação não realizada.'+msgAlerta
+			//			}
 		} else {
 			//alertalRecuperado = 'Cliente inexistente.'
 			alertalRecuperado = 'Operação não realizada.'+msgAlerta

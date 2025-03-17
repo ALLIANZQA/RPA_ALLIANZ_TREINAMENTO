@@ -1,35 +1,35 @@
 package auto
 
 
-import static com.kms.katalon.core.checkpoint.CheckpointFactory.findCheckpoint
-import static com.kms.katalon.core.testcase.TestCaseFactory.findTestCase
+//import static com.kms.katalon.core.checkpoint.CheckpointFactory.findCheckpoint
+//import static com.kms.katalon.core.testcase.TestCaseFactory.findTestCase
 import static com.kms.katalon.core.testdata.TestDataFactory.findTestData
-import static com.kms.katalon.core.testobject.ObjectRepository.findTestObject
-import static com.kms.katalon.core.testobject.ObjectRepository.findWindowsObject
+//import static com.kms.katalon.core.testobject.ObjectRepository.findTestObject
+//import static com.kms.katalon.core.testobject.ObjectRepository.findWindowsObject
 
 import java.util.List
 
-import com.kms.katalon.core.annotation.Keyword
-import com.kms.katalon.core.checkpoint.Checkpoint
-import com.kms.katalon.core.cucumber.keyword.CucumberBuiltinKeywords as CucumberKW
-import com.kms.katalon.core.mobile.keyword.MobileBuiltInKeywords as Mobile
-import com.kms.katalon.core.model.FailureHandling
-import com.kms.katalon.core.testcase.TestCase
+//import com.kms.katalon.core.annotation.Keyword
+//import com.kms.katalon.core.checkpoint.Checkpoint
+//import com.kms.katalon.core.cucumber.keyword.CucumberBuiltinKeywords as CucumberKW
+//import com.kms.katalon.core.mobile.keyword.MobileBuiltInKeywords as Mobile
+//import com.kms.katalon.core.model.FailureHandling
+//import com.kms.katalon.core.testcase.TestCase
 import com.kms.katalon.core.testdata.TestData
-import com.kms.katalon.core.testobject.TestObject
-import com.kms.katalon.core.webservice.keyword.WSBuiltInKeywords as WS
+//import com.kms.katalon.core.testobject.TestObject
+//import com.kms.katalon.core.webservice.keyword.WSBuiltInKeywords as WS
 import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
-import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
+//import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 import auxiliares.FileInput
 import auxiliares.StringFormatter
-import auxiliares.switchAtualizarExcel
-import auxiliares.switchLeitorExcel
-import auxiliares.RegrasEmailDestination
+//import auxiliares.switchAtualizarExcel
+//import auxiliares.switchLeitorExcel
+//import auxiliares.RegrasEmailDestination
 import auxiliares.MenuMatriz
-import internal.GlobalVariable
+//import internal.GlobalVariable
 import rpacommands.rpaCommands
 import auxiliares.ExtractDates
-import auxiliares.timer
+//import auxiliares.timer
 
 public class RecusaPropostaAutoFuncionalidades extends rpaCommands{
 
@@ -98,25 +98,28 @@ public class RecusaPropostaAutoFuncionalidades extends rpaCommands{
 	 * @return
 	 */
 	public static fluxoRecusaPropostaAuto(String aba, String a, int t, int p){
-		if(timer.executeAtTime(t,p)){
+//		if(timer.executeAtTime(t,p)){
 			initDataFiles()
 			fluxoCompletoRecusaPropostaAuto(aba,a)
 			reprocessaFalhas(aba,a)
 			enviaEmailRecusaPropostaAuto(aba)
-		}
+//		}
 	}
+
+
+
+
 
 	/**
 	 * @author T_DCDias
 	 * @return
 	 */
 	public static navegarMenu(){
-		WebUI.delay(5)
+		wainting(5);
 		MenuMatriz.producaoSinistro()
-		WebUI.delay(5)
+		wainting(5);
 		MenuMatriz.subMenu("/*/body/div/div/app-root/app-private/app-displayed-menu/div/app-teaser/div/div[1]/div/div[2]/ul", "a","Produção")
 		WebUI.waitForPageLoad(30)
-		WebUI.switchToWindowIndex(1)
 	}
 
 	/**
@@ -124,23 +127,23 @@ public class RecusaPropostaAutoFuncionalidades extends rpaCommands{
 	 * @param aba
 	 * @return
 	 */
-	public static fluxoCompletoRecusaPropostaAuto(aba,String a){
+	public static fluxoCompletoRecusaPropostaAuto(String aba,String a){
 		System.err.println()
 		try{
 			if(validaDados(cellCheck)){
 				acessoAmbiente(aba,a)
 				WebUI.delay(15);
 				navegarMenu()
-				WebUI.delay(20);
+				WebUI.delay(15);
 				for(int i = 1; i <= data.getRowNumbers(); i++) {
 					int j =  i - 1
 					if (data.getValue(cellCheck, i).equals('Processar')) {
 						alerta=""
 						List<String> registros = new ArrayList<>();
 						lista(registros, i)
-						WebUI.waitForPageLoad(30)
-						WebUI.delay(5)
-						WebUI.click(findTestObject('PageBackoffice/Page_E/div_Propostas Bloqueadas'))
+						alteraJanejaGenerica(1, 15)
+						selecionaItemLista('Propostas Bloqueadas','//*[@id="divAppContent"]/table/tbody/tr[1]/td/table/tbody/tr[2]/td' ,'div' )
+						WebUI.delay(5);
 						WebUI.maximizeWindow()
 						if(bloqueio(registros, aba)) {
 							try{
@@ -158,7 +161,9 @@ public class RecusaPropostaAutoFuncionalidades extends rpaCommands{
 			} else {
 				System.err.println('Não existem dados para processar')
 			}
-		} catch (Exception e){}
+		} catch (Exception e){
+		  throw e;
+		}
 	}
 
 	/**
@@ -168,12 +173,10 @@ public class RecusaPropostaAutoFuncionalidades extends rpaCommands{
 	 * @return
 	 */
 	public static boolean bloqueio( List<String> registros, String aba){
-		System.out.println()
+		System.out.println("1")
 		boolean enviado
 		String msg
-
 		try{
-			alteraJanejaGenerica(1, 2)
 			//Lista Bloqueios
 			String listaBloqueios = recuperaValor('//*[@id="cellAppPromptHeaderArea"]', 'innerText', 1)
 			System.out.println(listaBloqueios)
@@ -182,6 +185,7 @@ public class RecusaPropostaAutoFuncionalidades extends rpaCommands{
 				preencheXpath('//*[@id="poliza_Policy"]', registros[0],0);
 				//Pesquisar
 				clickXpath('//*[@id="btnBuscar"]', 1);
+				WebUI.delay(5);
 				alerta = recuperaValor('//*[@id="dataErrorSection"]/table/tbody/tr/td[2]', 'innerText', 1)
 				System.out.println(alerta)
 				if(!alertListBlocList(alerta )){
@@ -190,16 +194,34 @@ public class RecusaPropostaAutoFuncionalidades extends rpaCommands{
 					selecionaItemListaAtributo("Excluir",'//*[@id="tablaBloqueos_0_15"]/table' , 'img', 'title' )
 					WebUI.delay(5);
 					fechaAlerta()
-					alteraJanejaGenerica(2, 2)
+					WebUI.delay(10);
+					alteraJanejaGenerica(2, 5)
 					String resultadoOperacional = recuperaValor('//*[@id="cellAppPromptHeaderArea"]', 'innerText', 1)
 					System.out.println(resultadoOperacional)
 					if(listaDeTelas(resultadoOperacional)){
-						alerta = recuperaValor('//*[@id="poliza"]', 'innerText', 1)
-						WebUI.delay(5);
+						alerta = recuperaValor('//*[@id="poliza"]', 'innerText', 5)
+						System.out.println("\n0")
+					
+						try{
 						//FECHAR
-						clickXpath('//*[@id="o_2"]', 1);
-						alteraJanejaGenerica(1, 2)
-						clickXpath('//*[@id="imgOptMenuBackHome"]', 1);
+						//clickXpath('//*[@id="o_2"]', 5);
+						fecharJanelaAtual(2);
+						System.out.println("\n1")
+						alteraJanejaGenerica(1, 5)
+						System.out.println("\n2")
+						//FECHAR
+						clickXpath('//*[@id="lnkTopLink_Close"]', 5);
+						System.out.println("\n3")
+						fechaAlerta()
+						System.out.println("\n4")
+						alteraJanejaGenerica(0, 5)
+						System.out.println("\n5")
+						navegarMenu()
+						System.out.println("\n6")
+						} catch (Exception e){
+						System.out.println(e)
+						
+						}
 					} else {
 						enviado = false
 						alerta="RESULTADO OPERACIONAL' não apresentada"
@@ -208,12 +230,23 @@ public class RecusaPropostaAutoFuncionalidades extends rpaCommands{
 				} else {
 					enviado = false
 					status = "Processado"
-					clickXpath('//*[@id="imgOptMenuBackHome"]', 1);
+					//clickXpath('//*[@id="imgOptMenuBackHome"]', 1);
+					fechaAlerta()
+					//FECHAR
+					clickXpath('//*[@id="lnkTopLink_Close"]', 1);
+					fechaAlerta()
+					alteraJanejaGenerica(0, 2)
+					navegarMenu()
 				}
 			} else {
+				System.out.println()
 				enviado = false
 				alerta="Tela 'Lista Bloqueios' não apresentada"
 				status = "Processar"
+				alteraJanejaGenerica(1, 2)
+				fecharJanelaAtual(1)
+				alteraJanejaGenerica(0, 2)
+				navegarMenu()
 			}
 		} catch (Exception e) {
 			enviado = false
@@ -246,14 +279,19 @@ public class RecusaPropostaAutoFuncionalidades extends rpaCommands{
 		initDataFiles()
 		try{
 			if(!validaDados(cellCheck)){
-				pathTxtEmail = "C:\\Users\\Public\\RPA_ALLIANZ\\Emails\\Saude\\ReajusteApoliceSaude\\ConfiguracoesReajusteApoliceSaude.txt"
+				pathTxtEmail = "C:\\Users\\Public\\RPA_ALLIANZ\\Emails\\Auto\\RecusaPropostaAuto\\ConfiguracoesPropostaAuto.txt"
 				lerConfigurações(pathTxtEmail)
 				String emaildestination = StringFormatter.formatterEmailDestination(FileInput.readFile(pathTxtEmail));
 				List<String> anexos = new ArrayList<>();
 				anexos[0] = path
-				anexos[1] = "ReajusteApoliceSaude.xlsx"
+				anexos[1] = "RecusaPropostasAuto.xlsx"
 				sendEmail.CreateEmail.createEmailSendMultipleFiles(sender, emaildestination, pwdsender, anexos, host, porta, tipoAba)
 			}
+		} catch (Exception e){
+		}
+
+		try{
+			WebUI.closeBrowser();
 		} catch (Exception e){
 		}
 	}

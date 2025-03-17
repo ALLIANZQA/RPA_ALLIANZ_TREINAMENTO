@@ -42,72 +42,72 @@ public class SantanderEnvioDeMensagensSasam extends rpaCommands{
 		boolean p
 		if(carta.equals("15")){
 			if(tipo.equals("RenovaSantanderSASAM2")){
-			try{
-				//System.err.println("[PROPOSTA ["+inativacao[51].substring(0, 9)+"]")
-				//PROPOSTA
-				preencheXpath('//*[@id="apolice"]', inativacao[51].substring(0, 9) , 1)
-				//PESQUISAR
-				selecionaItemLista('Pesquisar','//*[@id="divAppContent"]/table/tbody/tr[1]/td/table/tbody/tr[2]/td' , 'td' )
-				//BT FICHA GESTÃO
-				clickXpath('//*[@id="-61"]/div[1]/span', 5);
-				//TELA MENU FICHA GESTÃO
-				alteraJanejaGenerica(2, 5)
-				//NOVA FICHA E GESTÃO - TABELA DE RESULTADOS
-				deletaArquivoGenerico(fileToDell);
-				System.out.println()
-				try{
-				    novaFichaGestaoPorAtributo(formataProposta(inativacao[51], ' / 0 / 0'),'')   
-				    WebUI.delay(10);
-				} catch (Exception e){}
-				selecionaItemNaTabelaFichaGestao("Publico", 'Proposta')
-				WebUI.delay(30);
-				renomearArquivo(fileToDell, inativacao[51].substring(0, 9), ".pdf")
-				fecharJanelaAtual(2)
-				alteraJanejaGenerica(1, 5)
-				fecharJanelaAtual(1)
-				alteraJanejaGenerica(0, 5)
-				p = true
-			} catch (Exception e){
-				p = false
-			}
-			}
-			
-			if(tipo.equals("RenovaSantander")){
 				try{
 					//System.err.println("[PROPOSTA ["+inativacao[51].substring(0, 9)+"]")
-				    //PROPOSTA
-				    preencheXpath('//*[@id="apolice"]', inativacao[22].substring(0, 9) , 1)
-				    //PESQUISAR
-				    selecionaItemLista('Pesquisar','//*[@id="divAppContent"]/table/tbody/tr[1]/td/table/tbody/tr[2]/td' , 'td' )
-				    //BT FICHA GESTÃO
-				    clickXpath('//*[@id="-61"]/div[1]/span', 5);
-				    //TELA MENU FICHA GESTÃO
-				    alteraJanejaGenerica(2, 5)
-				    //NOVA FICHA E GESTÃO - TABELA DE RESULTADOS
-				    deletaArquivoGenerico(fileToDell);
-				    System.out.println()
-				    try{
-				       novaFichaGestaoPorAtributo(formataProposta(inativacao[22], ' / 0 / 0'),'')   
-				       WebUI.delay(10);
-				    } catch (Exception e){}
-				      selecionaItemNaTabelaFichaGestao("Publico", 'Proposta')
-				      WebUI.delay(30);
-				      renomearArquivo(fileToDell, inativacao[22].substring(0, 9), ".pdf")
-					  fecharJanelaAtual(2)
-					  alteraJanejaGenerica(1, 5)
-					  fecharJanelaAtual(1)
-					  alteraJanejaGenerica(0, 5)
-				p = true
+					//PROPOSTA
+					preencheXpath('//*[@id="apolice"]', inativacao[51].substring(0, 9) , 1)
+					//PESQUISAR
+					selecionaItemLista('Pesquisar','//*[@id="divAppContent"]/table/tbody/tr[1]/td/table/tbody/tr[2]/td' , 'td' )
+					//BT FICHA GESTÃO
+					clickXpath('//*[@id="-61"]/div[1]/span', 5);
+					//TELA MENU FICHA GESTÃO
+					alteraJanejaGenerica(2, 5)
+					//NOVA FICHA E GESTÃO - TABELA DE RESULTADOS
+					deletaArquivoGenerico(fileToDell);
+					System.out.println()
+					try{
+						novaFichaGestaoPorAtributo(formataProposta(inativacao[51], ' / 0 / 0'),'')
+						WebUI.delay(10);
+					} catch (Exception e){}
+					selecionaItemNaTabelaFichaGestao("Publico", 'Proposta')
+					WebUI.delay(30);
+					renomearArquivo(fileToDell, inativacao[51].substring(0, 9), ".pdf")
+					fecharJanelaAtual(2)
+					alteraJanejaGenerica(1, 5)
+					fecharJanelaAtual(1)
+					alteraJanejaGenerica(0, 5)
+					p = true
 				} catch (Exception e){
 					p = false
 				}
+			}
+
+			if(tipo.equals("RenovaSantander")){
+				try{
+					//System.err.println("[PROPOSTA ["+inativacao[51].substring(0, 9)+"]")
+					//PROPOSTA
+					preencheXpath('//*[@id="apolice"]', inativacao[24].substring(0, 9) , 1)
+					//PESQUISAR
+					selecionaItemLista('Pesquisar','//*[@id="divAppContent"]/table/tbody/tr[1]/td/table/tbody/tr[2]/td' , 'td' )
+					//BT FICHA GESTÃO
+					clickXpath('//*[@id="-61"]/div[1]/span', 5);
+					//TELA MENU FICHA GESTÃO
+					alteraJanejaGenerica(2, 5)
+					//NOVA FICHA E GESTÃO - TABELA DE RESULTADOS
+					deletaArquivoGenerico(fileToDell);
+					System.out.println()
+					try{
+						novaFichaGestaoPorAtributo(formataProposta(inativacao[24], ' / 0 / 0'),'')
+						WebUI.delay(10);
+					} catch (Exception e){}
+					selecionaItemNaTabelaFichaGestao("Publico", 'Proposta')
+					WebUI.delay(30);
+					renomearArquivo(fileToDell, inativacao[24].substring(0, 9), ".pdf")
+					fecharJanelaAtual(2)
+					alteraJanejaGenerica(1, 5)
+					fecharJanelaAtual(1)
+					alteraJanejaGenerica(0, 5)
+					p = true
+				} catch (Exception e){
+					p = false
 				}
-			
-			
-			
-			
-			
-			
+			}
+
+
+
+
+
+
 		} else if(carta.equals("30") || carta.equals("NR")){
 			p = true
 		}
@@ -120,11 +120,13 @@ public class SantanderEnvioDeMensagensSasam extends rpaCommands{
 	 * Metodo de seleção de itens na tela de ficha e gestão
 	 */
 	public static selecionaItemNaTabelaFichaGestao(String data, String txnota){
-		selecionaListaDeElementos('//*[@id="tablaLista"]/app-list-file/div/div/div/table/tbody','tr')
+		selecionaListaDeElementos('//*[@id="tablaLista"]/app-list-file/div/div/div/table','tr')
 		int size = listOfElements.size()
+		System.out.println("SIZE ["+size+"]")
 		try{
 			for(int i=0; i<size; i++){
-				if(identificaDadosNaLinha(data, txnota, retornaLinhaTabelaFichaGestao(i))){
+				if(identificaDadosNaLinha(data, txnota, retornaLinhaTabelaFichaGestao(i) )){
+					System.out.println()
 					painelDownload(i)
 					break
 				}

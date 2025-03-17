@@ -420,6 +420,8 @@ public class backofficeFuncionalidades extends rpaCommands {
 		try{
 			System.err.println(nApolice +" - "+ramo)
 			String ramoAQUI = ramo.trim();
+			
+			System.out.println("\nRAMOS "+ramoAQUI );
 			//			trocaJanela('Critérios de Pesquisa');
 			WebUI.delay(10);
 			alteraJanejaGenerica(1, 5)
@@ -427,7 +429,18 @@ public class backofficeFuncionalidades extends rpaCommands {
 			preencheXpath('//*[@id="apolice"]', nApolice, 5);
 			clickXpath('//*[@id="relacaoAplicas"]', 2);
 			//if(ramoAQUI.equals('307' || '308'|| '309'|| '310'|| '311'|| '312'|| '329'|| '335'|| '336'|| '337'|| '338'|| '339')){
-			if(ramoAQUI.equals('307') || ramoAQUI.equals('308') ||ramoAQUI.equals('309') || ramoAQUI.equals('310') || ramoAQUI.equals('311') ||ramoAQUI.equals('312') || ramoAQUI.equals('329') || ramoAQUI.equals('335') || ramoAQUI.equals('336') || ramoAQUI.equals('337') ||ramoAQUI.equals('338') || ramoAQUI.equals('339')){
+			if( ramoAQUI.equals('307') || 
+				ramoAQUI.equals('308') ||
+				ramoAQUI.equals('309') || 
+				ramoAQUI.equals('310') || 
+				ramoAQUI.equals('311') ||
+				ramoAQUI.equals('312') ||
+                ramoAQUI.equals('329') || 
+				ramoAQUI.equals('335') || 
+				ramoAQUI.equals('336') || 
+				ramoAQUI.equals('337') || 
+				ramoAQUI.equals('338') || 
+				ramoAQUI.equals('339')){
 				clickXpath('//*[@id="relacaoAplicas"]/option[1]', 10);
 			}else{
 				clickXpath('//*[@id="relacaoAplicas"]/option[2]', 10);
@@ -448,7 +461,18 @@ public class backofficeFuncionalidades extends rpaCommands {
 		try{
 			String ramoAQUI = ramo.trim();
 			//if(ramo.equals('307' || '308'|| '309'|| '310'|| '311'|| '312'|| '329'|| '335'|| '336'|| '337'|| '338'|| '339')){
-			if(ramoAQUI.equals('307') || ramoAQUI.equals('308') ||ramoAQUI.equals('309') || ramoAQUI.equals('310') || ramoAQUI.equals('311') ||ramoAQUI.equals('312') || ramoAQUI.equals('329') || ramoAQUI.equals('335') || ramoAQUI.equals('336') || ramoAQUI.equals('337') ||ramoAQUI.equals('338') || ramoAQUI.equals('339')){
+			if( ramoAQUI.equals('307') || 
+				ramoAQUI.equals('308') ||
+				ramoAQUI.equals('309') || 
+				ramoAQUI.equals('310') || 
+				ramoAQUI.equals('311') ||
+				ramoAQUI.equals('312') || 
+				ramoAQUI.equals('329') || 
+				ramoAQUI.equals('335') || 
+				ramoAQUI.equals('336') || 
+				ramoAQUI.equals('337') ||
+				ramoAQUI.equals('338') || 
+				ramoAQUI.equals('339')){
 				try{
 					//clickXpath('//*[@id="o_8"]',5);
 					selecionaItemListaContains('Recibos Frota','//*[@id="sectionaplicacoesapoliceSectionBar"]/table/tbody/tr' , 'div' )
@@ -554,6 +578,7 @@ public class backofficeFuncionalidades extends rpaCommands {
 
 	public static String realizaDownloadApoliceSeguroFuncionario(){
 		//		int contMax = 10;
+		System.err.println()
 		System.err.println('realizaDownloadApoliceSeguroFuncionario' );
 		String downloadOK;
 		String element;
@@ -655,7 +680,7 @@ public class backofficeFuncionalidades extends rpaCommands {
 
 				//clicar download
 				clickXpath('//*[@id="b_generatePDF"]',5);
-				WebUI.delay(20);
+				WebUI.delay(35);
 				downloadOK =  validaDownloadTamanho('C:\\Users\\Public\\retrievedoc.PDF', '//*[@id="b_generatePDF"]');
 				if (downloadOK.equals('true')){
 					renomearArquivo('C:\\Users\\Public\\retrievedoc.PDF' ,'RenovAuto');
@@ -735,31 +760,43 @@ public class backofficeFuncionalidades extends rpaCommands {
 
 			if(!ramoAntigo.contains('Residência Digital'.toString())){
 
+				try{
 				//ramo
 				clickXpath('//*[@id="body_sectionPaginaCompleta"]/div/div[5]/div/div/div/div/button',3);
+				} catch (Exception e){}
+				
+				try{
 				//residencia
 				clickXpath('//*[@id="body_sectionPaginaCompleta"]/div/div[5]/div/div/div/div/div/ul/li[2]/a/span[1]',0);
-				//clica alterar
+				} catch (Exception e){}
+				
+				//clica Renovar com alteração
 				clickXpath('//*[@id="divContentFooterButtonBar"]/div[3]/button',5);
+				WebUI.delay(10);
 				fechaAlerta();
 				WebUI.delay(20);
 				//NOVA TELA
 				alteraJanejaGenerica(1, 2)
 				WebUI.maximizeWindow()
 				//Avançar - Dados Pessoais
+				try{
 				clickXpath('//*[@id="nextPageRiskData"]',5);
+				} catch (Exception e){}
 				//Avançar
 				clickXpath('//*[@id="nextPagePrice"]',5);
 
 			}else {
 				clickXpath('//*[@id="divContentFooterButtonBar"]/div[3]/button',5);
+				WebUI.delay(10);
 				fechaAlerta();
 				//altera aba
 				AlteraAbDownloadResidencia();
 				WebUI.delay(20);
 				//Clicar Avançar
 				WebUI.maximizeWindow()
+				try{
 				clickXpath('//*[@id="nextPageRiskData"]',10);
+			    } catch (Exception e){}
 				clickXpath('//*[@id="nextPagePrice"]',5);
 			}
 
@@ -770,7 +807,8 @@ public class backofficeFuncionalidades extends rpaCommands {
 			//Baixar PDF
 			clickXpath('//*[@id="btnGeneratePDF"]',10);
 
-			WebUI.delay(20);
+			WebUI.delay(35);
+			System.out.println()
 			downloadOK =  validaDownloadTamanho('C:\\Users\\Public\\docrequest.PDF', '//*[@id="btnSaveQuotation"]');
 			System.err.println('downloadOK ['+downloadOK+"]")
 			FecharAbDownloadResidencia();
@@ -787,11 +825,19 @@ public class backofficeFuncionalidades extends rpaCommands {
 			//alteraJanejaGenerica(0, 2)
 			//Renovar com alteração
 			clickXpath('//*[@id="divContentFooterButtonBar"]/div[3]/button',5);
+			WebUI.delay(10);
+			//MSG
+			try{
+				fechaAlerta()
+			}catch (Exception e){}
+
 			//NOVA TELA
 			alteraJanejaGenerica(1, 2)
 			WebUI.maximizeWindow()
 			//Avançar - Dados Pessoais
 			clickXpath('//*[@id="nextPageRiskData"]',5);
+			// Verifica se o tipo de Assistência desejada está selecionada
+			verificaTipoDeAssistência("VIP")
 			//Avançar
 			clickXpath('//*[@id="nextPagePrice"]',5);
 			WebUI.delay(20);
@@ -810,6 +856,71 @@ public class backofficeFuncionalidades extends rpaCommands {
 		} catch (Exception e){
 			valueCheckFuncionarioAutoResidencia = 'Não enviado - [Erro Ao realizar Download APOLICE]';
 		}
+	}
+
+	/**
+	 * @author BE54955
+	 * @param assistencia
+	 * @return
+	 */
+	public static verificaTipoDeAssistência(String assistencia){
+		System.err.println()
+		int index
+		int numAssistencia
+		int numeroBotoes
+		boolean assistenciaSelecionada = false
+		String xpath = '//*[@id="btnGroupAssistanceType"]'
+		String tag = "button";
+		List<WebElement> listOfElements
+		listOfElements = listaDeElementos(xpath,tag)
+		numeroBotoes = listOfElements.size()
+		//Verifica a existência da assistência selecionado
+		if(existeAssistencia(listOfElements,assistencia)){
+			System.err.println()
+			//Retorna o INDEX da assistência selecionada
+			for(int j = 0; j < listOfElements.size(); j++){
+				if(listOfElements[j].getText().toString().equals(assistencia)){
+					System.err.println("FOUND ["+j+"] ["+listOfElements[j].getText()+"]")
+					index = j
+					break;
+				}
+			}
+			//Identificar a assistência selecionada que não seja indicada no método
+			for(int i = 0; i < listOfElements.size(); i++){
+				System.err.println("FOUND ["+i+"] ["+listOfElements[i].getText()+"] ["+listOfElements[i].getAttribute('class')+"]")
+				if(listOfElements[i].getAttribute('class').toString().contains('active')){
+					assistenciaSelecionada = true
+					break;
+				}
+			}
+			//Seleciona a assistência indicada no método
+			if(!assistenciaSelecionada){
+				for(int k = 0; k < listOfElements.size(); k++){
+					if(listOfElements[k].getText().toString().equals(assistencia)){
+						listOfElements[k].click();
+						break;
+					}
+				}
+			}
+		}
+	}
+
+	/**
+	 * @author BE54955
+	 * @param listOfElements
+	 * @param assistencia
+	 * @return
+	 */
+	public static boolean existeAssistencia(List<WebElement> listOfElements, String assistencia){
+		boolean a = false
+		for(int j = 0; j < listOfElements.size(); j++){
+			if(listOfElements[j].getText().toString().equals(assistencia)){
+				a = true
+				System.err.println("FOUND ["+j+"] ["+listOfElements[j].getText()+"] ["+a+"]")
+				break;
+			}
+		}
+		return a;
 	}
 
 	public static void edicaoCalculo(){

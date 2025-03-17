@@ -189,6 +189,7 @@ public class GeraBoletoFuncionalidades extends rpaCommands {
 			if(alerta.contains("atributo nao encontrado")){
 				alerta = ""
 			}
+			
 			enviado = true
 
 			try{

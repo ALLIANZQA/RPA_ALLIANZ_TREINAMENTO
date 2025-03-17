@@ -39,7 +39,7 @@ public class ApolicesHomologacaoFuncionalidades extends rpaCommands{
 	private static int cellCheck = 81
 	private static String status
 	private static String OEOrigen = "Allianz BR"
-	private static String entornoDestino = "Integración"
+	private static String entornoDestino = ""
 	private static String tipoTraspaso = "Poliza"
 
 	/**
@@ -47,7 +47,8 @@ public class ApolicesHomologacaoFuncionalidades extends rpaCommands{
 	 * @param aba
 	 * @return
 	 */
-	public static fluxoApolicesHomologacaoFuncionalidades(String aba, String a){
+	public static fluxoApolicesHomologacaoFuncionalidades(String aba, String a, String b){
+		entornoDestino = retornoDestino(b)
 		initDataFiles()
 		fluxoCompletoApolicesHomologacao(aba,a)
 		reprocessaFalhas(aba,a)
@@ -373,5 +374,18 @@ public class ApolicesHomologacaoFuncionalidades extends rpaCommands{
 			status = "Processar"
 		}
 		return enviado
+	}
+
+	/**
+	 * @author BE54955
+	 * @param r
+	 * @return
+	 */
+	public static String retornoDestino(String r){
+		Map<String, String> retorno = new HashMap<String, String>()
+		retorno.put('DES', 'Desarrollo');
+		retorno.put('INT', 'Integración');
+		retorno.put('PRE', 'Pre-Producción');
+		return retorno.get(r.toString());
 	}
 }

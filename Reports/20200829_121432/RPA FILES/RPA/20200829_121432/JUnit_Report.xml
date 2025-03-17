@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="RPA" time="8.036" tests="2" failures="0" errors="0">
+   <testsuite name="RPA" tests="2" failures="0" errors="0" time="8.036" timestamp="2020-08-29 12:14:43" hostname="ALZ_ServiceQA - BRSPVLRPA01.agf.com.br" id="Test Suites/RPA FILES/RPA">
+      <properties>
+         <property name="deviceName" value=""/>
+         <property name="devicePlatform" value=""/>
+         <property name="logFolder" value="C:\\Users\\Public\\RPA_ALLIANZ\\Reports\\20200829_121432\\RPA FILES\\RPA\\20200829_121432"/>
+         <property name="logFiles" value="C:\\Users\\Public\\RPA_ALLIANZ\\Reports\\20200829_121432\\RPA FILES\\RPA\\20200829_121432\\execution0.log"/>
+         <property name="attachments" value=""/>
+         <property name="hostName" value="ALZ_ServiceQA - BRSPVLRPA01.agf.com.br"/>
+         <property name="hostAddress" value="10.189.212.24"/>
+         <property name="os" value="Windows Server 2016 64bit"/>
+         <property name="katalonVersion" value="7.2.1.1"/>
+      </properties>
+      <testcase name="Test Cases/Web UI Test/Backoffce/FluxoEnvioPDF" time="6.059" classname="Test Cases/Web UI Test/Backoffce/FluxoEnvioPDF" status="PASSED">
+         <system-out><![CDATA[2020-08-29 12:14:45 - [TEST_CASE][PASSED] - Test Cases/Web UI Test/Backoffce/FluxoEnvioPDF: Test Cases/Web UI Test/Backoffce/FluxoEnvioPDF
+
+2020-08-29 12:14:47 - [TEST_STEP][PASSED] - try: Delayed 1 second(s)
+
+2020-08-29 12:14:47 - [TEST_STEP][PASSED] - FluxoEnvioPDF.fluxoEnvioDePDF("EnvioPDF"): Delayed 1 second(s)
+
+2020-08-29 12:14:49 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-08-29 12:14:50 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-08-29 12:14:50 - [TEST_STEP][PASSED] - catch (Exception e): Browser is closed
+
+2020-08-29 12:14:50 - [TEST_STEP][PASSED] - err.println("Falha ao testar fluxo de envio de PDF" + e): null
+
+2020-08-29 12:14:50 - [TEST_STEP][PASSED] - closeBrowser(): Browser is closed
+
+2020-08-29 12:14:51 - [MESSAGE][PASSED] - Browser is closed]]></system-out>
+         <system-err><![CDATA[]]></system-err>
+      </testcase>
+      <testcase name="Test Cases/Web UI Test/Backoffce/AgendamentoInspecoes" time="0.485" classname="Test Cases/Web UI Test/Backoffce/AgendamentoInspecoes" status="INCOMPLETE">
+         <system-out><![CDATA[2020-08-29 12:14:51 - [TEST_CASE][INCOMPLETE] - Test Cases/Web UI Test/Backoffce/AgendamentoInspecoes: null
+
+2020-08-29 12:14:51 - [TEST_STEP][INCOMPLETE] - try: null
+
+2020-08-29 12:14:51 - [TEST_STEP][INCOMPLETE] - AgendamentoInspecao.fluxoAgendamentoInspecoes("Agendamento"): null]]></system-out>
+         <system-err><![CDATA[2020-08-29 12:14:51 - [TEST_CASE][INCOMPLETE] - Test Cases/Web UI Test/Backoffce/AgendamentoInspecoes: null]]></system-err>
+      </testcase>
+      <system-out><![CDATA[2020-08-29 12:14:43 - [TEST_SUITE][INCOMPLETE] - RPA: null]]></system-out>
+      <system-err><![CDATA[2020-08-29 12:14:43 - [TEST_SUITE][INCOMPLETE] - RPA: null]]></system-err>
+   </testsuite>
+</testsuites>

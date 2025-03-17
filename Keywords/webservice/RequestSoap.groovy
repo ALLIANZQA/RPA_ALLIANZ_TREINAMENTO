@@ -26,6 +26,7 @@ import org.apache.http.util.EntityUtils;
 
 import org.apache.http.conn.ssl.NoopHostnameVerifier;
 import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
+import org.apache.http.conn.ssl.*;
 
 @SuppressWarnings("deprecation")
 public class RequestSoap {

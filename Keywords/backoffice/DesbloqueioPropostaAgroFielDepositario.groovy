@@ -95,7 +95,7 @@ public class DesbloqueioPropostaAgroFielDepositario extends backofficeFuncionali
 					'Pesquisar '
 					bProxReg = false
 					pesquisar(i)
-
+					//WebUI.delay(10);
 					if (mensagemErro()){
 						setUpMessage("Não foram encontrados dados para a ação selecionada.", " ", "N" )
 						bProxReg = true
@@ -110,13 +110,19 @@ public class DesbloqueioPropostaAgroFielDepositario extends backofficeFuncionali
 						errooperaoMaiorQueValorDaCarteiraAtual()
 					}
 
-
-
 					if (bProxReg == false){
-						'Desbloquear'
-						desbloquear()
-						WebUI.delay(5)
-						try{
+					   'Desbloquear'
+					   desbloquear()
+					   WebUI.delay(5)
+					   //WebUI.switchToWindowIndex(1)
+					   String errorMessagePage =  recuperaValor('//*[@id="dataErrorSection"]/table/tbody/tr/td[2]', 'outerText', 5)
+					   System.out.println("Erro Page "+errorMessagePage);
+					   if( !alertListBlocList(errorMessagePage) ){
+						WebUI.switchToWindowIndex(2)
+						String errorPage =  recuperaValor('//*[@id="divAppContent"]/table[1]/tbody/tr[2]/td/label', 'outerText', 5)
+						System.out.println("Erro Page "+errorPage);
+						if( !alertListBlocList(errorPage) ){
+						 try{
 							if (sAlert.contains(" A apólice não é bloqueada".toString())  ){
 								setUpMessage(sAlert, " ", "N" )
 								bProxReg = true
@@ -126,9 +132,8 @@ public class DesbloqueioPropostaAgroFielDepositario extends backofficeFuncionali
 								WebUI.switchToWindowIndex(0)
 								navegarMenu()
 								WebUI.switchToWindowIndex(1)
-
 							}
-						} catch (Exception e){}
+						 } catch (Exception e){}
 
 						try{
 							WebUI.delay(5)
@@ -166,6 +171,7 @@ public class DesbloqueioPropostaAgroFielDepositario extends backofficeFuncionali
 						try{
 							if(pegaMsgapoliceItensBloqueados()){
 								System.err.println()
+								
 								setUpMessage("Não pode ser autorizado, porque apólice tem itens bloqueados ou com erro. Entre por modificação.", " ", "N" )
 								bProxReg = true
 								erroApoliceItensBloqueados()
@@ -191,19 +197,43 @@ public class DesbloqueioPropostaAgroFielDepositario extends backofficeFuncionali
 								setUpMessage("Liberação não efetuada!", "Proposta Não Liberada!", "E" )
 							}
 						}
-					}
+					  } else {
+						setUpMessage(errorPage, "Liberação não efetuada!" , "N" )
+						 fecharJanelaAtual(2)
+						fecharJanelaAtual(1)
+						WebUI.switchToWindowIndex(0)
+						navegarMenu()
+						WebUI.switchToWindowIndex(1)
+					  }
+					  
+				   } else {
+					setUpMessage(errorMessagePage, "Liberação não efetuada!" , "N" )
+					fecharJanelaAtual(1)
+					WebUI.switchToWindowIndex(0)
+					navegarMenu()
+					WebUI.switchToWindowIndex(1)
+				   }
+				}
+				System.err.println('ABA ['+aba+"] sResult ["+sResult+"] sSusep ["+sSusep+"] sProc ["+sProc+"] i ["+i+"] path ["+path+"]")
+				System.err.println()
+				updateExcel.atualizaDesbloqueioPropostaAgroFiel(aba, sResult,sSusep, sProc, i, path )
+				System.err.println()
 
-					System.err.println('ABA ['+aba+"] sResult ["+sResult+"] sSusep ["+sSusep+"] sProc ["+sProc+"] i ["+i+"] path ["+path+"]")
-					System.err.println()
-					updateExcel.atualizaDesbloqueioPropostaAgroFiel(aba, sResult,sSusep, sProc, i, path )
-					System.err.println()
-
-					if (sProc.equals('N')){
-						pageMenuProduoLimpar()
-					}
-					else {
-						pageMenuProduo()
-					}
+				if (sProc.equals('N')){
+					pageMenuProduoLimpar()
+				}else {
+					//pageMenuProduo()
+					fecharJanelaAtual(2);
+					fecharJanelaAtual(1);
+					alteraJanejaGenerica(0, 5)
+					WebUI.delay(5)
+					MenuMatriz.subMenu("/*/body/div/div/app-root/app-private/app-displayed-menu/div/app-teaser/div/div[1]/div/div[2]/ul", "a","Produção")
+					WebUI.waitForPageLoad(30)
+					WebUI.switchToWindowIndex(1)
+					WebUI.waitForPageLoad(30)
+					WebUI.click(findTestObject('PageBackoffice/Page_E/div_Propostas Bloqueadas'))
+					WebUI.maximizeWindow()
+				}
 					countEnviado++
 				}
 			} catch (Exception e){}
@@ -300,6 +330,8 @@ public class DesbloqueioPropostaAgroFielDepositario extends backofficeFuncionali
 		WebUI.delay(5)
 		MenuMatriz.subMenu("/*/body/div/div/app-root/app-private/app-displayed-menu/div/app-teaser/div/div[1]/div/div[2]/ul", "a","Produção")
 		WebUI.waitForPageLoad(30)
+		
+		
 		WebUI.switchToWindowIndex(1)
 		WebUI.maximizeWindow()
 		WebUI.delay(5)
@@ -466,7 +498,11 @@ public class DesbloqueioPropostaAgroFielDepositario extends backofficeFuncionali
 		String msgErro = recuperaValor('//*[@id="dataErrorSection"]/table/tbody/tr/td[2]', 'textContent', 5)
 		System.err.println(msgErro)
 
-		if(msgErro.contains("Não pode ser autorizado, porque apólice tem itens bloqueados ou com erro. Entre por modificação.".toString())){
+		
+		
+		//	if(msgErro.contains("Não pode ser autorizado, porque apólice tem itens bloqueados ou com erro. Entre por modificação.".toString())){
+			
+		if(msgErro.contains(" Não pode ser autorizado, porque apólice tem itens bloqueados ou com erro. Entre por modificação.".toString())){
 			msg = true
 		} else if (msgErro.contains("Erro no processo de emissão (00516)".toString())){
 
@@ -596,30 +632,28 @@ public class DesbloqueioPropostaAgroFielDepositario extends backofficeFuncionali
 	 */
 	public static enviarEmailDesbloqueioPropostaAgroFielDepositario(String tipoAba){
 		boolean validaMassa = true
-		carregaDados()
-		for (int i = 1; i <= data.getRowNumbers(); i++) {
-			if(data.getValue(15, i).equals('B') || data.getValue(15, i).equals('E')){
-				validaMassa = false
-				break
-			}
-		}
+		try {
+		  carregaDados()
+		  for (int i = 1; i <= data.getRowNumbers(); i++) {
+			   if(data.getValue(15, i).equals('B') || data.getValue(15, i).equals('E')){
+				  validaMassa = false
+				  break
+			  }
+		  }
 
-		if(validaMassa){
-			System.err.println("[Enviar Email desbloqueio...]")
-			pathTxtEmail = "C:\\Users\\Public\\RPA_ALLIANZ\\Emails\\backoffice\\DesbloqueioPropostaAgroFielDepositario\\ConfiguracoesDesbloqueioPropostaAgroFielDepositario.txt";
-			lerConfigurações(pathTxtEmail);
-
-			path1 = 'C:\\Users\\Public\\RPA_ALLIANZ\\Data Files\\Backoffce\\FielDepositarioData\\EmissaoFielDepositario.xlsx';
-			nome1 = 'EmissaoFielDepositario.xlsx';
-
-			List<String> anexos = new ArrayList<>();
-			anexos[0] = path1;
-			anexos[1] = nome1;
-
-			String emaildestination = StringFormatter.formatterEmailDestination(FileInput.readFile(pathTxtEmail));
-			sendEmail.CreateEmail.createEmailSendMultipleFiles(sender, emaildestination, pwdsender, anexos, host, porta, tipoAba )
-
-		}
+		  if(validaMassa){
+			 System.err.println("[Enviar Email desbloqueio...]")
+			 pathTxtEmail = "C:\\Users\\Public\\RPA_ALLIANZ\\Emails\\backoffice\\DesbloqueioPropostaAgroFielDepositario\\ConfiguracoesDesbloqueioPropostaAgroFielDepositario.txt";
+			 lerConfigurações(pathTxtEmail);
+			 path1 = 'C:\\Users\\Public\\RPA_ALLIANZ\\Data Files\\Backoffce\\FielDepositarioData\\EmissaoFielDepositario.xlsx';
+			 nome1 = 'EmissaoFielDepositario.xlsx';
+			 List<String> anexos = new ArrayList<>();
+			 anexos[0] = path1;
+			 anexos[1] = nome1;
+			 String emaildestination = StringFormatter.formatterEmailDestination(FileInput.readFile(pathTxtEmail));
+			 sendEmail.CreateEmail.createEmailSendMultipleFiles(sender, emaildestination, pwdsender, anexos, host, porta, tipoAba )
+		  }
+		} catch (Exception e){}
 	}
 
 

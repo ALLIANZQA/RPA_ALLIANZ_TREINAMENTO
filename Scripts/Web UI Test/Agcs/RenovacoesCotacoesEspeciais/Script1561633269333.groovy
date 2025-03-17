@@ -22,6 +22,7 @@ try {
 	agcs.CotacoesEspeciais.cotacoesEspeciais("CotacoesEspeciais");	
 	WebUI.closeBrowser();
     }  catch (Exception e) {
+	   agcs.CotacoesEspeciais.enviarEmailError("Error", 'CotacoesEspeciais' );
 	   System.err.println("Falha ao realizar Cotações Especiais\n"+e);
 	   WebUI.closeBrowser();
    }

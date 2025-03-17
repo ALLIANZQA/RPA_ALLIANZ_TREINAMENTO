@@ -119,6 +119,7 @@ public class ReajusteApoliceSaudeFuncionalidades extends rpaCommands{
 		List<String> listOfAlerts = new ArrayList<String>()
 		listOfAlerts.add("204.0")
 		listOfAlerts.add("202.0")
+		listOfAlerts.add("202.1")
 		listOfAlerts.add("202.2")
 		System.out.println("Ramo -["+ramo+"]-")
 		for(int i = 0; i < listOfAlerts.size(); i++){
@@ -192,6 +193,7 @@ public class ReajusteApoliceSaudeFuncionalidades extends rpaCommands{
 				}
 				status = "Processado"
 				System.out.println(enviado)
+				System.out.println()
 			} else {
 				status = "Processado"
 				alerta = "Tela -Menu Produção- não carregou "
@@ -413,6 +415,11 @@ public class ReajusteApoliceSaudeFuncionalidades extends rpaCommands{
 		String strPgs
 		// QTD DE PAGINAS 11
 		for(int b = 0; b<12;b++){
+			WebUI.delay(5);
+			alerta = recuperaValor('//*[@id="dataErrorSection"]/table/tbody/tr/td[2]', 'innerText', 5)
+			System.out.println(alerta)
+			//Data início endosso maior a data de cancelamento
+			if(!alertListBlocList(alerta)){
 			//Avançar
 			String str1 = recuperaValor('//*[@id="cellAppPromptHeaderArea"]', 'innerText', 5)
 			String str2 = sequenciaDeTelasAntigas(Integer. toString(b))
@@ -430,6 +437,16 @@ public class ReajusteApoliceSaudeFuncionalidades extends rpaCommands{
 			} else {
 				strPgs = "Tela ["+str2+"] não apresentada na sequência";
 				pg = false
+				break;
+			}
+			
+			} else {
+				strPgs = alerta;
+				pg = false
+				fecharJanelaAtual(1)
+				alteraJanejaGenerica(0, 15)
+				navegarMenu()
+				alteraJanejaGenerica(1, 20)
 				break;
 			}
 		}
@@ -451,10 +468,8 @@ public class ReajusteApoliceSaudeFuncionalidades extends rpaCommands{
 		} else {
 			bramo = false
 			//alerta = strPgs
-
 		}
 		return  bramo;
-
 	}
 
 	/**

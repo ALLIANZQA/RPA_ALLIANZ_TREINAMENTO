@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="RPA" time="2.107" tests="1" failures="0" errors="0">
+   <testsuite name="RPA" tests="1" failures="0" errors="0" time="2.107" timestamp="2020-08-31 18:23:43" hostname="ALZ_ServiceQA - BRSPVLRPA01.agf.com.br" id="Test Suites/RPA FILES/RPA">
+      <properties>
+         <property name="deviceName" value=""/>
+         <property name="devicePlatform" value=""/>
+         <property name="logFolder" value="C:\\Users\\Public\\RPA_ALLIANZ\\Reports\\20200831_182305\\RPA FILES\\RPA\\20200831_182305"/>
+         <property name="logFiles" value="C:\\Users\\Public\\RPA_ALLIANZ\\Reports\\20200831_182305\\RPA FILES\\RPA\\20200831_182305\\execution0.log"/>
+         <property name="attachments" value=""/>
+         <property name="hostName" value="ALZ_ServiceQA - BRSPVLRPA01.agf.com.br"/>
+         <property name="hostAddress" value="10.189.212.24"/>
+         <property name="os" value="Windows Server 2016 64bit"/>
+         <property name="katalonVersion" value="7.2.1.1"/>
+      </properties>
+      <testcase name="Test Cases/Web UI Test/Backoffce/CadastroCorretorFilialFisica" time="1.378" classname="Test Cases/Web UI Test/Backoffce/CadastroCorretorFilialFisica" status="INCOMPLETE">
+         <system-out><![CDATA[2020-08-31 18:23:44 - [TEST_CASE][INCOMPLETE] - Test Cases/Web UI Test/Backoffce/CadastroCorretorFilialFisica: null
+
+2020-08-31 18:23:45 - [TEST_STEP][INCOMPLETE] - try: null
+
+2020-08-31 18:23:45 - [TEST_STEP][INCOMPLETE] - CadastroCorretorFilialFisica.cadastroCorretorFilialFisica("CadastroCorretorFilialFisica"): null]]></system-out>
+         <system-err><![CDATA[2020-08-31 18:23:44 - [TEST_CASE][INCOMPLETE] - Test Cases/Web UI Test/Backoffce/CadastroCorretorFilialFisica: null]]></system-err>
+      </testcase>
+      <system-out><![CDATA[2020-08-31 18:23:43 - [TEST_SUITE][INCOMPLETE] - RPA: null]]></system-out>
+      <system-err><![CDATA[2020-08-31 18:23:43 - [TEST_SUITE][INCOMPLETE] - RPA: null]]></system-err>
+   </testsuite>
+</testsuites>

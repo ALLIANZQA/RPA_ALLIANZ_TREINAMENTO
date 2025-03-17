@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="RPA" time="1869.835" tests="5" failures="0" errors="0">
+   <testsuite name="RPA" tests="5" failures="0" errors="0" time="1869.835" timestamp="2020-08-26 21:43:50" hostname="ALZ_ServiceQA - BRSPVLRPA01.agf.com.br" id="Test Suites/RPA FILES/RPA">
+      <properties>
+         <property name="deviceName" value=""/>
+         <property name="devicePlatform" value=""/>
+         <property name="logFolder" value="C:\\Users\\Public\\RPA_ALLIANZ\\Reports\\20200826_214342\\RPA FILES\\RPA\\20200826_214342"/>
+         <property name="logFiles" value="C:\\Users\\Public\\RPA_ALLIANZ\\Reports\\20200826_214342\\RPA FILES\\RPA\\20200826_214342\\execution0.log"/>
+         <property name="attachments" value=""/>
+         <property name="hostName" value="ALZ_ServiceQA - BRSPVLRPA01.agf.com.br"/>
+         <property name="os" value="Windows Server 2016 64bit"/>
+         <property name="katalonVersion" value="7.2.1.1"/>
+         <property name="browser" value="Chrome 85.0.4183.83"/>
+         <property name="hostAddress" value="10.189.212.24"/>
+         <property name="sessionId" value="219a7ed37683a356ecdf6bf4efc80d66"/>
+         <property name="seleniumVersion" value="3.141.59"/>
+         <property name="proxyInformation" value="ProxyInformation{proxyOption=NO_PROXY, proxyServerType=HTTP, password=, proxyServerAddress=, proxyServerPort=0, executionList=}"/>
+         <property name="platform" value="Windows Server 2016"/>
+      </properties>
+      <testcase name="Test Cases/Web UI Test/Backoffce/SeguroFuncionarioRenovResidencia" time="383.613" classname="Test Cases/Web UI Test/Backoffce/SeguroFuncionarioRenovResidencia" status="PASSED">
+         <system-out><![CDATA[2020-08-26 21:43:51 - [TEST_CASE][PASSED] - Test Cases/Web UI Test/Backoffce/SeguroFuncionarioRenovResidencia: Test Cases/Web UI Test/Backoffce/SeguroFuncionarioRenovResidencia
+
+2020-08-26 21:43:52 - [TEST_STEP][PASSED] - try: Browser is closed
+
+2020-08-26 21:43:52 - [TEST_STEP][PASSED] - SeguroFuncionarioRenovResidencia.fluxoSeguroFuncionario("SeguroRenovResidencia"): Delayed 1 second(s)
+
+2020-08-26 21:43:56 - [MESSAGE][INFO] - Starting 'Chrome' driver
+
+2020-08-26 21:43:56 - [MESSAGE][INFO] - User set preference: ['prefs', '{download.default_directory=C:\Users\Public\, profile.default_content_settings.popups=0.0, download.prompt_for_download=false, download.directory_upgrade=true, plugins.always_open_pdf_externally=true, pdfjs.disabled=true, safebrowsing.enabled=true}']
+
+2020-08-26 21:43:56 - [MESSAGE][INFO] - User set preference: ['args', '[--start-maximized, --disable-infobars,  safebrowsing-disable-download-protection,  safebrowsing-disable-extension-blacklist, --test-type, --disable-extensions]']
+
+2020-08-26 21:43:56 - [MESSAGE][INFO] - User set preference: ['CapabilityType.ACCEPT_SSL_CERTS', 'true']
+
+2020-08-26 21:43:56 - [MESSAGE][INFO] - User set preference: ['pageLoadStrategy', 'normal']
+
+2020-08-26 21:43:57 - [MESSAGE][INFO] - Action delay is set to 0 seconds
+
+2020-08-26 21:44:04 - [MESSAGE][PASSED] - Browser is opened with url: ''
+
+2020-08-26 21:44:19 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2020-08-26 21:44:20 - [MESSAGE][PASSED] - Current window maximized
+
+2020-08-26 21:44:24 - [MESSAGE][PASSED] - Navigate to 'https://www.allianznet.com.br' successfully
+
+2020-08-26 21:44:44 - [MESSAGE][PASSED] - Delayed 20 second(s)
+
+2020-08-26 21:44:46 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-08-26 21:44:47 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-08-26 21:45:04 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2020-08-26 21:45:19 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2020-08-26 21:45:24 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-08-26 21:45:29 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-08-26 21:45:34 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-08-26 21:45:39 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-08-26 21:45:40 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-08-26 21:45:42 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-08-26 21:45:54 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-08-26 21:46:47 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-08-26 21:46:58 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-08-26 21:46:59 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-08-26 21:47:04 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-08-26 21:47:05 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-08-26 21:47:06 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-08-26 21:47:13 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-08-26 21:47:18 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-08-26 21:47:20 - [MESSAGE][PASSED] - Current window maximized
+
+2020-08-26 21:47:22 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-08-26 21:47:27 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-08-26 21:47:34 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-08-26 21:47:54 - [MESSAGE][PASSED] - Delayed 20 second(s)
+
+2020-08-26 21:47:56 - [MESSAGE][PASSED] - Current window maximized
+
+2020-08-26 21:48:06 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-08-26 21:48:23 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-08-26 21:48:51 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2020-08-26 21:48:57 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-08-26 21:49:18 - [MESSAGE][PASSED] - Delayed 20 second(s)
+
+2020-08-26 21:49:28 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-08-26 21:49:38 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-08-26 21:49:43 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-08-26 21:50:02 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-08-26 21:50:03 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-08-26 21:50:09 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-08-26 21:50:10 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-08-26 21:50:12 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-08-26 21:50:13 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-08-26 21:50:13 - [TEST_STEP][PASSED] - closeBrowser(): Browser is closed
+
+2020-08-26 21:50:14 - [MESSAGE][PASSED] - Browser is closed]]></system-out>
+         <system-err><![CDATA[]]></system-err>
+      </testcase>
+      <testcase name="Test Cases/Web UI Test/Backoffce/SeguroFuncionarioRenovAuto" time="157.992" classname="Test Cases/Web UI Test/Backoffce/SeguroFuncionarioRenovAuto" status="PASSED">
+         <system-out><![CDATA[2020-08-26 21:50:14 - [TEST_CASE][PASSED] - Test Cases/Web UI Test/Backoffce/SeguroFuncionarioRenovAuto: Test Cases/Web UI Test/Backoffce/SeguroFuncionarioRenovAuto
+
+2020-08-26 21:50:15 - [TEST_STEP][PASSED] - try: Browser is closed
+
+2020-08-26 21:50:15 - [TEST_STEP][PASSED] - SeguroFuncionarioRenovAuto.fluxoSeguroFuncionario("SeguroRenovAuto"): Delayed 1 second(s)
+
+2020-08-26 21:50:16 - [MESSAGE][INFO] - Starting 'Chrome' driver
+
+2020-08-26 21:50:16 - [MESSAGE][INFO] - User set preference: ['prefs', '{download.default_directory=C:\Users\Public\, profile.default_content_settings.popups=0.0, download.prompt_for_download=false, download.directory_upgrade=true, plugins.always_open_pdf_externally=true, pdfjs.disabled=true, safebrowsing.enabled=true}']
+
+2020-08-26 21:50:16 - [MESSAGE][INFO] - User set preference: ['args', '[--start-maximized, --disable-infobars,  safebrowsing-disable-download-protection,  safebrowsing-disable-extension-blacklist, --test-type, --disable-extensions]']
+
+2020-08-26 21:50:16 - [MESSAGE][INFO] - User set preference: ['CapabilityType.ACCEPT_SSL_CERTS', 'true']
+
+2020-08-26 21:50:16 - [MESSAGE][INFO] - User set preference: ['pageLoadStrategy', 'normal']
+
+2020-08-26 21:50:20 - [MESSAGE][PASSED] - Browser is opened with url: ''
+
+2020-08-26 21:50:35 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2020-08-26 21:50:36 - [MESSAGE][PASSED] - Current window maximized
+
+2020-08-26 21:50:38 - [MESSAGE][PASSED] - Navigate to 'https://www.allianznet.com.br' successfully
+
+2020-08-26 21:50:58 - [MESSAGE][PASSED] - Delayed 20 second(s)
+
+2020-08-26 21:50:59 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-08-26 21:51:00 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-08-26 21:51:17 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2020-08-26 21:51:32 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2020-08-26 21:51:35 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-08-26 21:51:36 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-08-26 21:51:36 - [MESSAGE][WARNING] - A browser is already opened. Closing browser and opening a new one
+
+2020-08-26 21:51:37 - [MESSAGE][INFO] - Starting 'Chrome' driver
+
+2020-08-26 21:51:37 - [MESSAGE][INFO] - User set preference: ['prefs', '{download.default_directory=C:\Users\Public\, profile.default_content_settings.popups=0.0, download.prompt_for_download=false, download.directory_upgrade=true, plugins.always_open_pdf_externally=true, pdfjs.disabled=true, safebrowsing.enabled=true}']
+
+2020-08-26 21:51:37 - [MESSAGE][INFO] - User set preference: ['args', '[--start-maximized, --disable-infobars,  safebrowsing-disable-download-protection,  safebrowsing-disable-extension-blacklist, --test-type, --disable-extensions]']
+
+2020-08-26 21:51:37 - [MESSAGE][INFO] - User set preference: ['CapabilityType.ACCEPT_SSL_CERTS', 'true']
+
+2020-08-26 21:51:37 - [MESSAGE][INFO] - User set preference: ['pageLoadStrategy', 'normal']
+
+2020-08-26 21:51:41 - [MESSAGE][PASSED] - Browser is opened with url: ''
+
+2020-08-26 21:51:56 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2020-08-26 21:51:58 - [MESSAGE][PASSED] - Current window maximized
+
+2020-08-26 21:51:59 - [MESSAGE][PASSED] - Navigate to 'https://www.allianznet.com.br' successfully
+
+2020-08-26 21:52:19 - [MESSAGE][PASSED] - Delayed 20 second(s)
+
+2020-08-26 21:52:21 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-08-26 21:52:21 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-08-26 21:52:38 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2020-08-26 21:52:40 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-08-26 21:52:41 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-08-26 21:52:47 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-08-26 21:52:48 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-08-26 21:52:50 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-08-26 21:52:51 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-08-26 21:52:51 - [TEST_STEP][PASSED] - closeBrowser(): Browser is closed
+
+2020-08-26 21:52:52 - [MESSAGE][PASSED] - Browser is closed]]></system-out>
+         <system-err><![CDATA[]]></system-err>
+      </testcase>
+      <testcase name="Test Cases/Web UI Test/Backoffce/CadastroCorretorFilialFisica" time="1302.527" classname="Test Cases/Web UI Test/Backoffce/CadastroCorretorFilialFisica" status="PASSED">
+         <system-out><![CDATA[2020-08-26 21:52:52 - [TEST_CASE][PASSED] - Test Cases/Web UI Test/Backoffce/CadastroCorretorFilialFisica: Test Cases/Web UI Test/Backoffce/CadastroCorretorFilialFisica
+
+2020-08-26 21:52:53 - [TEST_STEP][PASSED] - try: null
+
+2020-08-26 21:52:53 - [TEST_STEP][PASSED] - CadastroCorretorFilialFisica.cadastroCorretorFilialFisica("CadastroCorretorFilialFisica"): null]]></system-out>
+         <system-err><![CDATA[]]></system-err>
+      </testcase>
+      <testcase name="Test Cases/Web UI Test/Backoffce/EnvioAvisoPendenciaGo" time="1.807" classname="Test Cases/Web UI Test/Backoffce/EnvioAvisoPendenciaGo" status="PASSED">
+         <system-out><![CDATA[2020-08-26 22:14:35 - [TEST_CASE][PASSED] - Test Cases/Web UI Test/Backoffce/EnvioAvisoPendenciaGo: Test Cases/Web UI Test/Backoffce/EnvioAvisoPendenciaGo
+
+2020-08-26 22:14:36 - [TEST_STEP][PASSED] - try: null
+
+2020-08-26 22:14:36 - [TEST_STEP][PASSED] - EnvioPendenciaGo.fluxoEnvioPendenciaGo("Bloqueios"): null
+
+2020-08-26 22:14:37 - [TEST_STEP][PASSED] - catch (Exception e): Browser is closed
+
+2020-08-26 22:14:37 - [TEST_STEP][PASSED] - err.println("Falha ao Realizar Enviso Aviso Pendencia Go" + e): null
+
+2020-08-26 22:14:37 - [TEST_STEP][PASSED] - closeBrowser(): Browser is closed
+
+2020-08-26 22:14:37 - [MESSAGE][PASSED] - Browser is closed]]></system-out>
+         <system-err><![CDATA[]]></system-err>
+      </testcase>
+      <testcase name="Test Cases/Web UI Test/Sinistros/AberturaSinistroCosseguroFHE" time="23.269" classname="Test Cases/Web UI Test/Sinistros/AberturaSinistroCosseguroFHE" status="INCOMPLETE">
+         <system-out><![CDATA[2020-08-26 22:14:37 - [TEST_CASE][INCOMPLETE] - Test Cases/Web UI Test/Sinistros/AberturaSinistroCosseguroFHE: null
+
+2020-08-26 22:14:38 - [TEST_STEP][INCOMPLETE] - try: Current window maximized
+
+2020-08-26 22:14:38 - [TEST_STEP][INCOMPLETE] - AberturaSinistroCosseguroFHEFuncionalidades.fluxoAberturaSinistroCosseguroFHE("AberturaSinistroCoFHE"): Current window maximized
+
+2020-08-26 22:14:38 - [MESSAGE][INFO] - Starting 'Chrome' driver
+
+2020-08-26 22:14:38 - [MESSAGE][INFO] - User set preference: ['prefs', '{download.default_directory=C:\Users\Public\, profile.default_content_settings.popups=0.0, download.prompt_for_download=false, download.directory_upgrade=true, plugins.always_open_pdf_externally=true, pdfjs.disabled=true, safebrowsing.enabled=true}']
+
+2020-08-26 22:14:38 - [MESSAGE][INFO] - User set preference: ['args', '[--start-maximized, --disable-infobars,  safebrowsing-disable-download-protection,  safebrowsing-disable-extension-blacklist, --test-type, --disable-extensions]']
+
+2020-08-26 22:14:38 - [MESSAGE][INFO] - User set preference: ['CapabilityType.ACCEPT_SSL_CERTS', 'true']
+
+2020-08-26 22:14:38 - [MESSAGE][INFO] - User set preference: ['pageLoadStrategy', 'normal']
+
+2020-08-26 22:14:44 - [MESSAGE][PASSED] - Browser is opened with url: ''
+
+2020-08-26 22:14:59 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2020-08-26 22:15:00 - [MESSAGE][PASSED] - Current window maximized]]></system-out>
+         <system-err><![CDATA[2020-08-26 22:14:37 - [TEST_CASE][INCOMPLETE] - Test Cases/Web UI Test/Sinistros/AberturaSinistroCosseguroFHE: null]]></system-err>
+      </testcase>
+      <system-out><![CDATA[2020-08-26 21:43:50 - [TEST_SUITE][INCOMPLETE] - RPA: null]]></system-out>
+      <system-err><![CDATA[2020-08-26 21:43:50 - [TEST_SUITE][INCOMPLETE] - RPA: null]]></system-err>
+   </testsuite>
+</testsuites>

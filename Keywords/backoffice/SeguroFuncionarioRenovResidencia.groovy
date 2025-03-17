@@ -117,6 +117,10 @@ public class SeguroFuncionarioRenovResidencia extends backofficeFuncionalidades{
 						switchAtualizarExcel.switchUpdateExcel('SeguroRenovResidencia', ExcelCopiado ,listaExcel.get(i).getApoliceSucep(), Integer.parseInt(listaExcel.get(i).getLinha()));
 						System.err.println("valueCheck ["+valueCheckSendEmail+"]")
 						if(valueCheckSendEmail.equals('Enviado')){
+							updateExcel.atualizaExcelSeguroResidenciaAuto(ExcelCopiado ,listaExcel.get(i).getApoliceSucep(), Integer.parseInt(listaExcel.get(i).getLinha()), 16, premioAtual, 'SeguroRenovResidencia');
+							updateExcel.atualizaExcelSeguroResidenciaAuto(ExcelCopiado , listaExcel.get(i).getApoliceSucep() , Integer.parseInt(listaExcel.get(i).getLinha()), 17, premioAnterior, 'SeguroRenovResidencia');
+							updateExcel.atualizaExcelSeguroResidenciaAuto(caminhoDiretorioExcel , listaExcel.get(i).getApoliceSucep(), Integer.parseInt(listaExcel.get(i).getLinha()), 16, premioAtual, 'SeguroRenovResidencia');
+							updateExcel.atualizaExcelSeguroResidenciaAuto(caminhoDiretorioExcel , listaExcel.get(i).getApoliceSucep() , Integer.parseInt(listaExcel.get(i).getLinha()), 17, premioAnterior, 'SeguroRenovResidencia');
 							updateExcel.atualizaExcelSeguroResidenciaAuto(ExcelCopiado , "" , Integer.parseInt(listaExcel.get(i).getLinha()), 14, 'Processado', 'SeguroRenovResidencia');
 							updateExcel.atualizaExcelSeguroResidenciaAuto(ExcelCopiado , listaExcel.get(i).getApoliceSucep() , Integer.parseInt(listaExcel.get(i).getLinha()), 18, 'Email Enviado Com Sucesso!', 'SeguroRenovResidencia');
 							updateExcel.atualizaExcelSeguroResidenciaAuto(caminhoDiretorioExcel, "" , Integer.parseInt(listaExcel.get(i).getLinha()), 14, 'Processado', 'SeguroRenovResidencia');
@@ -191,18 +195,19 @@ public class SeguroFuncionarioRenovResidencia extends backofficeFuncionalidades{
 			premioAtual = recuperaValor('//*[@id="idPoliza_0_7"]', 'textContent', 1);
 			premioAnterior = recuperaValor('//*[@id="idPoliza_0_8"]', 'outerText', 1);
 			System.err.println "Atualiza Premio Atual ["+premioAtual+"] Premio Anterior ["+premioAnterior+"]"
-			updateExcel.atualizaExcelSeguroResidenciaAuto(ExcelCopiado , numeroApolice, linha, 16, premioAtual, 'SeguroRenovResidencia');
-			updateExcel.atualizaExcelSeguroResidenciaAuto(ExcelCopiado , numeroApolice , linha, 17, premioAnterior, 'SeguroRenovResidencia');
-			updateExcel.atualizaExcelSeguroResidenciaAuto(caminhoDiretorioExcel , numeroApolice, linha, 16, premioAtual, 'SeguroRenovResidencia');
-			updateExcel.atualizaExcelSeguroResidenciaAuto(caminhoDiretorioExcel , numeroApolice , linha, 17, premioAnterior, 'SeguroRenovResidencia');
+//			updateExcel.atualizaExcelSeguroResidenciaAuto(ExcelCopiado , numeroApolice, linha, 16, premioAtual, 'SeguroRenovResidencia');
+//			updateExcel.atualizaExcelSeguroResidenciaAuto(ExcelCopiado , numeroApolice , linha, 17, premioAnterior, 'SeguroRenovResidencia');
+//			updateExcel.atualizaExcelSeguroResidenciaAuto(caminhoDiretorioExcel , numeroApolice, linha, 16, premioAtual, 'SeguroRenovResidencia');
+//			updateExcel.atualizaExcelSeguroResidenciaAuto(caminhoDiretorioExcel , numeroApolice , linha, 17, premioAnterior, 'SeguroRenovResidencia');
 			downloadOk = realizaDownloadApoliceSeguroFuncionarioResidencia();
 			if(downloadOk.equals('true')){
 				downloadOk = 'true'
 			}else {
+				msgErro = 'Não Processado - [Erro ao realizar cálculo desta Renovação]'+botaoRenovacao;
 				updateExcel.atualizaExcelSeguroResidenciaAuto(ExcelCopiado , numeroApolice , linha, 14, 'Processado', 'SeguroRenovResidencia');
-				updateExcel.atualizaExcelSeguroResidenciaAuto(ExcelCopiado , numeroApolice , linha, 18, 'Não Processado - [Erro ao realizar cálculo desta Renovação]'+botaoRenovacao, 'SeguroRenovResidencia');
+				updateExcel.atualizaExcelSeguroResidenciaAuto(ExcelCopiado , numeroApolice , linha, 18, msgErro , 'SeguroRenovResidencia');
 				updateExcel.atualizaExcelSeguroResidenciaAuto(caminhoDiretorioExcel , numeroApolice , linha, 14, 'Processado', 'SeguroRenovResidencia');
-				updateExcel.atualizaExcelSeguroResidenciaAuto(caminhoDiretorioExcel , numeroApolice , linha, 18, 'Não Processado - [Erro ao realizar cálculo desta Renovação]'+botaoRenovacao, 'SeguroRenovResidencia');
+				updateExcel.atualizaExcelSeguroResidenciaAuto(caminhoDiretorioExcel , numeroApolice , linha, 18, msgErro , 'SeguroRenovResidencia');
 				downloadOk = 'false'
 			}
 			return downloadOk;

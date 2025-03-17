@@ -45,8 +45,8 @@ public class AlteraPerfilCorFuncionalidades extends rpaCommands {
 	public static String msgErro
 	private static String coringa;
 	private static int column
-    private static TestData data
-	
+	private static TestData data
+
 	/**
 	 * @author T_DCDias
 	 * @param setor
@@ -54,10 +54,10 @@ public class AlteraPerfilCorFuncionalidades extends rpaCommands {
 	 */
 	public static alteraPerfilCor(String setor){
 		data = findTestData(findTestDataPath(setor))
-//		if(!validaExecutados(data, 'x', 9)){
-		    fluxoCompletoalteraPerfilCor(setor)
-		    enviarEmail(verificaFalhas(setor))
-//		}
+		//		if(!validaExecutados(data, 'x', 9)){
+		fluxoCompletoalteraPerfilCor(setor)
+		enviarEmail(verificaFalhas(setor))
+		//		}
 		finalizar();
 	}
 
@@ -67,6 +67,7 @@ public class AlteraPerfilCorFuncionalidades extends rpaCommands {
 	 * @return
 	 */
 	public static fluxoCompletoalteraPerfilCor(String setor){
+		System.out.println();
 		int indexTableLine = 1
 		String path = findTestData(findTestDataPath(setor)).sourceUrl
 		def TotalReg = findTestData(findTestDataPath(setor)).getRowNumbers()
@@ -77,7 +78,7 @@ public class AlteraPerfilCorFuncionalidades extends rpaCommands {
 		 * Faz a alteração do perfil.
 		 */
 		for (int i = 1; i <= data.getRowNumbers(); i++) {
-			//System.err.println("Row Number ["+i+"]")
+			System.err.println("Row Number ["+i+"]")
 			try{
 				if (data.getValue('STATUS', i) == 'x') {
 					sPerfil = ''
@@ -104,33 +105,33 @@ public class AlteraPerfilCorFuncionalidades extends rpaCommands {
 					String tag = "tr"
 					WebUI.delay(2)
 					List<WebElement> listOfElements = selecionaListaDeElementos(xpath,tag)
-					
+
 					try{
-					   for(int j = 0; j < listOfElements.size(); j++){
-						   if(listOfElements[j].getText().toString().contains(data.getValue('COD_FORMAT',i)) ){
-							  indexTableLine = j - 1
-							  System.err.println("Found - List: ["+listOfElements[j].getText().toString()+"] Data: ["+data.getValue('COD_FORMAT',i)+"] j: ["+j+"] indexTableLine: ["+indexTableLine+"]\n")
-							  clicarEmElementoDaTela("//tr[@id='row_"+Integer.toString(indexTableLine)+"_listaSucursales']", 1)
-							  break
+						for(int j = 0; j < listOfElements.size(); j++){
+							System.err.println(listOfElements[j].getText().toString()+" "+data.getValue('COD_FORMAT',i));
+							if(listOfElements[j].getText().toString().contains(data.getValue('COD_FORMAT',i)) ){
+								indexTableLine = j - 1
+								System.err.println("Found - List: ["+listOfElements[j].getText().toString()+"] Data: ["+data.getValue('COD_FORMAT',i)+"] j: ["+j+"] indexTableLine: ["+indexTableLine+"]\n")
+								clicarEmElementoDaTela("//tr[@id='row_"+Integer.toString(indexTableLine)+"_listaSucursales']", 1)
+								break
 							}
-					   }
+						}
 
-					   WebUI.delay(2)
-					   WebUI.click(findTestObject('Object Repository/PageInfraestrutura/Page_UMA/div_Alterar'))
-					   sPerfil = WebUI.getAttribute(findTestObject('Object Repository/PageInfraestrutura/Page_UMA/select_AGROEMPR    AGROPRIN'), 'value')
+						WebUI.delay(2)
+						WebUI.click(findTestObject('Object Repository/PageInfraestrutura/Page_UMA/div_Alterar'))
+						sPerfil = WebUI.getAttribute(findTestObject('Object Repository/PageInfraestrutura/Page_UMA/select_AGROEMPR    AGROPRIN'), 'value')
 
-					   /**
-						* Seleção da regra de negócio para alteração de perfil de corretor
-						*/
-					   regrasGeralInfraestrutura(data, i)
-					   					   
-					 } catch (Exception e){
-					   msgErro = 'Código não encontrado para este corretor'
-					   sStatus = 'KO'
-					   init(setor)
-					   menuUMA()
+						/**
+						 * Seleção da regra de negócio para alteração de perfil de corretor
+						 */
+						regrasGeralInfraestrutura(data, i)
+					} catch (Exception e){
+						msgErro = 'Código não encontrado para este corretor'
+						sStatus = 'KO'
+						init(setor)
+						menuUMA()
 					}
-					
+
 					if (bProx == false) {
 						WebUI.selectOptionByValue(findTestObject('Object Repository/PageInfraestrutura/Page_UMA/select_AGROEMPR    AGROPRIN'), sPerfilAlt, true)
 						WebUI.click(findTestObject('Object Repository/PageInfraestrutura/Page_UMA/div_Alterar'))
@@ -171,12 +172,12 @@ public class AlteraPerfilCorFuncionalidades extends rpaCommands {
 		/**
 		 * Desloga do portal e fecha o browser.
 		 */
-//		WebUI.switchToWindowTitle('Manutenção Geral')
-//		WebUI.click(findTestObject('Object Repository/PageInfraestrutura/Page_Manuteno Geral/strong_Logout'))
+		//		WebUI.switchToWindowTitle('Manutenção Geral')
+		//		WebUI.click(findTestObject('Object Repository/PageInfraestrutura/Page_Manuteno Geral/strong_Logout'))
 		WebUI.closeBrowser()
 	}
-	
-	
+
+
 	/**
 	 * @author T_DCDias
 	 * @return
@@ -188,7 +189,7 @@ public class AlteraPerfilCorFuncionalidades extends rpaCommands {
 		iniciaAplicacaoMatrizCommands('IntranetProdução');
 		realizaLoginIntraNetProducaoCommands(aba);
 	}
-	
+
 	/**
 	 * @author be54955
 	 * @return
@@ -223,12 +224,12 @@ public class AlteraPerfilCorFuncionalidades extends rpaCommands {
 	 * @return
 	 */
 	public static regrasGeralInfraestrutura(TestData data, int i){
-		
+
 		if (sPerfil.equals(data.getValue(4, i).toString().trim())   ){
 			sPerfilAlt = data.getValue(5, i).toString().trim()
 			sStatus = 'OK'
 			sObs = 'Perfil alterado!'
-		  } else {
+		} else {
 			sPerfilAlt = ''
 			sStatus = 'KO'
 			sObs = 'Perfil divergente'
@@ -259,8 +260,6 @@ public class AlteraPerfilCorFuncionalidades extends rpaCommands {
 	 */
 	public static boolean verificaFalhas(String setor){
 		TestData data = findTestData(findTestDataPath(setor))
-	    return validaExecutados(data, 'x', 9)
+		return validaExecutados(data, 'x', 9)
 	}
-
-
 }

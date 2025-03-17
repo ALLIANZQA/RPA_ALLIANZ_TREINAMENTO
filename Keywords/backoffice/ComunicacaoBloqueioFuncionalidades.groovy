@@ -35,7 +35,7 @@ public class ComunicacaoBloqueioFuncionalidades extends rpaCommands{
 	private static String testDataPath = 'Data Files/Backoffce/ComunicacaoBloqueio/ComunicacaoBloqueioData'
 	private static String path
 	private static String alerta
-	private static int cellCheck = 22
+	private static int cellCheck = 23
 	private static String nota = "não verificar "
 	private static String status
 	private static String referencia
@@ -134,13 +134,13 @@ public class ComunicacaoBloqueioFuncionalidades extends rpaCommands{
 						lista( registros , i)
 						if(bloqueio(registros, aba, a)) {
 							try{
-								auxiliares.WriteExcelFactory.updateSheetLine("", j, path, status, 21, aba);
-								auxiliares.WriteExcelFactory.updateSheetLine("", j, path, referencia+" - "+ExtractDates.dataAtualizada(), 22, aba);
+								auxiliares.WriteExcelFactory.updateSheetLine("", j, path, status, 22, aba);
+								auxiliares.WriteExcelFactory.updateSheetLine("", j, path, referencia+" - "+ExtractDates.dataAtualizada(), 23, aba);
 							} catch (Exception e){}
 						} else {
 							try{
-								auxiliares.WriteExcelFactory.updateSheetLine("", j, path, status, 21, aba);
-								auxiliares.WriteExcelFactory.updateSheetLine("", j, path, alerta+" - "+ExtractDates.dataAtualizada(), 22, aba);
+								auxiliares.WriteExcelFactory.updateSheetLine("", j, path, status, 22, aba);
+								auxiliares.WriteExcelFactory.updateSheetLine("", j, path, alerta+" - "+ExtractDates.dataAtualizada(), 23, aba);
 							} catch (Exception e){}
 						}
 					}
@@ -193,6 +193,8 @@ public class ComunicacaoBloqueioFuncionalidades extends rpaCommands{
 								selecionaItemListaContains(registros[15], '//*[@id="cbTipoDest"]' , 'option')
 								//Aceitar
 								clickXpath('//*[@id="btMainAcceptar"]', 1);
+								//Ao cuidado de
+								preencheXpath('//*[@id="txtAtencion"]', registros[21],0);
 								//CC
 								preencheXpath('//*[@id="txtEmailCC"]', registros[17],0);
 								//CCO
@@ -313,13 +315,13 @@ public class ComunicacaoBloqueioFuncionalidades extends rpaCommands{
 	public static reprocessaFalhas(String aba, String a){
 		System.err.println('Reprocessa Falhas')
 		try{
-		initDataFiles()
-		if(validaDados(cellCheck)){
-			fluxoCompletoComunicacaoBloqueio(aba,a)
-			reprocessaFalhas(aba)
-		}
+			initDataFiles()
+			if(validaDados(cellCheck)){
+				fluxoCompletoComunicacaoBloqueio(aba,a)
+				reprocessaFalhas(aba)
+			}
 		} catch (Exception e){
-		  reprocessaFalhas(aba, a)
+			reprocessaFalhas(aba, a)
 		}
 	}
 

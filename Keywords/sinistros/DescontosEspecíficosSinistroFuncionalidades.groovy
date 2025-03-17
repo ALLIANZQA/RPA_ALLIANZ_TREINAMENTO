@@ -39,6 +39,7 @@ public class DescontosEspecíficosSinistroFuncionalidades extends rpaCommands{
 	private static int cell = 12
 	private static boolean encerrado  = false
 	private static String cobertura = "49 Ressarcimento"
+	private static String status = "";
 
 
 	/**
@@ -134,6 +135,7 @@ public class DescontosEspecíficosSinistroFuncionalidades extends rpaCommands{
 						alerta = ""
 						evidencia=""
 						encerrado = false
+						status=""
 						try{
 							List<String> sinistro = new ArrayList<>();
 							lista(sinistro,i)
@@ -146,12 +148,12 @@ public class DescontosEspecíficosSinistroFuncionalidades extends rpaCommands{
 							if(sinistro[10].toString().contains('(DESC. ESPEC.)')){
 								if(fluxoDescontosEspecíficosSinistro(sinistro)){
 									try{
-										auxiliares.WriteExcelFactory.updateSheetLine('',  i-1, path, "Processado", 11 , 'DescontosEspecíficosSinistro');
+										auxiliares.WriteExcelFactory.updateSheetLine('',  i-1, path,status, 11 , 'DescontosEspecíficosSinistro');
 										auxiliares.WriteExcelFactory.updateSheetLine('', i-1, path, evidencia, 12 , 'DescontosEspecíficosSinistro');
 									}catch (Exception e){System.err.println("[ Cannot invoke method setCellValue() on null object ]")}
 								} else {
 									try{
-										auxiliares.WriteExcelFactory.updateSheetLine('',  i-1, path, "Processado", 11 , 'DescontosEspecíficosSinistro');
+										auxiliares.WriteExcelFactory.updateSheetLine('',  i-1, path, status, 11 , 'DescontosEspecíficosSinistro');
 										auxiliares.WriteExcelFactory.updateSheetLine('', i-1, path, alerta, 12 , 'DescontosEspecíficosSinistro');
 										System.out.println()
 										alteraJanejaGenerica(0,2);
@@ -242,11 +244,15 @@ public class DescontosEspecíficosSinistroFuncionalidades extends rpaCommands{
 					b = false
 				}
 				System.out.println("["+b+"]")
+				status ="Processado";
 			} else {
-				alerta = 'GESTÃO INTEGRADA DE SINISTROS não apresentada'
+				alerta = 'tela "GESTÃO INTEGRADA DE SINISTROS" não apresentada'
+				status ="Processar";
 				b = false
 			}
-		} catch (Exception e){}
+		} catch (Exception e){
+		       
+		}
 	}
 
 	/**
@@ -600,7 +606,8 @@ public class DescontosEspecíficosSinistroFuncionalidades extends rpaCommands{
 			if(listOfElements.get(i).getText().contains(sinistro[21])){
 				System.err.println("[CANCELADO] ["+listOfElements.get(i).getText()+"] ["+sinistro[21]+"]")
 				//Cancelar
-				clickXpath('//*[@id="o_16"]', 5);
+				//clickXpath('//*[@id="o_16"]', 5);
+				selecionaItemLista('Cancelar', '//*[@id="sectionPaginaCompletaSectionBar"]/table/tbody/tr/td/table', 'div')
 				b = true
 			}
 		}

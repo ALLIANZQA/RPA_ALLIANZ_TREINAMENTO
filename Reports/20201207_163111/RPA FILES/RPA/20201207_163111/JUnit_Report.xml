@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="RPA" time="10.0" tests="2" failures="0" errors="0">
+   <testsuite name="RPA" tests="2" failures="0" errors="0" time="10.0" timestamp="2020-12-07 16:31:25" hostname="be54955 - CXBRDES16R2069.intrallianz.es" id="Test Suites/RPA FILES/RPA">
+      <properties>
+         <property name="deviceName" value=""/>
+         <property name="devicePlatform" value=""/>
+         <property name="logFolder" value="C:\\Users\\Public\\RPA_ALLIANZ\\Reports\\20201207_163111\\RPA FILES\\RPA\\20201207_163111"/>
+         <property name="logFiles" value="C:\\Users\\Public\\RPA_ALLIANZ\\Reports\\20201207_163111\\RPA FILES\\RPA\\20201207_163111\\execution0.log"/>
+         <property name="attachments" value=""/>
+         <property name="hostName" value="be54955 - CXBRDES16R2069.intrallianz.es"/>
+         <property name="hostAddress" value="2.1.38.197"/>
+         <property name="os" value="Windows 10 64bit"/>
+         <property name="katalonVersion" value="7.2.1.1"/>
+      </properties>
+      <testcase name="Test Cases/Web UI Test/Backoffce/FluxoEnvioPDF" time="7.272" classname="Test Cases/Web UI Test/Backoffce/FluxoEnvioPDF" status="PASSED">
+         <system-out><![CDATA[2020-12-07 16:31:26 - [TEST_CASE][PASSED] - Test Cases/Web UI Test/Backoffce/FluxoEnvioPDF: Test Cases/Web UI Test/Backoffce/FluxoEnvioPDF
+
+2020-12-07 16:31:28 - [TEST_STEP][PASSED] - try: Delayed 1 second(s)
+
+2020-12-07 16:31:28 - [TEST_STEP][PASSED] - FluxoEnvioPDF.fluxoEnvioDePDF("EnvioPDF"): Delayed 1 second(s)
+
+2020-12-07 16:31:31 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-12-07 16:31:32 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-12-07 16:31:32 - [TEST_STEP][PASSED] - catch (Exception e): Browser is closed
+
+2020-12-07 16:31:32 - [TEST_STEP][PASSED] - err.println("Falha ao testar fluxo de envio de PDF" + e): null
+
+2020-12-07 16:31:32 - [TEST_STEP][PASSED] - closeBrowser(): Browser is closed
+
+2020-12-07 16:31:33 - [MESSAGE][PASSED] - Browser is closed]]></system-out>
+         <system-err><![CDATA[]]></system-err>
+      </testcase>
+      <testcase name="Test Cases/Web UI Test/Agcs/RenovacoesCotacoesEspeciais" time="1.65" classname="Test Cases/Web UI Test/Agcs/RenovacoesCotacoesEspeciais" status="INCOMPLETE">
+         <system-out><![CDATA[2020-12-07 16:31:33 - [TEST_CASE][INCOMPLETE] - Test Cases/Web UI Test/Agcs/RenovacoesCotacoesEspeciais: null
+
+2020-12-07 16:31:35 - [TEST_STEP][INCOMPLETE] - try: null
+
+2020-12-07 16:31:35 - [TEST_STEP][INCOMPLETE] - CotacoesEspeciais.cotacoesEspeciais("CotacoesEspeciais"): null]]></system-out>
+         <system-err><![CDATA[2020-12-07 16:31:33 - [TEST_CASE][INCOMPLETE] - Test Cases/Web UI Test/Agcs/RenovacoesCotacoesEspeciais: null]]></system-err>
+      </testcase>
+      <system-out><![CDATA[2020-12-07 16:31:25 - [TEST_SUITE][INCOMPLETE] - RPA: null]]></system-out>
+      <system-err><![CDATA[2020-12-07 16:31:25 - [TEST_SUITE][INCOMPLETE] - RPA: null]]></system-err>
+   </testsuite>
+</testsuites>

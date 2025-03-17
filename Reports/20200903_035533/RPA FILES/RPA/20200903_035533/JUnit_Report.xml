@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="RPA" time="826.531" tests="1" failures="0" errors="0">
+   <testsuite name="RPA" tests="1" failures="0" errors="0" time="826.531" timestamp="2020-09-03 03:56:03" hostname="ALZ_ServiceQA - BRSPVLRPA01.agf.com.br" id="Test Suites/RPA FILES/RPA">
+      <properties>
+         <property name="deviceName" value=""/>
+         <property name="devicePlatform" value=""/>
+         <property name="logFolder" value="C:\\Users\\Public\\RPA_ALLIANZ\\Reports\\20200903_035533\\RPA FILES\\RPA\\20200903_035533"/>
+         <property name="logFiles" value="C:\\Users\\Public\\RPA_ALLIANZ\\Reports\\20200903_035533\\RPA FILES\\RPA\\20200903_035533\\execution0.log"/>
+         <property name="attachments" value=""/>
+         <property name="hostName" value="ALZ_ServiceQA - BRSPVLRPA01.agf.com.br"/>
+         <property name="os" value="Windows Server 2016 64bit"/>
+         <property name="katalonVersion" value="7.2.1.1"/>
+         <property name="browser" value="Chrome 85.0.4183.83"/>
+         <property name="hostAddress" value="10.189.212.24"/>
+         <property name="sessionId" value="2b6cdf3d158cd6c06674bc27f3a58624"/>
+         <property name="seleniumVersion" value="3.141.59"/>
+         <property name="proxyInformation" value="ProxyInformation{proxyOption=NO_PROXY, proxyServerType=HTTP, password=, proxyServerAddress=, proxyServerPort=0, executionList=}"/>
+         <property name="platform" value="Windows Server 2016"/>
+      </properties>
+      <testcase name="Test Cases/Web UI Test/Backoffce/FluxoEnvioPDF" time="825.39" classname="Test Cases/Web UI Test/Backoffce/FluxoEnvioPDF" status="INCOMPLETE">
+         <system-out><![CDATA[2020-09-03 03:56:04 - [TEST_CASE][INCOMPLETE] - Test Cases/Web UI Test/Backoffce/FluxoEnvioPDF: null
+
+2020-09-03 03:56:06 - [TEST_STEP][INCOMPLETE] - try: Delayed 5 second(s)
+
+2020-09-03 03:56:06 - [TEST_STEP][INCOMPLETE] - FluxoEnvioPDF.fluxoEnvioDePDF("EnvioPDF"): Delayed 5 second(s)
+
+2020-09-03 03:56:19 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-09-03 03:56:24 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-09-03 03:56:29 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-09-03 03:56:34 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-09-03 03:56:35 - [MESSAGE][INFO] - Starting 'Chrome' driver
+
+2020-09-03 03:56:35 - [MESSAGE][INFO] - User set preference: ['prefs', '{download.default_directory=C:\Users\Public\, profile.default_content_settings.popups=0.0, download.prompt_for_download=false, download.directory_upgrade=true, plugins.always_open_pdf_externally=true, pdfjs.disabled=true, safebrowsing.enabled=true}']
+
+2020-09-03 03:56:35 - [MESSAGE][INFO] - User set preference: ['args', '[--start-maximized, --disable-infobars,  safebrowsing-disable-download-protection,  safebrowsing-disable-extension-blacklist, --test-type, --disable-extensions]']
+
+2020-09-03 03:56:35 - [MESSAGE][INFO] - User set preference: ['CapabilityType.ACCEPT_SSL_CERTS', 'true']
+
+2020-09-03 03:56:35 - [MESSAGE][INFO] - User set preference: ['pageLoadStrategy', 'normal']
+
+2020-09-03 03:56:35 - [MESSAGE][INFO] - Action delay is set to 0 seconds
+
+2020-09-03 03:56:49 - [MESSAGE][PASSED] - Browser is opened with url: ''
+
+2020-09-03 03:57:04 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2020-09-03 03:57:05 - [MESSAGE][PASSED] - Current window maximized
+
+2020-09-03 03:58:23 - [MESSAGE][PASSED] - Navigate to 'https://www.br.intrallianz.com/ngx-intranet/public/home' successfully
+
+2020-09-03 03:58:43 - [MESSAGE][PASSED] - Delayed 20 second(s)
+
+2020-09-03 03:58:46 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-03 03:58:47 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-03 03:58:57 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-09-03 03:59:00 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-03 03:59:03 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-03 03:59:21 - [MESSAGE][PASSED] - Delayed 17 second(s)
+
+2020-09-03 03:59:26 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-09-03 04:00:28 - [MESSAGE][PASSED] - Current window maximized
+
+2020-09-03 04:00:33 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-09-03 04:00:35 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-03 04:00:40 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-03 04:00:41 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-03 04:00:43 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-03 04:00:45 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-03 04:00:51 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-09-03 04:01:00 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-03 04:01:03 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-03 04:01:05 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-03 04:01:08 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-03 04:01:10 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-03 04:01:13 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-03 04:01:15 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-03 04:01:18 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-03 04:01:20 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-03 04:01:26 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-09-03 04:01:44 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2020-09-03 04:01:49 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-09-03 04:01:54 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-09-03 04:02:03 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-09-03 04:02:19 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2020-09-03 04:02:24 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-09-03 04:02:39 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2020-09-03 04:02:44 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-09-03 04:02:55 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-09-03 04:02:57 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-03 04:02:59 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-03 04:03:00 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-03 04:03:03 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-03 04:03:04 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-03 04:03:10 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-09-03 04:03:13 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-03 04:03:16 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-03 04:03:18 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-03 04:03:21 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-03 04:03:26 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-09-03 04:03:43 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2020-09-03 04:03:48 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-09-03 04:03:53 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-09-03 04:03:59 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-09-03 04:04:14 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2020-09-03 04:04:19 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-09-03 04:04:34 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2020-09-03 04:04:39 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-09-03 04:04:49 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-09-03 04:04:51 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-03 04:04:53 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-03 04:04:55 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-03 04:04:56 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-03 04:04:58 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-03 04:05:04 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-09-03 04:05:08 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-03 04:05:11 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-03 04:05:13 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-03 04:05:15 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-03 04:05:18 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-03 04:05:23 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-09-03 04:05:40 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2020-09-03 04:05:45 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-09-03 04:05:51 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-09-03 04:05:56 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-09-03 04:06:11 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2020-09-03 04:06:16 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-09-03 04:06:31 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2020-09-03 04:06:37 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-09-03 04:06:46 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-09-03 04:06:48 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-03 04:06:50 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-03 04:06:51 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-03 04:06:53 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-03 04:06:55 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-03 04:07:00 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-09-03 04:07:05 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-03 04:07:07 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-03 04:07:09 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-03 04:07:12 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-03 04:07:18 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-09-03 04:07:35 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2020-09-03 04:07:40 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-09-03 04:07:46 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-09-03 04:07:51 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-09-03 04:08:06 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2020-09-03 04:08:12 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-09-03 04:08:27 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2020-09-03 04:08:32 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-09-03 04:08:41 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-09-03 04:08:43 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-03 04:08:45 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-03 04:08:47 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-03 04:08:48 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-03 04:08:50 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-03 04:08:56 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-09-03 04:09:00 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-03 04:09:03 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-03 04:09:05 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-03 04:09:08 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-03 04:09:10 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-03 04:09:16 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-09-03 04:09:33 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2020-09-03 04:09:38 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-09-03 04:09:43 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-09-03 04:09:49 - [MESSAGE][PASSED] - Delayed 5 second(s)]]></system-out>
+         <system-err><![CDATA[2020-09-03 03:56:04 - [TEST_CASE][INCOMPLETE] - Test Cases/Web UI Test/Backoffce/FluxoEnvioPDF: null]]></system-err>
+      </testcase>
+      <system-out><![CDATA[2020-09-03 03:56:03 - [TEST_SUITE][INCOMPLETE] - RPA: null]]></system-out>
+      <system-err><![CDATA[2020-09-03 03:56:03 - [TEST_SUITE][INCOMPLETE] - RPA: null]]></system-err>
+   </testsuite>
+</testsuites>
