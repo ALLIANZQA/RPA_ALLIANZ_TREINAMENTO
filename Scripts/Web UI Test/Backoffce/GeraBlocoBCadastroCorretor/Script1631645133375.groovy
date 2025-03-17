@@ -10,6 +10,7 @@ try {
 	WebUI.closeBrowser();
  }
    catch (Exception e) {
+   backoffice.GeraBlocoBCadastroCorretorFuncionalidades.enviarEmailError("Error", 'GeraBlocoBCadastroCorretor' );
    System.err.println("Falha ao executar fluxo Gera Bloco B Cadastro Corretor"+ e);
    WebUI.closeBrowser();
 }

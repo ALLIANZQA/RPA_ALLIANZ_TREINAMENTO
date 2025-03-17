@@ -105,9 +105,13 @@ public class GeraBlocoBCadastroCorretorFuncionalidades extends rpaCommands{
 	 */
 	public static fluxoGeraBlocoBCadastroCorretor(String aba){
 		initDataFiles()
-		fluxoCompletoGeraBlocoBCadastroCorretor(aba)
-		reprocessaFalhas(aba)
-		enviarEmailGeraBlocoBCadastroCorretor(aba)
+		if(validaDados(cellCheck)){
+		  fluxoCompletoGeraBlocoBCadastroCorretor(aba)
+		  reprocessaFalhas(aba)
+		  enviarEmailGeraBlocoBCadastroCorretor(aba)
+		} else {
+		  System.out.println("Não existem dados para processar ");
+		}
 	}
 
 	/**

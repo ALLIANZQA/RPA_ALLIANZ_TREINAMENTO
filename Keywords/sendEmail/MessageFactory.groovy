@@ -409,6 +409,37 @@ public class MessageFactory extends ConfigParameters{
 		message.saveChanges();
 	}
 
+
+	/**
+	 * @author ALZ_ServiceQA
+	 * @return
+	 */
+	public static addMessagesMultFilesError(String ramo, List<String> anexos, String assunto){
+		multipart = new MimeMultipart();
+		addFiles(anexos)
+		imagePart = new MimeBodyPart();
+		imagePart.setContent(MessageRule.messageRules(ramo,assunto) , "text/html;charset=utf-8");
+		multipart.addBodyPart(imagePart);
+		message.setContent(multipart);
+		message.saveChanges();
+	}
+
+
+	/**
+	 * @author ALZ_ServiceQA
+	 * @param config
+	 */
+	public void createMessageFilesError(Properties config, List<String> anexos ,String ramo, String assunto){
+		try{
+			addContext(sender, pwrsender, emaildestination, config );
+			addMessagesMultFilesError(ramo,anexos, assunto);
+			transport();
+			System.err.println("Create Message Files Done !");
+		} catch (MessagingException e){
+			throw new RuntimeException();
+		}
+	}
+
 	/**
 	 * @author ALZ_ServiceQA
 	 * @return
@@ -421,6 +452,25 @@ public class MessageFactory extends ConfigParameters{
 				"			<td class='text1' style='font-family: Tahoma, Arial, Helvetica, SansSerif; color: #003680; font-size: 20px; font-weight: 300;line-height: 1.2; letter-spacing: -0.3px'><p><br><br><br>" +
 				"				Prezados,<br>"+
 				"				todos os dados foram processados.<br>"+
+				"				Att.."+
+				"			</td>" +
+				"		</tr>" +
+				"	</table>"
+		return sb;
+	}
+
+	/**
+	 * @author ALZ_ServiceQA
+	 * @return
+	 */
+	public static String templateBodyError(){
+		String sb =
+				"	<table border='0' cellpadding='0' cellspacing='0'><p>" +
+				"		<tr><p>" +
+				"			<td class='width-1' width='73'>&nbsp;</td><p>" +
+				"			<td class='text1' style='font-family: Tahoma, Arial, Helvetica, SansSerif; color: #003680; font-size: 20px; font-weight: 300;line-height: 1.2; letter-spacing: -0.3px'><p><br><br><br>" +
+				"				Prezados,<br>"+
+				"				processo não concluido, precisa de análise.<br>"+
 				"				Att.."+
 				"			</td>" +
 				"		</tr>" +

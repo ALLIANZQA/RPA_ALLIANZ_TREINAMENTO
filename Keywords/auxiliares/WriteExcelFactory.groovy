@@ -25,6 +25,7 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.DataFormatter
 import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Workbook
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -114,7 +115,61 @@ public class WriteExcelFactory extends FileInput{
 		}
 	}
 
+	
+	
+	
+	
+	
+	
+	
 
+	/**
+	 * @author T_DCDias
+	 * @param caminho_arquivo_xlsx
+	 * @return
+	 * Retorna qualquer tipo de lista
+	 */
+	public static List<MassaDados> readExcelAllFileToObjectMassaDados(String caminho_arquivo_xlsx, String aba, int lineCheck){
+
+		List<MassaDados> listCasoDeTeste = new ArrayList<MassaDados>();
+		String filePath = caminho_arquivo_xlsx;
+
+		try{
+			FileInputStream file = new FileInputStream(new File(filePath));
+			XSSFWorkbook workbook = new XSSFWorkbook(file);
+			XSSFSheet sheet = workbook.getSheet(aba);
+			Iterator<?> rowIterator = sheet.rowIterator();
+			while (rowIterator.hasNext()) {
+				Row row = (Row) rowIterator.next();
+				// Descartando a primeira linha com o header
+				if (row.getRowNum() == 0) {
+					continue;
+				}
+				//	if (row.getCell(lineCheck).getStringCellValue().contentEquals(RegrasLeitura.regrasLeituraExcel(row.getCell(lineCheck).getStringCellValue()))){
+				//		continue;
+				//	}
+				//	if (row.getCell(lineCheck).getStringCellValue().contentEquals(RegrasLeitura.regrasLeituraExcelStop(row.getCell(lineCheck).getStringCellValue()))){
+				//if(XLSXSelection.verificaStop(row, lineCheck, )){
+				//		break;
+				//	}
+
+
+				Iterator<?> cellIterator = row.cellIterator();
+				MassaDados massa = new MassaDados()
+
+				while (cellIterator.hasNext()) {
+					Cell cell = (Cell) cellIterator.next();
+					cell.setCellType(cell.CELL_TYPE_STRING);
+					massa = XLSXSelection.switchCellRules(cell,massa,aba);
+				}
+				listCasoDeTeste.add(massa);
+			}
+			file.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		return listCasoDeTeste;
+	}
 
 
 }

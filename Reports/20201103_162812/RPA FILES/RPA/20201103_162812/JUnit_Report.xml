@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="RPA" time="74.57" tests="2" failures="0" errors="0">
+   <testsuite name="RPA" tests="2" failures="0" errors="0" time="74.57" timestamp="2020-11-03 16:28:14" hostname="ALZ_ServiceQA - BRSPVLRPA01.agf.com.br" id="Test Suites/RPA FILES/RPA">
+      <properties>
+         <property name="deviceName" value=""/>
+         <property name="devicePlatform" value=""/>
+         <property name="logFolder" value="C:\\Users\\Public\\RPA_ALLIANZ\\Reports\\20201103_162812\\RPA FILES\\RPA\\20201103_162812"/>
+         <property name="logFiles" value="C:\\Users\\Public\\RPA_ALLIANZ\\Reports\\20201103_162812\\RPA FILES\\RPA\\20201103_162812\\execution0.log"/>
+         <property name="attachments" value=""/>
+         <property name="hostName" value="ALZ_ServiceQA - BRSPVLRPA01.agf.com.br"/>
+         <property name="os" value="Windows Server 2016 64bit"/>
+         <property name="katalonVersion" value="7.2.1.1"/>
+         <property name="browser" value="Chrome 86.0.4240.111"/>
+         <property name="hostAddress" value="10.189.212.24"/>
+         <property name="sessionId" value="955318049118d913b96b9c0e38e493e1"/>
+         <property name="seleniumVersion" value="3.141.59"/>
+         <property name="proxyInformation" value="ProxyInformation{proxyOption=MANUAL_CONFIG, proxyServerType=HTTP, password=, proxyServerAddress=prxazb.allianz.com.br, proxyServerPort=8080, executionList=}"/>
+         <property name="platform" value="Windows Server 2016"/>
+      </properties>
+      <testcase name="Test Cases/Web UI Test/Backoffce/AgendamentoInspecoes" time="72.013" classname="Test Cases/Web UI Test/Backoffce/AgendamentoInspecoes" status="PASSED">
+         <system-out><![CDATA[2020-11-03 16:28:15 - [TEST_CASE][PASSED] - Test Cases/Web UI Test/Backoffce/AgendamentoInspecoes: Test Cases/Web UI Test/Backoffce/AgendamentoInspecoes
+
+2020-11-03 16:28:15 - [TEST_STEP][PASSED] - try: Delayed 5 second(s)
+
+2020-11-03 16:28:15 - [TEST_STEP][PASSED] - AgendamentoInspecao.fluxoAgendamentoInspecoes("Agendamento"): Delayed 5 second(s)
+
+2020-11-03 16:28:16 - [MESSAGE][INFO] - Starting 'Chrome' driver
+
+2020-11-03 16:28:16 - [MESSAGE][INFO] - User set preference: ['prefs', '{download.default_directory=C:\Users\Public\, profile.default_content_settings.popups=0.0, download.prompt_for_download=false, download.directory_upgrade=true, plugins.always_open_pdf_externally=true, pdfjs.disabled=true, safebrowsing.enabled=true}']
+
+2020-11-03 16:28:16 - [MESSAGE][INFO] - User set preference: ['args', '[--start-maximized, --disable-infobars,  safebrowsing-disable-download-protection,  safebrowsing-disable-extension-blacklist, --test-type, --disable-extensions]']
+
+2020-11-03 16:28:16 - [MESSAGE][INFO] - User set preference: ['CapabilityType.ACCEPT_SSL_CERTS', 'true']
+
+2020-11-03 16:28:16 - [MESSAGE][INFO] - User set preference: ['pageLoadStrategy', 'normal']
+
+2020-11-03 16:28:16 - [MESSAGE][INFO] - Action delay is set to 0 seconds
+
+2020-11-03 16:28:19 - [MESSAGE][PASSED] - Browser is opened with url: ''
+
+2020-11-03 16:28:34 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2020-11-03 16:28:35 - [MESSAGE][PASSED] - Current window maximized
+
+2020-11-03 16:28:48 - [MESSAGE][PASSED] - Navigate to 'https://www.br.intrallianz.com/ngx-intranet/public/home' successfully
+
+2020-11-03 16:29:08 - [MESSAGE][PASSED] - Delayed 20 second(s)
+
+2020-11-03 16:29:10 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-11-03 16:29:10 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-11-03 16:29:21 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-11-03 16:29:26 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2020-11-03 16:29:26 - [TEST_STEP][PASSED] - catch (Exception e): Browser is closed
+
+2020-11-03 16:29:26 - [TEST_STEP][PASSED] - err.println("Falha ao realizar Agendamento Inspeções" + e): null
+
+2020-11-03 16:29:26 - [TEST_STEP][PASSED] - closeBrowser(): Browser is closed
+
+2020-11-03 16:29:27 - [MESSAGE][PASSED] - Browser is closed]]></system-out>
+         <system-err><![CDATA[]]></system-err>
+      </testcase>
+      <testcase name="Test Cases/Web UI Test/Backoffce/DesbloqueioPropostaAgroFielDepositario" time="2.332" classname="Test Cases/Web UI Test/Backoffce/DesbloqueioPropostaAgroFielDepositario" status="INCOMPLETE">
+         <system-out><![CDATA[2020-11-03 16:29:27 - [TEST_CASE][INCOMPLETE] - Test Cases/Web UI Test/Backoffce/DesbloqueioPropostaAgroFielDepositario: null
+
+2020-11-03 16:29:27 - [TEST_STEP][INCOMPLETE] - try: Browser is opened with url: ''
+
+2020-11-03 16:29:27 - [TEST_STEP][INCOMPLETE] - DesbloqueioPropostaAgroFielDepositario.desbloqueioPropostaAgroFielDepositario(): Browser is opened with url: ''
+
+2020-11-03 16:29:27 - [MESSAGE][INFO] - Starting 'Chrome' driver
+
+2020-11-03 16:29:27 - [MESSAGE][INFO] - User set preference: ['prefs', '{download.default_directory=C:\Users\Public\, profile.default_content_settings.popups=0.0, download.prompt_for_download=false, download.directory_upgrade=true, plugins.always_open_pdf_externally=true, pdfjs.disabled=true, safebrowsing.enabled=true}']
+
+2020-11-03 16:29:27 - [MESSAGE][INFO] - User set preference: ['args', '[--start-maximized, --disable-infobars,  safebrowsing-disable-download-protection,  safebrowsing-disable-extension-blacklist, --test-type, --disable-extensions]']
+
+2020-11-03 16:29:27 - [MESSAGE][INFO] - User set preference: ['CapabilityType.ACCEPT_SSL_CERTS', 'true']
+
+2020-11-03 16:29:27 - [MESSAGE][INFO] - User set preference: ['pageLoadStrategy', 'normal']
+
+2020-11-03 16:29:29 - [MESSAGE][PASSED] - Browser is opened with url: '']]></system-out>
+         <system-err><![CDATA[2020-11-03 16:29:27 - [TEST_CASE][INCOMPLETE] - Test Cases/Web UI Test/Backoffce/DesbloqueioPropostaAgroFielDepositario: null]]></system-err>
+      </testcase>
+      <system-out><![CDATA[2020-11-03 16:28:14 - [TEST_SUITE][INCOMPLETE] - RPA: null]]></system-out>
+      <system-err><![CDATA[2020-11-03 16:28:14 - [TEST_SUITE][INCOMPLETE] - RPA: null]]></system-err>
+   </testsuite>
+</testsuites>

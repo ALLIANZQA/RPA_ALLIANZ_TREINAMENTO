@@ -1,16 +1,4 @@
-.gradle
 
-bin
-
-Reports
-
-Libs
-
-output
-
-!output/.gitkeep
-build
-
-.classpath
-
-.project
+Libs/TempTestCase1597959005564.groovy
+Libs/TempTestCase1598375363443.groovy
+/bin/

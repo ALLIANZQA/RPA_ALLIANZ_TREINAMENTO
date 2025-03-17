@@ -24,6 +24,7 @@ try {
 	 WebUI.closeBrowser();
 	}
 	 catch (Exception e) {
+	   gcf.DistribuicaoAutomaticaInspecaoRiscoFuncionalidades.enviarEmailError("Error", 'DistribuicaoAutomaticaIR' );
 	   System.err.println("Falha ao realizar Distribuição automática Inspeção de risco\n" +e);
 	   WebUI.closeBrowser();
 	}

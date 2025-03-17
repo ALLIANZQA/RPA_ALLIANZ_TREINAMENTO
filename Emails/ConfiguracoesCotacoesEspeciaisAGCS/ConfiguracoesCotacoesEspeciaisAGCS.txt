@@ -1,5 +1,5 @@
 C:/Users/Public/RPA_ALLIANZ/Emails/ConfiguracoesCotacoesEspeciaisAGCS/CotacoesEspeciaisAGCS.txt
-RPA_cotacoesEspeciais@allianz.com.br
+RPA_CotacoesEspeciais@allianz.com.br
 
 smtp.intrallianz.es
 25

@@ -1,37 +1,239 @@
 
 import rpacommands.rpaCommands
 import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
-
 import auxiliares.ExtractDates
-
 import java.util.List
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import auxiliares.StringFormatter
 import auxiliares.BruteForceSubstringSearch
 import auxiliares.CurrencyMonetary
-
 import java.text.SimpleDateFormat;
 import java.time.LocalDate
-
-//WebUI.openBrowser('')
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-
-
-
-
 import auxiliares.switchLeitorExcel
 import bean.MassaDados
 import auxiliares.switchAtualizarExcel
+import internal.GlobalVariable;
+import java.text.SimpleDateFormat
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.DataFormatter
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import auxiliares.updateExcel
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import auxiliares.leitorPdf;
 
 
-//String ExcelCopiado = "C://Users//Public//RPA_ALLIANZ//Data Files//ContactCenter//ContactCenter.xlsx";
 
 
-WebUI.openBrowser('')
+
+String pathFileValue ="C:\\Users\\Public\\131072251.pdf";
+
+
+
+
+String [] pdf = leitorPdf.pdfReader(pathFileValue).toString().split(" ");
+ 
+System.out.println(pdf.size()  );
+
+String Cooperativa = buscaPorPalavra(pdf, "Cooperativa:").substring(0,4);
+String Atendimento = buscaPorPalavra(pdf, "Atendimento:")substring(0,2);
+String Angariador = buscaPorPalavra(pdf, "Angariador:")substring(0,2);
+
+System.out.println( "\nCooperativa: "+Cooperativa + "\nAtendimento: "+Atendimento+"\nAngariador: "+Angariador)
+
+
+public String buscaPorPalavra(String [] pdf, String p){
+   String s;
+   for(int i = 0; i<pdf.size();i++){
+	   if(  pdf[i].toString().equals(p)   ){
+	     s =  pdf[i+1].toString()
+	     break;
+	   }
+   }
+   return s;
+}
+
+
+
+
+
+//String f = "MM/yyyy";
+
+//System.out.println("\nDATE ["+ExtractDates.dataSetFormat( f) +"]\n");
+
+
+// textContent:" Campo obrigatório quando o campo moeda é informado."
+
+
+ //System.out.println( rpaCommands.alertListBlocList(" Campo obrigatório quando o campo moeda é informado.") ) 
+
+
+
+//:\Users\Public\RPA_ALLIANZ\Data Files\Saude\DescredenciamentoDePrestadorEfetivo
+
+
+
+
+
+
+			
+//String caminhoDiretorioExcel = "C:\\Users\\Public\\RPA_ALLIANZ\\Data Files\\Backoffce\\GestaoCreditoDescarteincidencias\\GestaoCreditoDescarteincidencias.xlsx"
+//String aba = 'DescarteIncidencia'
+
+//auxiliares.WriteExcelFactory.updateSheetLine("" , 1 ,caminhoDiretorioExcel, "Processar", 2, aba);
+//auxiliares.WriteExcelFactory.updateSheetLine("" , 1 ,caminhoDiretorioExcel, " O registo foi rejeitado com sucesso", 3, aba);
+//auxiliares.WriteExcelFactory.updateSheetLine("" , 3 ,caminhoDiretorioExcel, "TESTE_TESTE_TESTE  ", 5, aba);
+
+//updateExcel.atualizaExcelSeguroResidenciaAuto(caminhoDiretorioExcel , "TESTE", 1, 4, "TESTE", 'DescredenciamentoPrestadorEfet');
+//updateExcel.atualizaExcelSeguroResidenciaAuto(caminhoDiretorioExcel , "TESTE" ,1, 5,  "TESTE", 'DescredenciamentoPrestadorEfet');
+//updateExcel.atualizaExcelSeguroResidenciaAuto(caminhoDiretorioExcel, "" , 18, 14, 'Processado', 'SeguroRenovResidencia');
+//updateExcel.atualizaExcelSeguroResidenciaAuto(caminhoDiretorioExcel , "TESTE" , 18, 18, 'Email Enviado Com Sucesso!', 'SeguroRenovResidencia');
+
+
+
+
+
+
+
+//String p = "C:\\Users\\Public\\RPA_ALLIANZ\\Data Files\\Backoffce\\IndexacaoFG\\Arquivos";
+
+//System.out.println("FILE NAME ["+identificaArquivosDiretorio(p, "HONDA")+"]")
+
+
+
+
+//System.out.println(ExtractDates.horaAtualizada())
+
+
+
+
+//iPrliqAtu [R$ 291,69] dQtdParcelas [10]
+
+//dPrliqAtuCalc [2916.9]
+
+
+
+//WebUI.openBrowser('')
+
+
+
+//String path = "C:\\Users\\Public\\DescredenciamentoDePrestador.xlsx"
+//fechaExcel(path)
+
+//public static fechaExcel(String path){
+	
+//	try {
+//		FileInputStream file = new FileInputStream(new File(path));
+
+//		HSSFWorkbook workbook = new HSSFWorkbook(file);
+//		HSSFSheet sheet = workbook.getSheetAt(0);
+//		Cell cell = null;
+//
+//		//Update the value of cell
+//		cell = sheet.getRow(1).getCell(2);
+//		cell.setCellValue(cell.getNumericCellValue() * 2);
+//		cell = sheet.getRow(2).getCell(2);
+//		cell.setCellValue(cell.getNumericCellValue() * 2);
+//		cell = sheet.getRow(3).getCell(2);
+//		cell.setCellValue(cell.getNumericCellValue() * 2);
+////Close the excel input file (inputstream)
+//		file.close();
+
+//		FileOutputStream outFile =new FileOutputStream(new File(path));
+//		workbook.write(outFile);
+//Close output excel file
+////		outFile.close();
+
+//	} catch (FileNotFoundException e) {
+//		e.printStackTrace();
+//	} catch (IOException e) {
+//		e.printStackTrace();
+//	}
+	
+	
+//}
+
+//String cep ="2221020"
+//
+//System.out.println(cep.length())
+//
+////formataCep(cep)
+//
+//
+//String [] ceps = formataCep(cep)
+//
+//System.out.println("Retorno - Região ["+ceps[0] +"] Identificador ["+ceps[1]+"]")
+//
+//
+///**
+// * @author BE54955
+// * @param cep
+// * Separa uma String de cep em "região" e "identificador" atravéz de umvetor 
+// * @return
+// */
+//public static  String [] formataCep(String cep){
+//	String regiao
+//	String identificador
+//	if(cep.length()==8){
+//		regiao = cep.substring(0, 5)
+//		identificador = cep.substring(5,8)
+//	}else{
+//	   String novoCep = "0"+cep;
+//	   regiao = novoCep.substring(0, 5)
+//	   identificador = novoCep.substring(5,8)
+//	}
+//	
+//	String [] ceps = new String[2]
+//	ceps[0] = regiao
+//	ceps[1] = identificador
+//	
+//	return ceps; 
+//}
+
+
+
+//String caminhoDiretorioExcel = "C://Users//Public//RPA_ALLIANZ//Data Files//Backoffce//SeguroFuncionarioRenovData//RoboRenovResidencia.xlsx"
+//
+//updateExcel.atualizaExcelSeguroResidenciaAuto(caminhoDiretorioExcel , "TESTE", 18, 16, "TESTE", 'SeguroRenovResidencia');
+//updateExcel.atualizaExcelSeguroResidenciaAuto(caminhoDiretorioExcel , "TESTE" ,18, 17,  "TESTE", 'SeguroRenovResidencia');
+//updateExcel.atualizaExcelSeguroResidenciaAuto(caminhoDiretorioExcel, "" , 18, 14, 'Processado', 'SeguroRenovResidencia');
+//updateExcel.atualizaExcelSeguroResidenciaAuto(caminhoDiretorioExcel , "TESTE" , 18, 18, 'Email Enviado Com Sucesso!', 'SeguroRenovResidencia');
+
+//System.out.println("->"+compareTime(2214,5)+"<-")
+
+/**
+ * @author BE54955
+ * @param t
+ * @return
+ */
+//public static compareTime(int t, int p){
+//	boolean h = false;
+//	StringBuilder str = new StringBuilder()
+//	try{
+//	    String hora = ExtractDates.horaAtualizada()
+//	    int nHora = Integer.parseInt(hora.replace(":", ""))
+//	    
+//	    if(nHora==t){
+//		  h = true
+//		  WebUI.openBrowser('https://www.allianznet.com.br/ngx-epac/public/home')
+//	    }
+//	    WebUI.delay(p)
+//	    if(!h){
+//	      compareTime(t,p)
+//	    }
+//		System.out.println("Hora atual ["+nHora+"] Hora esperada ["+t+"] ["+h+"]")
+//	} catch (Exception e){}
+//}
+
+//WebUI.openBrowser('')
 
 //somaDeValores("01","02","03","04", "victor bora estudar caraii")
 //
@@ -45,10 +247,10 @@ WebUI.openBrowser('')
 
 
 
-
+//String ExcelCopiado = "C://Users//Public//RPA_ALLIANZ//Data Files//Saude//BaseCancelamento//BaseCancelamento.xlsx";
 //switchAtualizarExcel.switchUpdateExcel('ContactCenter', ExcelCopiado ,"TESTE !!!!!",11 );
 
-//auxiliares.WriteExcelFactory.updateSheetLine("", 1, ExcelCopiado, "TESTE !!!!!", 10, 'ContactCenter');
+//auxiliares.WriteExcelFactory.updateSheetLine("", 1, ExcelCopiado, "TESTE !!!!!", 13, 'BaseCancelamento');
 
 //System.out.println(s.size())
 

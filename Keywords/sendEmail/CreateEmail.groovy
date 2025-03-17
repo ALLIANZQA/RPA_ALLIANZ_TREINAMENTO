@@ -206,6 +206,20 @@ public class CreateEmail {
 		return send
 	}
 
+	public static boolean createEmailSendVoucherAnexo(String sender, String emaildestination,String pwdsender, String host, String  porta, String ramo, List<String> anexos, String assunto ){
+		boolean send
+		try{
+			ConfigOutlook configEmail = new ConfigOutlook();
+			MessageFactory messageFactory = new MessageFactory(sender,pwdsender,emaildestination);
+			messageFactory.createMessageMutFiles(configEmail.configureOutLook(host, porta), anexos,  ramo, assunto);
+			send = true
+		} catch(Exception e){
+			System.err.println("FAIL\n"+e);
+			send = false
+		}
+		return send
+	}
+
 	/**
 	 * @author T_DCDias
 	 * @param sender
@@ -218,13 +232,13 @@ public class CreateEmail {
 	 * @return
 	 * Envio de e-mail sem anexo
 	 */
-	public static boolean createEmailCadastroCorretorFilialFisica(String sender, String emaildestination, String pwdsender, String host, String  porta, String ramo, String corretor,String intermediario, String cpfcnpj, String user, String pwr,String NOMEACCOUNT, String EMAILACCOUNT,String ddd, String telefone ){
+	public static boolean createEmailCadastroCorretorFilialFisica(String sender, String emaildestination, String pwdsender, String host, String  porta, String ramo, String corretor,String intermediario, String cpfcnpj, String user, String pwr,String NOMEACCOUNT, String EMAILACCOUNT,String ddd, String telefone, ddd_account, telefone_account ){
 
 		boolean send
 		try{
 			ConfigOutlook configEmail = new ConfigOutlook();
 			MessageFactory messageFactory = new MessageFactory(sender,pwdsender,emaildestination);
-			messageFactory.createMessage(configEmail.configureOutLook(host, porta), ramo, corretor, cpfcnpj, user, pwr, NOMEACCOUNT, EMAILACCOUNT, intermediario, ddd, telefone);
+			messageFactory.createMessage(configEmail.configureOutLook(host, porta), ramo, corretor, cpfcnpj, user, pwr, NOMEACCOUNT, EMAILACCOUNT, intermediario, ddd, telefone, ddd_account, telefone_account);
 			send = true
 		} catch(Exception e){
 			System.err.println("Create Email Cadastro Corretor Filial Fisica FAIL\n"+e);
@@ -307,6 +321,27 @@ public class CreateEmail {
 			ConfigOutlook configEmail = new ConfigOutlook();
 			MessageFactory messageFactory = new MessageFactory(sender,pwdsender,emaildestination );
 			messageFactory.createMessageFilesCartasAvisoSantander(configEmail.configureOutLook(host, porta), anexos, ramo, assunto);
+		} catch(Exception e){
+			System.err.println("Create Email Send Multiple Files FAIL\n"+e);
+		}
+	}
+	
+	
+	public static createEmailSendError(String sender, String emaildestination,String pwdsender, List<String> anexos , String host, String  porta, String ramo, String assunto ){
+		try{
+			ConfigOutlook configEmail = new ConfigOutlook();
+			MessageFactory messageFactory = new MessageFactory(sender,pwdsender,emaildestination );
+			messageFactory.createMessageFilesError(configEmail.configureOutLook(host, porta), anexos, ramo, assunto);
+		} catch(Exception e){
+			System.err.println("Create Email Send Multiple Files FAIL\n"+e);
+		}
+	}
+	
+	public static createEmailSend(String sender, String emaildestination,String pwdsender, List<String> anexos , String host, String  porta, String ramo, String assunto ){
+		try{
+			ConfigOutlook configEmail = new ConfigOutlook();
+			MessageFactory messageFactory = new MessageFactory(sender,pwdsender,emaildestination );
+			messageFactory.createMessageFilesError(configEmail.configureOutLook(host, porta), anexos, ramo, assunto);
 		} catch(Exception e){
 			System.err.println("Create Email Send Multiple Files FAIL\n"+e);
 		}

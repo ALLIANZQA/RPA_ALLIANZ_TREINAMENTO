@@ -18,6 +18,7 @@ try {
 	 WebUI.closeBrowser();
     }
     catch (Exception e) {
+		   backoffice.DesbloqueioPropostaAgroFielDepositario.enviarEmailError("Error", 'Fiel Depositario' )
 	       System.err.println("Falha ao realizar Desbloqueio Proposta Agro Fiel Depositario" +e);
 	       WebUI.closeBrowser();
     }

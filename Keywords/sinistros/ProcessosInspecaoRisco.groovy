@@ -117,13 +117,13 @@ public class ProcessosInspecaoRisco extends backofficeFuncionalidades{
 					alerta = recuperaValor('//*[@id="listaPreLiquidacionesNF_tbody"]/tr/td', 'innerText', 1)
 					if(!alertListBlocList(alerta)){
 						localizarCodVerificacao(listaExcel.get(i).getCodVerif());
-						if(!isento()){
-							alterarTributavelIsento(listaExcel.get(i).getValorTributavel(), listaExcel.get(i).getValorIsento());
-							validarEnviado();
-							switchAtualizarExcel.switchUpdateExcel('InspecaoRisco', caminhoDiretorioExcel ,listaExcel.get(i).getCnpjCpf(),Integer.parseInt(listaExcel.get(i).getLinha()));
-						} else {
-							switchAtualizarExcel.switchUpdateExcel('InspecaoRisco', caminhoDiretorioExcel ,listaExcel.get(i).getCnpjCpf()+" - Valor atribuido anteriormente",Integer.parseInt(listaExcel.get(i).getLinha()));
-						}
+						//			if(isento()){
+						alterarTributavelIsento(listaExcel.get(i).getValorTributavel(), listaExcel.get(i).getValorIsento());
+						validarEnviado();
+						switchAtualizarExcel.switchUpdateExcel('InspecaoRisco', caminhoDiretorioExcel ,listaExcel.get(i).getCnpjCpf(),Integer.parseInt(listaExcel.get(i).getLinha()));
+						//		} else {
+						switchAtualizarExcel.switchUpdateExcel('InspecaoRisco', caminhoDiretorioExcel ,listaExcel.get(i).getCnpjCpf()+" - Valor atribuido ",Integer.parseInt(listaExcel.get(i).getLinha()));
+						//		}
 					} else {
 						System.err.println("SALVANDO EVIDÊNCIA EM:\n"+ExcelCopiado)
 						switchAtualizarExcel.switchUpdateExcel('InspecaoRisco', caminhoDiretorioExcel ,alerta, Integer.parseInt(listaExcel.get(i).getLinha())  );
@@ -172,7 +172,7 @@ public class ProcessosInspecaoRisco extends backofficeFuncionalidades{
 			selecionaTipoLiquidacao('PréLiquidações');
 			preencherDataDesdeAte(dataDesde, dataAte);
 			//ClicaEnviar
-			clickXpath('//*[@id="o_3"]', 1);
+			clickXpath('//*[@id="sectionPaginaCompletaSectionBar"]/table/tbody/tr/td/table/tbody/tr', 1);
 		}catch (Exception e){
 			finalizar();
 			valueCheck = 'N';
@@ -237,6 +237,7 @@ public class ProcessosInspecaoRisco extends backofficeFuncionalidades{
 	 * @return
 	 */
 	public static localizarCodVerificacao(String codVerificacao){
+		System.err.println()
 		try{
 			boolean localiza = false;
 			if(qtdPagina <= 0){
@@ -266,9 +267,9 @@ public class ProcessosInspecaoRisco extends backofficeFuncionalidades{
 
 			if(localiza == false){
 				if(qtdPagina <= 0){
-					clickXpath('//*[@id="o_9"]', 1);
+					clickXpath('//*[@id="listadoDetallePreliquidacionSectionBar"]/table/tbody/tr/td/table/tbody/tr', 1);
 				}else{
-					clickXpath('//*[@id="o_10"]', 1);
+					clickXpath('//*[@id="o_11"]', 1);
 				}
 				qtdPagina = qtdPagina+1;
 				localizarCodVerificacao(codVerificacao);
@@ -287,6 +288,7 @@ public class ProcessosInspecaoRisco extends backofficeFuncionalidades{
 	 * @return
 	 */
 	public static alterarTributavelIsento(String tributavel, String isento){
+		System.err.println()
 		try{
 			WebUI.delay(2);
 			//editar tributavel   #deletar string
@@ -295,7 +297,7 @@ public class ProcessosInspecaoRisco extends backofficeFuncionalidades{
 			limpaCampo('//*[@id="importeExento"]', 5)
 			preencheXpath('//*[@id="importeExento"]', isento, 5);
 			//clicar gravar
-			clickXpath('//*[@id="o_3"]', 5);
+			clickXpath('//*[@id="detallePagoViewForm"]/table/tbody/tr[2]/td/table/tbody/tr/td[1]', 5);
 		}catch (Exception e){
 			String erroValueCheck = recuperaValor('//*[@id="dataErrorSection"]/table/tbody/tr/td[2]','textContent',3);
 			System.err.println('Falha ao Consultar Apolice' + e);

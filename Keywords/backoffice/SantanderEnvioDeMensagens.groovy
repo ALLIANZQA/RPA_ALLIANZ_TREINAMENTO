@@ -51,15 +51,15 @@ public class SantanderEnvioDeMensagens extends rpaCommands{
 	 * @author T_DCDias
 	 * @return
 	 */
-	public static enviaMensagem(String tipo, String cartaEnviar, String[] dataParaExecutar){
+	public static enviaMensagem(String a, String tipo, String cartaEnviar, String[] dataParaExecutar){
 		tipoProcesso = tipo
 		carta = cartaEnviar
 		initDataFilesCap()
 		initData(tipo)
-		renovaSantanderSasam(tipo, cartaEnviar)
+		renovaSantanderSasam(a,tipo, cartaEnviar)
 		fluxoCompletoEnvioDeMensagens(tipo, dataParaExecutar)
 		processaFalhas(tipo,cartaEnviar,dataParaExecutar)
-	//	enviaEmailSantanderEnvioDeMensagens(cartaEnviar, dataParaExecutar, tipo)
+		//	enviaEmailSantanderEnvioDeMensagens(cartaEnviar, dataParaExecutar, tipo)
 	}
 
 	/**
@@ -82,10 +82,11 @@ public class SantanderEnvioDeMensagens extends rpaCommands{
 	 * @author T_DCDias
 	 * @return
 	 */
-	public static renovaSantanderSasam(String tipo, String cartaEnviar){
+	public static renovaSantanderSasam(String a, String tipo, String cartaEnviar){
 		if(tipo.equals("RenovaSantanderSASAM2") && cartaEnviar.contentEquals("15") || tipo.equals("RenovaSantander") && cartaEnviar.contentEquals("15")){
-			iniciaAplicacaoMatrizCommands('IntranetProdução');
-			realizaLoginIntraNetProducaoCommands(tipo);
+			acessoAmbiente(tipo, a);
+			//iniciaAplicacaoMatrizCommands('IntranetProdução');
+			//realizaLoginIntraNetProducaoCommands(tipo+a);
 		}
 	}
 
@@ -116,11 +117,12 @@ public class SantanderEnvioDeMensagens extends rpaCommands{
 		System.err.println('fluxo Completo Envio De Mensagens ')
 		try{
 			for(int h = 0; h < dataParaExecutar.size(); h++){
-				System.err.println('\nData ['+h+'] ['+dataParaExecutar[h]+'] ['+tipoProcesso+"]")
+				System.err.println('\nData ['+h+'] ['+dataParaExecutar[h]+'] ['+tipoProcesso+"] ["+ retornaFINALVIG(tipo)+"]")
 				if(validaDataParaPorcessar(dataParaExecutar[h], retornaFINALVIG(tipo), tipo)){
 					for (int i = 1; i <= data.getRowNumbers(); i++) {
-						//System.err.println('\nCompare Data ['+h+'] ['+dataParaExecutar[h]+'] ['+data.getValue('FINAL_VIG', i).toString() +"]")
+						System.err.println('\nCompare Data ['+h+'] ['+dataParaExecutar[h]+'] ['+data.getValue('FINAL_VIG', i).toString() +"]")
 						if( auxiliares.ExtractDates.compareDate(dataParaExecutar[h], data.getValue('FINAL_VIG', i).toString()  )){
+							System.err.println()
 							switch (tipo){
 								case "RenovaSantanderSASAM2":
 									System.err.println("["+i+"] 15D	["+data.getValue('Carta (-15d) - Enviar', i)+"] 30D ["+data.getValue('Carta (-30d) - Enviar', i)+"] NR ["+data.getValue('Carta NR - Enviar', i)+"]")
@@ -167,31 +169,14 @@ public class SantanderEnvioDeMensagens extends rpaCommands{
 										}
 
 										try{
-											if ( data.getValue('Carta (-30d) - Enviar', i).equals('x') || data.getValue('Carta NR - Enviar', i).equals('x')) {
-												segurado = data.getValue('SEGURADO', i)
-												apolice = data.getValue('APOLICE', i)
-												FINAL_VIG = ExtractDates.formatDateToBR(data.getValue('FINAL_VIG', i))
-												dataAtual = ExtractDates.dataAtual()
-												if( enviarEmail(data.getValue('E-mail', i)+', renovacaosantander@allianz.com.br',
-												retornaTipoDeMensagem(data.getValue('Carta (-15d) - Enviar', i),data.getValue('Carta (-30d) - Enviar', i), data.getValue('Carta NR - Enviar', i) ),
-												segurado,
-												apolice,
-												FINAL_VIG,
-												dataAtual)
-												) {
-													try{
-														alerta = ""
-														salvarEnvios(retornaTipoDeMensagem(data.getValue('Carta (-15d) - Enviar', i),data.getValue('Carta (-30d) - Enviar', i),data.getValue('Carta NR - Enviar', i) ), 'RenovaSantanderSASAM2', i,alerta, tipoProcesso, cartaPeriodo)
-													} catch (Exception e){}
-												} else {
-													alerta = "Falha no envio do e-mail"
-													salvarEnvios("FAIL", 'RenovaSantanderSASAM2', i,alerta, tipoProcesso, cartaPeriodo)
-												}
+											if ( data.getValue('Carta (-30d) - Enviar', i).equals('x') && carta.equals("30")) {
+												envioCarta30NR(i, "Carta_RenovacaoApolice_30D")
 											}
 
+											if ( data.getValue('Carta NR - Enviar', i).equals('x') && carta.equals("NR") ) {
+												envioCarta30NR(i, "Carta_AvisoNaoRenovacao_NR")
+											}
 										} catch (Exception e){}
-
-
 									} catch (Exception e){
 										//FALHA DE LEITURA DO ARQUIVO DATA
 										salvarEnvios("FAIL", 'RenovaSantanderSASAM2', i,alerta, tipoProcesso, cartaPeriodo)
@@ -201,69 +186,43 @@ public class SantanderEnvioDeMensagens extends rpaCommands{
 
 								case "RenovaSantander":
 									try{
+										System.err.println("["+i+"] [15 ]["+data.getValue('Carta (-15d) - Enviar', i)+"]" +
+												"[30]["+data.getValue('Carta (-30d) - Enviar', i)+"]"+
+												"[NR]["+data.getValue('Carta NR - Enviar', i)+"]")
 
-										System.err.println("["+i+"] ["+data.getValue('Carta (-15d) - Enviar', i)+"] ["+data.getValue('Carta (-30d) - Enviar', i)+"] ["+data.getValue('Carta NR - Enviar', i)+"]")
-
-										if ( data.getValue('Carta (-15d) - Enviar', i).equals('x') ||
-										data.getValue('Carta (-30d) - Enviar', i).equals('x') ||
-										data.getValue('Carta NR - Enviar', i).equals('x')) {
-
-
-											List<String> notificacoes = new ArrayList<>();
-											lista( notificacoes , i)
-											menuSasam2()
-											cartaPeriodo = retornaTipoDeMensagem(data.getValue('Carta (-15d) - Enviar', i),data.getValue('Carta (-30d) - Enviar', i), data.getValue('Carta NR - Enviar', i))
-											if(SantanderEnvioDeMensagensSasam.pesquisaProposta(notificacoes, carta, tipo)){
-												System.err.println("["+i+"] - ["+data.getValue('SEGURADO', i)+"] - ["+
-														data.getValue('E-mail', i)+"] - ["+
-														data.getValue('APOLICE ANTERIOR', i)+"] - ["+
-														data.getValue('FINAL_VIG', i)+"]")
-
-												segurado = data.getValue('SEGURADO', i)
-												apolice = data.getValue('APOLICE ANTERIOR', i)
-												FINAL_VIG = ExtractDates.formatDateToBR(data.getValue('FINAL_VIG', i))
-												dataAtual = ExtractDates.dataAtual()
-												tapCap = renocacaoCap( data.getValue('GRUPO SEGURADO ATUAL', i) )
-
-												if( enviarEmailAnexo(data.getValue('E-mail', i)+', renovacaosantander@allianz.com.br',
-												    retornaTipoDeMensagem(data.getValue('Carta (-15d) - Enviar', i),data.getValue('Carta (-30d) - Enviar', i), data.getValue('Carta NR - Enviar', i)),
-												    segurado,
-												    apolice,
-												    FINAL_VIG,
-												    dataAtual,
-												    data.getValue('PROPOSTA', i).substring(0, 9),
-												    tapCap
-												)
-												)
-												{
-													try{
-														alerta = ""
-														salvarEnvios(retornaTipoDeMensagem(data.getValue('Carta (-15d) - Enviar', i),data.getValue('Carta (-30d) - Enviar', i),data.getValue('Carta NR - Enviar', i) ), 'RenovaSantander', i, alerta, tipoProcesso, cartaPeriodo)
-													} catch (Exception e){}
-												} else {
-													System.err.println()
-													alerta = "Falha no envio do e-mail"
-													salvarEnvios("FAIL", 'RenovaSantander', i,alerta, tipoProcesso, cartaPeriodo)
-												}
-											}
-
-
-
-
-										} else {
-											alerta = " "
-											salvarEnvios("FAIL", 'RenovaSantanderSASAM2', i,alerta, tipoProcesso, cartaPeriodo)
-											WebUI.closeBrowser()
-											renovaSantanderSasam(tipo)
+										if ( data.getValue('Carta (-15d) - Enviar', i).equals('x') ) {
+											envioCarta15(i, "Carta_AvisoRenovacao_15D", tipo, '15')
 										}
-
-
-
-
-
-										/////
 									} catch (Exception e){
 										//FALHA DE LEITURA DO ARQUIVO DATA
+										alerta = "Falha no envio do e-mail "
+										salvarEnvios("FAIL", 'RenovaSantander', i,alerta, tipoProcesso, cartaPeriodo)
+										WebUI.closeBrowser()
+										renovaSantanderSasam(tipo)
+										continue
+									}
+
+									try{
+										System.err.println("["+carta +"] "+"Carta (-30d) ["+
+												data.getValue('Carta (-30d) - Enviar', i)+"] Carta NR  ["+
+												data.getValue('Carta NR - Enviar', i)+"]")
+
+										List<String> notificacoes = new ArrayList<>();
+										lista( notificacoes , i)
+
+										if ( data.getValue('Carta (-30d) - Enviar', i).equals('x') && carta.equals("30")) {
+											envioCarta30NR(i, "Carta_RenovacaoApolice_30D")
+										}
+
+										if ( data.getValue('Carta NR - Enviar', i).equals('x') && carta.equals("NR") ) {
+											envioCarta30NR(i, "Carta_AvisoNaoRenovacao_NR")
+										}
+									} catch (Exception e){
+										//FALHA DE LEITURA DO ARQUIVO DATA
+										alerta = " "
+										salvarEnvios("FAIL", 'RenovaSantander', i,alerta, tipoProcesso, cartaPeriodo)
+										WebUI.closeBrowser()
+										renovaSantanderSasam(tipo)
 										continue
 									}
 									break;
@@ -278,6 +237,107 @@ public class SantanderEnvioDeMensagens extends rpaCommands{
 		}
 	}
 
+	public static envioCarta15(int i, String carta, String tipo, String d){
+		System.err.println()
+		List<String> notificacoes = new ArrayList<>();
+		lista( notificacoes , i)
+		menuSasam2()
+		//	cartaPeriodo = retornaTipoDeMensagem(data.getValue('Carta (-15d) - Enviar', i),data.getValue('Carta (-30d) - Enviar', i), data.getValue('Carta NR - Enviar', i))
+		cartaPeriodo = carta
+		if(SantanderEnvioDeMensagensSasam.pesquisaProposta(notificacoes, d, tipo)){
+			System.err.println("["+i+"] - ["+data.getValue('SEGURADO', i)+"] - ["+
+					data.getValue('E-mail', i)+"] - ["+
+					data.getValue('APOLICE ANTERIOR', i)+"] - ["+
+					data.getValue('FINAL_VIG', i)+"]")
+
+			segurado = seguradoNomeSossial( data.getValue('SEGURADO', i),  data.getValue('NOME SOCIAL', i) )
+			//segurado = data.getValue('SEGURADO', i)
+			apolice = data.getValue('APOLICE ANTERIOR', i)
+			FINAL_VIG = ExtractDates.formatDateToBR(data.getValue('FINAL_VIG', i))
+			dataAtual = ExtractDates.dataAtual()
+			tapCap = renocacaoCap( data.getValue('GRUPO SEGURADO ATUAL', i) )
+
+			if( enviarEmailAnexo(data.getValue('E-mail', i)+', renovacaosantander@allianz.com.br',
+			carta,
+			segurado,
+			apolice,
+			FINAL_VIG,
+			dataAtual,
+			data.getValue('PROPOSTA', i).substring(0, 9),
+			tapCap ))
+			{
+				try{
+					alerta = ""
+					salvarEnvios(cartaPeriodo, 'RenovaSantander', i, alerta, tipoProcesso, cartaPeriodo)
+				} catch (Exception e){}
+
+				try{
+					deleteFileDiretory( "C:/Users/Public/"+data.getValue('PROPOSTA', i).substring(0, 9)+".pdf")
+				} catch (Exception e){}
+			} else {
+				System.err.println()
+				alerta = "Falha no envio do e-mail"
+				salvarEnvios("FAIL", 'RenovaSantander', i,alerta, tipoProcesso, cartaPeriodo)
+				deleteFileDiretory( "C:/Users/Public/"+data.getValue('PROPOSTA', i).substring(0, 9)+".pdf")
+			}
+		}
+
+	}
+
+	/**
+	 * @author BE54955
+	 * @param i
+	 * @return
+	 */
+	public static envioCarta30NR(int i, String carta){
+		cartaPeriodo = carta
+		System.err.println("["+carta+"] ["+i+"] - ["+data.getValue('SEGURADO', i)+"] - ["+
+				data.getValue('E-mail', i)+"] - ["+
+				data.getValue('APOLICE ANTERIOR', i)+"] - ["+
+				data.getValue('FINAL_VIG', i)+"]")
+
+		segurado = seguradoNomeSossial( data.getValue('SEGURADO', i),  data.getValue('NOME SOCIAL', i) )
+		//segurado = data.getValue('SEGURADO', i)
+		apolice = data.getValue('APOLICE ANTERIOR', i)
+		FINAL_VIG = ExtractDates.formatDateToBR(data.getValue('FINAL_VIG', i))
+		dataAtual = ExtractDates.dataAtual()
+		tapCap = renocacaoCap(data.getValue('GRUPO SEGURADO ATUAL', i) )
+
+		if( enviarEmail(data.getValue('E-mail', i)+', renovacaosantander@allianz.com.br',
+		carta,
+		segurado,
+		apolice,
+		FINAL_VIG,
+		dataAtual,
+		tapCap ) ) {
+			try{
+				alerta = ""
+				salvarEnvios(carta, 'RenovaSantander', i,alerta, tipoProcesso, cartaPeriodo)
+			} catch (Exception e){}
+		} else {
+			alerta = "Falha no envio do e-mail"
+			salvarEnvios("FAIL", 'RenovaSantander', i,alerta, tipoProcesso, cartaPeriodo)
+		}
+	}
+
+	/**
+	 * @author Alz_sup54955
+	 * @param segurado
+	 * @param nomeSocial
+	 * @return
+	 */
+	public static String seguradoNomeSossial(String segurado, String nomeSocial ){
+		System.out.println("\nSegurado ["+segurado +"] Nome Social ["+nomeSocial+"]\n");
+		String nome
+		if(nomeSocial.trim().length()==0){
+			nome = segurado;
+		} else {
+			nome = nomeSocial;
+		}
+		return nome;
+	}
+
+
 	/**
 	 * @author T_DCDias
 	 * @param executados
@@ -288,6 +348,7 @@ public class SantanderEnvioDeMensagens extends rpaCommands{
 		lerConfigurações(pathTxtEmail)
 		System.err.println('Sender ['+sender+']')
 		System.err.println()
+		//		return true
 		return sendEmail.CreateEmail.createEmailSendSantander(sender, emaildestination,pwdsender, host,  porta, ramo, segurado, apolice, FINAL_VIG, dataAtual, tapCap )
 	}
 
@@ -304,6 +365,7 @@ public class SantanderEnvioDeMensagens extends rpaCommands{
 		anexos[0] = "C:/Users/Public/"+proposta+".pdf"
 		anexos[1] = proposta+".pdf"
 		return sendEmail.CreateEmail.createEmailSendSantanderAnexos(sender, emaildestination,pwdsender, host,  porta, ramo, segurado, apolice, FINAL_VIG, dataAtual, tapCap, anexos )
+		//	return true;
 	}
 
 	/**
@@ -323,6 +385,8 @@ public class SantanderEnvioDeMensagens extends rpaCommands{
 				tipo = xpaths.get(i);
 			}
 		}
+		System.out.println(tipo)
+
 		return tipo;
 	}
 
@@ -348,27 +412,27 @@ public class SantanderEnvioDeMensagens extends rpaCommands{
 	public static salvarEnviosSantander(String tipo, String aba, int i, String alerta){
 		switch (tipo){
 			case "Carta_AvisoRenovacao_15D":
-				auxiliares.WriteExcelFactory.updateSheetLine('',i, path,'',15,aba);
-				auxiliares.WriteExcelFactory.updateSheetLine('',i, path,'x',16,aba);
+				auxiliares.WriteExcelFactory.updateSheetLine('',i, path,'',17,aba);
+				auxiliares.WriteExcelFactory.updateSheetLine('',i, path,'x',18,aba);
 				break;
 
 			case "Carta_RenovacaoApolice_30D":
-				auxiliares.WriteExcelFactory.updateSheetLine('',i, path,'',13,aba);
-				auxiliares.WriteExcelFactory.updateSheetLine('',i, path,'x',14,aba);
+				auxiliares.WriteExcelFactory.updateSheetLine('',i, path,'',15,aba);
+				auxiliares.WriteExcelFactory.updateSheetLine('',i, path,'x',16,aba);
 				break;
 
 			case "Carta_AvisoNaoRenovacao_NR":
-				auxiliares.WriteExcelFactory.updateSheetLine('',i, path,'',17,aba);
-				auxiliares.WriteExcelFactory.updateSheetLine('',i, path,'x',18,aba);
+				auxiliares.WriteExcelFactory.updateSheetLine('',i, path,'',19,aba);
+				auxiliares.WriteExcelFactory.updateSheetLine('',i, path,'x',20,aba);
 				break;
 			case "FAIL":
-				auxiliares.WriteExcelFactory.updateSheetLine('',i, path,'',15,aba);
-				auxiliares.WriteExcelFactory.updateSheetLine('',i, path,'x',16,aba);
-				auxiliares.WriteExcelFactory.updateSheetLine('',i, path,'',13,aba);
-				auxiliares.WriteExcelFactory.updateSheetLine('',i, path,'x',14,aba);
 				auxiliares.WriteExcelFactory.updateSheetLine('',i, path,'',17,aba);
 				auxiliares.WriteExcelFactory.updateSheetLine('',i, path,'x',18,aba);
-				auxiliares.WriteExcelFactory.updateSheetLine('',i, path,alerta,24,aba);
+				auxiliares.WriteExcelFactory.updateSheetLine('',i, path,'',15,aba);
+				auxiliares.WriteExcelFactory.updateSheetLine('',i, path,'x',16,aba);
+				auxiliares.WriteExcelFactory.updateSheetLine('',i, path,'',19,aba);
+				auxiliares.WriteExcelFactory.updateSheetLine('',i, path,'x',20,aba);
+				auxiliares.WriteExcelFactory.updateSheetLine('',i, path,alerta,26,aba);
 				break;
 		}
 	}
@@ -379,34 +443,34 @@ public class SantanderEnvioDeMensagens extends rpaCommands{
 	public static salvarEnviosSasam2(String tipo, String aba, int i, String alerta, String carta){
 		switch (tipo){
 			case "Carta_AvisoRenovacao_15D":
-				auxiliares.WriteExcelFactory.updateSheetLine('',i, path,'',44,aba);
-				auxiliares.WriteExcelFactory.updateSheetLine('',i, path,'x',45,aba);
+				auxiliares.WriteExcelFactory.updateSheetLine('',i, path,'',45,aba);
+				auxiliares.WriteExcelFactory.updateSheetLine('',i, path,'x',46,aba);
 				break;
 
 			case "Carta_RenovacaoApolice_30D":
-				auxiliares.WriteExcelFactory.updateSheetLine('',i, path,'',42,aba);
-				auxiliares.WriteExcelFactory.updateSheetLine('',i, path,'x',43,aba);
+				auxiliares.WriteExcelFactory.updateSheetLine('',i, path,'',43,aba);
+				auxiliares.WriteExcelFactory.updateSheetLine('',i, path,'x',44,aba);
 				break;
 
 			case "Carta_AvisoNaoRenovacao_NR":
-				auxiliares.WriteExcelFactory.updateSheetLine('',i, path,'',46,aba);
-				auxiliares.WriteExcelFactory.updateSheetLine('',i, path,'x',47,aba);
+				auxiliares.WriteExcelFactory.updateSheetLine('',i, path,'',47,aba);
+				auxiliares.WriteExcelFactory.updateSheetLine('',i, path,'x',48,aba);
 				break;
 
 			case "FAIL":
 			//auxiliares.WriteExcelFactory.updateSheetLine('',i, path,alerta,53,aba);
 				switch (carta){
 					case "Carta_AvisoRenovacao_15D":
-					auxiliares.WriteExcelFactory.updateSheetLine('',i, path,'',44,aba);
-					auxiliares.WriteExcelFactory.updateSheetLine('',i, path,'F',45,aba);
+					auxiliares.WriteExcelFactory.updateSheetLine('',i, path,'',45,aba);
+					auxiliares.WriteExcelFactory.updateSheetLine('',i, path,'F',46,aba);
 					break;
 					case "Carta_RenovacaoApolice_30D":
-					auxiliares.WriteExcelFactory.updateSheetLine('',i, path,'',42,aba);
-					auxiliares.WriteExcelFactory.updateSheetLine('',i, path,'F',43,aba);
+					auxiliares.WriteExcelFactory.updateSheetLine('',i, path,'',43,aba);
+					auxiliares.WriteExcelFactory.updateSheetLine('',i, path,'F',44,aba);
 					break;
 					case "Carta_AvisoNaoRenovacao_NR":
-					auxiliares.WriteExcelFactory.updateSheetLine('',i, path,'',46,aba);
-					auxiliares.WriteExcelFactory.updateSheetLine('',i, path,'F',47,aba);
+					auxiliares.WriteExcelFactory.updateSheetLine('',i, path,'',47,aba);
+					auxiliares.WriteExcelFactory.updateSheetLine('',i, path,'F',48,aba);
 					break;
 				}
 				break;
@@ -419,9 +483,11 @@ public class SantanderEnvioDeMensagens extends rpaCommands{
 	 * @return
 	 */
 	public static boolean validaDataParaPorcessar(String date, int FINAL_VIG, String tipo){
+		System.out.println(date +" "+ FINAL_VIG +" "+ tipo+" "+returnCellValue(carta, tipo))
 		boolean dataEncontrada = false
 		initDataFilesSasam(tipo)
 		for (int i = 1; i <= data.getRowNumbers(); i++) {
+			System.out.println(data.getValue(returnCellValue(carta, tipo), i))
 			if (data.getValue(returnCellValue(carta, tipo), i).equals('x')) {
 				if(auxiliares.ExtractDates.compareDate(date, data.getValue(FINAL_VIG, i))){
 					dataEncontrada = true
@@ -461,9 +527,9 @@ public class SantanderEnvioDeMensagens extends rpaCommands{
 	public static int returnCellValueCheck(String carta){
 		int cellNum
 		Map<String, String> cellNunber = new HashMap<String, String>()
-		cellNunber.put('15', '16')
-		cellNunber.put('30', '14')
-		cellNunber.put('NR', '18')
+		cellNunber.put('15', '18')
+		cellNunber.put('30', '16')
+		cellNunber.put('NR', '20')
 		cellNum = Integer.parseInt(cellNunber.get(carta).toString())
 		return cellNum
 	}
@@ -476,9 +542,9 @@ public class SantanderEnvioDeMensagens extends rpaCommands{
 	public static int returnCellValueCheckSasam2(String carta){
 		int cellNum
 		Map<String, String> cellNunber = new HashMap<String, String>()
-		cellNunber.put('15', '45')
-		cellNunber.put('30', '43')
-		cellNunber.put('NR', '47')
+		cellNunber.put('15', '47')
+		cellNunber.put('30', '45')
+		cellNunber.put('NR', '49')
 		cellNum = Integer.parseInt(cellNunber.get(carta).toString())
 		return cellNum
 	}
@@ -495,7 +561,7 @@ public class SantanderEnvioDeMensagens extends rpaCommands{
 		initDataFilesSasam(tipo)
 		for (int i = 1; i <= data.getRowNumbers(); i++) {
 			if (data.getValue(returnCellValueCheckProcessed(carta, tipo), i).equals('x')) {
-				//System.err.println(date+" - "+data.getValue(FINAL_VIG, i).toString())
+				System.err.println(date+" - "+data.getValue(FINAL_VIG, i).toString())
 				if(auxiliares.ExtractDates.compareDate(date, data.getValue(FINAL_VIG, i))){
 					dataEncontrada = true
 					break

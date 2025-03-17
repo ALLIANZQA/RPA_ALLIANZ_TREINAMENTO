@@ -17,12 +17,33 @@ import internal.GlobalVariable as GlobalVariable
 
 /**
  * @author be54955
+ * 
+ * Atualização 18/01/2024
+ * 
+ * Atualização na - classe RenovaSantanderFuncionalidades - método : telaDadosBasicos()
+ * linha 977  de: if (bErrorPresent == true) para: if (bErrorPresent == !true) 
+ * linha 988  de: if (bErrorPresent == true) para: if (bErrorPresent == !true) 
+ * 
+ * Atualização 04/03/2024
+ * 
+ * Atualização na - classe RenovaSantanderFuncionalidades - método : telaDadosBasicos()
+ * linha 998  de: if (bErrorPresent == !true) para: if (bErrorPresent == true) 
+ * linha 1008  de: if (bErrorPresent == !true) para: if (bErrorPresent == true)   
+ * 
+ * Atualização 05/04/2024 
+ * 
+ * PROD - Produção 
+ * DEV - Desenvolvimento 
+ * 
+ * Desenvolvimento da classe "realizaLoginDevNetProducaoTransacionalCommands"
+ * 
  */
 try{
-	 auto.RenovaSantanderFuncionalidades.fluxoCompletoRenovaSantander("RenovaSantander", "29/09/2022")
+	 auto.RenovaSantanderFuncionalidades.fluxoInicialRenovaSantander("RenovaSantander",'PRD', "07/03/2025" )
 	 WebUI.closeBrowser();
    } catch (Exception e){
-	 System.err.println("Falha ao executar Renova Santander")
+	// auto.RenovaSantanderFuncionalidades.enviarEmailError("Error", "RenovaSantander" );
+	 System.err.println("Falha ao executar Renova Santander\n"+e)
    }
    
    

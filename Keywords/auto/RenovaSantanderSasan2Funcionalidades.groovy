@@ -139,7 +139,7 @@ public class RenovaSantanderSasan2Funcionalidades extends RenovaSantanderFuncion
 				System.err.println('validaTela ['+validaTela+']')
 				System.err.println()
 				//sAlerta = ""
-				salvarExecutados(i, path, aba,pacotesNovos(sPacote), iPrLiqAtlAnt, dPrliqAtuCalc , sProposta, sApoliceRenov,sAlerta+" "+limitePremio,sLog)
+				salvarExecutados(i, path, aba,pacotesNovos(sPacote), iPrLiqAtlAnt, sdPrliqAtuCalc , sProposta, sApoliceRenov,sAlerta+" "+limitePremio,sLog)
 				System.err.println()
 				WebUI.delay(5)
 				telaInicial(aba)

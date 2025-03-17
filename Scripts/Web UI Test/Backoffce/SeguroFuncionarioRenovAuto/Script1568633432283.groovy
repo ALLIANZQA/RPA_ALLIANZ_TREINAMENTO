@@ -15,7 +15,7 @@ import internal.GlobalVariable as GlobalVariable
 
 try {
     //BDM-2378 / BRF-3026 [Seguro para funcionários] Robô para Renovação - Auto (pré-cálculo)
-    backoffice.SeguroFuncionarioRenovAuto.fluxoSeguroFuncionario("1211", 'SeguroRenovAuto', '13/04/2023')
+    backoffice.SeguroFuncionarioRenovAuto.fluxoSeguroFuncionario("1211", 'SeguroRenovAuto', '06/07/2023')
 	WebUI.closeBrowser()
 }
 catch (Exception e) {

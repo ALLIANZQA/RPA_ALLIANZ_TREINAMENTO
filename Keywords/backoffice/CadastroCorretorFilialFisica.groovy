@@ -38,7 +38,7 @@ public class CadastroCorretorFilialFisica extends backofficeFuncionalidades{
 	private static String testDataPath = 'Data Files/Backoffce/CadastroCorretorFilialFisica/CadastroCorretorFilialFisicaData'
 	private static String path
 	private static String alerta
-	private static int cellCheck = 16
+	private static int cellCheck = 18
 
 
 	/**
@@ -93,15 +93,15 @@ public class CadastroCorretorFilialFisica extends backofficeFuncionalidades{
 				if (data.getValue(cellCheck, i).equals('Processar')) {
 					List<String> corretores = new ArrayList<>();
 					lista( corretores , i)
-					if(enviarEmail(corretores[3], corretores[2], corretores[9], corretores[1], corretores[11], corretores[12],corretores[13],corretores[14],corretores[4],corretores[5], aba)) {
+					if(enviarEmail(corretores[3].toString().toLowerCase().replaceAll('\\s+', ""), corretores[2], corretores[9], corretores[1], corretores[11], corretores[12],corretores[13],corretores[14].toString().trim(),corretores[4],corretores[5],corretores[15],corretores[16], aba)) {
 						try{
-							auxiliares.WriteExcelFactory.updateSheetLine("", j, path, "Processado", 15, aba);
-							auxiliares.WriteExcelFactory.updateSheetLine("", j, path, "E-mail enviado para: "+alerta, 16, aba);
+							auxiliares.WriteExcelFactory.updateSheetLine("", j, path, "Processado", 17, aba);
+							auxiliares.WriteExcelFactory.updateSheetLine("", j, path, "E-mail enviado para: "+alerta, 18, aba);
 						} catch (Exception e){}
 					} else {
 						try{
-							auxiliares.WriteExcelFactory.updateSheetLine("", j, path, "Processado", 15, aba);
-							auxiliares.WriteExcelFactory.updateSheetLine("", j, path, "Falha ao enviar e-mail: "+alerta, 16, aba);
+							auxiliares.WriteExcelFactory.updateSheetLine("", j, path, "Processado", 17, aba);
+							auxiliares.WriteExcelFactory.updateSheetLine("", j, path, "Falha ao enviar e-mail: "+alerta, 18, aba);
 						} catch (Exception e){}
 					}
 				}
@@ -139,16 +139,16 @@ public class CadastroCorretorFilialFisica extends backofficeFuncionalidades{
 	 * @param executados
 	 * @return
 	 */
-	public static boolean enviarEmail(String emaildestination, String corretor,String intermediario, String cpfcnpj, String user, String pwr,String NOMEACCOUNT,String EMAILACCOUNT,String ddd, String telefone, String ramo){
+	public static boolean enviarEmail(String emaildestination, String corretor,String intermediario, String cpfcnpj, String user, String pwr,String NOMEACCOUNT,String EMAILACCOUNT,String ddd, String telefone, String ddd_account, String telefone_account, String ramo){
 
 		boolean enviado
 		try{
 			pathTxtEmail = "C://Users//Public//RPA_ALLIANZ//Emails//backoffice//CadastroCorretorFilialFisica//ConfiguracoesEnvioCorretor.txt";
 			lerConfigurações(pathTxtEmail)
-			System.err.println('Sender ['+sender+'] Corretor ['+corretor+"] Destino ["+emaildestination.trim()+"]")
+			System.err.println('Sender ['+sender+'] Corretor ['+corretor+"] Destino ["+emaildestination.replaceAll(" ", "")+"] EMAILACCOUNT ["+EMAILACCOUNT.replaceAll(" ", "")+"]")
 			System.err.println()
 			alerta = emaildestination
-			enviado = sendEmail.CreateEmail.createEmailCadastroCorretorFilialFisica(sender, emaildestination.trim()+", "+EMAILACCOUNT.trim()+', retornoprecadastro@allianz.com.br',pwdsender, host,  porta, ramo, corretor,intermediario, cpfcnpj, user, pwr,NOMEACCOUNT,EMAILACCOUNT, ddd,  telefone)
+			enviado = sendEmail.CreateEmail.createEmailCadastroCorretorFilialFisica(sender.replaceAll(" ", ""), emaildestination.replaceAll(" ", "")+", "+EMAILACCOUNT.replaceAll(" ", "")+', retornoprecadastro@allianz.com.br',pwdsender, host,  porta, ramo, corretor,intermediario, cpfcnpj, user, pwr,NOMEACCOUNT,EMAILACCOUNT, ddd,  telefone, ddd_account, telefone_account)
 		} catch (Exception e){
 			enviado = false
 		}

@@ -79,4 +79,22 @@ public class switchLeitorExcel extends tipoLeituraExcel {
 			return null;
 		}
 	}
+
+	/**
+	 * @author BE54955
+	 * @param caminhoExcel
+	 * @param aba
+	 * @return
+	 */
+	public static List<MassaDados> switchAnyExcel(String caminhoExcel, String aba){
+		List<MassaDados> listMassaDados
+		try{
+			listMassaDados = new ArrayList<MassaDados>();
+			listMassaDados = leituraExcel(caminhoExcel, aba);
+			return listMassaDados;
+		} catch (Exception e){
+			e
+			return null;
+		}
+	}
 }

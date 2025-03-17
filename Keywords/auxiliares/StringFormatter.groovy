@@ -537,4 +537,65 @@ public class StringFormatter {
 		return result
 	}
 
+	/**
+	 * @author BE54955
+	 * @param cep
+	 * Separa uma String de cep em "região" e "identificador" atravéz de umvetor
+	 * @return
+	 */
+	public static  String [] formataCep(String cep){
+		String regiao
+		String identificador
+		if(cep.length()==8){
+			regiao = cep.substring(0, 5)
+			identificador = cep.substring(5,8)
+		}else{
+			String novoCep = "0"+cep;
+			regiao = novoCep.substring(0, 5)
+			identificador = novoCep.substring(5,8)
+		}
+
+		String [] ceps = new String[2]
+		ceps[0] = regiao
+		ceps[1] = identificador
+
+		return ceps;
+	}
+
+	public static String removeEspacosEmBranco(String s){
+		String[] token = s.split("")
+		StringBuilder strdr = new StringBuilder();
+		try{
+			for(int i = 0; i < token.size(); i++){
+				System.out.println('['+i+'] ['+token[i].toString()+'] ['+token[i].toString().length()+']')
+				if(checkStringValue(token[i].toString())){
+					strdr.append(token[i].toString());
+				}
+			}
+		} catch (Exception e){}
+		return strdr;
+	}
+
+	public static boolean checkStringValue(String s){
+		boolean check = false
+		String[] test = s.split("")
+		for(int x = 0; x < test.size(); x++){
+			if( test[x].toString().equals("0") ||
+			test[x].toString().equals("1") ||
+			test[x].toString().equals("2") ||
+			test[x].toString().equals("3") ||
+			test[x].toString().equals("4") ||
+			test[x].toString().equals("5") ||
+			test[x].toString().equals("6") ||
+			test[x].toString().equals("7") ||
+			test[x].toString().equals("8") ||
+			test[x].toString().equals("9") ){
+				check = true
+			}
+		}
+		return check
+	}
+
+
+
 }

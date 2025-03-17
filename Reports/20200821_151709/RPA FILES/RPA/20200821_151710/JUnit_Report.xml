@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="RPA" time="15.297" tests="2" failures="0" errors="0">
+   <testsuite name="RPA" tests="2" failures="0" errors="0" time="15.297" timestamp="2020-08-21 15:18:33" hostname="ALZ_ServiceQA - BRSPVLRPA01.agf.com.br" id="Test Suites/RPA FILES/RPA">
+      <properties>
+         <property name="deviceName" value=""/>
+         <property name="devicePlatform" value=""/>
+         <property name="logFolder" value="C:\\Users\\Public\\RPA_ALLIANZ\\Reports\\20200821_151709\\RPA FILES\\RPA\\20200821_151710"/>
+         <property name="logFiles" value="C:\\Users\\Public\\RPA_ALLIANZ\\Reports\\20200821_151709\\RPA FILES\\RPA\\20200821_151710\\execution0.log"/>
+         <property name="attachments" value=""/>
+         <property name="hostName" value="ALZ_ServiceQA - BRSPVLRPA01.agf.com.br"/>
+         <property name="hostAddress" value="10.189.212.24"/>
+         <property name="os" value="Windows Server 2016 64bit"/>
+         <property name="katalonVersion" value="7.2.1.1"/>
+      </properties>
+      <testcase name="Test Cases/Web UI Test/Backoffce/SeguroFuncionarioRenovResidencia" time="2.979" classname="Test Cases/Web UI Test/Backoffce/SeguroFuncionarioRenovResidencia" status="PASSED">
+         <system-out><![CDATA[2020-08-21 15:18:34 - [TEST_CASE][PASSED] - Test Cases/Web UI Test/Backoffce/SeguroFuncionarioRenovResidencia: Test Cases/Web UI Test/Backoffce/SeguroFuncionarioRenovResidencia
+
+2020-08-21 15:18:36 - [TEST_STEP][PASSED] - try: null
+
+2020-08-21 15:18:36 - [TEST_STEP][PASSED] - SeguroFuncionarioRenovResidencia.fluxoSeguroFuncionario("SeguroRenovResidencia"): null
+
+2020-08-21 15:18:36 - [TEST_STEP][PASSED] - catch (Exception e): Browser is closed
+
+2020-08-21 15:18:36 - [TEST_STEP][PASSED] - err.println("Falha ao testar fluxo de Seguro para funcionarios"): null
+
+2020-08-21 15:18:36 - [TEST_STEP][PASSED] - closeBrowser(): Browser is closed
+
+2020-08-21 15:18:37 - [MESSAGE][PASSED] - Browser is closed]]></system-out>
+         <system-err><![CDATA[]]></system-err>
+      </testcase>
+      <testcase name="Test Cases/Web UI Test/Backoffce/FluxoEnvioPDF" time="10.869" classname="Test Cases/Web UI Test/Backoffce/FluxoEnvioPDF" status="INCOMPLETE">
+         <system-out><![CDATA[2020-08-21 15:18:37 - [TEST_CASE][INCOMPLETE] - Test Cases/Web UI Test/Backoffce/FluxoEnvioPDF: null
+
+2020-08-21 15:18:38 - [TEST_STEP][INCOMPLETE] - try: Delayed 5 second(s)
+
+2020-08-21 15:18:38 - [TEST_STEP][INCOMPLETE] - FluxoEnvioPDF.fluxoEnvioDePDF("EnvioPDF"): Delayed 5 second(s)
+
+2020-08-21 15:18:48 - [MESSAGE][PASSED] - Delayed 5 second(s)]]></system-out>
+         <system-err><![CDATA[2020-08-21 15:18:37 - [TEST_CASE][INCOMPLETE] - Test Cases/Web UI Test/Backoffce/FluxoEnvioPDF: null]]></system-err>
+      </testcase>
+      <system-out><![CDATA[2020-08-21 15:18:33 - [TEST_SUITE][INCOMPLETE] - RPA: null]]></system-out>
+      <system-err><![CDATA[2020-08-21 15:18:33 - [TEST_SUITE][INCOMPLETE] - RPA: null]]></system-err>
+   </testsuite>
+</testsuites>

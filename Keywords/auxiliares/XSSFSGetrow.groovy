@@ -93,7 +93,7 @@ public class XSSFSGetrow {
 	 * Altera valor do CT selecionado
 	 */
 	public static void setrowLine( Iterator<?> rowIterator , String msg, int celnum, int rowNum){
-
+		println("["+msg+"] ["+ celnum+"] ["+rowNum+"]")
 		try{
 			int rownum = 0;
 			Row row=null;
@@ -107,7 +107,11 @@ public class XSSFSGetrow {
 					Cell cell = (Cell) cellIterator.next();
 					if( row.getRowNum() == rowNum+1) {
 						cell = row.getCell(celnum);
-						cell.setCellValue(msg);
+						try{
+						  cell.setCellValue(msg.trim());
+						} catch (Exception e){
+						  row.createCell(celnum).setCellValue(msg.trim());
+						}
 					}
 				}
 			}

@@ -17,8 +17,8 @@ public class CotacoesEspeciais extends backofficeFuncionalidades{
 
 
 
-	public static String caminhoDiretorioExcel = "C://Users//Public//RPA_ALLIANZ//Data Files//AGCS//RoboCotacaoEspecial.xlsx";
-	public static String ExcelCopiado;
+//	public static String caminhoDiretorioExcel = "C://Users//Public//RPA_ALLIANZ//Data Files//AGCS//RoboCotacaoEspecial.xlsx";
+	public static String caminhoExcel = "C://Users//Public//RPA_ALLIANZ//Data Files//AGCS//RoboCotacaoEspecial.xlsx";
 	public static String dataRecuerada = getDateHour();
 	public static String diretorio;
 	private static String diretorioIMG;
@@ -41,8 +41,8 @@ public class CotacoesEspeciais extends backofficeFuncionalidades{
 		try{
 			finalizar();
 		} catch (Exception e){}
-
 		enviarCotacoesEspeciais(tipoAba);
+		//finalizaProcesso();
 		System.err.println('\nFinalizado...\n Casos finalizados  ['+ tamanhoListaOriginal+']\n');
 	}
 
@@ -52,11 +52,13 @@ public class CotacoesEspeciais extends backofficeFuncionalidades{
 	 * @return
 	 */
 	public static fluxoCompletoCotacoesEspeciais(String tipoAba){
-		diretorioIMG = createDiretory('Renovações Cotação Especiais - Evidencias')
-		diretorio = createDiretory('Renovações Cotação Especiais - PROCESSANDO '+dataRecuerada);
-		diretorioToDelete = diretorio;
-		ExcelCopiado = copiarExcel(caminhoDiretorioExcel, diretorio+"\\RenovacaoCotacoes.xlsx");
-		listaExcel = switchLeitorExcel.switchExcel(ExcelCopiado, tipoAba);
+	//	diretorioIMG = createDiretory('Renovações Cotação Especiais - Evidencias')
+	//	diretorio = createDiretory('Renovações Cotação Especiais - PROCESSANDO '+dataRecuerada);
+	//	diretorioToDelete = diretorio;
+	//	ExcelCopiado = copiarExcel(caminhoDiretorioExcel, diretorio+"\\RenovacaoCotacoes.xlsx");
+	//	listaExcel = switchLeitorExcel.switchExcel(ExcelCopiado, tipoAba);
+		
+		listaExcel = switchLeitorExcel.switchExcel(caminhoExcel, tipoAba);
 		tamanhoListaOriginal = listaExcel.size();
 
 		if(tamanhoListaOriginal>0){
@@ -69,10 +71,7 @@ public class CotacoesEspeciais extends backofficeFuncionalidades{
 			//		    salvarEvidencia( diretorioIMG, '110142550')
 			emailCDAGRUP = emailCDAGRUPRAMO(listaExcel)
 			fluxoRenovacoes(listaExcel, tipoAba);
-			/**
-			 * Processa as pendências que apresentaram falhas
-			 */
-			finalizaProcesso();
+
 		}
 	}
 
@@ -113,10 +112,10 @@ public class CotacoesEspeciais extends backofficeFuncionalidades{
 								validaValueCheck(valorRecuperado = recuperarNumeroRenovacaApolice()); System.err.println(".....11")
 								System.err.println("valorRecuperado "+valorRecuperado)
 								String pedido  = recuperaValor('//*[@id="dataErrorSection"]/table/tbody/tr/td[2]','innerText' , 2);
-								salvarInfoTelaAtualizarExcel(pedido, Integer.parseInt(listaExcel.get(i).getLinha()), ExcelCopiado , tipoAba, 37)
+								salvarInfoTelaAtualizarExcel(pedido, Integer.parseInt(listaExcel.get(i).getLinha()), caminhoExcel , tipoAba, 37)
 								valueCheck = 'enviado';
-								switchAtualizarExcel.switchUpdateExcel('CotacoesEspeciais', ExcelCopiado ,listaExcel.get(i).getApolice(), Integer.parseInt(listaExcel.get(i).getLinha()));
-								auxiliares.WriteExcelFactory.updateSheetLine("", Integer.parseInt(listaExcel.get(i).getLinha()),ExcelCopiado, "Gerado", 38, 'CotacoesEspeciais');
+								switchAtualizarExcel.switchUpdateExcel('CotacoesEspeciais', caminhoExcel ,listaExcel.get(i).getApolice(), Integer.parseInt(listaExcel.get(i).getLinha()));
+								auxiliares.WriteExcelFactory.updateSheetLine("", Integer.parseInt(listaExcel.get(i).getLinha()),caminhoExcel, "Gerado", 38, 'CotacoesEspeciais');
 								fecharJanela();
 								alteraJanejaGenerica(0, 5)
 							} else {
@@ -124,7 +123,7 @@ public class CotacoesEspeciais extends backofficeFuncionalidades{
 								String msg = valueCheck
 								valueCheck = 'Pedido não gerado, erro ao obter informações.';
 								salvarEvidencia( diretorioIMG, listaExcel.get(i).getLinha()+" "+listaExcel.get(i).getApolice()+" "+dataRecuerada)
-								switchAtualizarExcel.switchUpdateExcel('CotacoesEspeciais', ExcelCopiado ,listaExcel.get(i).getApolice(), Integer.parseInt(listaExcel.get(i).getLinha()));
+								switchAtualizarExcel.switchUpdateExcel('CotacoesEspeciais', caminhoExcel ,listaExcel.get(i).getApolice(), Integer.parseInt(listaExcel.get(i).getLinha()));
 								iniciaAplicacaoMatriz('IntranetProdução');
 								realizaLoginIntraNetProducao(tipoAba);
 							}
@@ -163,19 +162,19 @@ public class CotacoesEspeciais extends backofficeFuncionalidades{
 							fluxoFecharJanelas();
 							alteraJanejaGenerica(0, 5)
 							valueCheck = 'enviado';
-							salvarInfoTelaAtualizarExcel(valueCheck, Integer.parseInt(listaExcel.get(i).getLinha()), ExcelCopiado , tipoAba, 34)
-							salvarInfoTelaAtualizarExcel("", Integer.parseInt(listaExcel.get(i).getLinha()), ExcelCopiado , tipoAba, 36)
-							salvarInfoTelaAtualizarExcel(pendencia, Integer.parseInt(listaExcel.get(i).getLinha()), ExcelCopiado , tipoAba, 39)
-							salvarInfoTelaAtualizarExcel("Gerado", Integer.parseInt(listaExcel.get(i).getLinha()), ExcelCopiado , tipoAba, 40)
+							salvarInfoTelaAtualizarExcel(valueCheck, Integer.parseInt(listaExcel.get(i).getLinha()), caminhoExcel , tipoAba, 34)
+							salvarInfoTelaAtualizarExcel("", Integer.parseInt(listaExcel.get(i).getLinha()), caminhoExcel , tipoAba, 36)
+							salvarInfoTelaAtualizarExcel(pendencia, Integer.parseInt(listaExcel.get(i).getLinha()), caminhoExcel , tipoAba, 39)
+							salvarInfoTelaAtualizarExcel("Gerado", Integer.parseInt(listaExcel.get(i).getLinha()), caminhoExcel , tipoAba, 40)
 						}
 					} else {
-
+						String alerta = valueCheck
 						valueCheck = 'Não Enviado [ERRO]';
 						String msg = valueCheck
 						salvarEvidencia( diretorioIMG, listaExcel.get(i).getLinha()+" "+listaExcel.get(i).getApolice()+" "+dataRecuerada)
-						switchAtualizarExcel.switchUpdateExcel('CotacoesEspeciais', ExcelCopiado ,listaExcel.get(i).getApolice(), Integer.parseInt(listaExcel.get(i).getLinha()));
-						auxiliares.WriteExcelFactory.updateSheetLine("", Integer.parseInt(listaExcel.get(i).getLinha()),  ExcelCopiado, msg, 34,'CotacoesEspeciais');
-						auxiliares.WriteExcelFactory.updateSheetLine("", Integer.parseInt(listaExcel.get(i).getLinha()),  ExcelCopiado, "Não há dados para mostrar em FG", 37,'CotacoesEspeciais');
+						switchAtualizarExcel.switchUpdateExcel('CotacoesEspeciais', caminhoExcel ,listaExcel.get(i).getApolice(), Integer.parseInt(listaExcel.get(i).getLinha()));
+						auxiliares.WriteExcelFactory.updateSheetLine("", Integer.parseInt(listaExcel.get(i).getLinha()),  caminhoExcel, msg, 34,'CotacoesEspeciais');
+						auxiliares.WriteExcelFactory.updateSheetLine("", Integer.parseInt(listaExcel.get(i).getLinha()),  caminhoExcel, alerta, 36,'CotacoesEspeciais');
 						iniciaAplicacaoMatriz('IntranetProdução');
 						realizaLoginIntraNetProducao(tipoAba);
 					}//RESULTADO DE UMA FROTA
@@ -186,16 +185,17 @@ public class CotacoesEspeciais extends backofficeFuncionalidades{
 					valueCheck = 'Não Enviado [ERRO]';
 					String msg = valueCheck
 					salvarEvidencia( diretorioIMG, listaExcel.get(i).getLinha()+" "+listaExcel.get(i).getApolice()+" "+dataRecuerada)
-					switchAtualizarExcel.switchUpdateExcel('CotacoesEspeciais', ExcelCopiado ,listaExcel.get(i).getApolice(), Integer.parseInt(listaExcel.get(i).getLinha()));
-					auxiliares.WriteExcelFactory.updateSheetLine("", Integer.parseInt(listaExcel.get(i).getLinha()),  ExcelCopiado, msg, 34,'CotacoesEspeciais');
+					switchAtualizarExcel.switchUpdateExcel('CotacoesEspeciais', caminhoExcel ,listaExcel.get(i).getApolice(), Integer.parseInt(listaExcel.get(i).getLinha()));
+					auxiliares.WriteExcelFactory.updateSheetLine("", Integer.parseInt(listaExcel.get(i).getLinha()),  caminhoExcel, msg, 34,'CotacoesEspeciais');
+					auxiliares.WriteExcelFactory.updateSheetLine("", Integer.parseInt(listaExcel.get(i).getLinha()),  caminhoExcel, "Não há dados para mostrar em FG", 36,'CotacoesEspeciais');
 				}//LISTAGEM DE RECIBOS
 			} catch (Exception e) {
 
 				valueCheck = 'Não Enviado [ERRO]';
 				String msg = valueCheck
 				salvarEvidencia( diretorioIMG, listaExcel.get(i).getLinha()+" "+listaExcel.get(i).getApolice()+" "+dataRecuerada)
-				switchAtualizarExcel.switchUpdateExcel('CotacoesEspeciais', ExcelCopiado ,listaExcel.get(i).getApolice(), Integer.parseInt(listaExcel.get(i).getLinha()));
-				auxiliares.WriteExcelFactory.updateSheetLine("", Integer.parseInt(listaExcel.get(i).getLinha()),  ExcelCopiado, msg, 34,'CotacoesEspeciais');
+				switchAtualizarExcel.switchUpdateExcel('CotacoesEspeciais', caminhoExcel ,listaExcel.get(i).getApolice(), Integer.parseInt(listaExcel.get(i).getLinha()));
+				auxiliares.WriteExcelFactory.updateSheetLine("", Integer.parseInt(listaExcel.get(i).getLinha()),  caminhoExcel, msg, 34,'CotacoesEspeciais');
 				iniciaAplicacaoMatriz('IntranetProdução');
 				realizaLoginIntraNetProducao(tipoAba);
 			}
@@ -300,11 +300,11 @@ public class CotacoesEspeciais extends backofficeFuncionalidades{
 	public static boolean finalizaProcesso(){
 		boolean processoFinalizado = false;
 		diretorio = createDiretory('Evidencias//CotacoesEspeciais'+dataRecuerada);
-		copiarExcel(ExcelCopiado, diretorio+"//CotacoesEspeciais-"+dataRecuerada+".xlsx");
+		copiarExcel(caminhoExcel, diretorio+"//CotacoesEspeciais-"+dataRecuerada+".xlsx");
 		//copiarExcel(ExcelCopiado, '\\x:\\Processados\\CotacoesEspeciais AGCS -'+dataRecuerada+'.xlsx');
 		//		copiarExcel(ExcelCopiado, '\\x:\\CotacoesEspeciais AGCS -'+dataRecuerada+'.xlsx');
-		deletarArquivosExcel(diretorioToDelete);
-		deleteFileDiretory(caminhoDiretorioExcel);
+		//deletarArquivosExcel(diretorioToDelete);
+		//deleteFileDiretory(caminhoDiretorioExcel);
 		processoFinalizado = true;
 		return processoFinalizado;
 	}
@@ -319,28 +319,47 @@ public class CotacoesEspeciais extends backofficeFuncionalidades{
 		pathTxtEmail = "C:/Users/Public/RPA_ALLIANZ/Emails/ConfiguracoesCotacoesEspeciaisAGCS/ConfiguracoesCotacoesEspeciaisAGCS.txt";
 		lerConfigurações(pathTxtEmail)
 		String emaildestination = StringFormatter.formatterEmailDestination(FileInput.readFile(pathTxtEmail));
-		path1 = '\\C:\\Users\\Public\\Evidencias\\CotacoesEspeciais'+dataRecuerada+"\\CotacoesEspeciais-"+dataRecuerada+".xlsx";
-		String nomeArquivo = 'CotacoesEspeciais '+dataRecuerada+'.xlsx';
-
-		zipDirectory(diretorioIMG, diretorioIMG+'.zip')
-		WebUI.delay(5);
-
+		String nomeArquivo = 'RenovacaoCotacoes.xlsx';
+		System.out.println(nomeArquivo);
+		System.err.println(caminhoExcel)
 		try{
-			listaExcel = switchLeitorExcel.switchExcel(path1, tipoAba);
+			listaExcel = switchLeitorExcel.switchExcel(caminhoExcel, tipoAba);
+			String emailCDAGRUP = emailCDAGRUP(carregaDados(switchLeitorExcel.switchAnyExcel(caminhoExcel, tipoAba)));
+			System.out.println("emailCDAGRUP ["+emailCDAGRUP+"]");
 			if(listaExcel.size()==0){
 				List<String> anexos = new ArrayList<>();
-				anexos[0] = path1;
+				anexos[0] = caminhoExcel;
 				anexos[1] = nomeArquivo;
-				//anexos[2] = diretorioIMG+'.zip';
-				//anexos[3] = "Renovações Cotação Especiais - Evidencias.zip";
-				sendEmail.CreateEmail.createEmailSendMultipleFiles(sender, emaildestination+", "+emailCDAGRUP, pwdsender, anexos, host, porta, tipoAba )
-
+				System.out.println("emaildestination ["+emaildestination+"]");
+				String emails = emailCDAGRUP+","+emaildestination
+				System.out.println(emails);
+				sendEmail.CreateEmail.createEmailSendMultipleFiles(sender, emails, pwdsender, anexos, host, porta, tipoAba )
 			}
 		} catch (Exception e){
 			enviarCotacoesEspeciais(tipoAba);
 		}
 	}
 
+	/**
+	 * @author Alz_sup54955
+	 * @param listaExcel
+	 * @return
+	 */
+	public static String carregaDados(List<MassaDados> listaExcel){
+		String ramo
+		for (int i = 0; i < listaExcel.size();i++){
+			System.err.println( "RAMO ["+listaExcel.get(i).getRamoModalidade() +"]"
+							   +"GERA PEDIDO ["+listaExcel.get(i).getGeraPedido()+"]"
+							   +"AGRUP RAMO "+listaExcel.get(i).getAgrupamentoRamo()+"]")
+			if(listaExcel.get(i).getGeraPedido().equals("Gerado") ){
+				ramo = listaExcel.get(i).getAgrupamentoRamo().trim();
+				break;
+			}
+		}
+		return ramo;
+	}
+	
+	
 	/**
 	 * @author ALZ_ServiceQA
 	 * @param tipoAba
@@ -408,8 +427,9 @@ public class CotacoesEspeciais extends backofficeFuncionalidades{
 	public static String emailCDAGRUPRAMO(List<MassaDados> listaExcel){
 		String email
 		for (int i = 0; i < listaExcel.size();i++){
-			email = emailCDAGRUP( listaExcel.get(i).getAgrupamentoRamo())
-			System.err.println(email)
+			System.err.println("["+listaExcel.get(i).getAgrupamentoRamo().trim()+"]")
+			email = emailCDAGRUP( listaExcel.get(i).getAgrupamentoRamo()).trim()
+			System.err.println("emailCDAGRUPRAMO ["+email+"]")
 			break
 		}
 		return email
@@ -422,7 +442,7 @@ public class CotacoesEspeciais extends backofficeFuncionalidades{
 	 */
 	public static String emailCDAGRUP(String email){
 		Map<String, String> hashRamo = new HashMap<String, String>()
-		//hashRamo.put('Transportes/Náutica','thiago.alves@allianz.com.br');
+		hashRamo.put('Transportes/Náutica','nathiara.silva@allianz.com.br');
 		hashRamo.put('AGCS','mariana.silva@allianz.com.br');
 		return hashRamo.get(email.toString());
 	}

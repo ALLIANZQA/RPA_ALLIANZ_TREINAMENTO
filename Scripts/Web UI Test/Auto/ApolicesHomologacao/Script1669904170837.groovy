@@ -27,10 +27,17 @@ try {
 	 *
 	 * Para execuções em ambientes de produção usar:
 	 * PRD
+	 * 
+	 * 19/03/24
+	 * 
+	 * DES: Desarrollo  
+	 * INT: Integración
+	 * PRE: Pre-Producción
 	 */
-   auto.ApolicesHomologacaoFuncionalidades.fluxoApolicesHomologacaoFuncionalidades('ApolicesHomologacao', 'PRD')
+   auto.ApolicesHomologacaoFuncionalidades.fluxoApolicesHomologacaoFuncionalidades('ApolicesHomologacao', 'PRD', 'INT')
    WebUI.closeBrowser();
   } catch (Exception e) {
+    auto.ApolicesHomologacaoFuncionalidades.enviarEmailError("Error", 'ApolicesHomologacao' );
 	System.err.println("Falha ao Realizar Recusa Proposta Auto"+e);
 	WebUI.closeBrowser();
  }

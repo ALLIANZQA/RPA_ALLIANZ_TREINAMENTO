@@ -154,4 +154,23 @@ public class tipoLeituraExcel {
 		println 'Tamanho total ['+listMassaDados.size()+']'
 		return listMassaDados;
 	}
+	
+	
+	
+	/**
+	 * @param caminhoExcel
+	 * @param aba
+	 * @return
+	 */
+	public static List<MassaDados> leituraExcel(String caminhoExcel, String aba){
+		int lineCheck = 7;
+		List<MassaDados> listMassaDados = new ArrayList<MassaDados>();
+		listMassaDados = auxiliares.WriteExcelFactory.readExcelAllFileToObjectMassaDados(caminhoExcel, aba,lineCheck);
+		println 'Tamanho total ['+listMassaDados.size()+']'
+		return listMassaDados;
+	}
+	
+	
+	
+	
 }

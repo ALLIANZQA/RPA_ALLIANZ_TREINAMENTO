@@ -166,15 +166,15 @@ public class AutoTemplateMessage extends MessageFactory{
 				"</td>" +
 				"</tr>" +
 				"<tr>" +
-				"<td>" +
-				"	<table border='0' cellpadding='0' cellspacing='0'>" +
-				"		<td width='11'>&nbsp;</td>" +
-				"		<td width='22' bgcolor='#e3ebaf'>&nbsp;</td>" +
-				"		<td bgcolor='#e3ebaf' height='62' width='556' style='font-family: Arial, Helvetica, SansSerif; color: #003781; font-size: 13px; font-weight: bold; letter-spacing: -0.2px; line-height: 21px'>" +
-				"			Você já sabe, mas vale lembrar, a SulAmérica Auto agora é Allianz!" +
-				"		</td>" +
-				"	</table>" +
-				"</td>" +
+//				"<td>" +
+//				"	<table border='0' cellpadding='0' cellspacing='0'>" +
+//				"		<td width='11'>&nbsp;</td>" +
+//				"		<td width='22' bgcolor='#e3ebaf'>&nbsp;</td>" +
+//				"		<td bgcolor='#e3ebaf' height='62' width='556' style='font-family: Arial, Helvetica, SansSerif; color: #003781; font-size: 13px; font-weight: bold; letter-spacing: -0.2px; line-height: 21px'>" +
+//				"			Você já sabe, mas vale lembrar, a SulAmérica Auto agora é Allianz!" +
+//				"		</td>" +
+//				"	</table>" +
+//				"</td>" +
 				"</tr>" +
 				"<tr><td height='30'>&nbsp;</td></tr>" +
 				"<tr>" +
@@ -338,18 +338,18 @@ public class AutoTemplateMessage extends MessageFactory{
 				"</td>" +
 				"</tr>" +
 				"<tr>" +
-				"<td>" +
-				"	<table border='0' cellpadding='0' cellspacing='0'>" +
-				"		<td width='11'>&nbsp;</td>" +
-				"		<td width='22' bgcolor='#e3ebaf'>&nbsp;</td>" +
-				"		<td bgcolor='#e3ebaf' height='107' width='556' style='font-family: Arial, Helvetica, SansSerif; color: #414141; font-size: 13px; font-weight: 300; letter-spacing: -0.2px; line-height: 21px'>" +
-				"			<b style='color: #003781;'>Você sabia que a SulAmérica Auto e Massificados agora é Allianz?</b> <br>" +
-				"		    E a Allianz é líder global em seguros, <b><i>com mais de 2,7 milhões de veículos segurados no <br>" +
-				"			Brasil </i></b>, e está super preparada para proteger o seu veículo." +
-				"		</td>" +
-				"	</table>" +
-				"</td>" +
-				"</tr>" +
+//				"<td>" +
+//				"	<table border='0' cellpadding='0' cellspacing='0'>" +
+//				"		<td width='11'>&nbsp;</td>" +
+//				"		<td width='22' bgcolor='#e3ebaf'>&nbsp;</td>" +
+//				"		<td bgcolor='#e3ebaf' height='107' width='556' style='font-family: Arial, Helvetica, SansSerif; color: #414141; font-size: 13px; font-weight: 300; letter-spacing: -0.2px; line-height: 21px'>" +
+//				"			<b style='color: #003781;'>Você sabia que a SulAmérica Auto e Massificados agora é Allianz?</b> <br>" +
+//				"		    E a Allianz é líder global em seguros, <b><i>com mais de 2,7 milhões de veículos segurados no <br>" +
+//				"			Brasil </i></b>, e está super preparada para proteger o seu veículo." +
+//				"		</td>" +
+//				"	</table>" +
+//				"</td>" +
+//				"</tr>" +
 				"<tr>" +
 				"<td height='536'>" +
 				"	<table border='0' cellpadding='0' cellspacing='0'>" +

@@ -21,6 +21,7 @@ try {
 	 backoffice.EnvioPendenciaGOInspecaoFuncionalidades.fluxoEnvioPendenciaGOInspecao('envioPendenciaGOInspecao');
 	 WebUI.closeBrowser();
 	} catch (Exception e) {
-	  System.err.println("Falha ao Realizar Enviso Aviso Inspeção Go"+e);
+	  backoffice.EnvioPendenciaGOInspecaoFuncionalidades.enviarEmailError("Error", 'envioPendenciaGOInspecao' );
+	  System.err.println("Falha ao Realizar Enviso Aviso Inspeção Go\n"+e);
 	  WebUI.closeBrowser();
    }

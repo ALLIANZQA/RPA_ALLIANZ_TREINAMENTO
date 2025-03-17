@@ -2,7 +2,6 @@ denilson.inmetricsext@allpronet.com.br
 andre.antunes@allianz.com.br
 andreia.pereira@allianz.com.br
 rafael.marani@allianz.com.br
-jaciara.paulon@allianz.com.br
 carlos.gomes@allianz.com.br
 filipe.serpeloni@allianz.com.br
 paula.cinali@allianz.com.br
@@ -10,5 +9,8 @@ david.polvere@allianz.com.br
 neandro.macedo@allianz.com.br
 ana.constantino@allianz.com.br
 karla.cunha@allianz.com.br
+vera.nunes@allianz.com.br
+vanessa.amaral@allianz.com.br
+
 
 

@@ -124,7 +124,7 @@ public class DistribuicaoAutomaticaInspecaoRiscoFuncionalidades extends rpaComma
 					List<String> distribuicao = new ArrayList<>();
 					lista( distribuicao , i)
 					WebUI.delay(3);
-					modificarRegistro(distribuicao)
+					if(modificarRegistro(distribuicao)){
 					if(selecionatemTabelaVerificacao){
 						criarRegistro(distribuicao)
 					}
@@ -141,7 +141,12 @@ public class DistribuicaoAutomaticaInspecaoRiscoFuncionalidades extends rpaComma
 							init(tipoAba)
 						}
 					} catch (Exception e){}
-				}
+				   
+				    } else {
+				      auxiliares.WriteExcelFactory.updateSheetLine("", lina,path, 'Processado', 22, 'DistribuicaoAutomaticaIR');
+				      auxiliares.WriteExcelFactory.updateSheetLine("", lina,path, alerta, 23, 'DistribuicaoAutomaticaIR');
+				    }
+			   }
 			} catch (Exception e) {
 				auxiliares.WriteExcelFactory.updateSheetLine("", lina,path, 'Processado', 22, 'DistribuicaoAutomaticaIR');
 				auxiliares.WriteExcelFactory.updateSheetLine("", lina,path, alerta, 23, 'DistribuicaoAutomaticaIR');
@@ -165,13 +170,14 @@ public class DistribuicaoAutomaticaInspecaoRiscoFuncionalidades extends rpaComma
 			selecionaList(distribuicao[10], '//*[@id="tipoProf"]', 'option', 0 )
 
 			//Cod Prof
-			selecionaList(distribuicao[0], '//*[@id="grupoProf"]', 'option', 0 )
+			selecionaList(distribuicao[1], '//*[@id="grupoProf"]', 'option', 0 )
 
 			//Opcoes Disponiveis
 			selecionaList(distribuicao[9], '//*[@id="opcao"]', 'option', 0 )
 
 			//Aceitar
-			clickXpath('//*[@id="o_4"]', 5);
+			//clickXpath('//*[@id="o_4"]', 5);
+			selecionaList("Aceitar", '//*[@id="sectionEscolhaInicialSectionBar"]/table/tbody', 'div', 5 )
 
 			//Zona
 			limpaCampo('//*[@id="pesquisaZona"]', 0)
@@ -183,13 +189,19 @@ public class DistribuicaoAutomaticaInspecaoRiscoFuncionalidades extends rpaComma
 			//TABELA VERIFICAÇÕES
 			selecionatemTabelaVerificacao(distribuicao)
 			WebUI.delay(5)
-			alerta = recuperaValor('//*[@id="dataErrorSection"]/table/tbody/tr/td[2]', 'textContent', 2)
-			modificar = true
+			alerta = recuperaValor('//*[@id="tabelaManutencao_tbody"]/tr', 'innerText', 2)
+			
+			if( alertListBlocList(alerta)){
+				modificar = false;
+			}else{
+			    modificar = true;
+			}
 		} catch (Exception e){
 			modificar = false
 			alerta = 'Falha ao modificar registro'
 			selecionatemTabelaVerificacao = true
 		}
+		return modificar;
 	}
 
 	/**
@@ -236,7 +248,6 @@ public class DistribuicaoAutomaticaInspecaoRiscoFuncionalidades extends rpaComma
 	 * @return
 	 */
 	public static selecionatemTabelaVerificacao(List<String> distribuicao ){
-
 		try{
 			WebUI.delay(5)
 			String xpath = '//*[@id="tabelaManutencao_tbody"]'
@@ -246,13 +257,15 @@ public class DistribuicaoAutomaticaInspecaoRiscoFuncionalidades extends rpaComma
 			selecionaListaDeElementos(xpath,tag)
 			int tableLines = listOfElements.size()
 			System.out.println("Table Lines ["+tableLines+"]")
-
+			String t = StringFormatter.removeEspacosEmBranco(distribuicao[3]);
+			
 			for(int i = 0; i < tableLines; i++){
 				System.out.print("*")
-				System.out.println("\n["+i+"] ["+listOfElements[i].getText()+"] ["+distribuicao[3]+"]")
-				if(listOfElements[i].getText().contains(distribuicao[3].toString())){
-					System.out.println("\n["+i+"] ["+listOfElements[i].getText()+"] ["+distribuicao[3]+"]")
+				System.out.println("\n["+i+"] ["+listOfElements[i].getText()+"] ["+t+"]")
+				if(listOfElements[i].getText().contains(t.trim())){
+					System.out.println("\n["+i+"] ["+listOfElements[i].getText()+"] ["+t+"]")
 					String index = String.valueOf(i)
+					System.out.print("index: ["+index+"]")
 					String xpathCheck = '//*[@id="checkBox'+index+'"]'
 					clickXpath(xpathCheck, 1);
 					//Modificar

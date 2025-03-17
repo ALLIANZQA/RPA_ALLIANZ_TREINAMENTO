@@ -18,8 +18,8 @@ import internal.GlobalVariable as GlobalVariable
 try {
 	/**
 	 * @author be54955
-	 * BDM-5828
-	 * [AUTO] Robô para carga de apolices em Homologação
+	 * IBLBDM-374
+	 * Robô Reajuste Saúde - APLICAÇÃO POOL_SILK
 	 *
 	 * Data : 30/11/2022
 	 *

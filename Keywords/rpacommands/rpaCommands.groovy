@@ -95,6 +95,7 @@ import javax.imageio.ImageIO;
 import auxiliares.TakesScreenshots
 import auxiliares.MenuMatriz
 import auxiliares.ExtractDates
+import auxiliares.StringFormatter
 
 /**
  * @author T_dvlopes
@@ -184,6 +185,21 @@ public class rpaCommands  {
 			auxiliares.UserPassword.getUsuarioSenha(nomeArquivo)
 			preencheXpathSetText('//*[@id="nx-input-0"]', auxiliares.UserPassword.getUser(), 20);
 			preencheXpathSetText('//*[@id="nx-input-1"]', auxiliares.UserPassword.getSenha(), 1);
+			WebUI.delay(2)
+			usuarioGenericoTransacional(generico)
+			WebUI.delay(2)
+			clickXpath('//*/div/button',0);
+		} catch (Exception e) {
+			System.err.println('Falha ao realizar Login MatrizProdução' + e);
+			finalizar();
+		}
+	}
+
+	public static void realizaLoginDevNetProducaoTransacionalCommands(String nomeArquivo, String generico){
+		try{
+			//			auxiliares.UserPassword.getUsuarioSenha(nomeArquivo)
+			//			preencheXpathSetText('//*[@id="nx-input-0"]', auxiliares.UserPassword.getUser(), 20);
+			//			preencheXpathSetText('//*[@id="nx-input-1"]', auxiliares.UserPassword.getSenha(), 1);
 			WebUI.delay(2)
 			usuarioGenericoTransacional(generico)
 			WebUI.delay(2)
@@ -627,7 +643,7 @@ public class rpaCommands  {
 
 
 	public static fecharJanelaAtual(int qtd){
-		WebUI.delay(2);
+		WebUI.delay(4);
 		String x;
 		WebDriver driver = DriverFactory.getWebDriver();
 		Set  st= driver.getWindowHandles();
@@ -653,12 +669,16 @@ public class rpaCommands  {
 	 * @author T_dvlopes
 	 */
 	public static preencheXpath(String xpath, String texto, int delay){
-		if(delay >0){
-			WebUI.delay(delay);
+		try{
+			if(delay >0){
+				WebUI.delay(delay);
+			}
+			WebDriver driver = DriverFactory.getWebDriver();
+			WebElement element = driver.findElement(By.xpath(xpath));
+			element.sendKeys(texto);
+		} catch (Exception e ){
+			print(e)
 		}
-		WebDriver driver = DriverFactory.getWebDriver();
-		WebElement element = driver.findElement(By.xpath(xpath));
-		element.sendKeys(texto);
 	}
 
 
@@ -844,6 +864,7 @@ public class rpaCommands  {
 		urls.put('IntranetProdução', 'https://www.br.intrallianz.com/ngx-intranet/public/home');
 		urls.put('IntranetSinistro', 'http://crivo_reports.intrallianz.es/#/login');
 		urls.put('IntranetTransacional', 'https://wwwi.br.intrallianz.com/ngx-intranet/public/home');
+		urls.put('IntranetDesenvolvimento', 'https://wwwd.br.intrallianz.com/ngx-intranet/public/home');
 		return urls.get(url.toString());
 	}
 
@@ -2495,16 +2516,18 @@ public class rpaCommands  {
 	 * @return
 	 */
 	public static renomearArquivo(String pathFileValue, String namePdf){
-		File f = new File(pathFileValue);
-		String nameReplace = namePdf.replace("/", "-").replace(".", "-");
-		//if (f.renameTo(new File(pathFileValue+"C:\\Users\\Public\\"+nameReplace+".PDF")))
-		if (f.renameTo(new File("C:\\Users\\Public\\"+nameReplace+".PDF")))
-		{
-			System.out.println("Arquivo renomeado");
-		}
-		else{
-			System.out.println("Arquivo renomeado");
-		}
+		try{
+			File f = new File(pathFileValue);
+			String nameReplace = namePdf.replace("/", "-").replace(".", "-");
+			//if (f.renameTo(new File(pathFileValue+"C:\\Users\\Public\\"+nameReplace+".PDF")))
+			if (f.renameTo(new File("C:\\Users\\Public\\"+nameReplace+".PDF")))
+			{
+				System.out.println("Arquivo renomeado");
+			}
+			else{
+				System.out.println("Arquivo renomeado");
+			}
+		} catch (Exception e){}
 
 	}
 
@@ -3221,6 +3244,41 @@ public class rpaCommands  {
 		return f
 		WebUI.delay(2)
 	}
+	
+	/**
+	 * @author T_DCDias
+	 * @return
+	 */
+	public static selecionaItemListaTimer(String tipo,String xpath , String tag, int t ){
+		boolean f = false
+		if(t ==0){
+			selecionaListaDeElementos(xpath,tag)
+			for(int i = 0; i < listOfElements.size(); i++){
+				System.err.println("["+i+"]  ["+listOfElements[i].getAttribute('value')+"] ["+listOfElements[i].getText()+"]")
+				if(listOfElements[i].getText().equals(tipo.toString())){
+					//System.err.println("FOUND ["+i+"] ["+listOfElements[i].getText()+"]")
+					listOfElements[i].click()
+					f = true
+					break
+				}
+			}
+		} else {
+		WebUI.delay(t)
+		selecionaListaDeElementos(xpath,tag)
+		for(int i = 0; i < listOfElements.size(); i++){
+			System.err.println("["+i+"]  ["+listOfElements[i].getAttribute('value')+"] ["+listOfElements[i].getText()+"]")
+			if(listOfElements[i].getText().equals(tipo.toString())){
+				//System.err.println("FOUND ["+i+"] ["+listOfElements[i].getText()+"]")
+				listOfElements[i].click()
+				f = true
+				break
+			}
+		}
+		
+		}
+		return f
+		WebUI.delay(t)
+	}
 
 	/**
 	 * @author T_DCDias
@@ -3268,6 +3326,7 @@ public class rpaCommands  {
 	 */
 	public static selecionaItemListaContains(String tipo,String xpath , String tag ){
 		WebUI.delay(2)
+		boolean item = false ;
 		selecionaListaDeElementos(xpath,tag)
 		for(int i = 0; i < listOfElements.size(); i++){
 			System.err.println("["+i+"] ["+listOfElements[i].getText()+"]")
@@ -3382,6 +3441,24 @@ public class rpaCommands  {
 			//Pesquisar
 				clickXpath('//*[@id="componenteReferencia"]/div/div[1]/div[11]/nx-icon', 1);
 				break;
+			case "Prestadores/Oficinas":
+			//Pesquisar
+				clickXpath('//*[@id="empledados"]/nx-ibl-identification-number-br/nx-ibl-identification-number-common/div/form/div/div/div[1]/nx-formfield/div/div/div/div/div/nx-dropdown/div/div[2]/nx-icon', 1);
+				try{
+					selecionaListaDeElementos('//*[@id="cdk-overlay-1"]','div')
+					for(int i = 0; i < listOfElements.size(); i++){
+						System.out.println("["+i+"] ["+listOfElements[i].getText() +"]" )
+						if(listOfElements[i].getText().equals("CPF / CNPJ")){
+							listOfElements[i].click()
+							//		break
+						}
+					}
+				} catch (Exception e){}
+			//DOCUMENTO
+				preencheXpath('//*[@id="nx-input-5"]', registros[0],0);
+			//Pesquisar
+				clickXpath('//*[@id="componenteReferencia"]/div/div[1]/div[11]/nx-icon', 1);
+				break;
 		}
 
 	}
@@ -3398,6 +3475,21 @@ public class rpaCommands  {
 		process.put('P-PolizaINT', 'POLIZA');
 		process.put('P-PolizaPRD', 'APÓLICE');
 		process.put('P-PropostaPRD', 'APÓLICE');
+		process.put('Prestadores/Oficinas', 'Prestadores/Oficinas');
+		process.put('Agente Susep', 'Agente Susep');
+		return process.get(p.toString());
+	}
+	
+	/**
+	 * @author be54955
+	 * @param p
+	 * @return
+	 */
+	public static String  processoFGEditorCorrespondencia(String p){
+		Map<String, String> process = new HashMap<String, String>()
+		process.put('Apólice', 'APÓLICE');
+		process.put('Cliente', 'CLIENTE');
+		process.put('Agente Susep', 'Agente Susep');
 		return process.get(p.toString());
 	}
 
@@ -3497,7 +3589,7 @@ public class rpaCommands  {
 			}
 		}
 		linha = strb.toString()
-		System.out.println("LINHA ["+linha+"]")
+		System.out.println("\nLINHA ["+linha+"]\n")
 		return linha
 	}
 
@@ -3561,14 +3653,39 @@ public class rpaCommands  {
 		try{
 			if(s.toString().contains(v1.toString())){
 				bv1 = true
-				System.out.println(bv1)
+				System.out.println("["+v1+"] ["+bv1+"]")
 			}
 			if(s.toString().contains(v2.toString())){
 				bv2 = true
-				System.out.println(bv2)
+				System.out.println("["+v2+"] ["+bv2+"]")
 			}
 			if(bv1&&bv2){b = true}
-			System.out.println("\n["+s+"] ["+v1+"] ["+v2+"] ["+b+"]")
+			System.out.println("\nFOUND ["+s+"] ["+v1+"] ["+v2+"] ["+b+"]")
+			System.out.println()
+		} catch (Exception e){
+
+		}
+		return b
+	}
+
+	/**
+	 * *****************************8NOVA FICHA GESTÃO *****************************
+	 * @param v1
+	 * @param v2
+	 * @param s
+	 * @return
+	 * Metodo de seleção de itens na tela de ficha e gestão
+	 */
+	public static boolean identificaDadosEmUmaColunaNaLinha(String v2, String s){
+		System.out.println("["+v2+" - "+s+"]")
+		boolean b=false
+		try{
+			if(s.toString().contains(v2.toString())){
+				b = true
+				System.out.println("["+v2+"] ["+b+"]")
+			}
+			System.out.println("\nFOUND ["+s+"] ["+v2+"] ["+b+"]")
+			System.out.println()
 		} catch (Exception e){
 
 		}
@@ -3666,7 +3783,7 @@ public class rpaCommands  {
 		System.err.println("\nalertListBloc ["+alert+"]")
 		boolean r = false
 
-		if(alert.length()>0){
+		if(alert.length()>4){
 			List<String> listOfAlerts = new ArrayList<String>()
 			//listOfAlerts.add("Erro on epac2020 on QA mode")
 			listOfAlerts.add("Apólice a renovar já utilizada")
@@ -3701,6 +3818,7 @@ public class rpaCommands  {
 			listOfAlerts.add(" Deve confirmar a conta bancária")
 			listOfAlerts.add(" Estado civil obrigatório")
 			listOfAlerts.add(" Campo necessário")
+			listOfAlerts.add(" Campo Obrigatório")
 			listOfAlerts.add(" Categoria do risco obrigatória")
 			listOfAlerts.add(" Código de compañía no valido")
 			listOfAlerts.add(" Banco indisponível para emissão")
@@ -3739,6 +3857,25 @@ public class rpaCommands  {
 			listOfAlerts.add(" Emissão não permitida! Fora do prazo de 30 dias permitido pela SUSEP")
 			listOfAlerts.add(" Não e permitida a emissão futura acima de 30 dias")
 			listOfAlerts.add("Não existem dadosr")
+			listOfAlerts.add(" Não é possivel enviar por e-mail")
+			listOfAlerts.add("Não há dados")
+			listOfAlerts.add("404 - Página no encontrada.")
+			listOfAlerts.add(" Nível de autorização insuficiente para desbloqueio")
+			listOfAlerts.add("Não existem dados")
+			listOfAlerts.add(" Não existem dados")
+			listOfAlerts.add(" Campo obrigatório quando o campo moeda é informado.")
+			listOfAlerts.add(" Erro no processo de emissão (00007)")
+			listOfAlerts.add(" Erro no processo de emissão (00516)")
+			listOfAlerts.add(" Erro no processo de emissão (00227)")
+			listOfAlerts.add(" Erro no processo de emissão (99999)")
+			listOfAlerts.add(" Erro no processo de emissão (00100)")
+			listOfAlerts.add(" Erro de validação de datos")
+			listOfAlerts.add(" NÃO EXISTEM DADOS.")
+			listOfAlerts.add(" Nenhum registro encontrado para os parâmetros informados!")
+			listOfAlerts.add(" RECIBO NO PENDENTE OU BANCÁRIO")
+			listOfAlerts.add(" Não pode ser autorizado, porque apólice tem itens bloqueados ou com erro. Entre por modificação.")
+			listOfAlerts.add(" ACÇÃO NÃO VALIDA. DATA INFERIOR À ACTUAL")
+			listOfAlerts.add(" Preencha o e-mail do Destinatário")
 			System.out.println("Alert -["+alert+"]-")
 			for(int i = 0; i < listOfAlerts.size(); i++){
 				System.err.println("["+i+"] ["+listOfAlerts[i]+"]")
@@ -3778,7 +3915,11 @@ public class rpaCommands  {
 		listOfAlerts.add(" Erro em la conversión de Datos")
 		listOfAlerts.add(" O registro foi registrado corretamente no banco de dados")
 		listOfAlerts.add(" Carências são obrigatórias para menos que 10 vidas. Favor rever.")
-
+		listOfAlerts.add(" Ativação realizada")
+		listOfAlerts.add(" Vistoria prévia dispensada")
+		//	listOfAlerts.add(" Prestador Corretamente Modificado")
+		listOfAlerts.add(" Prestador necessita pelo menos um Representante Legal registado.")
+		
 		System.out.println("Alert -["+alert+"]-")
 		for(int i = 0; i < listOfAlerts.size(); i++){
 			System.err.println("["+i+"] ["+listOfAlerts[i]+"]")
@@ -3825,6 +3966,26 @@ public class rpaCommands  {
 		listOfAlerts.add("LISTA BLOQUEIOS")
 		listOfAlerts.add("RESULTADO OPERACIONAL")
 		listOfAlerts.add("CONSULTAS BD PRODUÇÃO")
+		listOfAlerts.add("PRESTADORES")
+		listOfAlerts.add("GESTÃO PRESTADORES")
+		listOfAlerts.add("GESTÃO OFICINAS")
+		listOfAlerts.add("INFORMAÇÃO TÉCNICA OFICINAS")
+		listOfAlerts.add("Ficha de Gestão")
+		listOfAlerts.add("Ficha Gestión")
+		listOfAlerts.add("ANEXAR DOCUMENTOS - LI")
+		listOfAlerts.add("DADOS GERAIS (AZR)")
+		listOfAlerts.add("SINISTROS DE SAÚDE")
+		listOfAlerts.add("GESTÃO DE FICHEIROS BANCÁRIOS")
+		listOfAlerts.add("GESTÃO CRÉDITOS")
+		listOfAlerts.add("OCORRÊNCIAS AGRUPADAS POR MÊS")
+		listOfAlerts.add("DADOS DA OCORRÊNCIA")
+		listOfAlerts.add("CONSULTA DE AVISO DE CRÉDITO")
+		listOfAlerts.add("CONSULTA DE DOCUMENTOS A REGULARIZAR")
+		listOfAlerts.add("GESTÃO SAÚDE")
+		listOfAlerts.add("GESTÃO DE REPRESENTANTES LEGAIS")
+		listOfAlerts.add("EDITOR CORRESPONDÊNCIA")
+		listOfAlerts.add("2ª VIA-RECIBO")
+		
 		//	listOfAlerts.add(" Emissão não permitida! Fora do prazo de 30 dias permitido pela SUSEP")
 
 		System.out.println("Tela -["+alert+"]-")
@@ -3937,7 +4098,10 @@ public class rpaCommands  {
 				realizaLoginIntraNetProducaoTransacionalCommands(abaAmbiente,'Produção e recibos');
 				break;
 			case "PRD":
-				realizaLoginIntraNetProducaoCommands(abaAmbiente)
+				realizaLoginIntraNetProducaoCommands(abaAmbiente);
+				break;
+			case "DEV":
+				realizaLoginDevNetProducaoTransacionalCommands(abaAmbiente,'Produção e recibos');
 				break;
 		}
 	}
@@ -3951,6 +4115,7 @@ public class rpaCommands  {
 		Map<String, String> urls = new HashMap<String, String>()
 		urls.put('PRD','IntranetProdução');
 		urls.put('INT','IntranetTransacional');
+		urls.put('DEV','IntranetDesenvolvimento');
 		return urls.get(aba.toString());
 	}
 
@@ -4176,6 +4341,105 @@ public class rpaCommands  {
 		System.err.println('Total de renovações por data ['+listaExcelDatas.size()+']')
 		return listaExcelDatas
 	}
+
+
+
+	/**
+	 * @author T_dvlopes
+	 * @param tipoAba
+	 * @return
+	 * Campo "tipoAba" usar a informação "Error"
+	 * 
+	 */
+	public static void  enviarEmailError(String tipoAba, String assunto ){
+		try{
+		   pathTxtEmail = "C:\\Users\\Public\\RPA_ALLIANZ\\Emails\\Erro\\ConfiguracoesErro.txt";
+		   lerConfigurações(pathTxtEmail);
+		   String emaildestination = StringFormatter.formatterEmailDestination(FileInput.readFile(pathTxtEmail));
+		   List<String> anexos = new ArrayList<>();
+	       sendEmail.CreateEmail.createEmailSendError(sender, emaildestination, pwdsender, anexos, host, porta, tipoAba, assunto+" - "+ ExtractDates.horaAtualizada() );
+		} catch (Exception e){
+		  System.err.print("Falha ao enviar e-mail de notificação de erro no robô. "+e)
+		}
+	}
+
+	
+	/**
+	 * @author T_dvlopes
+	 * @param doc
+	 * @return
+	 * Metodo para completar auxência de campos em um CNPJ
+	 *
+	 */
+	public static String ajusteCNPJ(String doc ){
+	  String s;
+	  int i = doc.length();
+	  int n = 14;
+	  int z = 14-doc.length();
+	  String nString;
+	  StringBuilder strbdr = new StringBuilder();
+	  if(i<n){
+		 for (int j = 0; j<z;j++ ){
+			strbdr = strbdr.append(0);
+		 }
+		 System.out.println("DIFERENÇA "+strbdr.length());
+		 StringBuilder nstrbdr = new StringBuilder();
+		 s = nstrbdr.append(strbdr+doc).toString();
+		 System.out.println("DOCUMETO ATUALIZADO ["+s+"] ["+s.length()+"]")
+	  } else {
+		System.out.println("DOCUMETO SEM ALTERAÇÃO ["+doc+"] ["+doc.length()+"]")
+		s=doc;
+	  }
+	 return s;
+	}
+
+
+	public static tipoReferencia(List<String> registros , int a, int b, int c){
+		System.out.println();
+		//ABRIR SELEÇÃO
+		abreReferencia();
+		//SELECIONAR
+		System.out.println("Processo ["+registros[6]+"]")
+		MenuMatriz.subMenu('//*[@id="cdk-overlay-0"]/div/div[2]', "div",processoFGEditorCorrespondencia(registros[a]))
+		switch(registros[a]){
+			case "Apólice":
+			//Proposta
+				preencheXpath('//*[@id="nx-input-1"]', registros[b],0);
+			//Aplica
+				preencheXpath('//*[@id="nx-input-2"]', registros[c],0);
+			//Pesquisar
+				clickXpath('//*[@id="componenteReferencia"]/div/div[1]/div[11]/nx-icon', 1);
+				break;
+			case "Cliente":
+			//Documento
+				preencheXpath('//*[@id="nx-input-4"]', registros[b],0);
+			//Pesquisar
+				clickXpath('//*[@id="componenteReferencia"]/div/div[1]/div[11]/nx-icon', 1);
+				break;
+			case "Agente Susep":
+			//Referencia
+				preencheXpath('//*[@id="nx-input-0"]', registros[b],0);
+			//Pesquisar
+				clickXpath('//*[@id="componenteReferencia"]/div/div[1]/div[11]/nx-icon', 1);
+				break;
+		}
+	}
+
+	public static void abreReferencia(){
+		String xpath ='//*[@id="componenteReferencia"]/div'
+		 String tag="nx-icon"
+		 try{
+			 selecionaListaDeElementos(xpath,tag)
+			 for(int i = 0; i < listOfElements.size(); i++){
+				 System.out.println("["+i+"] ["+listOfElements[i].getTagName() +"]" )
+				 if(listOfElements[i].getTagName().contains(tag)){
+					 listOfElements[i].click()
+					 //		break
+				 }
+			 }
+		 } catch (Exception e){}
+	}
+
 }
 
 

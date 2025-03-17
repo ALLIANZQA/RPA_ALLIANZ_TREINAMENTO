@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="RPA" time="9.258" tests="1" failures="0" errors="0">
+   <testsuite name="RPA" tests="1" failures="0" errors="0" time="9.258" timestamp="2020-08-25 10:18:28" hostname="ALZ_ServiceQA - BRSPVLRPA01.agf.com.br" id="Test Suites/RPA FILES/RPA">
+      <properties>
+         <property name="deviceName" value=""/>
+         <property name="devicePlatform" value=""/>
+         <property name="logFolder" value="C:\\Users\\Public\\RPA_ALLIANZ\\Reports\\20200825_101750\\RPA FILES\\RPA\\20200825_101750"/>
+         <property name="logFiles" value="C:\\Users\\Public\\RPA_ALLIANZ\\Reports\\20200825_101750\\RPA FILES\\RPA\\20200825_101750\\execution0.log"/>
+         <property name="attachments" value=""/>
+         <property name="hostName" value="ALZ_ServiceQA - BRSPVLRPA01.agf.com.br"/>
+         <property name="hostAddress" value="10.189.212.24"/>
+         <property name="os" value="Windows Server 2016 64bit"/>
+         <property name="katalonVersion" value="7.2.1.1"/>
+      </properties>
+      <testcase name="Test Cases/Web UI Test/Backoffce/EnvioAvisoPendenciaGo" time="8.487" classname="Test Cases/Web UI Test/Backoffce/EnvioAvisoPendenciaGo" status="INCOMPLETE">
+         <system-out><![CDATA[2020-08-25 10:18:28 - [TEST_CASE][INCOMPLETE] - Test Cases/Web UI Test/Backoffce/EnvioAvisoPendenciaGo: null
+
+2020-08-25 10:18:30 - [TEST_STEP][INCOMPLETE] - try: Action delay is set to 0 seconds
+
+2020-08-25 10:18:30 - [TEST_STEP][INCOMPLETE] - EnvioPendenciaGo.fluxoEnvioPendenciaGo("Bloqueios"): Action delay is set to 0 seconds
+
+2020-08-25 10:18:36 - [MESSAGE][INFO] - Starting 'Chrome' driver
+
+2020-08-25 10:18:36 - [MESSAGE][INFO] - User set preference: ['prefs', '{download.default_directory=C:\Users\Public\, profile.default_content_settings.popups=0.0, download.prompt_for_download=false, download.directory_upgrade=true, plugins.always_open_pdf_externally=true, pdfjs.disabled=true, safebrowsing.enabled=true}']
+
+2020-08-25 10:18:36 - [MESSAGE][INFO] - User set preference: ['args', '[--start-maximized, --disable-infobars,  safebrowsing-disable-download-protection,  safebrowsing-disable-extension-blacklist, --test-type, --disable-extensions]']
+
+2020-08-25 10:18:36 - [MESSAGE][INFO] - User set preference: ['CapabilityType.ACCEPT_SSL_CERTS', 'true']
+
+2020-08-25 10:18:36 - [MESSAGE][INFO] - User set preference: ['pageLoadStrategy', 'normal']
+
+2020-08-25 10:18:37 - [MESSAGE][INFO] - Action delay is set to 0 seconds]]></system-out>
+         <system-err><![CDATA[2020-08-25 10:18:28 - [TEST_CASE][INCOMPLETE] - Test Cases/Web UI Test/Backoffce/EnvioAvisoPendenciaGo: null]]></system-err>
+      </testcase>
+      <system-out><![CDATA[2020-08-25 10:18:28 - [TEST_SUITE][INCOMPLETE] - RPA: null]]></system-out>
+      <system-err><![CDATA[2020-08-25 10:18:28 - [TEST_SUITE][INCOMPLETE] - RPA: null]]></system-err>
+   </testsuite>
+</testsuites>

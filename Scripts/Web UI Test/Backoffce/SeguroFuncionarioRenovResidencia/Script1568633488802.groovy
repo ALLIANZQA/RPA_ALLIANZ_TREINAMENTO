@@ -17,7 +17,7 @@ import internal.GlobalVariable as GlobalVariable
 try {
 	//BDM-2281 -[RESIDENCIA] [Seguro para funcionários] Robo para cotações de renovação 
 	//BRF-2888 
-    backoffice.SeguroFuncionarioRenovResidencia.fluxoSeguroFuncionario("2013",'SeguroRenovResidencia','01/04/2023'); 
+    backoffice.SeguroFuncionarioRenovResidencia.fluxoSeguroFuncionario("2013",'SeguroRenovResidencia','26/08/2023'); 
 	WebUI.closeBrowser();
 }
 catch (Exception e) {

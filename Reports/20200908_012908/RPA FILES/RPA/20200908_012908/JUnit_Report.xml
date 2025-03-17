@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="RPA" time="172.477" tests="1" failures="0" errors="0">
+   <testsuite name="RPA" tests="1" failures="0" errors="0" time="172.477" timestamp="2020-09-08 01:29:38" hostname="ALZ_ServiceQA - BRSPVLRPA01.agf.com.br" id="Test Suites/RPA FILES/RPA">
+      <properties>
+         <property name="deviceName" value=""/>
+         <property name="devicePlatform" value=""/>
+         <property name="logFolder" value="C:\\Users\\Public\\RPA_ALLIANZ\\Reports\\20200908_012908\\RPA FILES\\RPA\\20200908_012908"/>
+         <property name="logFiles" value="C:\\Users\\Public\\RPA_ALLIANZ\\Reports\\20200908_012908\\RPA FILES\\RPA\\20200908_012908\\execution0.log"/>
+         <property name="attachments" value=""/>
+         <property name="hostName" value="ALZ_ServiceQA - BRSPVLRPA01.agf.com.br"/>
+         <property name="os" value="Windows Server 2016 64bit"/>
+         <property name="katalonVersion" value="7.2.1.1"/>
+         <property name="browser" value="Chrome 85.0.4183.83"/>
+         <property name="hostAddress" value="10.189.212.24"/>
+         <property name="sessionId" value="a082937ad22eb7fc28076afbeecb81cb"/>
+         <property name="seleniumVersion" value="3.141.59"/>
+         <property name="proxyInformation" value="ProxyInformation{proxyOption=NO_PROXY, proxyServerType=HTTP, password=, proxyServerAddress=, proxyServerPort=0, executionList=}"/>
+         <property name="platform" value="Windows Server 2016"/>
+      </properties>
+      <testcase name="Test Cases/Web UI Test/Backoffce/EnvioAvisoPendenciaGo" time="171.282" classname="Test Cases/Web UI Test/Backoffce/EnvioAvisoPendenciaGo" status="INCOMPLETE">
+         <system-out><![CDATA[2020-09-08 01:29:39 - [TEST_CASE][INCOMPLETE] - Test Cases/Web UI Test/Backoffce/EnvioAvisoPendenciaGo: null
+
+2020-09-08 01:29:40 - [TEST_STEP][INCOMPLETE] - try: Delayed 0 second(s)
+
+2020-09-08 01:29:40 - [TEST_STEP][INCOMPLETE] - EnvioPendenciaGo.fluxoEnvioPendenciaGo("Bloqueios"): Delayed 0 second(s)
+
+2020-09-08 01:29:44 - [MESSAGE][INFO] - Starting 'Chrome' driver
+
+2020-09-08 01:29:44 - [MESSAGE][INFO] - User set preference: ['prefs', '{download.default_directory=C:\Users\Public\, profile.default_content_settings.popups=0.0, download.prompt_for_download=false, download.directory_upgrade=true, plugins.always_open_pdf_externally=true, pdfjs.disabled=true, safebrowsing.enabled=true}']
+
+2020-09-08 01:29:44 - [MESSAGE][INFO] - User set preference: ['args', '[--start-maximized, --disable-infobars,  safebrowsing-disable-download-protection,  safebrowsing-disable-extension-blacklist, --test-type, --disable-extensions]']
+
+2020-09-08 01:29:44 - [MESSAGE][INFO] - User set preference: ['CapabilityType.ACCEPT_SSL_CERTS', 'true']
+
+2020-09-08 01:29:44 - [MESSAGE][INFO] - User set preference: ['pageLoadStrategy', 'normal']
+
+2020-09-08 01:29:44 - [MESSAGE][INFO] - Action delay is set to 0 seconds
+
+2020-09-08 01:30:02 - [MESSAGE][PASSED] - Browser is opened with url: ''
+
+2020-09-08 01:30:17 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2020-09-08 01:30:18 - [MESSAGE][PASSED] - Current window maximized
+
+2020-09-08 01:30:36 - [MESSAGE][PASSED] - Navigate to 'https://www.br.intrallianz.com/ngx-intranet/public/home' successfully
+
+2020-09-08 01:30:57 - [MESSAGE][PASSED] - Delayed 20 second(s)
+
+2020-09-08 01:30:58 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-08 01:30:59 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-08 01:31:10 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2020-09-08 01:31:11 - [MESSAGE][PASSED] - Object: 'Object Repository/Page_Intranet Transacional/a_Consultas  Estatsticas' is right clicked on
+
+2020-09-08 01:31:12 - [MESSAGE][PASSED] - Object: 'Object Repository/Page_Intranet Transacional/ul_ConsultasArquivo Digital' is clicked on
+
+2020-09-08 01:31:13 - [MESSAGE][PASSED] - Object: 'Object Repository/Page_Intranet Transacional/span_Arquivo Digital' is right clicked on
+
+2020-09-08 01:31:14 - [MESSAGE][PASSED] - Object: 'Object Repository/Page_Intranet Transacional/a_Ficha de Gesto' is clicked on
+
+2020-09-08 01:31:29 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2020-09-08 01:31:31 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 01:31:32 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-08 01:31:37 - [MESSAGE][PASSED] - Object: '' is clicked on
+
+2020-09-08 01:31:38 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-08 01:31:38 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-08 01:31:40 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-08 01:31:44 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 01:31:46 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 01:31:50 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 01:31:51 - [MESSAGE][PASSED] - Switched to window with title: 'Editor de Notas/Agenda'
+
+2020-09-08 01:31:53 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 01:31:55 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-08 01:32:01 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 01:32:07 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 01:32:07 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-08 01:32:07 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-08 01:32:08 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2020-09-08 01:32:09 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-08 01:32:13 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 01:32:16 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 01:32:20 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 01:32:21 - [MESSAGE][PASSED] - Switched to window with title: 'Editor de Notas/Agenda'
+
+2020-09-08 01:32:23 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 01:32:25 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2020-09-08 01:32:27 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 01:32:30 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2020-09-08 01:32:30 - [MESSAGE][PASSED] - Delayed 0 second(s)]]></system-out>
+         <system-err><![CDATA[2020-09-08 01:29:39 - [TEST_CASE][INCOMPLETE] - Test Cases/Web UI Test/Backoffce/EnvioAvisoPendenciaGo: null]]></system-err>
+      </testcase>
+      <system-out><![CDATA[2020-09-08 01:29:38 - [TEST_SUITE][INCOMPLETE] - RPA: null]]></system-out>
+      <system-err><![CDATA[2020-09-08 01:29:38 - [TEST_SUITE][INCOMPLETE] - RPA: null]]></system-err>
+   </testsuite>
+</testsuites>

@@ -29,6 +29,8 @@ try {
 	 auto.RecusaPropostaAutoFuncionalidades.fluxoRecusaPropostaAuto('RecusaPropostaAuto', 'PRD',2248, 20)
 	 WebUI.closeBrowser();
 	} catch (Exception e) {
-	  System.err.println("Falha ao Realizar Recusa Proposta Auto"+e);
+	  auto.RecusaPropostaAutoFuncionalidades.enviarEmailError("Error", 'RecusaPropostaAuto' );
+	  System.err.println("Falha ao Realizar Recusa Proposta Auto\n"+e);
+	 
 	  WebUI.closeBrowser();
    }

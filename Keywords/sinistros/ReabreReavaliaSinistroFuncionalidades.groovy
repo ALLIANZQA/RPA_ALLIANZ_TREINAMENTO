@@ -58,7 +58,7 @@ import auxiliares.MenuMatriz
 import auxiliares.ExtractDates
 
 public class ReabreReavaliaSinistroFuncionalidades extends rpaCommands{
-	
+
 	public static String dataRecuerada = getDateHour();
 	private static TestData data
 	private static String testDataPath = 'Data Files/Sinistro/ReabreReavaliaSinistro/ReabreReavaliaSinistroData'
@@ -70,13 +70,13 @@ public class ReabreReavaliaSinistroFuncionalidades extends rpaCommands{
 	private static boolean encerrado  = false
 	private static String cobertura = "49 Ressarcimento"
 
-	
+
 	private static String sTablaGaratia
-//	private static String sResultado
+	//	private static String sResultado
 	private static String sSinJud
 	private static String sStatus
 	private static boolean bJumpIf
-//	private static boolean bNextReg
+	//	private static boolean bNextReg
 	private static boolean sElementPresent
 
 	/**
@@ -116,15 +116,15 @@ public class ReabreReavaliaSinistroFuncionalidades extends rpaCommands{
 		for (int i = 1; i <= data.getColumnNumbers(); i++) {
 			int d = i -1
 			//if(i==3){
-				//sinistro[d] = ExtractDates.dateFormatteTypes("dd/MM/yyyy", "ddMMyyyy", data.getValue(i, v) )
+			//sinistro[d] = ExtractDates.dateFormatteTypes("dd/MM/yyyy", "ddMMyyyy", data.getValue(i, v) )
 			//} else if(i==5){
-				//sinistro[d] = data.getValue(i, v).toUpperCase().trim()
+			//sinistro[d] = data.getValue(i, v).toUpperCase().trim()
 			//} else if(i==12){
-				//sinistro[d] = data.getValue(i, v).replaceAll("[R\$.,]","").trim()
+			//sinistro[d] = data.getValue(i, v).replaceAll("[R\$.,]","").trim()
 			//} else if(i==16){
-				//sinistro[d] = data.getValue(i, v)
+			//sinistro[d] = data.getValue(i, v)
 			//} else {
-				sinistro[d] = data.getValue(i, v)
+			sinistro[d] = data.getValue(i, v)
 			//}
 		}
 
@@ -132,7 +132,7 @@ public class ReabreReavaliaSinistroFuncionalidades extends rpaCommands{
 			System.err.println("["+j+"] [ "+sinistro[j]+"]")
 		}
 	}
-	
+
 	/**
 	 * @author ALZ_ServiceQA
 	 * @return
@@ -142,7 +142,7 @@ public class ReabreReavaliaSinistroFuncionalidades extends rpaCommands{
 		WebUI.delay(5);
 		MenuMatriz.subMenu('/html/body/div/div/app-root/app-private/app-displayed-menu/div/app-teaser/div/div/div/div[2]/ul', 'a',"GIS")
 	}
-	
+
 	/**
 	 * @author be54955
 	 * @param tipoAba
@@ -153,7 +153,7 @@ public class ReabreReavaliaSinistroFuncionalidades extends rpaCommands{
 		reprocessaReabreReavaliaSinistro(tipoAba)
 		enviarEmailReabreReavaliaSinistro(tipoAba)
 	}
-	
+
 	/**
 	 * @
 	 * @param tipoAba
@@ -162,8 +162,8 @@ public class ReabreReavaliaSinistroFuncionalidades extends rpaCommands{
 	public static fluxoCompletoReabreReavaliaSinistro(String tipoAba){
 		if(carregaDados()){
 			bJumpIf = false
-			
-		//	sResultado = ''
+
+			//	sResultado = ''
 			iniciaAplicacaoMatrizCommands('IntranetProdução');
 			realizaLoginIntraNetProducaoCommands(tipoAba);
 			WebUI.delay(15);
@@ -182,20 +182,20 @@ public class ReabreReavaliaSinistroFuncionalidades extends rpaCommands{
 						List<String> sinistro = new ArrayList<>();
 						lista(sinistro,i)
 						if(reabreSinistro(sinistro,i)){
-								try{
-									auxiliares.WriteExcelFactory.updateSheetLine('',  i-1, path, "Processado", 8 , 'DescontosEspecíficosSinistro');
-									auxiliares.WriteExcelFactory.updateSheetLine('', i-1, path, sinistro[9] , 9 , 'DescontosEspecíficosSinistro');
-								}catch (Exception e){System.err.println("[ Cannot invoke method setCellValue() on null object ]")}
+							try{
+								auxiliares.WriteExcelFactory.updateSheetLine('',  i-1, path, "Processado", 7 , 'ReabreReavaliaSinistro');
+								auxiliares.WriteExcelFactory.updateSheetLine('', i-1, path, sinistro[9] , 8 , 'ReabreReavaliaSinistro');
+							}catch (Exception e){System.err.println("[ Cannot invoke method setCellValue() on null object ]")}
 						} else {
-								try{
-									auxiliares.WriteExcelFactory.updateSheetLine('',  i-1, path, "Processado", 8 , 'DescontosEspecíficosSinistro');
-									auxiliares.WriteExcelFactory.updateSheetLine('', i-1, path, sinistro[9], 9 , 'DescontosEspecíficosSinistro');
-									System.out.println()
-									alteraJanejaGenerica(0,2);
-									menuGIS()
-									alteraJanejaGenerica(1,2);
-									WebUI.maximizeWindow()
-								}catch (Exception e){System.err.println("[ Cannot invoke method setCellValue() on null object ]")}
+							try{
+								auxiliares.WriteExcelFactory.updateSheetLine('',  i-1, path, "Processado", 7 , 'ReabreReavaliaSinistro');
+								auxiliares.WriteExcelFactory.updateSheetLine('', i-1, path, sinistro[9], 8 , 'ReabreReavaliaSinistro');
+								System.out.println()
+								alteraJanejaGenerica(0,2);
+								menuGIS()
+								alteraJanejaGenerica(1,2);
+								WebUI.maximizeWindow()
+							}catch (Exception e){System.err.println("[ Cannot invoke method setCellValue() on null object ]")}
 						}
 					}catch (Exception e){  }
 				}
@@ -203,7 +203,7 @@ public class ReabreReavaliaSinistroFuncionalidades extends rpaCommands{
 			WebUI.closeBrowser();
 		}
 	}
-	
+
 	/**
 	 * @author be54955
 	 * @param sinistro
@@ -211,59 +211,59 @@ public class ReabreReavaliaSinistroFuncionalidades extends rpaCommands{
 	 * @return
 	 */
 	public static boolean reabreSinistro(List<String> sinistro, int i){
-		
+
 		boolean bNextReg = false
-		
+
 		System.err.println()
-		
+
 		try{
-		    WebUI.setText(findTestObject('Object Repository/ReabreReavaliaSinistro/Page_Gesto Integrada de Sinistros/input_Referncia_refsiniestro'), data.getValue('Susep', i))
-		    WebUI.click(findTestObject('Object Repository/ReabreReavaliaSinistro/Page_Gesto Integrada de Sinistros/td_Pesquisar'))
-		    WebUI.waitForPageLoad(30)
-		    sSinJud = WebUI.getAttribute(findTestObject('Object Repository/ReabreReavaliaSinistro/Page_Gesto Integrada de Sinistros/input_Judicial_judicial'), 'value')
-		    if(sSinJud == 'Sinistro judicial'){
-			   sinistro[9] = ' Sinistro Judicial'
-			   sStatus = 'KO'
-			   bNextReg = true
-		    }
-		
-		    if(bNextReg == false) {
-			   sElementPresent = WebUI.verifyTextPresent("Reabrir", false, FailureHandling.OPTIONAL)
-			   if(sElementPresent == true){
-				  WebUI.click(findTestObject('Object Repository/ReabreReavaliaSinistro/Page_Gesto Integrada de Sinistros/div_Reabrir'))
-				  WebUI.click(findTestObject('Object Repository/ReabreReavaliaSinistro/Page_Gesto Integrada de Sinistros/div_Aceitar'))
-			   }else {
-				  WebUI.click(findTestObject('Object Repository/ReabreReavaliaSinistro/Page_Gesto Integrada de Sinistros/td_Dados Econmicos'))
-			   }
-			
-			   if(DescontosEspecíficosSinistroFuncionalidades.selecionarRessarcimento(sinistro[6], sinistro[4])){
-				// WebUI.click(findTestObject('Object Repository/ReabreReavaliaSinistro/Page_Gesto Integrada de Sinistros/div_Aceitar_1'))
-				 sinistro[9] = WebUI.getText(findTestObject('Object Repository/ReabreReavaliaSinistro/Page_Gesto Integrada de Sinistros/td_Operao realizada.'))
-				 sStatus = 'OK'
-				 bNextReg = true
-			   }else{
+			WebUI.setText(findTestObject('Object Repository/ReabreReavaliaSinistro/Page_Gesto Integrada de Sinistros/input_Referncia_refsiniestro'), data.getValue('Susep', i))
+			WebUI.click(findTestObject('Object Repository/ReabreReavaliaSinistro/Page_Gesto Integrada de Sinistros/td_Pesquisar'))
+			WebUI.waitForPageLoad(30)
+			sSinJud = WebUI.getAttribute(findTestObject('Object Repository/ReabreReavaliaSinistro/Page_Gesto Integrada de Sinistros/input_Judicial_judicial'), 'value')
+			if(sSinJud == 'Sinistro judicial'){
+				sinistro[9] = ' Sinistro Judicial'
+				sStatus = 'KO'
+				bNextReg = true
+			}
+
+			if(bNextReg == false) {
+				sElementPresent = WebUI.verifyTextPresent("Reabrir", false, FailureHandling.OPTIONAL)
+				if(sElementPresent == true){
+					WebUI.click(findTestObject('Object Repository/ReabreReavaliaSinistro/Page_Gesto Integrada de Sinistros/div_Reabrir'))
+					WebUI.click(findTestObject('Object Repository/ReabreReavaliaSinistro/Page_Gesto Integrada de Sinistros/div_Aceitar'))
+				}else {
+					WebUI.click(findTestObject('Object Repository/ReabreReavaliaSinistro/Page_Gesto Integrada de Sinistros/td_Dados Econmicos'))
+				}
+
+				if(DescontosEspecíficosSinistroFuncionalidades.selecionarRessarcimento(sinistro[6], sinistro[4])){
+					// WebUI.click(findTestObject('Object Repository/ReabreReavaliaSinistro/Page_Gesto Integrada de Sinistros/div_Aceitar_1'))
+					sinistro[9] = WebUI.getText(findTestObject('Object Repository/ReabreReavaliaSinistro/Page_Gesto Integrada de Sinistros/td_Operao realizada.'))
+					sStatus = 'OK'
+					bNextReg = true
+				}else{
 					WebUI.click(findTestObject('Object Repository/ReabreReavaliaSinistro/Page_Gesto Integrada de Sinistros/div_Aceitar_1'))
 					sElementPresent = WebUI.waitForElementPresent(findTestObject('Object Repository/ReabreReavaliaSinistro/Page_Gesto Integrada de Sinistros/td_Reserva  Pagamentos ultrapassa a cobertura'), 2)
 					if(sElementPresent == true){
-					   sinistro[9] = WebUI.getText(findTestObject('Object Repository/ReabreReavaliaSinistro/Page_Gesto Integrada de Sinistros/td_Reserva  Pagamentos ultrapassa a cobertura'))
-					   sStatus = 'KO'
-					   bNextReg = true
-			        } 
-			
-			        sElementPresent = WebUI.waitForElementPresent(findTestObject('Object Repository/ReabreReavaliaSinistro/Page_Gesto Integrada de Sinistros/td_Inserir Senha para valores superiores a 30000000 BRL'), 2)
-			        if(sElementPresent == true){
-					   sinistro[9] = WebUI.getText(findTestObject('Object Repository/ReabreReavaliaSinistro/Page_Gesto Integrada de Sinistros/td_Inserir Senha para valores superiores a 30000000 BRL'))
-					   sStatus = 'KO'
-					   bNextReg = true
-			        }
-			   }
-		    }
+						sinistro[9] = WebUI.getText(findTestObject('Object Repository/ReabreReavaliaSinistro/Page_Gesto Integrada de Sinistros/td_Reserva  Pagamentos ultrapassa a cobertura'))
+						sStatus = 'KO'
+						bNextReg = true
+					}
+
+					sElementPresent = WebUI.waitForElementPresent(findTestObject('Object Repository/ReabreReavaliaSinistro/Page_Gesto Integrada de Sinistros/td_Inserir Senha para valores superiores a 30000000 BRL'), 2)
+					if(sElementPresent == true){
+						sinistro[9] = WebUI.getText(findTestObject('Object Repository/ReabreReavaliaSinistro/Page_Gesto Integrada de Sinistros/td_Inserir Senha para valores superiores a 30000000 BRL'))
+						sStatus = 'KO'
+						bNextReg = true
+					}
+				}
+			}
 		} catch (Exception e){
-		
+
 		}
 		return bNextReg
 	}
-	
+
 	/**
 	 * @author ALZ_ServiceQA
 	 * @param tipoAba
@@ -274,7 +274,7 @@ public class ReabreReavaliaSinistroFuncionalidades extends rpaCommands{
 			System.err.println("[ Reprocessa Descontos Específicos Sinistro")
 			fluxoCompletoReabreReavaliaSinistro(tipoAba)
 			reprocessaReabreReavaliaSinistro(tipoAba)
-	    }
+		}
 	}
 
 	/**
@@ -283,28 +283,28 @@ public class ReabreReavaliaSinistroFuncionalidades extends rpaCommands{
 	 * @return
 	 */
 	public static enviarEmailReabreReavaliaSinistro(String tipoAba){
-			if(!carregaDados()){
-				pathTxtEmail = "C:/Users/Public/RPA_ALLIANZ/Emails/Sinistros/ReabreReavaliaSinistro/ConfiguracoesReabreReavaliaSinistro.txt";
-				lerConfigurações(pathTxtEmail)
-				String emaildestination = StringFormatter.formatterEmailDestination(FileInput.readFile(pathTxtEmail));
-				List<String> anexos = new ArrayList<>();
-				anexos[0] = "C:\\Users\\Public\\RPA_ALLIANZ\\Data Files\\Sinistro\\ReabreReavaliaSinistro\\ReabreReavaliaSinistro.xlsx"
-				anexos[1] = "ReabreReavaliaSinistro.xlsx"
-				sendEmail.CreateEmail.createEmailSendMultipleFiles(sender, emaildestination, pwdsender, anexos, host, porta, tipoAba)
-			}
+		if(!carregaDados()){
+			pathTxtEmail = "C:/Users/Public/RPA_ALLIANZ/Emails/Sinistros/ReabreReavaliaSinistro/ConfiguracoesReabreReavaliaSinistro.txt";
+			lerConfigurações(pathTxtEmail)
+			String emaildestination = StringFormatter.formatterEmailDestination(FileInput.readFile(pathTxtEmail));
+			List<String> anexos = new ArrayList<>();
+			anexos[0] = "C:\\Users\\Public\\RPA_ALLIANZ\\Data Files\\Sinistro\\ReabreReavaliaSinistro\\ReabreReavaliaSinistro.xlsx"
+			anexos[1] = "ReabreReavaliaSinistro.xlsx"
+			sendEmail.CreateEmail.createEmailSendMultipleFiles(sender, emaildestination, pwdsender, anexos, host, porta, tipoAba)
+		}
 	}
-		
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
