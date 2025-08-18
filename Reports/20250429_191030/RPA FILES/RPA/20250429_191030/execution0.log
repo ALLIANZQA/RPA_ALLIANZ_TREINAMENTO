@@ -1,0 +1,778 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2025-04-29T19:10:33</date>
+  <millis>1745964633295</millis>
+  <sequence>0</sequence>
+  <level>START</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>startSuite</method>
+  <thread>1</thread>
+  <message>Start Test Suite : Test Suites/RPA FILES/RPA</message>
+  <nestedLevel>0</nestedLevel>
+  <property name="name">RPA</property>
+  <property name="description"></property>
+  <property name="id">Test Suites/RPA FILES/RPA</property>
+</record>
+<record>
+  <date>2025-04-29T19:10:33</date>
+  <millis>1745964633315</millis>
+  <sequence>1</sequence>
+  <level>RUN_DATA</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>logMessage</method>
+  <thread>1</thread>
+  <message>hostName = Alz_sup54955 - BRRJVLRPA07.agf.com.br</message>
+  <nestedLevel>0</nestedLevel>
+  <property name="hostName">Alz_sup54955 - BRRJVLRPA07.agf.com.br</property>
+</record>
+<record>
+  <date>2025-04-29T19:10:33</date>
+  <millis>1745964633317</millis>
+  <sequence>2</sequence>
+  <level>RUN_DATA</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>logMessage</method>
+  <thread>1</thread>
+  <message>os = Windows Server 2016 64bit</message>
+  <nestedLevel>0</nestedLevel>
+  <property name="os">Windows Server 2016 64bit</property>
+</record>
+<record>
+  <date>2025-04-29T19:10:33</date>
+  <millis>1745964633318</millis>
+  <sequence>3</sequence>
+  <level>RUN_DATA</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>logMessage</method>
+  <thread>1</thread>
+  <message>hostAddress = 10.189.223.180</message>
+  <nestedLevel>0</nestedLevel>
+  <property name="hostAddress">10.189.223.180</property>
+</record>
+<record>
+  <date>2025-04-29T19:10:33</date>
+  <millis>1745964633319</millis>
+  <sequence>4</sequence>
+  <level>RUN_DATA</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>logMessage</method>
+  <thread>1</thread>
+  <message>katalonVersion = 7.2.1.1</message>
+  <nestedLevel>0</nestedLevel>
+  <property name="katalonVersion">7.2.1.1</property>
+</record>
+<record>
+  <date>2025-04-29T19:10:33</date>
+  <millis>1745964633542</millis>
+  <sequence>5</sequence>
+  <level>START</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>startTest</method>
+  <thread>1</thread>
+  <message>Start Test Case : Test Cases/Web UI Test/Backoffce/IndexacaoFG</message>
+  <nestedLevel>1</nestedLevel>
+  <property name="name">Test Cases/Web UI Test/Backoffce/IndexacaoFG</property>
+  <property name="description"></property>
+  <property name="id">Test Cases/Web UI Test/Backoffce/IndexacaoFG</property>
+  <property name="source">C:\\Users\\Public\\RPA_ALLIANZ\\Test Cases\\Web UI Test\\Backoffce\\IndexacaoFG.tc</property>
+  <property name="tag"></property>
+  <property name="isOptional">false</property>
+</record>
+<record>
+  <date>2025-04-29T19:10:33</date>
+  <millis>1745964633952</millis>
+  <sequence>7</sequence>
+  <level>START</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>startKeyword</method>
+  <thread>1</thread>
+  <message>Start action : try</message>
+  <nestedLevel>1</nestedLevel>
+  <property name="startLine">17</property>
+  <property name="stepIndex">1</property>
+</record>
+<record>
+  <date>2025-04-29T19:10:33</date>
+  <millis>1745964633954</millis>
+  <sequence>8</sequence>
+  <level>START</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>startKeyword</method>
+  <thread>1</thread>
+  <message>Start action : IndexacaoFGFuncionalidades.fluxoIndexacaoFG(\&amp;quot;IndexacaoFG\&amp;quot;, \&amp;quot;PRD\&amp;quot;)</message>
+  <nestedLevel>2</nestedLevel>
+  <property name="startLine">23</property>
+  <property name="stepIndex">1</property>
+</record>
+<record>
+  <date>2025-04-29T19:10:34</date>
+  <millis>1745964634893</millis>
+  <sequence>14</sequence>
+  <level>INFO</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>logMessage</method>
+  <thread>1</thread>
+  <message>Starting &amp;apos;Chrome&amp;apos; driver</message>
+  <nestedLevel>1</nestedLevel>
+</record>
+<record>
+  <date>2025-04-29T19:10:34</date>
+  <millis>1745964634907</millis>
+  <sequence>16</sequence>
+  <level>INFO</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>logMessage</method>
+  <thread>1</thread>
+  <message>User set preference: [&amp;apos;prefs&amp;apos;, &amp;apos;{download.default_directory=C:\\Users\\Public\\, profile.default_content_settings.popups=0.0, download.prompt_for_download=false, download.directory_upgrade=true, plugins.always_open_pdf_externally=true, pdfjs.disabled=true, safebrowsing.enabled=true}&amp;apos;]</message>
+  <nestedLevel>1</nestedLevel>
+</record>
+<record>
+  <date>2025-04-29T19:10:34</date>
+  <millis>1745964634908</millis>
+  <sequence>17</sequence>
+  <level>INFO</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>logMessage</method>
+  <thread>1</thread>
+  <message>User set preference: [&amp;apos;args&amp;apos;, &amp;apos;[--start-maximized, --disable-infobars,  safebrowsing-disable-download-protection,  safebrowsing-disable-extension-blacklist, --test-type, --disable-extensions]&amp;apos;]</message>
+  <nestedLevel>1</nestedLevel>
+</record>
+<record>
+  <date>2025-04-29T19:10:34</date>
+  <millis>1745964634909</millis>
+  <sequence>18</sequence>
+  <level>INFO</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>logMessage</method>
+  <thread>1</thread>
+  <message>User set preference: [&amp;apos;CapabilityType.ACCEPT_SSL_CERTS&amp;apos;, &amp;apos;true&amp;apos;]</message>
+  <nestedLevel>1</nestedLevel>
+</record>
+<record>
+  <date>2025-04-29T19:10:34</date>
+  <millis>1745964634909</millis>
+  <sequence>19</sequence>
+  <level>INFO</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>logMessage</method>
+  <thread>1</thread>
+  <message>User set preference: [&amp;apos;pageLoadStrategy&amp;apos;, &amp;apos;normal&amp;apos;]</message>
+  <nestedLevel>1</nestedLevel>
+</record>
+<record>
+  <date>2025-04-29T19:10:34</date>
+  <millis>1745964634928</millis>
+  <sequence>20</sequence>
+  <level>INFO</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>logMessage</method>
+  <thread>1</thread>
+  <message>Action delay is set to 0 seconds</message>
+  <nestedLevel>1</nestedLevel>
+</record>
+<record>
+  <date>2025-04-29T19:10:37</date>
+  <millis>1745964637815</millis>
+  <sequence>22</sequence>
+  <level>RUN_DATA</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>logMessage</method>
+  <thread>1</thread>
+  <message>sessionId = ea28d7fb99865cf4eddc6462343b97bf</message>
+  <nestedLevel>1</nestedLevel>
+  <property name="sessionId">ea28d7fb99865cf4eddc6462343b97bf</property>
+</record>
+<record>
+  <date>2025-04-29T19:10:37</date>
+  <millis>1745964637835</millis>
+  <sequence>23</sequence>
+  <level>RUN_DATA</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>logMessage</method>
+  <thread>1</thread>
+  <message>browser = Chrome 135.0.0.0</message>
+  <nestedLevel>1</nestedLevel>
+  <property name="browser">Chrome 135.0.0.0</property>
+</record>
+<record>
+  <date>2025-04-29T19:10:37</date>
+  <millis>1745964637836</millis>
+  <sequence>24</sequence>
+  <level>RUN_DATA</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>logMessage</method>
+  <thread>1</thread>
+  <message>platform = Windows Server 2016</message>
+  <nestedLevel>1</nestedLevel>
+  <property name="platform">Windows Server 2016</property>
+</record>
+<record>
+  <date>2025-04-29T19:10:37</date>
+  <millis>1745964637837</millis>
+  <sequence>25</sequence>
+  <level>RUN_DATA</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>logMessage</method>
+  <thread>1</thread>
+  <message>seleniumVersion = 3.141.59</message>
+  <nestedLevel>1</nestedLevel>
+  <property name="seleniumVersion">3.141.59</property>
+</record>
+<record>
+  <date>2025-04-29T19:10:37</date>
+  <millis>1745964637838</millis>
+  <sequence>26</sequence>
+  <level>RUN_DATA</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>logMessage</method>
+  <thread>1</thread>
+  <message>proxyInformation = ProxyInformation{proxyOption=USE_SYSTEM, proxyServerType=HTTP, password=, proxyServerAddress=, proxyServerPort=0, executionList=}</message>
+  <nestedLevel>1</nestedLevel>
+  <property name="proxyInformation">ProxyInformation{proxyOption=USE_SYSTEM, proxyServerType=HTTP, password=, proxyServerAddress=, proxyServerPort=0, executionList=}</property>
+</record>
+<record>
+  <date>2025-04-29T19:10:37</date>
+  <millis>1745964637845</millis>
+  <sequence>27</sequence>
+  <level>PASSED</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>logMessage</method>
+  <thread>1</thread>
+  <message>Browser is opened with url: &amp;apos;&amp;apos;</message>
+  <nestedLevel>1</nestedLevel>
+</record>
+<record>
+  <date>2025-04-29T19:10:52</date>
+  <millis>1745964652873</millis>
+  <sequence>29</sequence>
+  <level>PASSED</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>logMessage</method>
+  <thread>1</thread>
+  <message>Delayed 15 second(s)</message>
+  <nestedLevel>1</nestedLevel>
+</record>
+<record>
+  <date>2025-04-29T19:10:53</date>
+  <millis>1745964653000</millis>
+  <sequence>31</sequence>
+  <level>PASSED</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>logMessage</method>
+  <thread>1</thread>
+  <message>Current window maximized</message>
+  <nestedLevel>1</nestedLevel>
+</record>
+<record>
+  <date>2025-04-29T19:10:57</date>
+  <millis>1745964657822</millis>
+  <sequence>34</sequence>
+  <level>PASSED</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>logMessage</method>
+  <thread>1</thread>
+  <message>Navigate to &amp;apos;https://www.br.intrallianz.com/ngx-intranet/public/home&amp;apos; successfully</message>
+  <nestedLevel>1</nestedLevel>
+</record>
+<record>
+  <date>2025-04-29T19:11:17</date>
+  <millis>1745964677839</millis>
+  <sequence>36</sequence>
+  <level>PASSED</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>logMessage</method>
+  <thread>1</thread>
+  <message>Delayed 20 second(s)</message>
+  <nestedLevel>1</nestedLevel>
+</record>
+<record>
+  <date>2025-04-29T19:11:19</date>
+  <millis>1745964679093</millis>
+  <sequence>39</sequence>
+  <level>PASSED</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>logMessage</method>
+  <thread>1</thread>
+  <message>Delayed 1 second(s)</message>
+  <nestedLevel>1</nestedLevel>
+</record>
+<record>
+  <date>2025-04-29T19:11:19</date>
+  <millis>1745964679261</millis>
+  <sequence>42</sequence>
+  <level>PASSED</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>logMessage</method>
+  <thread>1</thread>
+  <message>Delayed 0 second(s)</message>
+  <nestedLevel>1</nestedLevel>
+</record>
+<record>
+  <date>2025-04-29T19:11:29</date>
+  <millis>1745964689365</millis>
+  <sequence>45</sequence>
+  <level>PASSED</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>logMessage</method>
+  <thread>1</thread>
+  <message>Delayed 10 second(s)</message>
+  <nestedLevel>1</nestedLevel>
+</record>
+<record>
+  <date>2025-04-29T19:11:39</date>
+  <millis>1745964699368</millis>
+  <sequence>47</sequence>
+  <level>PASSED</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>logMessage</method>
+  <thread>1</thread>
+  <message>Delayed 10 second(s)</message>
+  <nestedLevel>1</nestedLevel>
+</record>
+<record>
+  <date>2025-04-29T19:11:54</date>
+  <millis>1745964714382</millis>
+  <sequence>49</sequence>
+  <level>PASSED</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>logMessage</method>
+  <thread>1</thread>
+  <message>Delayed 15 second(s)</message>
+  <nestedLevel>1</nestedLevel>
+</record>
+<record>
+  <date>2025-04-29T19:11:56</date>
+  <millis>1745964716392</millis>
+  <sequence>51</sequence>
+  <level>PASSED</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>logMessage</method>
+  <thread>1</thread>
+  <message>Delayed 2 second(s)</message>
+  <nestedLevel>1</nestedLevel>
+</record>
+<record>
+  <date>2025-04-29T19:11:58</date>
+  <millis>1745964718609</millis>
+  <sequence>55</sequence>
+  <level>PASSED</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>logMessage</method>
+  <thread>1</thread>
+  <message>Delayed 2 second(s)</message>
+  <nestedLevel>1</nestedLevel>
+</record>
+<record>
+  <date>2025-04-29T19:12:03</date>
+  <millis>1745964723872</millis>
+  <sequence>59</sequence>
+  <level>PASSED</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>logMessage</method>
+  <thread>1</thread>
+  <message>Delayed 5 second(s)</message>
+  <nestedLevel>1</nestedLevel>
+</record>
+<record>
+  <date>2025-04-29T19:12:08</date>
+  <millis>1745964728920</millis>
+  <sequence>61</sequence>
+  <level>PASSED</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>logMessage</method>
+  <thread>1</thread>
+  <message>Delayed 5 second(s)</message>
+  <nestedLevel>1</nestedLevel>
+</record>
+<record>
+  <date>2025-04-29T19:12:09</date>
+  <millis>1745964729974</millis>
+  <sequence>64</sequence>
+  <level>PASSED</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>logMessage</method>
+  <thread>1</thread>
+  <message>Delayed 1 second(s)</message>
+  <nestedLevel>1</nestedLevel>
+</record>
+<record>
+  <date>2025-04-29T19:12:12</date>
+  <millis>1745964732076</millis>
+  <sequence>67</sequence>
+  <level>PASSED</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>logMessage</method>
+  <thread>1</thread>
+  <message>Delayed 2 second(s)</message>
+  <nestedLevel>1</nestedLevel>
+</record>
+<record>
+  <date>2025-04-29T19:12:17</date>
+  <millis>1745964737486</millis>
+  <sequence>71</sequence>
+  <level>PASSED</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>logMessage</method>
+  <thread>1</thread>
+  <message>Delayed 5 second(s)</message>
+  <nestedLevel>1</nestedLevel>
+</record>
+<record>
+  <date>2025-04-29T19:12:18</date>
+  <millis>1745964738489</millis>
+  <sequence>73</sequence>
+  <level>PASSED</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>logMessage</method>
+  <thread>1</thread>
+  <message>Delayed 1 second(s)</message>
+  <nestedLevel>1</nestedLevel>
+</record>
+<record>
+  <date>2025-04-29T19:12:22</date>
+  <millis>1745964742530</millis>
+  <sequence>76</sequence>
+  <level>PASSED</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>logMessage</method>
+  <thread>1</thread>
+  <message>Delayed 3 second(s)</message>
+  <nestedLevel>1</nestedLevel>
+</record>
+<record>
+  <date>2025-04-29T19:12:24</date>
+  <millis>1745964744533</millis>
+  <sequence>78</sequence>
+  <level>PASSED</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>logMessage</method>
+  <thread>1</thread>
+  <message>Delayed 2 second(s)</message>
+  <nestedLevel>1</nestedLevel>
+</record>
+<record>
+  <date>2025-04-29T19:12:26</date>
+  <millis>1745964746570</millis>
+  <sequence>81</sequence>
+  <level>PASSED</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>logMessage</method>
+  <thread>1</thread>
+  <message>Delayed 2 second(s)</message>
+  <nestedLevel>1</nestedLevel>
+</record>
+<record>
+  <date>2025-04-29T19:12:42</date>
+  <millis>1745964762269</millis>
+  <sequence>85</sequence>
+  <level>PASSED</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>logMessage</method>
+  <thread>1</thread>
+  <message>Delayed 15 second(s)</message>
+  <nestedLevel>1</nestedLevel>
+</record>
+<record>
+  <date>2025-04-29T19:12:47</date>
+  <millis>1745964767318</millis>
+  <sequence>87</sequence>
+  <level>PASSED</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>logMessage</method>
+  <thread>1</thread>
+  <message>Delayed 5 second(s)</message>
+  <nestedLevel>1</nestedLevel>
+</record>
+<record>
+  <date>2025-04-29T19:12:49</date>
+  <millis>1745964769319</millis>
+  <sequence>89</sequence>
+  <level>PASSED</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>logMessage</method>
+  <thread>1</thread>
+  <message>Delayed 2 second(s)</message>
+  <nestedLevel>1</nestedLevel>
+</record>
+<record>
+  <date>2025-04-29T19:12:51</date>
+  <millis>1745964771363</millis>
+  <sequence>92</sequence>
+  <level>PASSED</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>logMessage</method>
+  <thread>1</thread>
+  <message>Delayed 2 second(s)</message>
+  <nestedLevel>1</nestedLevel>
+</record>
+<record>
+  <date>2025-04-29T19:12:53</date>
+  <millis>1745964773610</millis>
+  <sequence>96</sequence>
+  <level>PASSED</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>logMessage</method>
+  <thread>1</thread>
+  <message>Delayed 2 second(s)</message>
+  <nestedLevel>1</nestedLevel>
+</record>
+<record>
+  <date>2025-04-29T19:13:03</date>
+  <millis>1745964783799</millis>
+  <sequence>100</sequence>
+  <level>PASSED</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>logMessage</method>
+  <thread>1</thread>
+  <message>Delayed 10 second(s)</message>
+  <nestedLevel>1</nestedLevel>
+</record>
+<record>
+  <date>2025-04-29T19:13:08</date>
+  <millis>1745964788802</millis>
+  <sequence>102</sequence>
+  <level>PASSED</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>logMessage</method>
+  <thread>1</thread>
+  <message>Delayed 5 second(s)</message>
+  <nestedLevel>1</nestedLevel>
+</record>
+<record>
+  <date>2025-04-29T19:13:10</date>
+  <millis>1745964790857</millis>
+  <sequence>104</sequence>
+  <level>PASSED</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>logMessage</method>
+  <thread>1</thread>
+  <message>Delayed 2 second(s)</message>
+  <nestedLevel>1</nestedLevel>
+</record>
+<record>
+  <date>2025-04-29T19:13:11</date>
+  <millis>1745964791893</millis>
+  <sequence>107</sequence>
+  <level>PASSED</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>logMessage</method>
+  <thread>1</thread>
+  <message>Delayed 1 second(s)</message>
+  <nestedLevel>1</nestedLevel>
+</record>
+<record>
+  <date>2025-04-29T19:13:15</date>
+  <millis>1745964795495</millis>
+  <sequence>111</sequence>
+  <level>PASSED</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>logMessage</method>
+  <thread>1</thread>
+  <message>Delayed 3 second(s)</message>
+  <nestedLevel>1</nestedLevel>
+</record>
+<record>
+  <date>2025-04-29T19:13:20</date>
+  <millis>1745964800501</millis>
+  <sequence>113</sequence>
+  <level>PASSED</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>logMessage</method>
+  <thread>1</thread>
+  <message>Delayed 5 second(s)</message>
+  <nestedLevel>1</nestedLevel>
+</record>
+<record>
+  <date>2025-04-29T19:13:35</date>
+  <millis>1745964815890</millis>
+  <sequence>116</sequence>
+  <level>PASSED</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>logMessage</method>
+  <thread>1</thread>
+  <message>Delayed 15 second(s)</message>
+  <nestedLevel>1</nestedLevel>
+</record>
+<record>
+  <date>2025-04-29T19:13:37</date>
+  <millis>1745964817893</millis>
+  <sequence>118</sequence>
+  <level>PASSED</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>logMessage</method>
+  <thread>1</thread>
+  <message>Delayed 2 second(s)</message>
+  <nestedLevel>1</nestedLevel>
+</record>
+<record>
+  <date>2025-04-29T19:13:38</date>
+  <millis>1745964818823</millis>
+  <sequence>121</sequence>
+  <level>PASSED</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>logMessage</method>
+  <thread>1</thread>
+  <message>Browser is closed</message>
+  <nestedLevel>1</nestedLevel>
+</record>
+<record>
+  <date>2025-04-29T19:13:38</date>
+  <millis>1745964818867</millis>
+  <sequence>127</sequence>
+  <level>INFO</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>logMessage</method>
+  <thread>1</thread>
+  <message>Starting &amp;apos;Chrome&amp;apos; driver</message>
+  <nestedLevel>1</nestedLevel>
+</record>
+<record>
+  <date>2025-04-29T19:13:38</date>
+  <millis>1745964818868</millis>
+  <sequence>129</sequence>
+  <level>INFO</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>logMessage</method>
+  <thread>1</thread>
+  <message>User set preference: [&amp;apos;prefs&amp;apos;, &amp;apos;{download.default_directory=C:\\Users\\Public\\, profile.default_content_settings.popups=0.0, download.prompt_for_download=false, download.directory_upgrade=true, plugins.always_open_pdf_externally=true, pdfjs.disabled=true, safebrowsing.enabled=true}&amp;apos;]</message>
+  <nestedLevel>1</nestedLevel>
+</record>
+<record>
+  <date>2025-04-29T19:13:38</date>
+  <millis>1745964818869</millis>
+  <sequence>130</sequence>
+  <level>INFO</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>logMessage</method>
+  <thread>1</thread>
+  <message>User set preference: [&amp;apos;args&amp;apos;, &amp;apos;[--start-maximized, --disable-infobars,  safebrowsing-disable-download-protection,  safebrowsing-disable-extension-blacklist, --test-type, --disable-extensions]&amp;apos;]</message>
+  <nestedLevel>1</nestedLevel>
+</record>
+<record>
+  <date>2025-04-29T19:13:38</date>
+  <millis>1745964818869</millis>
+  <sequence>131</sequence>
+  <level>INFO</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>logMessage</method>
+  <thread>1</thread>
+  <message>User set preference: [&amp;apos;CapabilityType.ACCEPT_SSL_CERTS&amp;apos;, &amp;apos;true&amp;apos;]</message>
+  <nestedLevel>1</nestedLevel>
+</record>
+<record>
+  <date>2025-04-29T19:13:38</date>
+  <millis>1745964818869</millis>
+  <sequence>132</sequence>
+  <level>INFO</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>logMessage</method>
+  <thread>1</thread>
+  <message>User set preference: [&amp;apos;pageLoadStrategy&amp;apos;, &amp;apos;normal&amp;apos;]</message>
+  <nestedLevel>1</nestedLevel>
+</record>
+<record>
+  <date>2025-04-29T19:13:40</date>
+  <millis>1745964820898</millis>
+  <sequence>134</sequence>
+  <level>RUN_DATA</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>logMessage</method>
+  <thread>1</thread>
+  <message>sessionId = bb898950b6ff3df4a95009af9a6ed46d</message>
+  <nestedLevel>1</nestedLevel>
+  <property name="sessionId">bb898950b6ff3df4a95009af9a6ed46d</property>
+</record>
+<record>
+  <date>2025-04-29T19:13:40</date>
+  <millis>1745964820913</millis>
+  <sequence>135</sequence>
+  <level>RUN_DATA</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>logMessage</method>
+  <thread>1</thread>
+  <message>browser = Chrome 135.0.0.0</message>
+  <nestedLevel>1</nestedLevel>
+  <property name="browser">Chrome 135.0.0.0</property>
+</record>
+<record>
+  <date>2025-04-29T19:13:40</date>
+  <millis>1745964820914</millis>
+  <sequence>136</sequence>
+  <level>RUN_DATA</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>logMessage</method>
+  <thread>1</thread>
+  <message>platform = Windows Server 2016</message>
+  <nestedLevel>1</nestedLevel>
+  <property name="platform">Windows Server 2016</property>
+</record>
+<record>
+  <date>2025-04-29T19:13:40</date>
+  <millis>1745964820914</millis>
+  <sequence>137</sequence>
+  <level>RUN_DATA</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>logMessage</method>
+  <thread>1</thread>
+  <message>seleniumVersion = 3.141.59</message>
+  <nestedLevel>1</nestedLevel>
+  <property name="seleniumVersion">3.141.59</property>
+</record>
+<record>
+  <date>2025-04-29T19:13:40</date>
+  <millis>1745964820915</millis>
+  <sequence>138</sequence>
+  <level>RUN_DATA</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>logMessage</method>
+  <thread>1</thread>
+  <message>proxyInformation = ProxyInformation{proxyOption=USE_SYSTEM, proxyServerType=HTTP, password=, proxyServerAddress=, proxyServerPort=0, executionList=}</message>
+  <nestedLevel>1</nestedLevel>
+  <property name="proxyInformation">ProxyInformation{proxyOption=USE_SYSTEM, proxyServerType=HTTP, password=, proxyServerAddress=, proxyServerPort=0, executionList=}</property>
+</record>
+<record>
+  <date>2025-04-29T19:13:40</date>
+  <millis>1745964820922</millis>
+  <sequence>139</sequence>
+  <level>PASSED</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>logMessage</method>
+  <thread>1</thread>
+  <message>Browser is opened with url: &amp;apos;&amp;apos;</message>
+  <nestedLevel>1</nestedLevel>
+</record>
+<record>
+  <date>2025-04-29T19:13:55</date>
+  <millis>1745964835926</millis>
+  <sequence>141</sequence>
+  <level>PASSED</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>logMessage</method>
+  <thread>1</thread>
+  <message>Delayed 15 second(s)</message>
+  <nestedLevel>1</nestedLevel>
+</record>
+<record>
+  <date>2025-04-29T19:13:55</date>
+  <millis>1745964835939</millis>
+  <sequence>143</sequence>
+  <level>PASSED</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>logMessage</method>
+  <thread>1</thread>
+  <message>Current window maximized</message>
+  <nestedLevel>1</nestedLevel>
+</record>
+<record>
+  <date>2025-04-29T19:14:00</date>
+  <millis>1745964840577</millis>
+  <sequence>146</sequence>
+  <level>PASSED</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>logMessage</method>
+  <thread>1</thread>
+  <message>Navigate to &amp;apos;https://www.br.intrallianz.com/ngx-intranet/public/home&amp;apos; successfully</message>
+  <nestedLevel>1</nestedLevel>
+</record>

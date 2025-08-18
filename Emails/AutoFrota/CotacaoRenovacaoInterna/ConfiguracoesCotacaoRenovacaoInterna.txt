@@ -1,0 +1,5 @@
+C:/Users/Public/RPA_ALLIANZ/Emails/AutoFrota/CotacaoRenovacaoInterna/CotacaoRenovacaoInterna.txt
+rpa@allianz.com.br
+
+smtp.intrallianz.es
+25

@@ -6,6 +6,8 @@ import static com.kms.katalon.core.testdata.TestDataFactory.findTestData
 import static com.kms.katalon.core.testobject.ObjectRepository.findTestObject
 import static com.kms.katalon.core.testobject.ObjectRepository.findWindowsObject
 
+import java.time.Duration
+import java.time.Instant
 import java.util.List
 
 import com.kms.katalon.core.annotation.Keyword
@@ -27,17 +29,26 @@ import auxiliares.FileInput;
 import auxiliares.StringFormatter;
 import auxiliares.ExtractDates
 
+import auxiliares.timer;
+import sendEmail.emailDinamico;
+import auxiliares.GetHost;
+
 public class DistribuicaoAutomaticaInspecaoRiscoFuncionalidades extends rpaCommands{
 
 	private static TestData data
 	private static String testDataPath = 'Data Files/GCF/DistribuicaoAutomaticaInspecaoRiscoData'
 	private static String path
 	private static int cellStatus = 23
-	private static boolean selecionatemTabelaVerificacao = true
+	private static boolean selecionatemTabelaVerificacao = false
 	private static String alerta
 	private static boolean registroModificado
-
-
+	
+	
+	private static String docName = "DistribuicaoAutomaticaInspecaoRisco.xlsx"
+	private static Instant start;
+	private static Instant end;
+	private static Duration timeLapnse;
+	private static int cellCheckAlert = 24;
 
 	/**
 	 * @author T_DCDias
@@ -69,6 +80,7 @@ public class DistribuicaoAutomaticaInspecaoRiscoFuncionalidades extends rpaComma
 		return value
 	}
 
+	
 	/**
 	 * @author be54955
 	 * @param aba
@@ -77,15 +89,58 @@ public class DistribuicaoAutomaticaInspecaoRiscoFuncionalidades extends rpaComma
 	public static fluxoDistribuicaoAutomaticaInspecaoRiscoFuncionalidades(String aba){
 		initDataFiles()
 		if(validaDados()){
+			String dataInicio = ExtractDates.dataAtual();
+			String horaInicial =  ExtractDates.horaAtualizada();
+			start = Instant.now();
 			fluxoCompletoDistribuicaoAutomaticaInspecaoRiscoFuncionalidades(aba)
 			processaFalhas(aba)
-			enviarEmailDistribuicaoAutomaticaInspecaoRiscoFuncionalidades(aba)
+			//enviarEmailDistribuicaoAutomaticaInspecaoRiscoFuncionalidades(aba)
+			end =  Instant.now();
+			timeLapnse = Duration.between(start, end);
+			String dataFinal = ExtractDates.dataAtual();
+			String horaFinal =  ExtractDates.horaAtualizada();
+			try{
+			  enviarEmailDistribuicaoAutomaticaInspecaoRiscoFuncionalidadesDinamico(aba, timeLapnse, dataInicio, dataFinal, horaInicial, horaFinal );
+			} catch (Exception e){
+			}
 		} else {
 			System.err.println('Não existem dados para processar')
 		}
 		finalizar();
 	}
-
+	
+	/**
+	 * @author Alz_sup54955
+	 * @param tipoAba
+	 * @param timeLapnse
+	 * @param dataInicio
+	 * @param dataFinal
+	 * @param horaInicial
+	 * @param horaFinal
+	 * @return
+	 */
+	public static enviarEmailDistribuicaoAutomaticaInspecaoRiscoFuncionalidadesDinamico(String tipoAba, Duration timeLapnse, String dataInicio, String dataFinal, String horaInicial, String horaFinal){
+		System.out.println()
+	 try{
+			String pathTxtEmailConfig = "C:\\Users\\Public\\RPA_ALLIANZ\\Emails\\Gcf\\DistribuicaoAutomaticaInspecaoRisco\\ConfiguracoesDistribuicaoAutomaticaInspecaoRisco.txt";
+			lerConfigurações(pathTxtEmailConfig)
+			System.out.println(pathTxtEmail)
+			String emaildestination = StringFormatter.formatterEmailDestination(FileInput.readFile(pathTxtEmail));
+			// FORMATA SAIDA DO TEMPO DE EXECUÇÃO
+			long segds = timeLapnse.toSeconds();
+			String hours = timeLapnse.toHours()+"h "+
+						timer.converteMinutos(timeLapnse.toHours(), timeLapnse.toMinutes())+"m "+
+						timer.converteSegundos(timeLapnse.toMinutes(),segds)+"s";
+			initDataFiles()
+			if(!validaDados()){
+				emailDinamico.enviaEmailDinamico(sender, emaildestination, tipoAba, path, docName, emailDinamico.listaDeAlertas(data, cellCheckAlert)  , hours, horaInicial, horaFinal,  GetHost.getHostname() , dataInicio, dataFinal, "" );
+			} else {
+				System.err.println('Existem dados para processar')
+			}
+	  } catch (Exception e){}
+	}
+	
+	
 	/**
 	 * @author T_Dvlopes
 	 * @param processoFinalizado
@@ -136,7 +191,7 @@ public class DistribuicaoAutomaticaInspecaoRiscoFuncionalidades extends rpaComma
 							auxiliares.WriteExcelFactory.updateSheetLine("", lina,path, alerta+" - "+ExtractDates.dataAtualizada(), 24, 'DistribuicaoAutomaticaIR');
 						} else {
 							auxiliares.WriteExcelFactory.updateSheetLine("", lina,path, 'Processado', 22, 'DistribuicaoAutomaticaIR');
-							auxiliares.WriteExcelFactory.updateSheetLine("", lina,path, 'Distribuição não confirmada'+" - "+ExtractDates.dataAtualizada(), 23, 'DistribuicaoAutomaticaIR');
+							auxiliares.WriteExcelFactory.updateSheetLine("", lina,path, 'Alerta: Distribuição não confirmada'+"  "+alerta, 23, 'DistribuicaoAutomaticaIR');
 							WebUI.closeBrowser();
 							init(tipoAba)
 						}
@@ -149,7 +204,7 @@ public class DistribuicaoAutomaticaInspecaoRiscoFuncionalidades extends rpaComma
 			   }
 			} catch (Exception e) {
 				auxiliares.WriteExcelFactory.updateSheetLine("", lina,path, 'Processado', 22, 'DistribuicaoAutomaticaIR');
-				auxiliares.WriteExcelFactory.updateSheetLine("", lina,path, alerta, 23, 'DistribuicaoAutomaticaIR');
+				auxiliares.WriteExcelFactory.updateSheetLine("", lina,path, "Alerta: "+alerta, 23, 'DistribuicaoAutomaticaIR');
 			}
 		}
 	}
@@ -164,8 +219,9 @@ public class DistribuicaoAutomaticaInspecaoRiscoFuncionalidades extends rpaComma
 		boolean modificar
 		try{
 			//Assignação Automática
-			clickXpath('//*[@id="1"]', 10);
-
+			//clickXpath('//*[@id="1"]', 10);
+			selecionaList("Assignação Automática", '//*[@id="tableOptMenu_"]', 'td', 15 )
+			
 			//Tipo Profissão
 			selecionaList(distribuicao[10], '//*[@id="tipoProf"]', 'option', 0 )
 
@@ -185,22 +241,26 @@ public class DistribuicaoAutomaticaInspecaoRiscoFuncionalidades extends rpaComma
 
 			//Aceitar
 			clickXpath('//*[@id="o_3"]', 5);
-
+			WebUI.delay(5)
 			//TABELA VERIFICAÇÕES
 			selecionatemTabelaVerificacao(distribuicao)
 			WebUI.delay(5)
-			alerta = recuperaValor('//*[@id="tabelaManutencao_tbody"]/tr', 'innerText', 2)
-			
+			System.out.println()
+			alerta = recuperaValor('//*[@id="dataErrorSection"]/table/tbody/tr/td[2]', 'innerText', 2)
+			WebUI.delay(5)
 			if( alertListBlocList(alerta)){
 				modificar = false;
 			}else{
 			    modificar = true;
+				//Inicio
+				//clickXpath('//*[@id="imgOptMenuBackHome"]', 5);
 			}
 		} catch (Exception e){
 			modificar = false
-			alerta = 'Falha ao modificar registro'
+			alerta = 'Alerta: Falha ao modificar registro'
 			selecionatemTabelaVerificacao = true
 		}
+		System.out.println("Seleciona Item Tabela Verificação ["+selecionatemTabelaVerificacao+"]")
 		return modificar;
 	}
 
@@ -210,31 +270,59 @@ public class DistribuicaoAutomaticaInspecaoRiscoFuncionalidades extends rpaComma
 	 * @return
 	 */
 	public static criarRegistro(List<String> distribuicao){
+		System.out.println()
 		boolean criar
 		try{
+			
+			try{
 			//ALTA
 			clickXpath('//*[@id="botaoAlta"]', 5);
+			} catch (Exception e){}
 
+			try{
 			//ZONA
 			preencheXpath('//*[@id="zonaNew"]', distribuicao[2], 0);
-
+			} catch (Exception e){}
+			
+			try{
 			//NIF
 			preencheXpath('//*[@id="nif_doc"]', distribuicao[3], 0);
+			} catch (Exception e){}
 
+			try{
 			//CARGA DE TRABALHO
 			limparCamposInput('//*[@id="cargaTrabajo"]')
 			preencheXpath('//*[@id="cargaTrabajo"]', distribuicao[6], 0);
+			} catch (Exception e){}
 
+			try{
 			//ALTA
 			clickXpath('//*[@id="o_4"]', 5);
+			} catch (Exception e){}
+			
+			try{
+				//Modificar
+				clickXpath('//*[@id="o_3"]', 5);
+			} catch (Exception e){}
+			
 			fechaAlerta();
 			WebUI.delay(5)
-			alerta = recuperaValor('//*[@id="dataErrorSection"]/table/tbody/tr/td[2]', 'textContent', 2)
-
-			//Inicio
-			clickXpath('//*[@id="imgOptMenuBackHome"]', 5);
-			criar = true
-			registroModificado = true
+			String MsgAlerta = recuperaValor('//*[@id="dataErrorSection"]/table/tbody/tr/td[2]', 'textContent', 2)
+			
+			if( !alertListBlocList(alerta)){
+			  //Inicio
+			  clickXpath('//*[@id="imgOptMenuBackHome"]', 5);
+			  criar = true
+			  registroModificado = true
+			  alerta=MsgAlerta;
+			}else{
+			  //Inicio
+			  clickXpath('//*[@id="imgOptMenuBackHome"]', 5);
+			  criar = false
+			  registroModificado = false
+			  alerta = MsgAlerta;
+			}
+			
 		} catch (Exception e){
 			criar = false
 			registroModificado = false
@@ -248,6 +336,7 @@ public class DistribuicaoAutomaticaInspecaoRiscoFuncionalidades extends rpaComma
 	 * @return
 	 */
 	public static selecionatemTabelaVerificacao(List<String> distribuicao ){
+		System.out.println()
 		try{
 			WebUI.delay(5)
 			String xpath = '//*[@id="tabelaManutencao_tbody"]'
@@ -263,6 +352,8 @@ public class DistribuicaoAutomaticaInspecaoRiscoFuncionalidades extends rpaComma
 				System.out.print("*")
 				System.out.println("\n["+i+"] ["+listOfElements[i].getText()+"] ["+t+"]")
 				if(listOfElements[i].getText().contains(t.trim())){
+					System.out.println()
+					try{
 					System.out.println("\n["+i+"] ["+listOfElements[i].getText()+"] ["+t+"]")
 					String index = String.valueOf(i)
 					System.out.print("index: ["+index+"]")
@@ -273,15 +364,22 @@ public class DistribuicaoAutomaticaInspecaoRiscoFuncionalidades extends rpaComma
 					//Carga de trabalho
 					limparCamposInput('//*[@id="cargaTrabajo"]')
 					preencheXpath('//*[@id="cargaTrabajo"]', distribuicao[6], 1);
+					System.out.println()
 					//Modificar
 					clickXpath('//*[@id="o_3"]', 5);
+					WebUI.delay(5)
 					fechaAlerta();
+					WebUI.delay(5)
 					selecionatemTabelaVerificacao = false
 					registroModificado = true
 					break
+					} catch (Exception e){
+					  selecionatemTabelaVerificacao = true
+					}
 				}
-				selecionatemTabelaVerificacao = true
+				//selecionatemTabelaVerificacao = true
 			}
+			System.out.println("Seleciona Item Tabela Verificação ["+selecionatemTabelaVerificacao+"]")
 		} catch (Exception e){
 			registroModificado = false
 		}

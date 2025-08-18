@@ -325,7 +325,7 @@ public class RenovaSantanderFuncionalidades extends rpaCommands {
 	}
 
 	public static boolean validaDados(String tipoAba,String a,  String[] dataParaExecutar){
-	boolean b = false; 	
+	boolean b = false;
 	for(int i = 0; i < dataParaExecutar.size(); i++){
 		System.err.println('Data ['+i+'] ['+dataParaExecutar[i]+']')
 		if(i==0){
@@ -335,7 +335,7 @@ public class RenovaSantanderFuncionalidades extends rpaCommands {
 			b = true;
 		}
 	}
-	return b;	
+	return b;
 	}
 	
 	
@@ -1056,12 +1056,21 @@ public class RenovaSantanderFuncionalidades extends rpaCommands {
 			WebUI.setText(findTestObject('Object Repository/PageBackoffice/RenovaSantander/Page_Renovaes/input_poliza_SUSEP'), data.getValue(1, i))
 			WebUI.sendKeys(findTestObject('Object Repository/PageBackoffice/RenovaSantander/Page_Renovaes/input_poliza_SUSEP'), Keys.chord(Keys.TAB))
 			WebUI.click(findTestObject('Object Repository/PageBackoffice/RenovaSantander/Page_Renovaes/div_Filtrar'))
-			if (WebUI.verifyElementPresent(findTestObject('Object Repository/PageBackoffice/RenovaSantander/Page_Renovaes/td_error.PREO9918.9524'),2)) {
+		} catch (Exception e ){ }
+		    WebUI.delay(5)
+			System.out.println();
+			
+			try {
+			   if (WebUI.verifyElementPresent(findTestObject('Object Repository/PageBackoffice/RenovaSantander/Page_Renovaes/td_error.PREO9918.9524'),2) ) {
+				    WebUI.click(findTestObject('Object Repository/PageBackoffice/RenovaSantander/Page_Renovaes/div_Filtrar'))
+			   }
+			} catch (Exception e){
+			  System.err.println('[IDENTIFICADOR DE LUPA]')
+		    }
+				
+			if (alertListContinueList(recuperaValor('//*[@id="dataErrorSection"]/table/tbody/tr/td[2]', 'innerText', 1))) {
 				WebUI.click(findTestObject('Object Repository/PageBackoffice/RenovaSantander/Page_Renovaes/div_Filtrar'))
 			}
-		} catch (Exception e){
-			System.err.println('[IDENTIFICADOR DE LUPA]')
-		}
 	}
 
 	/**
@@ -1241,12 +1250,24 @@ public class RenovaSantanderFuncionalidades extends rpaCommands {
 						//Desativado 26/02/2024
 						//	selecionaCarroResenrva(diasCarroResenva(sPacote))
 					} catch (Exception e){}
-
+				
+					
 					try{
 						WebUI.delay(2);
 						WebUI.click(findTestObject('Object Repository/PageBackoffice/RenovaSantander/Page_Trem/div_Aceitar'))
 						WebUI.delay(15)
 					} catch (Exception e){}
+					
+					try{
+						//Veículo possui kit gás instalado?
+						String alertakitGas = recuperaValor('//*[@id="dataErrorSection"]/table/tbody/tr/td[1]/b', 'textContent', 5)
+						if(alertListContinueList(alertakitGas)){
+							selecionaItemLista('//*[@id="InfVeicBean$veicPossKitGas"]','option', 'Não' )
+							WebUI.click(findTestObject('Object Repository/PageBackoffice/RenovaSantander/Page_Trem/div_Aceitar'))
+							WebUI.delay(15)
+						}
+					}catch (Exception e){}
+					
 
 					String msgTela2 = recuperaValor('//*[@id="dataErrorSection"]/table/tbody/tr[2]/td[2]', 'innerText', 1)
 					System.err.println(msgTela2)
@@ -2779,9 +2800,9 @@ public class RenovaSantanderFuncionalidades extends rpaCommands {
 	/**
 	 * @author T_DCDiass
 	 * @return
-	 * 
-	 * Ajuste 19/06/24: 
-	 *   Inclusão do método "alertListContinueList" para tratamento de mensagens de alerta.  
+	 *
+	 * Ajuste 19/06/24:
+	 *   Inclusão do método "alertListContinueList" para tratamento de mensagens de alerta.
 	 */
 	public static telaClausulas(){
 		WebUI.waitForPageLoad(30)
@@ -3062,7 +3083,7 @@ public class RenovaSantanderFuncionalidades extends rpaCommands {
 				enviarEmailRenovaSantander(tipoAba, dataParaExecutar)
 				} catch (Exception e){}
 			} else{
-			    try{
+				try{
 				pathTxtEmail = "C:/Users/Public/RPA_ALLIANZ/Emails/Auto/RenovaSantander/ConfiguracoesRenovaSantander.txt";
 				lerConfigurações(pathTxtEmail)
 				String pathAnexos = "C:/Users/Public/RPA_ALLIANZ/Emails/Auto/RenovaSantander/Anexos.txt"
@@ -3239,12 +3260,16 @@ public class RenovaSantanderFuncionalidades extends rpaCommands {
 
 				System.err.println('Valor recuperado ['+alertToFound+']')
 
-				if(alertToFound.contains(alertListBloc(alertToFound.toString()))){
-					System.err.println('alertListBloc [ true ]')
+				//if(alertToFound.contains(alertListBloc(alertToFound.toString()))){
+				if(!alertListBlocList(alertToFound.toString())){
+					System.err.println('alertListBloc [ true ] ['+alertToFound+']')
 					msg = false
 					sAlerta = str;
 					validaTela = false
 					bProximoRegistro = true
+					alertaRenovacao = false
+					alertaDadosRisco = false
+					alertatelaTabelaPrecos = false
 				} else if (str.contains(alertListContinue(str.toString()))){
 					System.err.println('alertListContinue [ true ]')
 					msg = true
@@ -3628,6 +3653,8 @@ public class RenovaSantanderFuncionalidades extends rpaCommands {
 			listOfAlerts.add(" Vistoria Prévia Dispensada")
 			listOfAlerts.add(" Vistoria Prévia Digital Obrigatória")
 			listOfAlerts.add(" Não mostra as modalidade cujo o prêmio é inferior ao mínimo da parcela")
+			listOfAlerts.add(" error.BREO9918.9524")    
+			listOfAlerts.add("Veículo possui kit gás instalado?")
 			System.out.println("Alert ["+alert+"]")
 			for(int i = 0; i < listOfAlerts.size(); i++){
 				System.err.println("["+i+"] ["+listOfAlerts[i]+"]")
@@ -3682,6 +3709,12 @@ public class RenovaSantanderFuncionalidades extends rpaCommands {
 			listOfAlerts.add(" Ocorreu um erro interno ao recuperar dados para mostrar a tabela de preços")
 			listOfAlerts.add(" Cobertura não permitida para Acessório Blindagem")
 			listOfAlerts.add(" RADAR (AP) - Erro na Precificação da cotação")
+			listOfAlerts.add(" Erro no base de dados. Abrir chamado no Service Desk")
+			listOfAlerts.add("Erro on epac2020 on QA mode")
+			listOfAlerts.add(" Endereço é obrigatório")
+			listOfAlerts.add(" Tipo da via é obrigatório")
+			listOfAlerts.add(" Condutor deve ser pessoa física")
+			
 			System.out.println("Alert ["+alert+"]")
 			for(int i = 0; i < listOfAlerts.size(); i++){
 				System.err.println("["+i+"] ["+listOfAlerts[i]+"]")

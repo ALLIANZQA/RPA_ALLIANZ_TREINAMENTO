@@ -1,0 +1,890 @@
+package autofrota
+
+import static com.kms.katalon.core.checkpoint.CheckpointFactory.findCheckpoint
+import static com.kms.katalon.core.testcase.TestCaseFactory.findTestCase
+import static com.kms.katalon.core.testdata.TestDataFactory.findTestData
+import static com.kms.katalon.core.testobject.ObjectRepository.findTestObject
+import static com.kms.katalon.core.testobject.ObjectRepository.findWindowsObject
+
+import java.time.Duration
+import java.time.Instant
+import java.util.List
+
+import com.kms.katalon.core.annotation.Keyword
+import com.kms.katalon.core.checkpoint.Checkpoint
+import com.kms.katalon.core.cucumber.keyword.CucumberBuiltinKeywords as CucumberKW
+import com.kms.katalon.core.mobile.keyword.MobileBuiltInKeywords as Mobile
+import com.kms.katalon.core.model.FailureHandling
+import com.kms.katalon.core.testcase.TestCase
+import com.kms.katalon.core.testdata.TestData
+import com.kms.katalon.core.testobject.TestObject
+import com.kms.katalon.core.webservice.keyword.WSBuiltInKeywords as WS
+import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
+import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
+
+import auxiliares.MenuMatriz
+import internal.GlobalVariable
+import rpacommands.rpaCommands
+
+import auxiliares.ExtractDates
+import auxiliares.StringFormatter
+import auxiliares.FileInput
+import sendEmail.emailDinamico;
+import auxiliares.timer;
+import auxiliares.GetHost;
+import auxiliares.CurrencyMonetary;
+
+public class CotacaoRenovacaoInternaFuncionalidades extends rpaCommands{
+	
+	
+	private static TestData data
+	private static String testDataPath = 'Data Files/AutoFrota/CotacaoRenovacaoInternaData'
+	private static String path
+	private static String alerta
+	private static int cellCheck = 38;
+	private static Instant start;
+	private static Instant end;
+	private static Duration timeLapnse;
+	private static String docName = "CotacaoRenovacaoInterna.xlsx"
+	private static int cellCheckAlert = 40;
+	private static boolean enviado = true;
+	private static String xpath;
+	private static String tela;
+	private static String operacao;
+	private static tipoSeguro="Renovação Interna com sinistro";
+	
+		
+	/**
+	 * @author be54955
+	 * @param aba
+	 * @return
+	 */
+	public static fluxoCotacaoRenovacaoInterna(String aba, String a){
+		String dataInicio = ExtractDates.dataAtual();
+		String horaInicial =  ExtractDates.horaAtualizada();
+		start = Instant.now();
+		initDataFiles()
+		fluxoCompletoCotacaoRenovacaoInterna(aba,a)
+		reprocessaFalhas(aba,a)
+		end =  Instant.now();
+		timeLapnse = Duration.between(start, end);
+		String dataFinal = ExtractDates.dataAtual();
+		String horaFinal =  ExtractDates.horaAtualizada();
+		try{
+		   enviaEmailCotacaoRenovacaoInterna(aba, timeLapnse, dataInicio, dataFinal, horaInicial, horaFinal );
+		} catch (Exception e){
+		}
+	}
+	
+	/**
+	 * @author be54955
+	 * @param aba
+	 * @return
+	 */
+	public static reprocessaFalhas(String aba, String a){
+		System.err.println('Reprocessa Falhas')
+		initDataFiles()
+		if(validaDados(cellCheck)){
+			fluxoCompletoCotacaoRenovacaoInterna(aba,a)
+			reprocessaFalhas(aba,a)
+		}
+	}
+	
+	/**
+	 * @author be54955
+	 * @param aba
+	 * @return
+	 */
+	public static fluxoCompletoCotacaoRenovacaoInterna(aba,a){
+		try{
+			if(validaDados(cellCheck)){
+				init(aba,a);
+				for(int i = 1; i <= data.getRowNumbers(); i++) {
+					int j =  i - 1
+					enviado = true;
+					if (data.getValue(cellCheck, i).equals('Processar')) {
+						List<String> registros = new ArrayList<>();
+						Map<String, String> dadosCapturados = new HashMap<String, String>()
+						lista( registros , i)
+						if(renovacaointerna(registros,aba)) {
+						   salvarEvidencias(aba, registros[1])
+						} else {
+						   salvarEvidenciasErro(aba, registros[1])
+						}
+						initDataFiles()
+					}
+				}
+			} else {
+				System.err.println('Não existem dados para processar')
+			}
+		} catch (Exception e){}
+		WebUI.closeBrowser();
+	}
+	
+	
+	public static salvarEvidencias(String aba, String apolice){
+		try{
+			for(int i = 1; i <= data.getRowNumbers(); i++) {
+				int j =  i - 1
+				if (data.getValue(2, i).equals(apolice)) {
+			        auxiliares.WriteExcelFactory.updateSheetLine("", j, path, "Processado", 37, aba);
+					auxiliares.WriteExcelFactory.updateSheetLine("", j, path, operacao, 38, aba);
+		            auxiliares.WriteExcelFactory.updateSheetLine("", j, path, alerta, 39, aba);
+				}
+			}
+			
+		} catch (Exception e){}
+	}
+	
+	public static salvarEvidenciasErro(String aba, String apolice){
+		try{
+			for(int i = 1; i <= data.getRowNumbers(); i++) {
+				int j =  i - 1
+				if (data.getValue(2, i).equals(apolice)) {
+					auxiliares.WriteExcelFactory.updateSheetLine("", j, path, "Processado", 37, aba);
+					auxiliares.WriteExcelFactory.updateSheetLine("", j, path, "Alerta: "+alerta, 39, aba);
+				}
+			}
+			
+		} catch (Exception e){}
+	}
+	
+	public static boolean renovacaointerna(List<String> registros, String aba){
+		System.out.println()
+		MenuMatriz.producaoSinistro()
+		MenuMatriz.subMenu('/*/body/div/div/app-root/app-private/app-displayed-menu/div/app-teaser/div/div[1]/div/div[2]/ul', 'a','Produção')
+		System.out.println()
+		menuProducao(registros)
+		dadosBasicos(registros)
+		applicationPageDadosApolFrota(registros)
+		itensDelFrota(registros,aba)
+		tabelaDePrecos(registros);
+		System.out.println(processado())
+		return processado()
+	}
+	
+	
+	public static boolean menuProducao(List<String> registros){
+		try{
+			if(enviado){
+				WebUI.delay(15);
+				alerta = recuperaValor('//*[@id="dataErrorSection"]/table/tbody/tr/td[2]', 'innerText', 0)
+				System.out.println("Alerta ["+alerta+"]")
+				if(!alertListBlocList(alerta)){
+					
+					alteraJanejaGenerica(1, 5)
+					tela = recuperaValor( '//*[@id="cellAppPromptHeaderArea"]', 'innerText', 0)
+					if(listaDeTelas(tela)){
+						 //Tipo Seleção
+						 clicarEmElementoDaTela(tipoEmissao("Emissão"), 0);
+						 //Agrupamento
+						 selecionaItemLista("Auto Frota", '//*[@id="agrupacion"]', 'option');
+						 //Produto
+						 selecionaItemLista("Novo Frota - Automovel", '//*[@id="producto"]', 'option');
+						 //Corretor
+						 xpath = '//*[@id="mediador"]';
+						 limpaCampo(xpath, 5)
+						 preencheXpath(xpath, registros[3], 0);
+						 //Selecionar
+						 clicarEmElementoDaTela('//*[@id="btnSeleccionar"]', 2);
+						 //Operatuva
+						 selecionaItemLista("Emitir Apólice de Multisituação Ampliação", '//*[@id="codOperativa"]', 'option');
+						 //Avançar
+						 clicarEmElementoDaTela('//*[@id="btnSeleccionOperativa"]', 0);
+					} else {
+					  fecharJanelaAtual(1)
+					  alteraJanejaGenerica(0, 0)
+					  alerta = "Falha: Tela - Menu Produção - Não apresentada";
+					  enviado = false;
+					}
+				}else {
+			      fecharJanelaAtual(1)
+			      alteraJanejaGenerica(0, 0)
+			      enviado = false;
+		        }
+			}
+			} catch (Exception e){
+			 fecharJanelaAtual(1)
+			 alteraJanejaGenerica(0, 0)
+			 alerta = "Falha ao carregar a tela - Menu Produção";
+			 enviado = false;
+		   }
+	}
+	
+	/**
+	 * @author Alz_sup54955
+	 * @param cotacao
+	 * @return
+	 */
+	public static boolean dadosBasicos(List<String> registros){
+		try{
+			if(enviado){
+				WebUI.delay(10);
+				alerta = recuperaValor('//*[@id="dataErrorSection"]/table/tbody/tr/td[2]', 'innerText', 0)
+				System.out.println("Alerta ["+alerta+"]")
+				if(!alertListBlocList(alerta)){
+					System.out.println()
+					tela = recuperaValor( '//*[@id="cellAppPromptHeaderArea"]', 'innerText', 0)
+					 if(tela.contains("D. BÁSICOS")){ // TELA DADOS BASICOS
+						 System.out.println()
+						 // INICIO VIGENCIA
+						 xpath = '//*[@id="DatosGeneralesBean$fechaEfecto"]';
+						 limpaCampo(xpath, 0)
+						 preencheXpath(xpath,  ExtractDates.formatDateToBR(registros[5]), 0);
+						 //Forma de pagamento
+						 selecionaItemLista("Boleto Bancário", '//*[@id="DatosGeneralesBean$primRecibo"]', 'option');
+						 // Dia do Pagamento
+						 xpath = '//*[@id="DatosGeneralesBean$diaPago"]';
+						 limpaCampo(xpath, 0)
+						 preencheXpath(xpath, "1", 0);
+						 // CPF/CNPJ Tomador
+						 xpath = '//*[@id="IntervinientesBean$nifTomador_doc"]';
+						 limpaCampo(xpath, 0)
+						 preencheXpath(xpath, registros[8], 0);
+						 //Nome do Tomador
+						 xpath = '//*[@id="IntervinientesBean$nomFigTomadorValue"]';
+						 limpaCampo(xpath, 0)
+						 preencheXpath(xpath, registros[7], 0);
+						 //Avançar
+						 clicarEmElementoDaTela('//*[@id="btnAceptar"]', 0);
+						 WebUI.delay(5);
+						 try{
+							  String alert = recuperaValor('//*[@id="dataErrorSection"]/table/tbody/tr/td[2]', 'innerText', 1)
+							  if(alertListContinueList(alert)){
+								  //Avançar
+								  clicarEmElementoDaTela('//*[@id="btnAceptar"]', 0);
+							  }
+						 } catch (Exception e){}
+					 } else {
+					   fecharJanelaAtual(1)
+					   alteraJanejaGenerica(0, 0)
+					   alerta = "Falha: Tela - D. BÁSICOS  - Não apresentada";
+					   enviado = false;
+					}
+				} else {
+			      fecharJanelaAtual(1)
+			      alteraJanejaGenerica(0, 0)
+			      enviado = false;
+		        }
+			}	
+		} catch (Exception e){
+		fecharJanelaAtual(1)
+		alteraJanejaGenerica(0, 0)
+		alerta = "Falha ao carregar a tela - D. BÁSICOS";
+		enviado = false;
+	  }
+	}
+	
+	
+	public static boolean applicationPageDadosApolFrota(List<String> registros){
+		try{
+			if(enviado){
+				WebUI.delay(10);
+				alerta = recuperaValor('//*[@id="dataErrorSection"]/table/tbody/tr/td[2]', 'innerText', 0)
+				System.out.println("Alerta ["+alerta+"]")
+				if(!alertListBlocList(alerta)){
+			      System.out.println()
+			      tela = StringFormatter.pointStop(recuperaValor( '//*[@id="cellAppPromptHeaderArea"]', 'innerText', 0),"APPLICATION.PAGE.PDADOSAPOLFROTA");
+			      if(listaDeTelas(tela)){
+				    //Tipo de Seguro
+				    selecionaItemLista("Renovação Interna sem sinistro", '//*[@id="DadosApolFrotaBean$tipoSeguro"]', 'option');
+				    try{
+				      // No. da apólice
+				      xpath = '//*[@id="DadosApolFrotaBean$nmrApolice"]';
+				      limpaCampo(xpath, 2)
+				      preencheXpath(xpath, registros[1], 2);
+				   } catch (Exception e){}
+				  //Tipo de Transporte
+				  selecionaItemLista("Não se Aplica", '//*[@id="QuestionarioAvaliacaoRiscoFrotaBean$tipoDeTransporte"]', 'option');
+				  //Carga Transportada 1
+				  selecionaItemLista("Não se aplica", '//*[@id="QuestionarioAvaliacaoRiscoFrotaBean$cargaTransportada1"]', 'option');
+				  //Carga Transportada 2
+				  selecionaItemLista("Não se aplica", '//*[@id="QuestionarioAvaliacaoRiscoFrotaBean$cargaTransportada2"]', 'option');
+				  //Carga Transportada 3
+				  selecionaItemLista("Não se aplica", '//*[@id="QuestionarioAvaliacaoRiscoFrotaBean$cargaTransportada3"]', 'option');
+				  //Em caso de viagem, onde os veículos pernoitam?
+				  selecionaItemLista("Não se aplica / Não viaja", '//*[@id="QuestionarioAvaliacaoRiscoFrotaBean$pernoiteDosVeiculos"]', 'option');
+				  //Qual a região de circulação mais frequente?
+				  selecionaItemLista("Território nacional, com circulação na região de São Paulo e/ou Rio de Janeiro", '//*[@id="QuestionarioAvaliacaoRiscoFrotaBean$regiaoCirculacaoMaisFrequente"]', 'option');
+				  //Gerenciamento de Riscos
+				  xpath = '//*[@id="x_gerenciamentosDeRiscos"]';
+				  limpaCampo(xpath, 0)
+				  preencheXpath(xpath, "Não Possui", 0);
+				  //Declaração de aceite
+				  clicarEmElementoDaTela('//*[@id="x_declaradoAceite"]', 0);
+				  //Avançar
+				  clicarEmElementoDaTela('//*[@id="o_4"]', 0);
+				  WebUI.delay(5);
+				  try{
+					  alerta = recuperaValor('//*[@id="dataErrorSection"]/table/tbody/tr/td[2]', 'innerText', 0)
+					  System.out.println("Alerta ["+alerta+"]")
+					  if(alerta.equals(" Apólice possui Sinistro. Favor selecionar Renovação Interna Com Sinistro.")){
+						  //Carga Transportada 3
+						  selecionaItemLista(tipoSeguro, '//*[@id="DadosApolFrotaBean$tipoSeguro"]', 'option');
+						  //Avançar
+						  clicarEmElementoDaTela('//*[@id="o_4"]', 0);
+					  }
+				  } catch (Exception e){}
+				  WebUI.delay(5);
+				  try{
+					  alerta = recuperaValor('//*[@id="dataErrorSection"]/table/tbody/tr/td[2]', 'innerText', 0)
+					  System.out.println("Alerta ["+alerta+"]")
+					  if(alertListContinueList(alerta)){
+						  //Avançar
+						  clicarEmElementoDaTela('//*[@id="o_4"]', 0);
+					  }
+				  } catch (Exception e){}
+				  
+			      } else {
+			        fecharJanelaAtual(1)
+			        alteraJanejaGenerica(0, 0)
+			        alerta = "Falha: Tela - Application Page Dados Apol Frota - Não apresentada";
+			        enviado = false;
+			      }
+			    } else {
+			      fecharJanelaAtual(1)
+			      alteraJanejaGenerica(0, 0)
+			      enviado = false;
+		        }
+			  }
+			} catch (Exception e){
+			 fecharJanelaAtual(1)
+			 alteraJanejaGenerica(0, 0)
+			 alerta = "Falha ao carregar a tela - Application Page Dados Apol Frota";
+			 enviado = false;
+		   }
+	}
+	
+	
+	public static boolean itensDelFrota(List<String> registros, String aba){
+		try{
+			if(enviado){
+				WebUI.delay(10);
+				alerta = recuperaValor('//*[@id="dataErrorSection"]/table/tbody/tr/td[2]', 'innerText', 0)
+				System.out.println("Alerta ["+alerta+"]")
+				if(!alertListBlocList(alerta)){
+				  tela = StringFormatter.stopString(recuperaValor( '//*[@id="cellAppPromptHeaderArea"]', 'innerText', 0),":");
+				  if(listaDeTelas(tela)){
+					  System.out.println()
+					  for(int i = 1; i <= data.getRowNumbers(); i++) {
+						  int j =  i - 1
+						  enviado = true;
+						  if(data.getValue(cellCheck, i).equals('Processar')) {
+						     List<String> item = new ArrayList<>();
+						     lista( item , i)
+							 item[38]="Não";
+							 item[39]="1 - Próprios (PJ)";
+							 item[40]="por Itens"
+						     //Apolice
+						     if(data.getValue(2, i).equals(registros[1])){
+					            if(gravarItem(item)) {
+								//   salvarEvidenciaItem(item[1], item[2], aba)
+						        } else {
+								//   salvarEvidenciaItem(item[1], item[2], aba)
+						        }
+						     }
+						  }
+				     }
+					 System.out.println()
+					//Avançar
+					 clicarEmElementoDaTela('//*[@id="o_4"]', 10);
+					 try{
+						alerta = recuperaValor('//*[@id="dataErrorSection"]/table/tbody/tr/td[2]', 'innerText', 0)
+						System.out.println("Alerta ["+alerta+"]")
+						if(alertListContinueList(alerta)){
+						//	identificaAlertaItem()
+							String telaEsperada="COBERTURAS";
+							tela = StringFormatter.stopString(recuperaValor( '//*[@id="cellAppPromptHeaderArea"]', 'innerText', 0),":");
+							identificaTela(tela, telaEsperada)
+						}
+					} catch (Exception e){}
+					
+					
+					
+					
+					System.out.println()
+				  } else {
+					fecharJanelaAtual(1)
+					alteraJanejaGenerica(0, 0)
+					alerta = "Falha: Tela - Itens de Frota - Não apresentada";
+					enviado = false;
+				  }
+				} else {
+				  fecharJanelaAtual(1)
+				  alteraJanejaGenerica(0, 0)
+				  enviado = false;
+				}
+			  }
+			} catch (Exception e){
+			 fecharJanelaAtual(1)
+			 alteraJanejaGenerica(0, 0)
+			 alerta = "Falha ao carregar a tela - Itens de Frota ";
+			 enviado = false;
+		   }
+	}
+	
+	
+	public static void identificaAlertaItem(){
+		String attrib = "style";
+		String tag ="img";
+		String xpath='//*[@id="gridCoberturasItensContent"]/div[1]/table'
+		selecionaListaDeElementos(xpath,tag)
+		for(int i = 0; i < listOfElements.size(); i++){
+		//	System.err.println("FOUND ["+i+"] ["+listOfElements[i].getText()+"] ["+listOfElements[i].getAttribute(attrib)+"]")
+			if(listOfElements[i].getAttribute(attrib).equals("background-color: transparent;".toString())){
+				System.err.println("FOUND ["+i+"] ["+listOfElements[i].getAttribute(attrib)+"]")
+				//Avançar
+				clicarEmElementoDaTela('//*[@id="o_4"]', 10);
+			}
+		}
+	}
+	
+	public static boolean gravarItem(List<String> item){
+		try{
+			//
+			String vrVeiculosEspeciais = "1000";
+			
+			WebUI.delay(10);
+			System.out.println()
+			//Incluir item
+			clicarEmElementoDaTela('//*[@id="incluirItem"]/table/tbody/tr[1]/td/table/tbody/tr/td[2]', 0);
+			//Classe de bonus
+			selecionaItemLista(StringFormatter.removeZeroDoInicioDeNumeroString(item[14]), '//*[@id="x_classeBonus"]', 'option');
+			//Chasse
+			xpath = '//*[@id="chassi"]';
+			limpaCampo(xpath, 0)
+			preencheXpath(xpath, item[13], 0);
+			//Lupa
+			clicarEmElementoDaTela('//*[@id="consultarChassi"]', 0);
+			System.out.println()
+			//Clique na linha para escolher o veículo desejado...		
+			listaDeModelos(item)
+			//Valor de referência
+			int v = Integer.parseInt(item[17])
+			System.out.println("Valor de referência ["+v+"]")
+			
+			int w = Integer.parseInt(item[22])
+			System.out.println("Valor de referência COB Casco  VD ["+w+"]")
+			if(v==9995200){
+			   xpath = '//*[@id="x_valorReferencia"]';
+			   if(w==0){
+			      preencheXpath(xpath, "1000", 0);
+			      commandTAB(xpath)
+			   } else if(w>0){
+			      String VD = Integer.toString(w)
+			      preencheXpath(xpath, ajusteRefCobCascoVD(VD), 0);
+			      commandTAB(xpath)
+			  }
+			}
+			//Zero km
+			selecionaItemLista(zeroKM(item[23]), '//*[@id="x_zeroKMFrota"]', 'option');
+			//Estado 
+			selecionaItemLista(item[15], '//*[@id="x_estado"]', 'option');
+			//Municipio
+			selecionaItemLista(item[16], '//*[@id="x_municipio"]', 'option');
+			//Propriedade
+			String s = retornaItemSelecionadoLista('//*[@id="x_propriedadeVeiculo"]', 'option', "selected" )
+			if(s.contains("[SELECIONE...]")){
+				selecionaItemLista(item[39], '//*[@id="x_propriedadeVeiculo"]', 'option');
+			}
+			//Gravar
+			clicarEmElementoDaTela('//*[@id="x_btngravar"]', 0);
+			alerta = "Intem gravado";
+			//Avançar
+			clicarEmElementoDaTela('//*[@id="o_4"]', 0);
+			WebUI.delay(5);
+			//Filtro
+			selecionaItemLista(item[40], '//*[@id="x_filtro"]', 'option');
+			//Seleciona item
+			selecionaItemLista(item[2], '//*[@id="x_list_itens"]', 'option');
+			
+			
+			//TIPO COBERTURA CASCO 
+			int t = Integer.parseInt(item[24])
+		
+			System.out.println(t)
+			if(t==0){ 
+				//Contrata Casco e(ou) Val. Determinado
+				selecionaItemLista("Não", '//*[@id="x_val_det"]', 'option');
+				//FIPE
+				selecionaItemLista("0", '//*[@id="x_perc_fipe"]', 'option');
+				//selecionaItemListaAtributo("O",'//*[@id="x_perc_fipe"]' , 'option', 'value' )
+			} else { 
+			//FIPE
+			regraFipe(item, v)
+			//FRANQUIA
+			selecionaItemLista(tipoFranquia(item[26]), '//*[@id="x_tipo_franquia"]', 'option');
+			}
+			
+			//RCF - Danos Materiais
+			selecionaItemLista(CurrencyMonetary.formataValorMonetario(item[27]).trim(), '//*[@id="x_danos_materiais"]', 'option');
+			//RCF - Danos Corporais
+			selecionaItemLista(CurrencyMonetary.formataValorMonetario(item[28]).trim(), '//*[@id="x_danos_corporais"]', 'option');
+			//RCF - Danos Morais e Estéticos 
+			selecionaItemLista(CurrencyMonetary.formataValorMonetario(item[29]).trim(), '//*[@id="x_danos_morais"]', 'option');
+			
+			t = Integer.parseInt(item[30])
+			System.out.println("APP - Morte ["+t+"]")
+			if(t>0){
+			//APP - Morte
+			xpath = '//*[@id="x_app_morte"]';
+			preencheXpath(xpath,item[30].trim(), 0);
+			commandTAB(xpath)
+			}
+			
+			t = Integer.parseInt(item[31].replace("{", ""))
+			System.out.println("APP - Invalidez ["+t+"]")
+			if(t>0){
+			//APP - Invalidez
+			xpath = '//*[@id="x_app_invalidez"]';
+			preencheXpath(xpath,item[31].trim(), 0);
+			commandTAB(xpath)
+			}
+			
+			//Vidros, Lant., Faróis e Retr.
+			selecionaItemLista(validaValorVidroContratado(item[32]), '//*[@id="x_vidros"]', 'option');
+			//Acessórios gerais
+			xpath = '//*[@id="x_aces_gerais"]';
+			t = Integer.parseInt(item[33].replace("{", ""))
+			System.out.println(t)
+			if(t>0){ preencheXpath(CurrencyMonetary.formataValorMonetario(item[33]).trim(), 0);
+			commandTAB(xpath)}
+			//Blindagem
+			xpath = '//*[@id="x_blindagem"]';
+			t = Integer.parseInt(item[34])
+			System.out.println(t)
+			if(t>0){preencheXpath(CurrencyMonetary.formataValorMonetario(item[34]).trim(), 0);
+			commandTAB(xpath)}
+			//Assistência 24 horas
+			selecionaItemLista(validaValorContratadoAss24hs(item[35]), '//*[@id="x_assist24h"]', 'option');
+			//Carro Reserva
+			selecionaItemLista(validaValorContratadoCarroReserva(item[36]), '//*[@id="x_carro_reserva"]', 'option');
+			//Aplicar Configuração 
+			clicarEmElementoDaTela('//*[@id="o_3"]', 0);
+			WebUI.delay(3);
+			String msg = pegaMSGAlerta();
+			System.out.println("["+msg+"]")
+			System.out.println()
+			okAlerta();
+			WebUI.delay(3);
+			//Voltar
+			clicarEmElementoDaTela('//*[@id="o_5"]', 0);
+			System.out.println()
+			enviado = true;
+		} catch (Exception e){}
+		return enviado;
+	}
+	
+	public static void regraFipe(List<String> item, int v){
+		System.out.println("Regra FIPE ["+v+"] ["+item[24]+"]")
+		if( v==9995200 && item[24].equals("1")){
+			selecionaItemLista("100", '//*[@id="x_perc_fipe"]', 'option');
+		} else {
+		  selecionaItemLista(formataFIPE(item[25]), '//*[@id="x_perc_fipe"]', 'option');
+		}
+	}
+	
+	/**
+	 * @author Alz_sup54955
+	 * @param formulario
+	 * @return
+	 */
+	public static tabelaDePrecos(List<String> registros){
+		try{
+		if(enviado){
+			WebUI.delay(10);
+			alerta = recuperaValor('//*[@id="dataErrorSection"]/table/tbody/tr/td[2]', 'innerText', 0)
+			if(!alertListBlocList(alerta)){
+				tela = recuperaValor( '//*[@id="cellAppPromptHeaderArea"]', 'innerText', 0)
+				if(tela.contains("TABELA DE PREÇOS")){
+					System.out.println()
+					//COMISSÃO
+					String c = recuperaValor( '//*[@id="ComisionamientoBean$porcComision"]', 'value', 0).replaceAll(",00", "")
+					int comRec = Integer.parseInt(c);
+					int comBas = Integer.parseInt(registros[12]);
+					System.out.println("comRec ["+comRec+"] comBas ["+comBas+"]")
+					if(comRec!=comBas){
+					   xpath = '//*[@id="ComisionamientoBean$porcComision"]'
+					   limpaCampo(xpath, 0)
+					   preencheXpath(xpath,registros[12].trim(), 0);
+					   //CALCULAR
+					   clicarEmElementoDaTela('//*[@id="btnCalcular"]', 0);
+					}
+					//Malerta = tela.replaceAll("[TABELA DE PREÇOS :", "");
+					operacao = StringFormatter.nextStop(tela, "AUTOMOVEL", 0).replaceAll("[\\[\\]]", "");
+					alerta= "Itens adicionados"
+					System.out.println("["+alerta+"] ["+operacao+"]")
+					//MENU
+					selecionaItemLista("Menu", '//*[@id="tableOptMenu_"]', 'td');
+				}
+		    } else {
+		    fecharJanelaAtual(1)
+		    alteraJanejaGenerica(0, 0)
+		    enviado = false;
+		    }
+		}
+		} catch (Exception e){
+		  fecharJanelaAtual(1)
+		  alteraJanejaGenerica(0, 0)
+		  enviado = false;
+		}
+	}
+	
+	public static void identificaTela(String telaAtual, String telaEsperada){
+		System.out.println("RECURSIVO...")
+		System.out.println("["+telaAtual+"] ["+ telaEsperada+"]")
+		while(telaAtual.equals(telaEsperada)){
+			//Avançar
+			WebUI.delay(10);
+			selecionaItemLista("Avançar", '//*[@id="divAppContent"]/table/tbody/tr[1]/td/table/tbody/tr[2]/td/table', 'div');
+			identificaTela(telaAtual, telaEsperada )
+		}
+		System.out.println("SAINDO DO RECURSIVO...")
+	}
+	
+	public static String validaValorVidroContratado(String f){
+	Map<String, String> seguro = new HashMap<String, String>();
+		seguro.put("00",'Não Contratado');
+		seguro.put("01",'Vidros Plano 1');
+		seguro.put("02",'Vidros Plano 2');
+		seguro.put("03",'Vidro Blindado');
+		return seguro.get(f).toString();
+	}
+	
+	public static String validaValorContratadoCarroReserva(String f){
+	    Map<String, String> seguro = new HashMap<String, String>();
+		seguro.put("00",'Não contratado');
+		seguro.put("07",'7 dias');
+		seguro.put("15",'15 dias');
+		seguro.put("30",'30 dias');
+		return seguro.get(f).toString();
+	}
+	
+	public static String validaValorContratadoAss24hs(String f){
+	    Map<String, String> seguro = new HashMap<String, String>();
+		seguro.put("00",'Não contratada');
+		seguro.put("01",'Plano 1');
+		seguro.put("02",'Plano 2');
+		seguro.put("03",'Plano 3');
+		return seguro.get(f).toString();
+	}
+	
+    public static String tipoFranquia(String f){
+		Map<String, String> seguro = new HashMap<String, String>();
+		seguro.put("0",'Sem Franquia');
+		seguro.put("1",'Normal');
+		seguro.put("4",'Reduzida');
+		seguro.put("7",'Especial');
+		return seguro.get(f).toString();
+	}
+	
+	public static void listaDeModelos(List<String> item){
+		WebUI.delay(5);
+		System.out.println()
+		try{
+			tela = recuperaValor( '//*[@id="myModal"]/div/h3', 'innerText', 0);
+		    if(listaDeTelas(tela)){
+			  //Versão
+			  selecionaItemListaDuploClick(item[20], '//*[@id="tbodylistaVeiculos"]', 'tr');
+			  WebUI.delay(2);
+			  fechaAlerta();
+			}
+		}catch (Exception e){}	
+	}
+	
+	/**
+	 * @author T_DCDias
+	 * @return
+	 */
+	public static selecionaItemListaDuploClick(String tipo,String xpath , String tag ){
+		selecionaListaDeElementos(xpath,tag)
+		for(int i = 0; i < listOfElements.size(); i++){
+			System.err.println("["+i+"]  ["+listOfElements[i].getAttribute('value')+"] ["+listOfElements[i].getText()+"]")
+			if(listOfElements[i].getText().contains(tipo.toString().replaceAll("  ", " "))){
+				//System.err.println("FOUND ["+i+"] ["+listOfElements[i].getText()+"]")  //*[@id="dlv1linha1"]
+				String dlv1linha = "dlv1linha"
+				String num = Integer.toString(i)+'"';
+				String xpth = '//*[@id="'+dlv1linha+num+"]"
+				System.out.println(xpth)
+				duploClickEmElementoDaTela(xpth, 0)
+				break
+			} 
+		}
+	}
+	
+	public static boolean salvarEvidenciaItem(String apolice, String item, String aba){
+		try{
+			System.out.println();
+			for(int i = 1; i <= data.getRowNumbers(); i++) {
+				int j =  i - 1
+				enviado = true;
+				System.out.println(data.getValue(cellCheck, i))
+				if(data.getValue(cellCheck, i).equals('Processar')) {
+					System.out.println()
+					if (data.getValue(2, i).equals(apolice) && data.getValue(3, i).equals(item)) {
+						auxiliares.WriteExcelFactory.updateSheetLine("", j, path, "Processado", 35, aba);
+						auxiliares.WriteExcelFactory.updateSheetLine("", j, path, alerta, 37, aba);
+						break
+					}
+				}
+		   }
+		} catch (Exception e){}
+	}
+	
+	/**
+	 * @author Alz_sup54955
+	 * @param tipoAba
+	 * @param timeLapnse
+	 * @param dataInicio
+	 * @param dataFinal
+	 * @param horaInicial
+	 * @param horaFinal
+	 * @return
+	 */
+	public static enviaEmailCotacaoRenovacaoInterna(String tipoAba, Duration timeLapnse, String dataInicio, String dataFinal, String horaInicial, String horaFinal){
+		System.out.println()
+	 try{
+		 if(!validaDados(cellCheck)){
+			String pathTxtEmailConfig = "C:\\Users\\Public\\RPA_ALLIANZ\\Emails\\AutoFrota\\CotacaoRenovacaoInterna\\ConfiguracoesCotacaoRenovacaoInterna.txt";
+			lerConfigurações(pathTxtEmailConfig)
+			System.out.println(pathTxtEmail)
+			String emaildestination = StringFormatter.formatterEmailDestination(FileInput.readFile(pathTxtEmail));
+			// FORMATA SAIDA DO TEMPO DE EXECUÇÃO
+			long segds = timeLapnse.toSeconds();
+			String hours = timeLapnse.toHours()+"h "+
+						timer.converteMinutos(timeLapnse.toHours(), timeLapnse.toMinutes())+"m "+
+						timer.converteSegundos(timeLapnse.toMinutes(),segds)+"s";
+			// ENVIO DE E-MAIL
+			//DADOS DO DOCUMENTO
+			initDataFiles();
+			// ENVIA E-MAIL DINAMICO
+			emailDinamico.enviaEmailDinamico(sender, emaildestination, tipoAba, path, docName, emailDinamico.listaDeAlertas(data, cellCheckAlert)  , hours, horaInicial, horaFinal,  GetHost.getHostname() , dataInicio, dataFinal, "" );
+		 }
+	  } catch (Exception e){}
+	}
+	
+	/**
+	 * @author be54955
+	 * @param aba
+	 * @param a
+	 * @return
+	 */
+	public static init(String aba, String a){
+		try{
+			acessoAmbiente(aba,a)
+			WebUI.delay(10);
+			WebUI.delay(10);
+		} catch (Exception e){}
+	}
+	
+	/**
+	 * @author ALZ_ServiceQA
+	 * @param sinistro
+	 * @param v
+	 * @return
+	 */
+	public static List<String> lista( List<String> registros , int v){
+		for (int i = 1; i <= data.getColumnNumbers(); i++) {
+			int d = i -1
+			registros[d] = data.getValue(i, v).trim()
+		}
+
+		for (int j = 0; j < registros.size();j++ ){
+			System.err.println("["+j+"] ["+registros[j]+"]")
+		}
+
+		return registros
+	}
+	
+	/**
+	 * @author T_DCDias
+	 * @return
+	 */
+	public static initDataFiles(){
+		data = findTestData(testDataPath)
+		path = data.sourceUrl
+	}
+	
+	/**
+	 * @author T_DCDias
+	 * @param tipoAba
+	 * @return
+	 */
+	public static boolean validaDados(int cellStatus){
+		boolean value
+		for (int i = 1; i <= data.getRowNumbers(); i++) {
+			if (data.getValue(cellStatus, i).equals('Processar')) {
+				value = true
+				break;
+			} else {
+				value = false
+			}
+		}
+		System.err.println('Data ['+value+']')
+		return value
+	}
+	
+	public static String tipoEmissao(String tipo){
+		String xpath;
+		Map<String, String> process = new HashMap<String, String>()
+		process.put('Emissão', '//*[@id="tipoDeSeleccion1"]');
+		process.put('OutrasOperações', '//*[@id="tipoDeSeleccion2"]');
+		return process.get(tipo.toString());
+	}
+	
+	public static boolean processado(){
+		boolean b = false;
+		if(enviado){
+			b = true;
+		}
+		return b;
+	}
+	
+	public static String zeroKM(String tipo){
+		String xpath;
+		Map<String, String> process = new HashMap<String, String>()
+		process.put('S', 'Sim');
+		process.put('N', 'Não');
+		return process.get(tipo.toString());
+	}
+	
+	public static String formataFIPE(String tipo){
+		String xpath;
+		Map<String, String> process = new HashMap<String, String>()
+		process.put('00000', '0');
+		process.put('08000', '80');
+		process.put('09000', '90');
+		process.put('10000', '100');
+		process.put('11000', '110');
+		return process.get(tipo.toString());
+	}
+	
+	public static String ajusteRefCobCascoVD(String v){
+		
+		StringBuilder strb = new StringBuilder();
+		String s;
+		String[] l = v.split("")
+		System.out.println("INVERT LIST\n")
+		for(int i = l.size(); i--;  i<0   ){
+			System.out.println("["+i+"] ["+l[i]+"]")
+			
+			if(i==5){
+				strb.append(",")
+			}
+			strb.append(l[i])
+		}
+		String inverOrder = strb.toString()
+		strb = new StringBuilder();
+		l =inverOrder.split("")
+		System.out.println("\nREORG LIST\n")
+		for(int i = l.size(); i--;  i<0   ){
+			System.out.println("["+i+"] ["+l[i]+"]")
+			strb.append(l[i])
+			
+		}
+		System.out.println("\n")
+		s=strb.toString();
+		System.out.println(s)
+		return s;
+	}
+}

@@ -136,7 +136,9 @@
 	<classpathentry kind="lib" path="C:/Users/Public/RPA_ALLIANZ/Drivers/javax.mail.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Public/RPA_ALLIANZ/Drivers/jdom-2.0.6.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Public/RPA_ALLIANZ/Drivers/joda-time-2.12.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Public/RPA_ALLIANZ/Drivers/pdfbox-app-3.0.5.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Public/RPA_ALLIANZ/Drivers/xstream.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Public/Katalon_Studio_Windows_64-7.2.1/configuration/plugin/install/237351/1.0.2/katalon-dbms-keywords.jar"/>
 	<classpathentry exported="true" kind="con" path="GROOVY_SUPPORT"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

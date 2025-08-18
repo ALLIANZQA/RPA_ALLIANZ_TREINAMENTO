@@ -108,9 +108,9 @@ public class XSSFSGetrow {
 					if( row.getRowNum() == rowNum+1) {
 						cell = row.getCell(celnum);
 						try{
-						  cell.setCellValue(msg.trim());
+							cell.setCellValue(msg.trim());
 						} catch (Exception e){
-						  row.createCell(celnum).setCellValue(msg.trim());
+							row.createCell(celnum).setCellValue(msg.trim());
 						}
 					}
 				}

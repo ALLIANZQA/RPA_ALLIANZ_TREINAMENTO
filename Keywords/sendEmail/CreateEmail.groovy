@@ -3,6 +3,52 @@ package sendEmail;
 
 public class CreateEmail {
 
+	/**
+	 * @author T_DCDias
+	 * @param sender
+	 * @param emaildestination
+	 * @param pwdsender
+	 * @param path1
+	 * @param nome1
+	 * @param path2
+	 * @param nome2
+	 * @param texto
+	 * @param subject
+	 * @param host
+	 * @param porta
+	 * @return
+	 */
+	public static createAllEmailSendMultipleFiles(String sender,
+			String emaildestination,
+			String pwdsender,
+			List<String> anexos ,
+			String host,
+			String porta,
+			String ramo,
+			String totalAlert,
+			String totalPassed,
+			String messagesAlerts,
+			String messagesPassed,
+			String startHour,
+			String endHours,
+			String totalHours,
+			String hostName,
+			String totalRegistros,
+			String porcentagem,
+			String porcentagemDeAlertas,
+			String dataInicio,
+			String dataFinal,
+			String assunto
+	){
+		try{
+			ConfigOutlook configEmail = new ConfigOutlook();
+			MessageFactory messageFactory = new MessageFactory(sender,pwdsender,emaildestination );
+			messageFactory.createAllMessageFiles(configEmail.configureOutLook(host, porta), anexos, ramo, totalAlert,totalPassed, messagesAlerts,messagesPassed, startHour,endHours,totalHours,hostName,totalRegistros, porcentagem, porcentagemDeAlertas, dataInicio, dataFinal, assunto);
+		} catch(Exception e){
+			System.err.println("Create Email Send Multiple Files FAIL\n"+e);
+		}
+	}
+
 
 	/**
 	 * @author T_DCDias
@@ -325,8 +371,8 @@ public class CreateEmail {
 			System.err.println("Create Email Send Multiple Files FAIL\n"+e);
 		}
 	}
-	
-	
+
+
 	public static createEmailSendError(String sender, String emaildestination,String pwdsender, List<String> anexos , String host, String  porta, String ramo, String assunto ){
 		try{
 			ConfigOutlook configEmail = new ConfigOutlook();
@@ -336,7 +382,7 @@ public class CreateEmail {
 			System.err.println("Create Email Send Multiple Files FAIL\n"+e);
 		}
 	}
-	
+
 	public static createEmailSend(String sender, String emaildestination,String pwdsender, List<String> anexos , String host, String  porta, String ramo, String assunto ){
 		try{
 			ConfigOutlook configEmail = new ConfigOutlook();

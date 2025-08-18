@@ -31,6 +31,8 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart
 import javax.mail.util.ByteArrayDataSource
 import javax.mail.*;
+
+import java.util.List
 import java.util.Properties;
 import javax.activation.*;
 
@@ -76,6 +78,22 @@ public class MessageFactory extends ConfigParameters{
 			throw new RuntimeException();
 		}
 	}
+
+	/**
+	 * @author ALZ_ServiceQA
+	 * @param config
+	 */
+	public void createAllMessageFiles(Properties config, List<String> anexos ,String ramo, String totalAlert, String totalPassed, String messagesAlerts, String messagesPassed, String startHour, String endHours, String totalHours, String hostName, String totalRegistros, String porcentagem, String porcentagemDeAlertas, String dataInicio, String dataFinal, String assunto){
+		try{
+			addContext(sender, pwrsender, emaildestination, config );
+			addAllMessagesMultFiles(anexos, ramo,totalAlert, totalPassed, messagesAlerts, messagesPassed, startHour, endHours, totalHours, hostName, totalRegistros, porcentagem, porcentagemDeAlertas, dataInicio, dataFinal , assunto );
+			transport();
+			System.err.println("Create Message Files Done !");
+		} catch (MessagingException e){
+			throw new RuntimeException();
+		}
+	}
+
 
 	/**
 	 * @author ALZ_ServiceQA
@@ -250,6 +268,23 @@ public class MessageFactory extends ConfigParameters{
 		message.setContent(multipart);
 		message.saveChanges();
 	}
+
+
+	/**
+	 * @author ALZ_ServiceQA
+	 * @return
+	 */
+	public static addAllMessagesMultFiles( List<String> anexos, String ...args ){
+		String[] valores = args;
+		multipart = new MimeMultipart();
+		addFiles(anexos)
+		imagePart = new MimeBodyPart();
+		imagePart.setContent(MessageRule.messageAllRules(valores) , "text/html;charset=utf-8");
+		multipart.addBodyPart(imagePart);
+		message.setContent(multipart);
+		message.saveChanges();
+	}
+
 
 	/**
 	 * @author ALZ_ServiceQA

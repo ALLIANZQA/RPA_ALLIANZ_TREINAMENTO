@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataFileEntity>
+   <description></description>
+   <name>AGCSTestData</name>
+   <tag></tag>
+   <containsHeaders>true</containsHeaders>
+   <csvSeperator></csvSeperator>
+   <dataFileGUID>f6736706-4704-42d5-8009-e18680108dd3</dataFileGUID>
+   <dataSourceUrl>C:\Users\Public\RPA_ALLIANZ\Data Files\AGCS\RoboCotacaoEspecial.xlsx</dataSourceUrl>
+   <driver>ExcelFile</driver>
+   <isInternalPath>false</isInternalPath>
+   <query></query>
+   <secureUserAccount>false</secureUserAccount>
+   <sheetName>CotacoesEspeciais</sheetName>
+   <usingGlobalDBSetting>false</usingGlobalDBSetting>
+</DataFileEntity>

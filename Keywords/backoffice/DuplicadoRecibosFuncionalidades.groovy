@@ -21,17 +21,24 @@ import auxiliares.StringFormatter
 import internal.GlobalVariable
 import rpacommands.rpaCommands
 import auxiliares.FileInput
+
+import java.time.Duration
+import java.time.Instant
 import java.util.List
 import auxiliares.MenuMatriz
 import auxiliares.ExtractDates
+
+
 import auxiliares.timer
+import auxiliares.GetHost;
+import sendEmail.emailDinamico;
 
-
+import auxiliares.leitorPdf;
 
 public class DuplicadoRecibosFuncionalidades extends rpaCommands {
 	
 	
-	
+	private static int cellCheckAlert = 20
 	private static int cellCheck = 18
 	public static String dataRecuerada = getDateHour();
 	private static TestData data
@@ -40,9 +47,17 @@ public class DuplicadoRecibosFuncionalidades extends rpaCommands {
 	private static String msgAlerta
 	private static String status
 	private static String referencia
-	private static String pathFileValue = "C:\\Users\\Public\\RPA_ALLIANZ\\Data Files\\Backoffce\\EditorCorrespondencia\\Anexos\\";
+	//private static String pathFileValue = "C:\\Users\\Public\\RPA_ALLIANZ\\Data Files\\Backoffce\\EditorCorrespondencia\\Anexos\\";
 	private static fileName = "C:\\Users\\Public\\AllianzSegurosBrasil.pdf";
 	private static fileRootName = "C:\\Users\\Public\\";
+	private static Instant start;
+	private static Instant end;
+	private static Duration timeLapnse;
+	
+	private static String docName = "DuplicadoRecibos.xlsx"
+	
+	private static pathTxtEmail = "C:\\Users\\Public\\RPA_ALLIANZ\\Emails\\backoffice\\DuplicadoRecibos\\ConfiguracoesDuplicadoRecibos.txt"
+	
 	
 	/**
 	 * @author T_DCDias
@@ -145,11 +160,27 @@ public class DuplicadoRecibosFuncionalidades extends rpaCommands {
 	 * @return
 	 */
 	public static fluxoDuplicadoRecibos(String aba, String a){
+		
+		String dataInicio = ExtractDates.dataAtual();
+		String horaInicial =  ExtractDates.horaAtualizada();
+		start = Instant.now();
 		initDataFiles()
 		fluxoCompletoDuplicadoRecibos(aba,a)
 		reprocessaFalhas(aba,a)
-		enviaEmailDuplicadoRecibos(aba)
+		//enviaEmailDuplicadoRecibos(aba)
+		end =  Instant.now();
+		timeLapnse = Duration.between(start, end);
+		String dataFinal = ExtractDates.dataAtual();
+		String horaFinal =  ExtractDates.horaAtualizada();
+		try{
+		   enviaEmailDuplicadoRecibosDinamico(aba, timeLapnse, dataInicio, dataFinal, horaInicial, horaFinal );
+		} catch (Exception e){
+		}
+		
 	}
+	
+	
+	
 	
 	/**
 	 * @author be54955
@@ -176,7 +207,7 @@ public class DuplicadoRecibosFuncionalidades extends rpaCommands {
 							try{
 								auxiliares.WriteExcelFactory.updateSheetLine("", j, path, status, 17, aba);
 								auxiliares.WriteExcelFactory.updateSheetLine("", j, path, status, 18, aba);
-								auxiliares.WriteExcelFactory.updateSheetLine("", j, path,msgAlerta, 19, aba);
+								auxiliares.WriteExcelFactory.updateSheetLine("", j, path, msgAlerta, 19, aba);
 							} catch (Exception e){}
 						}
 					}
@@ -232,36 +263,50 @@ public class DuplicadoRecibosFuncionalidades extends rpaCommands {
 			   if(!validaExistenciaDeArquivo(fileName)){
 				   deletaArquivoPdf(fileName);
 			   }
+			   System.out.println();
 			   //Aceitar
 			   selecionaItemListaTimer("Aceitar",'//*[@id="seccionBusquedaRecibosSectionBar"]/table/tbody/tr/td' , "div",0 )
+			   WebUI.delay(5);
 			   String msgErroAlerta = recuperaValor('//*[@id="dataErrorSection"]/table/tbody/tr/td[2]', 'innerText', 1)
-			   System.out.println("2ª VIA-RECIBO ALERTA  ["+msgAlerta+"] ["+msgAlerta.length()+"]")
-			   if(alertListBlocList(msgErroAlerta)){
+			   System.out.println("["+msgErroAlerta+"]")
+			   if(!alertListBlocList(msgErroAlerta)){
+			     identificaArquivo("AllianzSegurosBrasil")
+			     fecharJanelaAtual(2)
+			     msgErroAlerta = recuperaValor('//*[@id="dataErrorSection"]/table/tbody/tr/td[2]', 'innerText', 1)
+			     System.out.println("2ª VIA-RECIBO ALERTA  ["+msgAlerta+"] ["+msgAlerta.length()+"]")
+			     if(alertListBlocList(msgErroAlerta)){
 				   r = false;
 				   status = "Processado"
 				   msgAlerta = "Alerta: "+msgErroAlerta
 				   fecharJanelaAtual(1)
 				   alteraJanejaGenerica(0, 2)
-			   } else {
-			   WebUI.delay(10);
-			   if(!validaExistenciaDeArquivo(fileName)){
-			      renomearArquivo(fileName,  registros[3])
-				  try{
-				    auxiliares.WriteExcelFactory.updateSheetLine("", linha, path, "Processado", 18, aba);
-				  } catch (Exception e){}
-				  fecharJanelaAtual(2)
-				  alteraJanejaGenerica(1, 2)
-				  fecharJanelaAtual(1)
-				  alteraJanejaGenerica(0, 2)
-			 	  r = true;
-			   }
-			 }
+			     } else {
+			       // WebUI.delay(10);
+			       if(!validaExistenciaDeArquivo(fileName)){
+			          renomearArquivo(fileName,  registros[3])
+				      try{
+				        auxiliares.WriteExcelFactory.updateSheetLine("", linha, path, "Processado", 18, aba);
+				      } catch (Exception e){}
+				   //fecharJanelaAtual(2)
+				   // alteraJanejaGenerica(1, 2)
+				   fecharJanelaAtual(1)
+				   alteraJanejaGenerica(0, 2)
+			 	   r = true;
+			       }
+			     }
+			  } else {
+			    status = "Processado"
+			    msgAlerta="Alerta: "+msgErroAlerta
+			    fecharJanelaAtual(1)
+			    alteraJanejaGenerica(0, 2)
+				r = false;
+			  }
 		   }
 		 }
 		} catch (Exception e){
 		  r = false;
 		  status = "Processar"
-		  msgAlerta="Falha ao preencher '2ª VIA-RECIBO'"
+		  msgAlerta="Alerta: Falha ao preencher '2ª VIA-RECIBO'"
 		}
 		return r;
 	}
@@ -299,13 +344,13 @@ public class DuplicadoRecibosFuncionalidades extends rpaCommands {
 					fecharJanelaAtual(1);
 					alteraJanejaGenerica(0, 1)
 					arquivoAnexo = false
-					msgAlerta=msgAlert +" - "+registros[1];
+					msgAlerta="Alerta: "+msgAlert +" - "+registros[1];
 					status = "Processado"
 				    
 				} else{
 				  //Editor de correspondencia
 				  selecionaItemLista("Editor correspondencia",'/*/body/div[1]/div/app-root/file-management/app-header/div/nx-ibl-header/nx-ibl-navigation/div/div[1]/nx-ibl-navigation-desktop/div[1]/div/div' , "span" )
-				  alteraJanejaGenerica(2, 10);
+				  alteraJanejaGenerica(2, 5);
 				  //Editor Correspondencia
 				  String telaEditorCorrespondencia = recuperaValor('//*[@id="cellAppPromptHeaderArea"]', 'innerText', 1)
 				  System.out.println(telaEditorCorrespondencia )
@@ -319,22 +364,22 @@ public class DuplicadoRecibosFuncionalidades extends rpaCommands {
 					  selecionaItemListaTimer("Aceitar",'//*[@id="SectionDatosEnvioSectionBar"]/table/tbody/tr/td' , "div",0 )
 					  
 					  //Nome
-					  limpaCampo('//*[@id="txtNombre"]', 1);
-					  preencheXpath('//*[@id="txtNombre"]', registros[11], 1)
+					  limpaCampo('//*[@id="txtNombre"]', 0);
+					  preencheXpath('//*[@id="txtNombre"]', registros[11], 0)
 					  
 					  //E-mail destino
-					  limpaCampo('//*[@id="txtEmail"]', 1);
-					  preencheXpath('//*[@id="txtEmail"]', registros[12], 1)
+					  limpaCampo('//*[@id="txtEmail"]', 0);
+					  preencheXpath('//*[@id="txtEmail"]', registros[12], 0)
 					  
 					  //Email copia
 					  limpaCampo('//*[@id="txtEmailCC"]', 1);
-					  preencheXpath('//*[@id="txtEmailCC"]', registros[13], 1)
+					  preencheXpath('//*[@id="txtEmailCC"]', registros[13], 0)
 					  
 					  //Continuar
 					  selecionaItemLista("Continuar",'//*[@id="divAppContent"]/table' , "div" )
 					  //Modelo descrição
-					  limpaCampo('//*[@id="numModCodi"]', 1);
-					  preencheXpath('//*[@id="numModCodi"]', registros[14], 1)
+					  limpaCampo('//*[@id="numModCodi"]', 0);
+					  preencheXpath('//*[@id="numModCodi"]', registros[14], 0)
 					  
 					  System.out.println();
 					  //Aceitar
@@ -342,8 +387,8 @@ public class DuplicadoRecibosFuncionalidades extends rpaCommands {
 					  
 					  System.out.println();
 					  //Retorno Cobrança
-					  limpaCampo('//*[@id="txtModDesLibre"]', 3);
-					  preencheXpath('//*[@id="txtModDesLibre"]', registros[15], 1)
+					  limpaCampo('//*[@id="txtModDesLibre"]', 5);
+					  preencheXpath('//*[@id="txtModDesLibre"]', registros[15], 0)
 					  
 					  System.out.println();
 					  if(!validaExistenciaDeArquivo(fileRootName+registros[3].toString()+".pdf")  ){
@@ -351,7 +396,7 @@ public class DuplicadoRecibosFuncionalidades extends rpaCommands {
 						  arquivoAnexo = true;
 						} else {
 						  arquivoAnexo = false
-						  msgAlerta="Falha ao anexar o arquivo em 'Editor Correspondência'";
+						  msgAlerta="Alerta: Falha ao anexar o arquivo em 'Editor Correspondência'";
 						  status = "Processado"
 						  fecharJanelaAtual(2)
 						  alteraJanejaGenerica(1, 2)
@@ -378,7 +423,7 @@ public class DuplicadoRecibosFuncionalidades extends rpaCommands {
 						alteraJanejaGenerica(0, 1)
 					  } else {
 						enviado = false;
-						msgAlerta="Falha ao anexar o arquivo em 'Editor Correspondência'";
+						msgAlerta="Alerta: Falha ao anexar o arquivo em 'Editor Correspondência'";
 						status = "Processado"
 						//fecharJanelaAtual(2)
 						//alteraJanejaGenerica(1, 2)
@@ -457,12 +502,11 @@ public class DuplicadoRecibosFuncionalidades extends rpaCommands {
 		initDataFiles()
 		try{
 			if(!validaDados(cellCheck)){
-				pathTxtEmail = "C:\\Users\\Public\\RPA_ALLIANZ\\Emails\\backoffice\\EditorCorrespondencia\\ConfiguracoesEditorCorrespondencia.txt"
 				lerConfigurações(pathTxtEmail)
 				String emaildestination = StringFormatter.formatterEmailDestination(FileInput.readFile(pathTxtEmail));
 				List<String> anexos = new ArrayList<>();
 				anexos[0] = path
-				anexos[1] = "DuplicadoRecibos.xlsx"
+				anexos[1] = docName
 				sendEmail.CreateEmail.createEmailSendMultipleFiles(sender, emaildestination, pwdsender, anexos, host, porta, tipoAba)
 				WebUI.closeBrowser();
 			}
@@ -471,7 +515,50 @@ public class DuplicadoRecibosFuncionalidades extends rpaCommands {
 	}
 	
 	
+	/**
+	 * @author Alz_sup54955
+	 * @param tipoAba
+	 * @param timeLapnse
+	 * @param dataInicio
+	 * @param dataFinal
+	 * @param horaInicial
+	 * @param horaFinal
+	 * @return
+	 */
+	public static enviaEmailDuplicadoRecibosDinamico(String tipoAba, Duration timeLapnse, String dataInicio, String dataFinal, String horaInicial, String horaFinal){
+	 try{
+		 if(!validaDados(cellCheck)){
+		    lerConfigurações(pathTxtEmail);
+			String pathTxtEmailSender = "C:\\Users\\Public\\RPA_ALLIANZ\\Emails\\backoffice\\DuplicadoRecibos\\DuplicadoRecibos.txt";
+			String emaildestination = StringFormatter.formatterEmailDestination(FileInput.readFile(pathTxtEmailSender));
+			
+			System.out.println(emaildestination)
+			
+		    // FORMATA SAIDA DO TEMPO DE EXECUÇÃO
+		    long segds = timeLapnse.toSeconds();
+		    String hours = timeLapnse.toHours()+"h "+
+						timer.converteMinutos(timeLapnse.toHours(), timeLapnse.toMinutes())+"m "+
+						timer.converteSegundos(timeLapnse.toMinutes(),segds)+"s";
+		    // ENVIO DE E-MAIL
+		    //String emaildestination = "denilson.inmetricsext@allpronet.com.br"
+		    //DADOS DO DOCUMENTO
+		    //TestData data = findTestData(testDataPath);
+			initDataFiles();
+		    // ENVIA E-MAIL DINAMICO
+		    emailDinamico.enviaEmailDinamico(sender, emaildestination, tipoAba, path, docName, emailDinamico.listaDeAlertas(data, cellCheckAlert)  , hours, horaInicial, horaFinal,  GetHost.getHostname() , dataInicio, dataFinal, "");
+		 }
+	  } catch (Exception e){}
+	}
 	
-	
+	public static void identificaArquivo(String arquivoEsperado){
+		System.out.println("RECURSIVO...")
+		System.out.println("["+arquivoEsperado+"]")
+		while(!leitorPdf.existeArquivo(arquivoEsperado)){
+			//Avançar
+			WebUI.delay(10);
+			identificaArquivo(arquivoEsperado)
+		}
+		System.out.println("SAINDO DO RECURSIVO...")
+	}
 	
 }

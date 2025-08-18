@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataFileEntity>
+   <description></description>
+   <name>EnvioPDFData</name>
+   <tag></tag>
+   <containsHeaders>true</containsHeaders>
+   <csvSeperator></csvSeperator>
+   <dataFileGUID>a4986c89-9698-4417-a17c-868627643249</dataFileGUID>
+   <dataSourceUrl>C:\Users\Public\RPA_ALLIANZ\Data Files\Backoffce\EnvioPDF\RoboEnvioPdf.xlsx</dataSourceUrl>
+   <driver>ExcelFile</driver>
+   <isInternalPath>false</isInternalPath>
+   <query></query>
+   <secureUserAccount>false</secureUserAccount>
+   <sheetName>EnvioPDF</sheetName>
+   <usingGlobalDBSetting>false</usingGlobalDBSetting>
+</DataFileEntity>

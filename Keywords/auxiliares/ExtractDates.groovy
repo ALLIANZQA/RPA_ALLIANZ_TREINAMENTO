@@ -1,4 +1,4 @@
-package auxiliares
+﻿package auxiliares
 
 import static com.kms.katalon.core.checkpoint.CheckpointFactory.findCheckpoint;
 import static com.kms.katalon.core.testcase.TestCaseFactory.findTestCase;
@@ -30,7 +30,7 @@ public class ExtractDates {
 	/**
 	 * @author T_DCDias
 	 * @param text
-	 * Método separa apenas nomeros e transforma em datas   
+	 * Método separa apenas nomeros e transforma em datas 03/07/25
 	 * @return
 	 */
 	public static Map getSubDates(String text){
@@ -294,7 +294,7 @@ public class ExtractDates {
 	public static String horaAtualizada(){
 		String strdt
 		try{
-			SimpleDateFormat formatter= new SimpleDateFormat("HH:mm");
+			SimpleDateFormat formatter= new SimpleDateFormat("HH:mm:ss");
 			Date date = new Date(System.currentTimeMillis());
 			strdt = formatter.format(date).toString()
 		} catch (Exception e){
@@ -313,6 +313,78 @@ public class ExtractDates {
 		String strdt
 		try{
 			SimpleDateFormat formatter= new SimpleDateFormat(f);
+			Date date = new Date(System.currentTimeMillis());
+			strdt = formatter.format(date).toString()
+		} catch (Exception e){
+		}
+		return strdt
+	}
+
+	/**
+	 * Recebe 04/ago/2019
+	 * retorna 04/08/2019
+	 *
+	 * @param dataRecive
+	 * @return
+	 *
+	 *
+	 */
+	public static String retornaMesLiteral(String mesDoAno){
+		Map<String, String> mes = new HashMap<String, String>();
+		mes.put("01",'Janeiro');
+		mes.put("02",'Fevereiro');
+		mes.put("03",'Março');
+		mes.put("04",'Abril');
+		mes.put("05",'Maio');
+		mes.put("06",'Junho');
+		mes.put("07",'Julho');
+		mes.put("08",'Agosto');
+		mes.put("09",'Setembro');
+		mes.put("10",'Outubro');
+		mes.put("11",'Novembro');
+		mes.put("12",'Dezembro');
+
+		return mes.get(mesDoAno)
+	}
+
+	/**
+	 * @author be54955
+	 * @return
+	 */
+	public static String dataAtualizadaDia(){
+		String strdt
+		try{
+			SimpleDateFormat formatter= new SimpleDateFormat("dd");
+			Date date = new Date(System.currentTimeMillis());
+			strdt = formatter.format(date).toString()
+		} catch (Exception e){
+		}
+		return strdt
+	}
+
+	/**
+	 * @author be54955
+	 * @return
+	 */
+	public static String dataAtualizadaMes(){
+		String strdt
+		try{
+			SimpleDateFormat formatter= new SimpleDateFormat("MM");
+			Date date = new Date(System.currentTimeMillis());
+			strdt = formatter.format(date).toString()
+		} catch (Exception e){
+		}
+		return strdt
+	}
+
+	/**
+	 * @author be54955
+	 * @return
+	 */
+	public static String dataAtualizadaAno(){
+		String strdt
+		try{
+			SimpleDateFormat formatter= new SimpleDateFormat("yyyy");
 			Date date = new Date(System.currentTimeMillis());
 			strdt = formatter.format(date).toString()
 		} catch (Exception e){

@@ -29,6 +29,11 @@ import auxiliares.RegrasEmailDestination
 import auxiliares.MenuMatriz
 import internal.GlobalVariable
 import rpacommands.rpaCommands
+import auxiliares.ExtractDates
+import auxiliares.timer;
+import sendEmail.emailDinamico;
+import auxiliares.GetHost;
+
 
 public class EnvioPendenciaGOInspecaoFuncionalidades extends backofficeFuncionalidades{
 
@@ -45,6 +50,11 @@ public class EnvioPendenciaGOInspecaoFuncionalidades extends backofficeFuncional
 	private static Instant start;
 	private static Instant end;
 	private static Duration timeLapnse;
+	
+
+	private static String docName = "PendenciaGOInspecao.xlsx"
+	private static pathTxtEmailDinamico = "C:\\Users\\Public\\RPA_ALLIANZ\\Emails\\backoffice\\EnvioRetornoGo\\ConfiguracoesEnvioRetornoGoFinalProcesso.txt"
+	private static int cellCheckAlert = 12;
 
 
 	/**
@@ -105,17 +115,36 @@ public class EnvioPendenciaGOInspecaoFuncionalidades extends backofficeFuncional
 	 */
 	public static fluxoEnvioPendenciaGOInspecao(String aba){
 		
+		String dataInicio = ExtractDates.dataAtual();
+		String horaInicial =  ExtractDates.horaAtualizada();
 		start = Instant.now();
 		initDataFiles()
 		fluxoCompletoEnvioPendenciaGOInspecao(aba)
 		reprocessaFalhas(aba)
-		enviaEmailEnvioPendenciaGOInspecao(aba)
+		//enviaEmailEnvioPendenciaGOInspecao(aba)
+	
 		end =  Instant.now();
 		timeLapnse = Duration.between(start, end);
-		System.out.println("Time Lapnse:\n"+"Hours "+timeLapnse.toHours()+" Minutes "+timeLapnse.toMinutes()+" Seconds "+timeLapnse.toSeconds());
+		String dataFinal = ExtractDates.dataAtual();
+		String horaFinal =  ExtractDates.horaAtualizada();
+		try{
+		   enviaEmailDuplicadoRecibosDinamico(aba, timeLapnse, dataInicio, dataFinal, horaInicial, horaFinal );
+		} catch (Exception e){
+		}
 		
-		
-		
+	}
+
+	
+	public static long converteMinutos(long h, long ms){
+		long v;
+		if(h>0){
+			long m = h*60;
+			long r = ms-m;
+			v = r;
+		} else {
+		v = ms;
+		}
+		return v;
 	}
 
 	/**
@@ -142,12 +171,12 @@ public class EnvioPendenciaGOInspecaoFuncionalidades extends backofficeFuncional
 					if(inspecao(registros, aba)) {
 						try{
 							auxiliares.WriteExcelFactory.updateSheetLine("", Integer.parseInt(registros[10]), path, status, 9, aba);
-							auxiliares.WriteExcelFactory.updateSheetLine("", Integer.parseInt(registros[10]), path, alerta, 11,  aba);
+							auxiliares.WriteExcelFactory.updateSheetLine("", Integer.parseInt(registros[10]), path, alerta.substring(16), 11,  aba);
 						} catch (Exception e){}
 					} else {
 						try{
 							auxiliares.WriteExcelFactory.updateSheetLine("", Integer.parseInt(registros[10]), path, status, 9, aba);
-							auxiliares.WriteExcelFactory.updateSheetLine("", Integer.parseInt(registros[10]), path, alerta, 11,  aba);
+							auxiliares.WriteExcelFactory.updateSheetLine("", Integer.parseInt(registros[10]), path, "Alerta: "+alerta, 11,  aba);
 						} catch (Exception e){}
 					}
 				}
@@ -362,5 +391,37 @@ public class EnvioPendenciaGOInspecaoFuncionalidades extends backofficeFuncional
 		return  r
 	}
 
+	/**
+	 * @author Alz_sup54955
+	 * @param tipoAba
+	 * @param timeLapnse
+	 * @param dataInicio
+	 * @param dataFinal
+	 * @param horaInicial
+	 * @param horaFinal
+	 * @return
+	 */
+	public static enviaEmailDuplicadoRecibosDinamico(String tipoAba, Duration timeLapnse, String dataInicio, String dataFinal, String horaInicial, String horaFinal){
+	 try{
+		 if(!validaDados(cellCheck)){
+			//lerConfigurações(pathTxtEmailDinamico);
+			pathTxtEmail = "C:\\Users\\Public\\RPA_ALLIANZ\\Emails\\backoffice\\EnvioRetornoGo\\ConfiguracoesEnvioRetornoGoFinalProcesso.txt"
+			lerConfigurações(pathTxtEmail)
+			String emaildestination = StringFormatter.formatterEmailDestination(FileInput.readFile(pathTxtEmail));
+			// FORMATA SAIDA DO TEMPO DE EXECUÇÃO
+			long segds = timeLapnse.toSeconds();
+			String hours = timeLapnse.toHours()+"h "+
+						timer.converteMinutos(timeLapnse.toHours(), timeLapnse.toMinutes())+"m "+
+						timer.converteSegundos(timeLapnse.toMinutes(),segds)+"s";
+			// ENVIO DE E-MAIL
+			//String emaildestination = "denilson.inmetricsext@allpronet.com.br"
+			//DADOS DO DOCUMENTO
+			//TestData data = findTestData(testDataPath);
+			initDataFiles();
+			// ENVIA E-MAIL DINAMICO
+			emailDinamico.enviaEmailDinamico(sender, emaildestination, tipoAba, path, docName, emailDinamico.listaDeAlertas(data, cellCheckAlert)  , hours, horaInicial, horaFinal,  GetHost.getHostname() , dataInicio, dataFinal, "");
+		 }
+	  } catch (Exception e){}
+	}
 
 }

@@ -2,6 +2,9 @@ package backoffice
 
 import static org.junit.Assert.*
 
+
+import static com.kms.katalon.core.testdata.TestDataFactory.findTestData
+
 import com.kms.katalon.core.testdata.TestData
 import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 import auxiliares.FileInput
@@ -13,8 +16,16 @@ import bean.MassaDados
 
 import auxiliares.MenuMatriz
 import java.util.Set;
+import java.time.Duration
+import java.time.Instant
 import java.util.HashSet;
 import java.util.List
+
+import auxiliares.ExtractDates
+import sendEmail.emailDinamico;
+import auxiliares.timer;
+import auxiliares.GetHost;
+
 
 public class FluxoEnvioPDF extends backofficeFuncionalidades{
 
@@ -33,6 +44,17 @@ public class FluxoEnvioPDF extends backofficeFuncionalidades{
 	private static boolean benviaDocumentoNoEmail
 	private static int corretores
 	private static boolean download = false
+	
+	
+	private static TestData data
+	private static String testDataPath = 'Data Files/Backoffce/EnvioPDF/EnvioPDFData'
+	private static String path
+	
+	private static Instant start;
+	private static Instant end;
+	private static Duration timeLapnse;
+	private static String docName = "RoboEnvioPdf.xlsx"
+	private static int cellCheckAlert = 17;
 
 	/**
 	 * @author T_DCDias
@@ -41,11 +63,33 @@ public class FluxoEnvioPDF extends backofficeFuncionalidades{
 	public static fluxoEnvioDePDF(String aba){
 		carregalistaExcel(aba)
 		if(carregaDados()){
+			String dataInicio = ExtractDates.dataAtual();
+			String horaInicial =  ExtractDates.horaAtualizada();
+			start = Instant.now();
 			fluxoCompletoEnvioDePDF(aba)
 			//reprocessaFalhas(aba)
-			enviarEmailPdf(aba)
+			//enviarEmailPdf(aba)
+			end =  Instant.now();
+			timeLapnse = Duration.between(start, end);
+			String dataFinal = ExtractDates.dataAtual();
+			String horaFinal =  ExtractDates.horaAtualizada();
+			try{
+			  enviarEmailPdfDinamico(aba, timeLapnse, dataInicio, dataFinal, horaInicial, horaFinal );
+			} catch (Exception e){
+			}
+			
+			
 		}
 		finalizar();
+	}
+	
+	/**
+	 * @author T_DCDias
+	 * @return
+	 */
+	public static initDataFiles(){
+		data = findTestData(testDataPath)
+		path = data.sourceUrl
 	}
 
 	/**
@@ -185,20 +229,20 @@ public class FluxoEnvioPDF extends backofficeFuncionalidades{
 			salvarEvidencia(linha,caminhoExcel, "Processado", 13,  aba)
 			salvarEvidencia(linha,caminhoExcel, "Processado", 14,  aba)
 			salvarEvidencia(linha,caminhoExcel, "Não Enviado", 15,  aba)
-			salvarEvidencia(linha,caminhoExcel, "Arquivo - "+txNota.replaceAll(" ...", "")+" Não encontrado para download ", 16,  aba)
+			salvarEvidencia(linha,caminhoExcel, "Alerta: Arquivo - "+txNota.replaceAll(" ...", "")+" Não encontrado para download ", 16,  aba)
 		}
 		else if (!bfichaGestao){
 			salvarEvidencia(linha,caminhoExcel, "Processar", 14,  aba)
-			salvarEvidencia(linha,caminhoExcel, "Falha no ficha e gestão", 16,  aba)
+			salvarEvidencia(linha,caminhoExcel, "Alerta: Falha no ficha e gestão", 16,  aba)
 		}
 		else if (!bmanipulaArquivo){
 			salvarEvidencia(linha,caminhoExcel, "Processar", 14,  aba)
-			salvarEvidencia(linha,caminhoExcel, "Falha ao manipular arquivo - "+ramol+" Não encontrado", 16,  aba)
+			salvarEvidencia(linha,caminhoExcel, "Alerta: Falha ao manipular arquivo - "+ramol+" Não encontrado", 16,  aba)
 		}
 		if(bfichaGestao && bmanipulaArquivo && download ){
 			salvarEvidencia(linha,caminhoExcel, "Processado", 14,  aba)
 			salvarEvidencia(linha,caminhoExcel, "Enviar", 15,  aba)
-			salvarEvidencia(linha,caminhoExcel, "Arquivo - "+txNota.replaceAll(" ...", "")+" localizado ", 16,  aba)
+			salvarEvidencia(linha,caminhoExcel, "Arquivo - "+txNota.replaceAll(" ...", "")+" localizado e enviado", 16,  aba)
 		}
 	}
 
@@ -233,12 +277,12 @@ public class FluxoEnvioPDF extends backofficeFuncionalidades{
 		}
 		else if (!bpesquisaDadosGerais){
 			salvarEvidencia(linha,caminhoExcel, "Enviar", 15,  aba)
-			salvarEvidencia(linha,caminhoExcel, "Falha na pesquisa em dados gerais", 16,  aba)
+			salvarEvidencia(linha,caminhoExcel, "Alerta: Falha na pesquisa em dados gerais", 16,  aba)
 		}
 		else if (!benviaDocumentoNoEmail){
 			salvarEvidencia(linha,caminhoExcel, "Processar", 14,  aba)
 			salvarEvidencia(linha,caminhoExcel, "Enviar", 15,  aba)
-			salvarEvidencia(linha,caminhoExcel, "Falha ao enviar documento por email", 16,  aba)
+			salvarEvidencia(linha,caminhoExcel, "Alerta: Falha ao enviar documento por email", 16,  aba)
 		}
 	}
 
@@ -575,6 +619,39 @@ public class FluxoEnvioPDF extends backofficeFuncionalidades{
 		anexos[1] = "RoboEnvioPdf.xlsx"
 		sendEmail.CreateEmail.createEmailSendMultipleFiles(sender, emaildestination, pwdsender, anexos, host, porta, tipoAba)
 		//		}
+	}
+	
+	/**
+	 * @author Alz_sup54955
+	 * @param tipoAba
+	 * @param timeLapnse
+	 * @param dataInicio
+	 * @param dataFinal
+	 * @param horaInicial
+	 * @param horaFinal
+	 * @return
+	 */
+	public static enviarEmailPdfDinamico(String tipoAba, Duration timeLapnse, String dataInicio, String dataFinal, String horaInicial, String horaFinal){
+		System.out.println()
+	 try{
+		// if(!validaDados(cellCheck)){
+		    initDataFiles()
+		    String pathTxtEmailConfig = "C:/Users/Public/RPA_ALLIANZ/Emails/EnvioPdf/ConfiguracoesEnvioPdf.txt";
+			lerConfigurações(pathTxtEmailConfig)
+			System.out.println(pathTxtEmail)
+			String emaildestination = StringFormatter.formatterEmailDestination(FileInput.readFile(pathTxtEmail));
+			// FORMATA SAIDA DO TEMPO DE EXECUÇÃO
+			long segds = timeLapnse.toSeconds();
+			String hours = timeLapnse.toHours()+"h "+
+						timer.converteMinutos(timeLapnse.toHours(), timeLapnse.toMinutes())+"m "+
+						timer.converteSegundos(timeLapnse.toMinutes(),segds)+"s";
+			// ENVIO DE E-MAIL
+			//DADOS DO DOCUMENTO
+			initDataFiles();
+			// ENVIA E-MAIL DINAMICO
+			emailDinamico.enviaEmailDinamico(sender, emaildestination, tipoAba, path, docName, emailDinamico.listaDeAlertas(data, cellCheckAlert)  , hours, horaInicial, horaFinal,  GetHost.getHostname() , dataInicio, dataFinal, "" );
+	//	 }
+	  } catch (Exception e){}
 	}
 
 	/**

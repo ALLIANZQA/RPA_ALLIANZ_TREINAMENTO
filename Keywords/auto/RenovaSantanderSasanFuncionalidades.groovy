@@ -300,7 +300,7 @@ public class RenovaSantanderSasanFuncionalidades extends RenovaSantanderFunciona
 				}
 			}
 		} catch(Exception e){
-			bProximoRegistro = true
+			//bProximoRegistro = true
 		}
 	}
 

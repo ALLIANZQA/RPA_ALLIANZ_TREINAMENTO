@@ -5,6 +5,7 @@ import static java.nio.file.StandardCopyOption.*;
 import java.nio.channels.FileChannel
 import java.text.DateFormat
 import java.text.SimpleDateFormat
+import java.time.Duration
 import org.openqa.selenium.By
 import org.openqa.selenium.JavascriptExecutor
 import org.openqa.selenium.Keys
@@ -209,6 +210,19 @@ public class rpaCommands  {
 			finalizar();
 		}
 	}
+	
+	public static void acessaAmbienteGestorOperacoes( String aba, String a ){
+		try{
+			WebUI.delay(2)
+			auxiliares.UserPassword.getUsuarioSenha(aba)
+			realizaLoginGestorOperacoes(auxiliares.UserPassword.getDominio(), auxiliares.UserPassword.getEmail(), auxiliares.UserPassword.getSenha())
+			WebUI.delay(2)
+			clickXpath('//*/div/button',0);
+		} catch (Exception e) {
+			System.err.println('Falha ao realizar Login MatrizProdução' + e);
+			finalizar();
+		}
+	}
 
 	/**
 	 * @author be54955
@@ -232,7 +246,7 @@ public class rpaCommands  {
 
 
 	/**
-	 * @author be54955 	
+	 * @author be54955
 	 * @return
 	 */
 	public static openChomeBrowserHeadless(String url){
@@ -259,6 +273,14 @@ public class rpaCommands  {
 	public static wainting(int delay){
 		WebDriver driver = DriverFactory.getWebDriver();
 		driver.manage().timeouts().implicitlyWait(delay, TimeUnit.SECONDS);
+	}
+	
+	public static waintingEllementLoad(String path){
+		WebDriver driver = DriverFactory.getWebDriver();
+		By myElementLocator = By.xpath(path);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10)); // Espera até 10 segundos
+        wait.until(ExpectedConditions.visibilityOfElementLocated(myElementLocator));
+	
 	}
 
 	/**clickXpath
@@ -293,8 +315,8 @@ public class rpaCommands  {
 
 	/**
 	 * Sobe para tela arquivo
-	 * recebendo por parametro xpath / filepath / delay * 
-	 * 
+	 * recebendo por parametro xpath / filepath / delay *
+	 *
 	 * @author Dvlopes
 	 * @param path
 	 * @param filepath
@@ -402,11 +424,11 @@ public class rpaCommands  {
 	 * @author Dvlopes
 	 * @param arquivoEntrada
 	 * @param caminhoSaida
-	 * @return	 * 
-	 * Descompacta arquivo recebendo dois parametros [ENTRADA / SAIDA]	 * 
+	 * @return	 *
+	 * Descompacta arquivo recebendo dois parametros [ENTRADA / SAIDA]	 *
 	 * Entrada [C:\\Users\\ALZ_ServiceQA\\Desktop\\teste.zip]
 	 * Saida [C:\\Users\\ALZ_ServiceQA\\Desktop]
-	 * 
+	 *
 	 */
 	public static descompactaArquivo(String arquivoEntrada, String caminhoSaida){
 		try{
@@ -511,6 +533,18 @@ public class rpaCommands  {
 		}
 		return msg
 	}
+	
+	
+	public static okAlerta(){
+		try{
+			WebDriver driver = DriverFactory.getWebDriver();
+			driver.switchTo().alert().accept();
+		}catch (Exception e){
+		}
+	}
+	
+	
+	
 
 
 	/**Altera aba para pagina do download e fecha o mesmo
@@ -748,8 +782,8 @@ public class rpaCommands  {
 
 	/**
 	 * LimpaCompletamente o campo
-	 * 
-	 * @author t_dvlopes	 * 
+	 *
+	 * @author t_dvlopes	 *
 	 * @param xpath
 	 * @param delay
 	 * @param qtd
@@ -791,8 +825,8 @@ public class rpaCommands  {
 	}
 
 	/**recuperaValor
-	 * 
-	 * 
+	 *
+	 *
 	 * @param xpath
 	 * @param atributo
 	 * @param delay
@@ -865,10 +899,11 @@ public class rpaCommands  {
 		urls.put('IntranetSinistro', 'http://crivo_reports.intrallianz.es/#/login');
 		urls.put('IntranetTransacional', 'https://wwwi.br.intrallianz.com/ngx-intranet/public/home');
 		urls.put('IntranetDesenvolvimento', 'https://wwwd.br.intrallianz.com/ngx-intranet/public/home');
+		urls.put('GestorOperacoes', 'https://portal.tech4h.com.br/login');
 		return urls.get(url.toString());
 	}
 
-	/**Inicia Brwoser Recebendo link por parametro  
+	/**Inicia Brwoser Recebendo link por parametro
 	 * @author T_dvlopes
 	 * @param link
 	 */
@@ -882,8 +917,8 @@ public class rpaCommands  {
 	/**Realiza Login TelaMatriz recebendo por parametro:
 	 * @param user
 	 * @param password
-	 * 
-	 * 
+	 *
+	 *
 	 * @author T_dvlopes
 	 */
 	public static void realizaLoginTelaMatriz(String user, String password){
@@ -901,6 +936,23 @@ public class rpaCommands  {
 			finalizar();
 		}
 	}
+	
+	public static void realizaLoginGestorOperacoes(String dominio,String email, String password){
+		
+				System.err.println("GOS - Dominio ["+dominio+"] Email "+email+" Pwr ["+password+"]")
+				try{
+					preencheXpath('//*[@id="slug"]', dominio, 0);
+					preencheXpath('//*[@id="email"]', email, 0);
+					preencheXpath('//*[@id="password"]', password, 0);
+					clicarEmElementoDaTela('//*[@id="root"]/div/div/div/div/div[1]/div[2]/div[2]/form[2]/div[5]/button[1]', 0);
+				}catch(Exception e)
+				{
+					System.err.println('Falha ao realizar Login "TELA GESTOR DE OPERAÇÕES"');
+					finalizar();
+				}
+			}
+	
+	
 
 	/**Realiza Login TelaMatriz recebendo por parametro:
 	 * @param user
@@ -1358,8 +1410,8 @@ public class rpaCommands  {
 
 	/**
 	 * (selecionar Tipo Seguro)
-	 * 
-	 * 
+	 *
+	 *
 	 * Seguro Novo
 	 * Endosso
 	 * Renovação Interna com Sinistro
@@ -1367,7 +1419,7 @@ public class rpaCommands  {
 	 * Renovação Externa com Sinistro
 	 * Renovação Externa Especial
 	 * Renovação Interna sem Sinistro
-	 * 
+	 *
 	 * @param processo
 	 */
 	public static void selecionarTipoSeguro(String processo){
@@ -1385,7 +1437,7 @@ public class rpaCommands  {
 	}
 
 	/**selecionarAgrupamentoRamo
-	 * 
+	 *
 	 * @param ramo
 	 */
 	public static void selecionarAgrupamentoRamo(String ramo){
@@ -2192,7 +2244,7 @@ public class rpaCommands  {
 	/**
 	 * @author Dvlopes
 	 * Recebe por parametro o formato de data e hora
-	 * Retorna a data e hora em formato string; 
+	 * Retorna a data e hora em formato string;
 	 * Exemplo "dd/MM/yyyy HH:mm:ss" = 12/12/2019 15:07:28
 	 * @return
 	 */
@@ -2257,7 +2309,7 @@ public class rpaCommands  {
 	}
 
 	/**
-	 * @author ALZ_ServiceQA 
+	 * @author ALZ_ServiceQA
 	 * @return
 	 */
 	public  static String getMesDate(){
@@ -2419,6 +2471,68 @@ public class rpaCommands  {
 		}
 		WebDriver driver = DriverFactory.getWebDriver()
 		driver.findElement(By.xpath(xpath)).click()
+		if(dalayfor>0){
+			WebUI.delay(dalayfor)
+		}
+	}
+	
+	
+	/**
+	 * @author ALZ_ServiceQA
+	 * @param xpath
+	 * @return
+	 */
+	public static duploClickEmElementoDaTela(String xpath, int dalayfor){
+		if(dalayfor>0){
+			WebUI.delay(dalayfor)
+		}
+		WebDriver driver = DriverFactory.getWebDriver()
+		WebElement elementToDoubleClick = driver.findElement(By.xpath(xpath));
+		// Instantiate Actions class
+		Actions actions = new Actions(driver);
+		// Perform double-click
+		actions.doubleClick(elementToDoubleClick).perform();
+		// Optionally, you can add a print statement to verify
+		System.out.println("Double-click action performed successfully.");
+		if(dalayfor>0){
+			WebUI.delay(dalayfor)
+		}
+	}
+	
+	
+	
+	
+	/**
+	 * @author ALZ_ServiceQA
+	 * @param xpath
+	 * @return
+	 */
+	public static clicarEmElementoDaTelaJavascrip(String xpath, int dalayfor){
+		if(dalayfor>0){
+			WebUI.delay(dalayfor)
+		}
+		WebDriver driver = DriverFactory.getWebDriver()
+		WebElement ele = driver.findElement(By.xpath(xpath));
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		jse.executeScript("arguments[0].click()", ele);
+		if(dalayfor>0){
+			WebUI.delay(dalayfor)
+		}
+	}
+	
+	/**
+	 * @author ALZ_ServiceQA
+	 * @param xpath
+	 * @return
+	 */
+	public static duploClicKEmElementoDaTelaJavascrip(String xpath, int dalayfor){
+		if(dalayfor>0){
+			WebUI.delay(dalayfor)
+		}
+		WebDriver driver = DriverFactory.getWebDriver()
+		WebElement ele = driver.findElement(By.xpath(xpath));
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		jse.executeScript("var targElement=arguments[0]; var clEvent=document.createEvent('MouseEvents'); clEvent.initEvent('dblclick', true, true');targElement.dispatchEvent (clEvent);", ele);
 		if(dalayfor>0){
 			WebUI.delay(dalayfor)
 		}
@@ -2732,7 +2846,7 @@ public class rpaCommands  {
 		return liberaUnica;
 	}
 
-	/**Realiza leitura da tabela 
+	/**Realiza leitura da tabela
 	 * Esperando receber 2 parametros
 	 * 422 e 931
 	 * Caso não encontre os 2 retorna liberaMult = não libera / false
@@ -2794,7 +2908,7 @@ public class rpaCommands  {
 
 	/**
 	 * Antes de liberar bloqueio da proposta valida se existe
-	 * 
+	 *
 	 * 8002 < removido do SCOPO
 	 * 8004
 	 * 8013
@@ -2974,12 +3088,12 @@ public class rpaCommands  {
 
 
 
-	/**	
-	 * @author T_Dvlopes	 
+	/**
+	 * @author T_Dvlopes
 	 * @param criterio
-	 * 
+	 *
 	 * Recebe text por parametro
-	 * 
+	 *
 	 */
 	public static void selecionaCriteirios(String criterio){
 		clickXpath('//*/filtro[2]/div/div[2]/div/div/div[1]/div/div/input',2);
@@ -3214,7 +3328,7 @@ public class rpaCommands  {
 		WebUI.delay(2)
 		selecionaListaDeElementos(xpath,tag)
 		for(int i = 0; i < listOfElements.size(); i++){
-			//		System.err.println("["+i+"] ["+listOfElements[i].getText()+"]")
+			System.err.println("["+i+"] ["+listOfElements[i].getText()+"]")
 			if(listOfElements[i].getText().contains(tipo.toString())){
 				System.err.println("FOUND ["+i+"] ["+listOfElements[i].getText()+"]")
 				listOfElements[i+1].click()
@@ -3228,14 +3342,15 @@ public class rpaCommands  {
 	 * @author T_DCDias
 	 * @return
 	 */
-	public static selecionaItemLista(String tipo,String xpath , String tag ){
+	public static boolean selecionaItemLista(String tipo,String xpath , String tag ){
 		boolean f = false
 		WebUI.delay(2)
 		selecionaListaDeElementos(xpath,tag)
+		System.out.println("[TIPO  ["+tipo+"]")
 		for(int i = 0; i < listOfElements.size(); i++){
-			System.err.println("["+i+"]  ["+listOfElements[i].getAttribute('value')+"] ["+listOfElements[i].getText()+"]")
-			if(listOfElements[i].getText().equals(tipo.toString())){
-				//System.err.println("FOUND ["+i+"] ["+listOfElements[i].getText()+"]")
+			System.err.println("["+i+"] Attr ["+listOfElements[i].getAttribute('value')+"] Text ["+listOfElements[i].getText()+"]")
+			if(listOfElements[i].getText().equals(tipo.toString().trim())){
+				System.err.println("FOUND ["+i+"] ["+listOfElements[i].getText()+"]")
 				listOfElements[i].click()
 				f = true
 				break
@@ -3244,6 +3359,27 @@ public class rpaCommands  {
 		return f
 		WebUI.delay(2)
 	}
+	
+	
+
+	/**
+	 * @author T_DCDias
+	 * @return
+	 */
+	public static String retornaItemSelecionadoLista(String xpath , String tag, String attribute ){
+		String f; 
+		selecionaListaDeElementos(xpath,tag)
+		for(int i = 0; i < listOfElements.size(); i++){
+			if(listOfElements[i].getAttribute(attribute).equals("true")){
+				System.err.println("["+i+"]  ["+listOfElements[i].getAttribute(attribute)+"] ["+listOfElements[i].getText()+"]")
+				f = listOfElements[i].getText();
+				break;
+			}
+		}
+		return f
+	}
+	
+	
 	
 	/**
 	 * @author T_DCDias
@@ -3263,18 +3399,18 @@ public class rpaCommands  {
 				}
 			}
 		} else {
-		WebUI.delay(t)
-		selecionaListaDeElementos(xpath,tag)
-		for(int i = 0; i < listOfElements.size(); i++){
-			System.err.println("["+i+"]  ["+listOfElements[i].getAttribute('value')+"] ["+listOfElements[i].getText()+"]")
-			if(listOfElements[i].getText().equals(tipo.toString())){
-				//System.err.println("FOUND ["+i+"] ["+listOfElements[i].getText()+"]")
-				listOfElements[i].click()
-				f = true
-				break
+			WebUI.delay(t)
+			selecionaListaDeElementos(xpath,tag)
+			for(int i = 0; i < listOfElements.size(); i++){
+				System.err.println("["+i+"]  ["+listOfElements[i].getAttribute('value')+"] ["+listOfElements[i].getText()+"]")
+				if(listOfElements[i].getText().equals(tipo.toString())){
+					//System.err.println("FOUND ["+i+"] ["+listOfElements[i].getText()+"]")
+					listOfElements[i].click()
+					f = true
+					break
+				}
 			}
-		}
-		
+
 		}
 		return f
 		WebUI.delay(t)
@@ -3284,13 +3420,14 @@ public class rpaCommands  {
 	 * @author T_DCDias
 	 * @return
 	 */
-	public static selecionaItemListaAtributo(String tipo,String xpath , String tag, String attrib ){
+	public static boolean selecionaItemListaAtributo(String tipo,String xpath , String tag, String attrib ){
 		boolean f = false
 		WebUI.delay(2)
+		System.out.println("TIPO ["+tipo+"]")
 		selecionaListaDeElementos(xpath,tag)
 		for(int i = 0; i < listOfElements.size(); i++){
 			System.err.println("FOUND ["+i+"] ["+listOfElements[i].getText()+"] ["+listOfElements[i].getAttribute(attrib)+"]")
-			if(listOfElements[i].getAttribute(attrib).contains(tipo.toString())){
+			if(listOfElements[i].getAttribute(attrib).contains(tipo.toString().trim())){
 				System.err.println("FOUND ["+i+"] ["+listOfElements[i].getText()+"]")
 				listOfElements[i].click()
 				f = true
@@ -3479,7 +3616,7 @@ public class rpaCommands  {
 		process.put('Agente Susep', 'Agente Susep');
 		return process.get(p.toString());
 	}
-	
+
 	/**
 	 * @author be54955
 	 * @param p
@@ -3535,10 +3672,12 @@ public class rpaCommands  {
 	 */
 	public static novaFichaGestaoPorAtributo(String proposta, String aplica){
 		System.out.println( proposta+" "+aplica)
-
+		String xpath
+		String tag
+		
 		//ABRIR SELEÇÃO
-		String xpath ='//*[@id="componenteReferencia"]/div'
-		String tag="nx-icon"
+		xpath ='//*[@id="idReference"]/nx-formfield/div/div/div/div/div'
+		tag="nx-icon"
 		try{
 			selecionaListaDeElementos(xpath,tag)
 			for(int i = 0; i < listOfElements.size(); i++){
@@ -3549,9 +3688,21 @@ public class rpaCommands  {
 				}
 			}
 		} catch (Exception e){}
-
+		
 		//SELECIONAR
-		MenuMatriz.subMenu('//*[@id="cdk-overlay-0"]/div/div[2]', "span","APÓLICE")
+		xpath ='//*[@id="nx-dropdown-modal-1"]'
+		tag="div"
+		try{
+			 selecionaListaDeElementos(xpath,tag)
+			 for(int i = 0; i < listOfElements.size(); i++){
+				 System.out.println("["+i+"] ["+listOfElements[i].getText() +"]" )
+				 if(listOfElements[i].getText().contains("APÓLICE")){
+					 listOfElements[i].click()
+					 //		break
+				 }
+			 }
+		} catch (Exception e){}
+		//MenuMatriz.subMenu('//*[@id="cdk-overlay-0"]/div/div[2]', "span","APÓLICE")
 		//Proposta
 		preencheXpath('//*[@id="nx-input-1"]', proposta,0);
 		//Aplica
@@ -3876,10 +4027,152 @@ public class rpaCommands  {
 			listOfAlerts.add(" Não pode ser autorizado, porque apólice tem itens bloqueados ou com erro. Entre por modificação.")
 			listOfAlerts.add(" ACÇÃO NÃO VALIDA. DATA INFERIOR À ACTUAL")
 			listOfAlerts.add(" Preencha o e-mail do Destinatário")
-			System.out.println("Alert -["+alert+"]-")
+			listOfAlerts.add(" Registro não encontrado")
+			listOfAlerts.add(" Condutor deve ser pessoa física")
+			listOfAlerts.add(" O formato esta incorreto")
+			listOfAlerts.add(" Risco com Cobertura pela Apólice ")
+			listOfAlerts.add(" Telefone 1 não válido")
+			listOfAlerts.add(" Telefone 2 não válido")
+			listOfAlerts.add(" Telefone 3 não válido")
+			listOfAlerts.add(" Data de nascimento é obrigatória")
+			listOfAlerts.add(" E-mail não permitido, já utilizado no cadastro do corretor.")
+			listOfAlerts.add(" Apólice informada já consta como renovada.")
+			listOfAlerts.add(" Apólice a Renovar inexistente ou não encontrada.")
+			listOfAlerts.add(" 110: Sistema indisponível - tente mais tarde")
+			listOfAlerts.add(" Erro de cálculo - (RL)")
+			listOfAlerts.add(" ERROR[Modelo inexistente]")
+			listOfAlerts.add(" DATA DE VIGÊNCIA MÁXIMA DA APÓLICE")
+			
 			for(int i = 0; i < listOfAlerts.size(); i++){
 				System.err.println("["+i+"] ["+listOfAlerts[i]+"]")
-				if(listOfAlerts[i].contains(alert.toString())){
+				if(alert.contains(listOfAlerts[i])){
+					System.err.println("FOUND ALERT TO BLOC ["+i+"] ["+listOfAlerts[i]+"]")
+					r = true
+					break
+				}
+			}
+		}
+		System.out.println("\nAlert ["+r+"]")
+		return  r
+	}
+	
+	
+	public static boolean alertListBlocListTESTE(String alert){
+		System.err.println("\nalertListBloc ["+alert+"]")
+		boolean r = false
+
+		if(alert.length()>4){
+			List<String> listOfAlerts = new ArrayList<String>()
+			//listOfAlerts.add("Erro on epac2020 on QA mode")
+			listOfAlerts.add("Apólice a renovar já utilizada")
+			listOfAlerts.add("Classe de bônus divergente")
+			listOfAlerts.add(" Dados de conta corrente não pode ser de um CNPJ como Pagador")
+			listOfAlerts.add("Nome não retornado no Serviço")
+			listOfAlerts.add(" Política se aplica ao estado errado")
+			listOfAlerts.add("Error: Dados da conta bancária inválidos")
+			listOfAlerts.add(" Restrição técnica para o condutor")
+			listOfAlerts.add(" Restrição técnica para o segurado")
+			listOfAlerts.add(" Vistoria Prévia Presencial Obrigatória")
+			listOfAlerts.add(" Data de início de vigência deve ser após")
+			listOfAlerts.add("Dados de conta corrente não pode ser de um CNPJ como Pagador")
+			listOfAlerts.add(" Campo Data Saída Nota Fiscal 0KM da tela dados de risco é obrigatório na emissão")
+			listOfAlerts.add(" Campo Placa da tela dados de risco é obrigatório para emissão")
+			listOfAlerts.add(" Não existem dados para esta consulta.")
+			listOfAlerts.add(" CPF ou CNPJ inválido")
+			listOfAlerts.add("Corretor inexistente ")
+			listOfAlerts.add(" Emissão não permitida! Fora do prazo de 30 dias permitido pela SUSEP")
+			listOfAlerts.add(" Período de contratação não permitido.")
+			listOfAlerts.add(" Informar o valor da(s) cobertura(s) selecionada(s).")
+			listOfAlerts.add(" Estado civil obrigatório")
+			listOfAlerts.add(" application.msg.plataforma.errorTipoSalto Você não pode acessar trem com um tipo diferente de salto 1")
+			listOfAlerts.add(" Obrigatorio informar um telefono movel")
+			listOfAlerts.add(" O valor da comissão livre é maior ao limite cadastrado no produto")
+			listOfAlerts.add(" Coloque um valor entre 1 a 31.")
+			listOfAlerts.add(" LOCALIDADE INEXISTENTE")
+			listOfAlerts.add(" Emissão não permitido! Risco Decorrido")
+			listOfAlerts.add(" Comissão inferior a comissão mínima estipulada: 0,01")
+			listOfAlerts.add("Error: Dados da conta bancária inválidos")
+			listOfAlerts.add(" Obrigatorio informar um telefono movel")
+			listOfAlerts.add(" Deve confirmar a conta bancária")
+			listOfAlerts.add(" Estado civil obrigatório")
+			listOfAlerts.add(" Campo necessário")
+			listOfAlerts.add(" Campo Obrigatório")
+			listOfAlerts.add(" Categoria do risco obrigatória")
+			listOfAlerts.add(" Código de compañía no valido")
+			listOfAlerts.add(" Banco indisponível para emissão")
+			listOfAlerts.add(" Email inválido ou utilizado em outros clientes")
+			listOfAlerts.add(" Erro em la conversión de Datos")
+			listOfAlerts.add("Tem certeza que deseja excluir esta Apólice?")
+			listOfAlerts.add(" Não foram encontrados dados para a ação selecionada.")
+			listOfAlerts.add("A proposta está bloqueada.")
+			listOfAlerts.add(" O prazo para realização desse tipo de endosso foi excedido")
+			listOfAlerts.add(" Data início endosso maior a data de cancelamento")
+			listOfAlerts.add("javax.resource.spi.CommException: CTG9630E Se ha producido una excepción de E/S durante la comunicación con CICS ")
+			listOfAlerts.add(" Apólice já cancelada.")
+			listOfAlerts.add(" Apólice em vigor")
+			listOfAlerts.add(" Apólice com sinistro de perda total.")
+			listOfAlerts.add(" ERRO VALIDAÇÃO:Indique um Empregado.")
+			listOfAlerts.add("Nome de usuário ou senha incorretos. Por favor, digite-os novamente marcando a caixa Eu não sou um robô e seguindo os passos indicados na tela.")
+			//listOfAlerts.add(" Se este local não possui número, favor informar o complemento")
+			listOfAlerts.add("Informar a Apólice/Item ")
+			listOfAlerts.add(" Prêmio parcela  inferior ao  prêmio mínima da parcela")
+			listOfAlerts.add(" O preenchimento do campo Bairro é obrigatório")
+			listOfAlerts.add(" Cidade é obrigatório")
+			listOfAlerts.add(" Endereço é obrigatório")
+			listOfAlerts.add(" Estado é obrigatório")
+			listOfAlerts.add(" O Valor Segurado deve ser entre 70% e 100% do Valor do Edifício.")
+			listOfAlerts.add("processado COM FALHA, [Não Existe Dados]")
+			listOfAlerts.add("Não existem dados em valores de carteira e detalhes do resultado")
+			listOfAlerts.add(" Deve ser informado, pelo menos, um campo de pesquisa única (ID Pedido, Período, CNPJ/CPF ò Nome Cliente)")
+			listOfAlerts.add(" O limite mínimo de contratação para o Valor Garantido é de R\$ 50.000,00")
+			listOfAlerts.add(" Faixa de CEP Restrito, falha de acesso a informação")
+			listOfAlerts.add("Referencia Inexistente")
+			listOfAlerts.add("Não há dados para mostrar")
+			listOfAlerts.add(" Data de início da frota menor que a data de início da apólice pai")
+			listOfAlerts.add(" Risco com Cobertura pela Apólice ")
+			listOfAlerts.add(" El importe final debe ser mayor que el inicial")
+			listOfAlerts.add(" Preencha o e-mail do Destinatário")
+			listOfAlerts.add(" Emissão não permitida! Fora do prazo de 30 dias permitido pela SUSEP")
+			listOfAlerts.add(" Não e permitida a emissão futura acima de 30 dias")
+			listOfAlerts.add("Não existem dadosr")
+			listOfAlerts.add(" Não é possivel enviar por e-mail")
+			listOfAlerts.add("Não há dados")
+			listOfAlerts.add("404 - Página no encontrada.")
+			listOfAlerts.add(" Nível de autorização insuficiente para desbloqueio")
+			listOfAlerts.add("Não existem dados")
+			listOfAlerts.add(" Não existem dados")
+			listOfAlerts.add(" Campo obrigatório quando o campo moeda é informado.")
+			listOfAlerts.add(" Erro no processo de emissão (00007)")
+			listOfAlerts.add(" Erro no processo de emissão (00516)")
+			listOfAlerts.add(" Erro no processo de emissão (00227)")
+			listOfAlerts.add(" Erro no processo de emissão (99999)")
+			listOfAlerts.add(" Erro no processo de emissão (00100)")
+			listOfAlerts.add(" Erro de validação de datos")
+			listOfAlerts.add(" NÃO EXISTEM DADOS.")
+			listOfAlerts.add(" Nenhum registro encontrado para os parâmetros informados!")
+			listOfAlerts.add(" RECIBO NO PENDENTE OU BANCÁRIO")
+			listOfAlerts.add(" Não pode ser autorizado, porque apólice tem itens bloqueados ou com erro. Entre por modificação.")
+			listOfAlerts.add(" ACÇÃO NÃO VALIDA. DATA INFERIOR À ACTUAL")
+			listOfAlerts.add(" Preencha o e-mail do Destinatário")
+			listOfAlerts.add(" Registro não encontrado")
+			listOfAlerts.add(" Condutor deve ser pessoa física")
+			listOfAlerts.add(" O formato esta incorreto")
+			listOfAlerts.add(" Risco com Cobertura pela Apólice ")
+			listOfAlerts.add(" Telefone 1 não válido")
+			listOfAlerts.add(" Telefone 2 não válido")
+			listOfAlerts.add(" Telefone 3 não válido")
+			listOfAlerts.add(" Data de nascimento é obrigatória")
+			listOfAlerts.add(" E-mail não permitido, já utilizado no cadastro do corretor.")
+			listOfAlerts.add(" Apólice informada já consta como renovada.")
+			listOfAlerts.add(" Apólice a Renovar inexistente ou não encontrada.")
+			listOfAlerts.add(" 110: Sistema indisponível - tente mais tarde")
+			listOfAlerts.add(" Erro de cálculo - (RL)")
+			listOfAlerts.add(" ERROR[Modelo inexistente]")
+			listOfAlerts.add(" DATA DE VIGÊNCIA MÁXIMA DA APÓLICE")
+			
+			for(int i = 0; i < listOfAlerts.size(); i++){
+				System.err.println("["+i+"] ["+listOfAlerts[i]+"]")
+				if(alert.contains(listOfAlerts[i])){
 					System.err.println("FOUND ALERT TO BLOC ["+i+"] ["+listOfAlerts[i]+"]")
 					r = true
 					break
@@ -3919,6 +4212,18 @@ public class rpaCommands  {
 		listOfAlerts.add(" Vistoria prévia dispensada")
 		//	listOfAlerts.add(" Prestador Corretamente Modificado")
 		listOfAlerts.add(" Prestador necessita pelo menos um Representante Legal registado.")
+		listOfAlerts.add(" Vigência retroativa não permitida")
+		listOfAlerts.add(" Apólice a renovar já utilizada")
+		listOfAlerts.add(" Vistoria Prévia Presencial Obrigatória")
+		listOfAlerts.add(" TDO não permitida, favor realizar como Seguro Novo.")
+		listOfAlerts.add(" Celular não válido")
+		//listOfAlerts.add(" Apólice possui Sinistro. Favor selecionar Renovação Interna Com Sinistro.")
+		listOfAlerts.add(" Apólice não disponível para digitação. Prazo de renovação superior ao permitido.")
+		listOfAlerts.add(" Já Existe Apólice Vigente com o Mesmo CNPJ. Contate Sua Filial.")
+		listOfAlerts.add(" 497 - Fora da política de aceitação da Cia.")
+		listOfAlerts.add(" Vistoria Prévia Dispensada")
+		listOfAlerts.add(" Existe(m) item(ns) com aviso(s)")
+		listOfAlerts.add(" Nome alterado conforme a receita federal, favor avaliar")
 		
 		System.out.println("Alert -["+alert+"]-")
 		for(int i = 0; i < listOfAlerts.size(); i++){
@@ -3945,7 +4250,7 @@ public class rpaCommands  {
 		listOfAlerts.add("Menu Produção")
 		listOfAlerts.add("D. Básicos")
 		listOfAlerts.add("COBERTURAS")
-		listOfAlerts.add("COBERTURAS")
+		listOfAlerts.add("COTAÇÃO")
 		listOfAlerts.add("TABELA DE PREÇOS")
 		listOfAlerts.add("D. Emissão")
 		listOfAlerts.add("D. Cliente")
@@ -3974,6 +4279,7 @@ public class rpaCommands  {
 		listOfAlerts.add("Ficha Gestión")
 		listOfAlerts.add("ANEXAR DOCUMENTOS - LI")
 		listOfAlerts.add("DADOS GERAIS (AZR)")
+		listOfAlerts.add("(AZR)")
 		listOfAlerts.add("SINISTROS DE SAÚDE")
 		listOfAlerts.add("GESTÃO DE FICHEIROS BANCÁRIOS")
 		listOfAlerts.add("GESTÃO CRÉDITOS")
@@ -3985,7 +4291,12 @@ public class rpaCommands  {
 		listOfAlerts.add("GESTÃO DE REPRESENTANTES LEGAIS")
 		listOfAlerts.add("EDITOR CORRESPONDÊNCIA")
 		listOfAlerts.add("2ª VIA-RECIBO")
-		
+		listOfAlerts.add("MENU PRODUÇÃO")
+		listOfAlerts.add("Consultas Gerais")
+		listOfAlerts.add("APPLICATION.PAGE.PDADOSAPOLFROTA")
+		listOfAlerts.add("ITENS DA FROTA")
+		listOfAlerts.add("Clique na linha para escolher o veículo desejado...")
+
 		//	listOfAlerts.add(" Emissão não permitida! Fora do prazo de 30 dias permitido pela SUSEP")
 
 		System.out.println("Tela -["+alert+"]-")
@@ -4002,8 +4313,8 @@ public class rpaCommands  {
 	}
 
 	/*
-	 * 
-	 * 
+	 *
+	 *
 	 */
 	public static clickTable(int index){
 		//		System.out.println("\nindex ["+index+"]")
@@ -4028,14 +4339,14 @@ public class rpaCommands  {
 	 * @author BE54955
 	 * @param index
 	 * @return
-	 * Metodo para clicar no anexo "PDF" 
+	 * Metodo para clicar no anexo "PDF"
 	 */
 	public static clickAnexoFichaGestão(int index, String data, String txnota){
 		System.out.println("\nindex ["+index+"] Data ["+data+"] TXNOTA ["+txnota+"]")
 		boolean b = false
 		//SELECIONA ARQUIVO
 		clickTable(index)
-		WebUI.delay(5);
+		WebUI.delay(15);
 		try{
 			selecionaListaDeElementos('//*[@id="nx-tab-content-0-0"]/div/div[6]','button')
 			for(int k = 0; k < listOfElements.size(); k++){
@@ -4103,6 +4414,9 @@ public class rpaCommands  {
 			case "DEV":
 				realizaLoginDevNetProducaoTransacionalCommands(abaAmbiente,'Produção e recibos');
 				break;
+			case "GOS":
+				acessaAmbienteGestorOperacoes(aba,a);
+				break;
 		}
 	}
 
@@ -4116,6 +4430,7 @@ public class rpaCommands  {
 		urls.put('PRD','IntranetProdução');
 		urls.put('INT','IntranetTransacional');
 		urls.put('DEV','IntranetDesenvolvimento');
+		urls.put('GOS','GestorOperacoes');
 		return urls.get(aba.toString());
 	}
 
@@ -4174,9 +4489,9 @@ public class rpaCommands  {
 	 * @author be54955
 	 * @param s
 	 * @return
-	 * 
+	 *
 	 * Ajuste de mensagem de alerta da tela ficha gestão
-	 * 
+	 *
 	 */
 	public static String ajusteMSGFG(String s){
 		String str
@@ -4194,7 +4509,7 @@ public class rpaCommands  {
 	 * @author be54955
 	 * @param t
 	 * @return
-	 * Retorna index da tabela de dados da tela FG 
+	 * Retorna index da tabela de dados da tela FG
 	 */
 	public static int indexPendencia(){
 		System.out.println()
@@ -4349,21 +4664,21 @@ public class rpaCommands  {
 	 * @param tipoAba
 	 * @return
 	 * Campo "tipoAba" usar a informação "Error"
-	 * 
+	 *
 	 */
 	public static void  enviarEmailError(String tipoAba, String assunto ){
 		try{
-		   pathTxtEmail = "C:\\Users\\Public\\RPA_ALLIANZ\\Emails\\Erro\\ConfiguracoesErro.txt";
-		   lerConfigurações(pathTxtEmail);
-		   String emaildestination = StringFormatter.formatterEmailDestination(FileInput.readFile(pathTxtEmail));
-		   List<String> anexos = new ArrayList<>();
-	       sendEmail.CreateEmail.createEmailSendError(sender, emaildestination, pwdsender, anexos, host, porta, tipoAba, assunto+" - "+ ExtractDates.horaAtualizada() );
+			pathTxtEmail = "C:\\Users\\Public\\RPA_ALLIANZ\\Emails\\Erro\\ConfiguracoesErro.txt";
+			lerConfigurações(pathTxtEmail);
+			String emaildestination = StringFormatter.formatterEmailDestination(FileInput.readFile(pathTxtEmail));
+			List<String> anexos = new ArrayList<>();
+			sendEmail.CreateEmail.createEmailSendError(sender, emaildestination, pwdsender, anexos, host, porta, tipoAba, assunto+" - "+ ExtractDates.horaAtualizada() );
 		} catch (Exception e){
-		  System.err.print("Falha ao enviar e-mail de notificação de erro no robô. "+e)
+			System.err.print("Falha ao enviar e-mail de notificação de erro no robô. "+e)
 		}
 	}
 
-	
+
 	/**
 	 * @author T_dvlopes
 	 * @param doc
@@ -4372,25 +4687,25 @@ public class rpaCommands  {
 	 *
 	 */
 	public static String ajusteCNPJ(String doc ){
-	  String s;
-	  int i = doc.length();
-	  int n = 14;
-	  int z = 14-doc.length();
-	  String nString;
-	  StringBuilder strbdr = new StringBuilder();
-	  if(i<n){
-		 for (int j = 0; j<z;j++ ){
-			strbdr = strbdr.append(0);
-		 }
-		 System.out.println("DIFERENÇA "+strbdr.length());
-		 StringBuilder nstrbdr = new StringBuilder();
-		 s = nstrbdr.append(strbdr+doc).toString();
-		 System.out.println("DOCUMETO ATUALIZADO ["+s+"] ["+s.length()+"]")
-	  } else {
-		System.out.println("DOCUMETO SEM ALTERAÇÃO ["+doc+"] ["+doc.length()+"]")
-		s=doc;
-	  }
-	 return s;
+		String s;
+		int i = doc.length();
+		int n = 14;
+		int z = 14-doc.length();
+		String nString;
+		StringBuilder strbdr = new StringBuilder();
+		if(i<n){
+			for (int j = 0; j<z;j++ ){
+				strbdr = strbdr.append(0);
+			}
+			System.out.println("DIFERENÇA "+strbdr.length());
+			StringBuilder nstrbdr = new StringBuilder();
+			s = nstrbdr.append(strbdr+doc).toString();
+			System.out.println("DOCUMETO ATUALIZADO ["+s+"] ["+s.length()+"]")
+		} else {
+			System.out.println("DOCUMETO SEM ALTERAÇÃO ["+doc+"] ["+doc.length()+"]")
+			s=doc;
+		}
+		return s;
 	}
 
 
@@ -4427,17 +4742,17 @@ public class rpaCommands  {
 
 	public static void abreReferencia(){
 		String xpath ='//*[@id="componenteReferencia"]/div'
-		 String tag="nx-icon"
-		 try{
-			 selecionaListaDeElementos(xpath,tag)
-			 for(int i = 0; i < listOfElements.size(); i++){
-				 System.out.println("["+i+"] ["+listOfElements[i].getTagName() +"]" )
-				 if(listOfElements[i].getTagName().contains(tag)){
-					 listOfElements[i].click()
-					 //		break
-				 }
-			 }
-		 } catch (Exception e){}
+		String tag="nx-icon"
+		try{
+			selecionaListaDeElementos(xpath,tag)
+			for(int i = 0; i < listOfElements.size(); i++){
+				System.out.println("["+i+"] ["+listOfElements[i].getTagName() +"]" )
+				if(listOfElements[i].getTagName().contains(tag)){
+					listOfElements[i].click()
+					//		break
+				}
+			}
+		} catch (Exception e){}
 	}
 
 }

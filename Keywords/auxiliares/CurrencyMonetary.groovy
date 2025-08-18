@@ -53,4 +53,24 @@ public class CurrencyMonetary {
 		snum = sbf.toString();
 		return snum;
 	}
+
+	/**
+	 * @author T_DCDias
+	 * @param valor
+	 * @return
+	 * Recebe um valor monetário e retorna apenas os números
+	 */
+	public static String formataValorMonetario(String t){
+		String r
+		try{
+			if(t.length()>0){
+				String a = CurrencyMonetary.currencyMonetaryValue(t)
+				String s = a.subSequence(0, a.indexOf(","));
+				r = s.replaceAll('[R\\$]',"")
+			} else {
+				r = "0";
+			}
+		} catch (Exception e){}
+		return r;
+	}
 }

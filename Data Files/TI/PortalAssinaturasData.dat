@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataFileEntity>
+   <description></description>
+   <name>PortalAssinaturasData</name>
+   <tag></tag>
+   <containsHeaders>true</containsHeaders>
+   <csvSeperator></csvSeperator>
+   <dataFileGUID>7cd1c7d9-d03a-4a04-93cc-4d74097a0b3d</dataFileGUID>
+   <dataSourceUrl></dataSourceUrl>
+   <driver>ExcelFile</driver>
+   <isInternalPath>false</isInternalPath>
+   <query></query>
+   <secureUserAccount>false</secureUserAccount>
+   <sheetName></sheetName>
+   <usingGlobalDBSetting>false</usingGlobalDBSetting>
+</DataFileEntity>

@@ -135,15 +135,15 @@ public class NavegarDatas {
 		WebUI.click(flexibleTestObject.addProperty("xpath", ConditionType.EQUALS, "//tbody//tr//td[contains(text(),'"+sDate+"') and contains(@class,'disabled')]"));
 	}
 
-//	/**
-//	 * @author T_DCDias
-//	 * @param dia
-//	 * @return
-//	 */
-//	public static boolean validaDataBloqueada(int dia){
-//		int nDia = dia - 1;
-//		String sDate = Integer.toString(nDia);
-//		String xpath = "//tbody//tr//td[contains(text(),'"+sDate+"') and contains(@class,'disabled')]";
-//		return commands.AutoComandos.validaElemento(xpath);
-//	}
+	//	/**
+	//	 * @author T_DCDias
+	//	 * @param dia
+	//	 * @return
+	//	 */
+	//	public static boolean validaDataBloqueada(int dia){
+	//		int nDia = dia - 1;
+	//		String sDate = Integer.toString(nDia);
+	//		String xpath = "//tbody//tr//td[contains(text(),'"+sDate+"') and contains(@class,'disabled')]";
+	//		return commands.AutoComandos.validaElemento(xpath);
+	//	}
 }

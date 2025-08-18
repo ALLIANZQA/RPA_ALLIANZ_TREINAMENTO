@@ -28,6 +28,13 @@ import internal.GlobalVariable
 import rpacommands.rpaCommands
 import auxiliares.ExtractDates
 
+import auxiliares.timer;
+import sendEmail.emailDinamico;
+import auxiliares.GetHost;
+import auxiliares.leitorPdf;
+import java.time.Duration
+import java.time.Instant
+import java.util.List
 
 
 public class ReativacaoApoliceFuncionalidades extends rpaCommands{
@@ -38,6 +45,13 @@ public class ReativacaoApoliceFuncionalidades extends rpaCommands{
 	private static String path
 	private static int rollCheck = 4
 
+	
+	private static Instant start;
+	private static Instant end;
+	private static Duration timeLapnse;
+
+	private static String docName = "ReativacaoApolice.xlsx"
+	private static int cellCheckAlert = 6;
 
 
 	/**
@@ -130,9 +144,52 @@ public class ReativacaoApoliceFuncionalidades extends rpaCommands{
 	 * @return
 	 */
 	public static fluxoReativacaoApolice(String aba, String a){
+		String dataInicio = ExtractDates.dataAtual();
+		String horaInicial =  ExtractDates.horaAtualizada();
+		start = Instant.now();
 		fluxoCompletoReativacaoApolice(aba, a)
 		reprocessaFalhas(aba,a)
-		enviarEmailReativacaoApolice(aba)
+		//enviarEmailReativacaoApolice(aba)
+		end =  Instant.now();
+		timeLapnse = Duration.between(start, end);
+		String dataFinal = ExtractDates.dataAtual();
+		String horaFinal =  ExtractDates.horaAtualizada();
+		try{
+		   enviarEmailReativacaoApoliceDinamico(aba, timeLapnse, dataInicio, dataFinal, horaInicial, horaFinal );
+		} catch (Exception e){
+		}
+	}
+	
+	/**
+	 * @author Alz_sup54955
+	 * @param tipoAba
+	 * @param timeLapnse
+	 * @param dataInicio
+	 * @param dataFinal
+	 * @param horaInicial
+	 * @param horaFinal
+	 * @return
+	 */
+	public static enviarEmailReativacaoApoliceDinamico(String tipoAba, Duration timeLapnse, String dataInicio, String dataFinal, String horaInicial, String horaFinal){
+		System.out.println()
+	 try{
+		 if(!validaDados(rollCheck)){
+			String pathTxtEmailConfig = "C:\\Users\\Public\\RPA_ALLIANZ\\Emails\\backoffice\\ReativacaoApolice\\ConfiguracoesReativacaoApolice.txt";
+			lerConfigurações(pathTxtEmailConfig)
+			System.out.println(pathTxtEmail)
+			String emaildestination = StringFormatter.formatterEmailDestination(FileInput.readFile(pathTxtEmail));
+			// FORMATA SAIDA DO TEMPO DE EXECUÇÃO
+			long segds = timeLapnse.toSeconds();
+			String hours = timeLapnse.toHours()+"h "+
+						timer.converteMinutos(timeLapnse.toHours(), timeLapnse.toMinutes())+"m "+
+						timer.converteSegundos(timeLapnse.toMinutes(),segds)+"s";
+			// ENVIO DE E-MAIL
+			//DADOS DO DOCUMENTO
+			initDataFiles();
+			// ENVIA E-MAIL DINAMICO
+			emailDinamico.enviaEmailDinamico(sender, emaildestination, tipoAba, path, docName, emailDinamico.listaDeAlertas(data, cellCheckAlert)  , hours, horaInicial, horaFinal,  GetHost.getHostname() , dataInicio, dataFinal, "" );
+		 }
+	  } catch (Exception e){}
 	}
 
 	/**
@@ -200,12 +257,13 @@ public class ReativacaoApoliceFuncionalidades extends rpaCommands{
 								//System.err.println("[PASSED] ["+registros[4]+"] ["+registros[3]+"] ["+ path+"]")
 								auxiliares.WriteExcelFactory.updateSheetLine("", j, path, registros[3],3, aba);
 								auxiliares.WriteExcelFactory.updateSheetLine("", j, path, registros[4]+" "+ExtractDates.dataAtualizada(),4, aba);
+								auxiliares.WriteExcelFactory.updateSheetLine("", j, path, "Reativação efetuada",5, aba);
 							} catch (Exception e){}
 						} else {
 							try{
 								System.err.println("[N] ["+registros[4]+"]")
 								auxiliares.WriteExcelFactory.updateSheetLine("", j, path, registros[3],3, aba);
-								auxiliares.WriteExcelFactory.updateSheetLine("", j, path, registros[4]+" "+ExtractDates.dataAtualizada(),4, aba);
+								auxiliares.WriteExcelFactory.updateSheetLine("", j, path, "Alerta: "+registros[4],5, aba);
 							} catch (Exception e){}
 						}
 					}
@@ -237,7 +295,7 @@ public class ReativacaoApoliceFuncionalidades extends rpaCommands{
 				preencheXpath('//*[@id="susep_Application"]', registros[1], 0);
 				//Pesquisar Motivos
 				selecionaItemLista('Pesquisar motivos', '//*[@id="sectionPaginaCompletaSectionBar"]', 'div')
-
+				WebUI.delay(5);
 
 				s = recuperaValor('//*[@id="dataErrorSection"]/table/tbody/tr/td[2]', 'innerText', 0)
 				System.out.println("Erro ["+s+"]")
@@ -288,7 +346,7 @@ public class ReativacaoApoliceFuncionalidades extends rpaCommands{
 			alteraJanejaGenerica(1, 15)
 			b = false
 		}
-		System.out.println("["+	b+"] ["+s+"]")
+		System.out.println("["+	b+"] ["+registros[4]+"]")
 		return b
 	}
 

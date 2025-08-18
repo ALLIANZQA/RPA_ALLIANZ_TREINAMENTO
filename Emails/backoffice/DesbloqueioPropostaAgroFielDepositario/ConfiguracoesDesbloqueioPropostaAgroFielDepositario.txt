@@ -1,5 +1,5 @@
 C:/Users/Public/RPA_ALLIANZ/Emails/backoffice/DesbloqueioPropostaAgroFielDepositario/DesbloqueioPropostaAgroFielDepositario.txt
-denilson.inmetricsext@allpronet.com.br
-be549556
+rpa@allianz.com.br
+
 smtp.intrallianz.es
 25

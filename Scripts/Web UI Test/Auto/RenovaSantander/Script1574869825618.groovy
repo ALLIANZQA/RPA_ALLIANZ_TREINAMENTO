@@ -39,7 +39,7 @@ import internal.GlobalVariable as GlobalVariable
  * 
  */
 try{
-	 auto.RenovaSantanderFuncionalidades.fluxoInicialRenovaSantander("RenovaSantander",'PRD', "07/03/2025" )
+	 auto.RenovaSantanderFuncionalidades.fluxoInicialRenovaSantander("RenovaSantander",'PRD', "05/07/2025" )
 	 WebUI.closeBrowser();
    } catch (Exception e){
 	// auto.RenovaSantanderFuncionalidades.enviarEmailError("Error", "RenovaSantander" );

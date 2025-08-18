@@ -5,6 +5,9 @@ import static com.kms.katalon.core.testcase.TestCaseFactory.findTestCase
 import static com.kms.katalon.core.testdata.TestDataFactory.findTestData
 import static com.kms.katalon.core.testobject.ObjectRepository.findTestObject
 
+import java.time.Duration
+import java.time.Instant
+
 import com.kms.katalon.core.annotation.Keyword
 import com.kms.katalon.core.checkpoint.Checkpoint
 import com.kms.katalon.core.cucumber.keyword.CucumberBuiltinKeywords as CucumberKW
@@ -27,6 +30,12 @@ import auxiliares.StringFormatter;
 import auxiliares.MenuMatriz
 import auxiliares.ExtractDates
 
+
+import auxiliares.timer;
+import auxiliares.ExtractDates
+import sendEmail.emailDinamico;
+import auxiliares.GetHost;
+
 public class DescontosEspecíficosSinistroFuncionalidades extends rpaCommands{
 
 	public static String dataRecuerada = getDateHour();
@@ -40,6 +49,13 @@ public class DescontosEspecíficosSinistroFuncionalidades extends rpaCommands{
 	private static boolean encerrado  = false
 	private static String cobertura = "49 Ressarcimento"
 	private static String status = "";
+	private static String baseData;
+	
+	private static int cellCheckAlert = 13;
+	private static Instant start;
+	private static Instant end;
+	private static Duration timeLapnse;
+	
 
 
 	/**
@@ -102,9 +118,20 @@ public class DescontosEspecíficosSinistroFuncionalidades extends rpaCommands{
 	 * @return
 	 */
 	public static fluxoDescontosEspecíficosSinistros(String tipoAba){
+		String dataInicio = ExtractDates.dataAtual();
+		String horaInicial =  ExtractDates.horaAtualizada();
+		start = Instant.now();
 		fluxoCompletoDescontosEspecíficosSinistro(tipoAba)
 		reprocessaDescontosEspecíficosSinistro(tipoAba)
-		enviarEmailDescontosEspecíficosSinistro(tipoAba)
+		end =  Instant.now();
+		timeLapnse = Duration.between(start, end);
+		String dataFinal = ExtractDates.dataAtual();
+		String horaFinal =  ExtractDates.horaAtualizada();
+		
+		try{
+		   enviarEmailDescontosEspecíficosSinistroDinamico(tipoAba, timeLapnse, dataInicio, dataFinal, horaInicial, horaFinal, baseData );
+		} catch (Exception e){
+		}
 	}
 
 	/**
@@ -120,6 +147,7 @@ public class DescontosEspecíficosSinistroFuncionalidades extends rpaCommands{
 				realizaLoginIntraNetProducaoCommands(tipoAba);
 				//realizaLoginTelaIntraNetProducao('be02059','Barba888');
 				WebUI.delay(15);
+				System.out.println()
 				menuGIS()
 				WebUI.delay(15);
 
@@ -144,7 +172,7 @@ public class DescontosEspecíficosSinistroFuncionalidades extends rpaCommands{
 							sinistro[16] = '000'
 							sinistro[17] = 'Rua'
 							sinistro[18] = 'Local 1'
-
+							baseData = sinistro[2]
 							if(sinistro[10].toString().contains('(DESC. ESPEC.)')){
 								if(fluxoDescontosEspecíficosSinistro(sinistro)){
 									try{
@@ -154,13 +182,13 @@ public class DescontosEspecíficosSinistroFuncionalidades extends rpaCommands{
 								} else {
 									try{
 										auxiliares.WriteExcelFactory.updateSheetLine('',  i-1, path, status, 11 , 'DescontosEspecíficosSinistro');
-										auxiliares.WriteExcelFactory.updateSheetLine('', i-1, path, alerta, 12 , 'DescontosEspecíficosSinistro');
+										auxiliares.WriteExcelFactory.updateSheetLine('', i-1, path, "Alerta: "+alerta, 12 , 'DescontosEspecíficosSinistro');
 										System.out.println()
 										alteraJanejaGenerica(0,2);
 										menuGIS()
 										alteraJanejaGenerica(1,2);
 										WebUI.maximizeWindow()
-									}catch (Exception e){System.err.println("[ Cannot invoke method setCellValue() on null object ]")}
+									}catch (Exception e){}
 								}
 							} else {
 								if(fluxoCancelaDescontosEspecíficosSinistro(sinistro)){
@@ -171,13 +199,13 @@ public class DescontosEspecíficosSinistroFuncionalidades extends rpaCommands{
 								} else {
 									try{
 										auxiliares.WriteExcelFactory.updateSheetLine('',  i-1, path, "Processado", 11 , 'DescontosEspecíficosSinistro');
-										auxiliares.WriteExcelFactory.updateSheetLine('', i-1, path, "Reserva não cancelada", 12 , 'DescontosEspecíficosSinistro');
+										auxiliares.WriteExcelFactory.updateSheetLine('', i-1, path, "Alerta: Reserva não cancelada", 12 , 'DescontosEspecíficosSinistro');
 										System.out.println()
 										alteraJanejaGenerica(0,2);
 										menuGIS()
 										alteraJanejaGenerica(1,2);
 										WebUI.maximizeWindow()
-									}catch (Exception e){System.err.println("[ Cannot invoke method setCellValue() on null object ]")}
+									}catch (Exception e){}
 								}
 							}
 						}catch (Exception e){  }
@@ -215,13 +243,14 @@ public class DescontosEspecíficosSinistroFuncionalidades extends rpaCommands{
 		boolean b = true
 		try{
 			if(listaDeTelas(recuperaValor('//*[@id="cellAppPromptHeaderArea"]', 'textContent', 0))){
+				System.out.println()
 				/**
 				 * GESTÃO INTEGRADA DE SINISTROS
 				 */
 				//Referência
 				preencheXpath('//*[@id="refsiniestro"]',sinistro[0], 2);
 				//Pesquisar
-				clickXpath('//*[@id="cellTarget_busqueda"]', 5);
+				clickXpath('//*[@id="cellTarget_busqueda"]', 0);
 				WebUI.delay(2);
 
 				String situacao = recuperaValor('//*[@id="sectionDatosGenContent"]/table[1]/tbody/tr/td[2]/table/tbody//input', 'value', 2)
@@ -238,15 +267,15 @@ public class DescontosEspecíficosSinistroFuncionalidades extends rpaCommands{
 				WebUI.delay(2);
 
 				if(descontosAbertos( sinistro)){
-
+					status ="Processado";
 				} else {
-					alerta = 'Reserva não efetuada'
+					alerta = 'Alerte: Reserva não efetuada'
 					b = false
 				}
 				System.out.println("["+b+"]")
 				status ="Processado";
 			} else {
-				alerta = 'tela "GESTÃO INTEGRADA DE SINISTROS" não apresentada'
+				alerta = 'Alerte: tela "GESTÃO INTEGRADA DE SINISTROS" não apresentada'
 				status ="Processar";
 				b = false
 			}
@@ -340,46 +369,59 @@ public class DescontosEspecíficosSinistroFuncionalidades extends rpaCommands{
 				//Reembolsar de
 				selecionaItemLista('Outro', '//*[@id="pagoa"]', 'option')
 				//Reembolsado de
-				preencheXpath('//*[@id="nombre"]',sinistro[7], 2);
+				preencheXpath('//*[@id="nombre"]',sinistro[7], 0);
 				//CNPJ/CPF
 				selecionaItemLista('CPF / CNPJ', '//*[@id="dniafavor_tipoDoc"]', 'option')
-				preencheXpath('//*[@id="dniafavor_doc"]',sinistro[6], 2);
+				preencheXpath('//*[@id="dniafavor_doc"]',sinistro[6], 0);
 				commandTAB('//*[@id="dniafavor_doc"]')
 				//Endereço
 				selecionaItemLista(sinistro[17], '//*[@id="domiciliotype"]', 'option')
-				preencheXpath('//*[@id="domicilioaddressPart2"]',sinistro[18], 2);
+				preencheXpath('//*[@id="domicilioaddressPart2"]',sinistro[18], 0);
 				//CEP
-				preencheXpath('//*[@id="cp"]',sinistro[15], 2);
-				preencheXpath('//*[@id="subCp"]',sinistro[16], 2);
+				preencheXpath('//*[@id="cp"]',sinistro[15], 0);
+				preencheXpath('//*[@id="subCp"]',sinistro[16], 0);
 				//Forma
 				selecionaItemLista('Conta Central', '//*[@id="forma"]', 'option')
 				//Cobertura  49 Ressarcimento
 				selecionaItemLista(cobertura, '//*[@id="comboGarantias"]', 'option')
 				//Custo
-				preencheXpath('//*[@id="coste"]',sinistro[8].replaceAll("[.]","").trim(), 2);
+				preencheXpath('//*[@id="coste"]',sinistro[8].replaceAll("[.]","").trim(), 0);
 				commandTAB('//*[@id="coste"]')
 				//Aceitar
 				selecionaItemLista('Aceitar', '//*[@id="DatosImporteGarantiaSectionBar"]/table/tbody/tr/td', 'div')
 				WebUI.delay(2);
 				selecionaItemLista('Aceitar', '//*[@id="sectionDatosPagRecSectionBar"]/table/tbody/tr/td', 'div')
 				WebUI.delay(2);
-				alerta = recuperaValor('//*[@id="dataErrorSection"]/table/tbody/tr/td[2]', 'innerText', 3)
-				try{
-					//Zerar ressarcimento
-					selecionarRessarcimento('0,00', sinistro[14])
-					//Aceitar
-					selecionaItemLista('Aceitar', '//*[@id="SectionGarantiasSectionBar"]/table/tbody/tr/td', 'div')
+				System.out.println()
+				alerta = recuperaValor('//*[@id="dataErrorSection"]/table/tbody/tr/td[2]', 'innerText', 0)
+				
+				if(alertListAjuste(alerta)){
+					//Observação
+					preencheXpath('//*[@id="textoObs"]',".", 0);
+					selecionaItemLista('Aceitar', '//*[@id="sectionDatosPagRecSectionBar"]/table/tbody/tr/td', 'div')
 					WebUI.delay(2);
-				} catch (Exception e){}
-
-
+				}
+			
+				alerta = recuperaValor('//*[@id="dataErrorSection"]/table/tbody/tr/td[2]', 'innerText', 3)
 				if(alertListBlocList(alerta)){
-					evidencia = ""
+					evidencia = alerta;
 					exec = false
 				} else {
-					exec = true
-					evidencia = alerta
+				 String msg1 = recuperaValor('//*[@id="dataErrorSection"]/table/tbody/tr/td[2]', 'innerText', 0)
+				  try{
+					  //Zerar ressarcimento
+					  selecionarRessarcimento('0,00', sinistro[14])
+					  //Aceitar
+					  selecionaItemLista('Aceitar', '//*[@id="SectionGarantiasSectionBar"]/table/tbody/tr/td', 'div')
+					  WebUI.delay(2);
+				  } catch (Exception e){}
+				
+				  String msg2 = recuperaValor('//*[@id="dataErrorSection"]/table/tbody/tr/td[2]', 'innerText', 0)
+				  evidencia = msg1+" - "+msg2
+				  exec = true
+				  
 				}
+				
 				//Home
 				clickXpath('//*[@id="imgOptMenuBackHome"]', 5);
 			} else {
@@ -394,7 +436,7 @@ public class DescontosEspecíficosSinistroFuncionalidades extends rpaCommands{
 			//Home
 			clickXpath('//*[@id="imgOptMenuBackHome"]', 5);
 		}
-		System.out.println("["+exec+"]")
+		System.out.println("["+exec+"] ALERTA ["+alerta+"]")
 		return exec
 	}
 
@@ -437,7 +479,7 @@ public class DescontosEspecíficosSinistroFuncionalidades extends rpaCommands{
 	public static menuGIS(){
 		MenuMatriz.producaoSinistro()
 		WebUI.delay(5);
-		MenuMatriz.subMenu('/html/body/div/div/app-root/app-private/app-displayed-menu/div/app-teaser/div/div/div/div[2]/ul', 'a',"GIS")
+		MenuMatriz.subMenu('/*/body/div/div/app-root/app-private/app-displayed-menu/div/app-teaser/div/div[2]/div/div[1]/ul', 'a',"GIS")
 	}
 
 	/**
@@ -469,6 +511,34 @@ public class DescontosEspecíficosSinistroFuncionalidades extends rpaCommands{
 			sendEmail.CreateEmail.createEmailSendMultipleFiles(sender, emaildestination, pwdsender, anexos, host, porta, tipoAba)
 		}
 	}
+	
+	
+	/**
+	 * @author Alz_sup54955
+	 * @param tipoAba
+	 * @param timeLapnse
+	 * @param dataInicio
+	 * @param dataFinal
+	 * @param horaInicial
+	 * @param horaFinal
+	 * @return
+	 */
+	public static enviarEmailDescontosEspecíficosSinistroDinamico(String tipoAba, Duration timeLapnse, String dataInicio, String dataFinal, String horaInicial, String horaFinal, String assunto){
+	  long segds = timeLapnse.toSeconds();
+	  String hours = timeLapnse.toHours()+"h "+
+	  timer.converteMinutos(timeLapnse.toHours(), timeLapnse.toMinutes())+"m "+
+	  timer.converteSegundos(timeLapnse.toMinutes(),segds)+"s";
+	   if(!carregaDados()){
+		  pathTxtEmail = "C:/Users/Public/RPA_ALLIANZ/Emails/Sinistros/DescontosEspecificosSinistro/ConfiguracoesDescontosEspecificosSinistro.txt";
+		  lerConfigurações(pathTxtEmail)
+		  String emaildestination = StringFormatter.formatterEmailDestination(FileInput.readFile(pathTxtEmail));
+		  List<String> anexos = new ArrayList<>();
+		  anexos[0] = "C:\\Users\\Public\\RPA_ALLIANZ\\Data Files\\Sinistro\\DescontosEspecíficosSinistro.xlsx"
+		  anexos[1] = "DescontosEspecíficosSinistro.xlsx"
+		  emailDinamico.enviaEmailDinamico(sender, emaildestination, tipoAba, anexos[0], anexos[1], emailDinamico.listaDeAlertas(data, cellCheckAlert)  , hours, horaInicial, horaFinal,  GetHost.getHostname() , dataInicio, dataFinal, assunto);
+	  }
+	}
+
 
 	/**
 	 * @author be54955
@@ -505,7 +575,31 @@ public class DescontosEspecíficosSinistroFuncionalidades extends rpaCommands{
 		List<String> listOfAlerts = new ArrayList<String>()
 		listOfAlerts.add(" Beneficiário/ Emissor obrigatório.")
 		listOfAlerts.add(" Reserva + Pagamentos ultrapassa a cobertura.")
-
+		listOfAlerts.add(" Erro pagamento: Cobertura não existe")
+		listOfAlerts.add(" Erro de acceso às coberturas da apólice")
+		System.out.println("Alert ["+alert+"]\n")
+		for(int i = 0; i < listOfAlerts.size(); i++){
+			System.err.println("["+i+"] ["+listOfAlerts[i]+"]")
+			if(listOfAlerts[i].contains(alert.toString())){
+				System.err.println("FOUND ALERT TO BLOC ["+i+"] ["+listOfAlerts[i]+"]")
+				r = true
+				break
+			}
+		}
+		System.out.println("\nAlert ["+r+"]")
+		return  r
+	}
+	
+	/**
+	 * @author be54955
+	 * @param alert
+	 * @return
+	 */
+	public static alertListAjuste(String alert){
+		System.err.println("\nalertListBloc ["+alert+"]")
+		boolean r = false
+		List<String> listOfAlerts = new ArrayList<String>()
+		listOfAlerts.add(" Observação obrigatória.")
 		System.out.println("Alert ["+alert+"]\n")
 		for(int i = 0; i < listOfAlerts.size(); i++){
 			System.err.println("["+i+"] ["+listOfAlerts[i]+"]")

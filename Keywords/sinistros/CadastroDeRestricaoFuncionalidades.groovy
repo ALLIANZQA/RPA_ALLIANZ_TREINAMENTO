@@ -6,6 +6,8 @@ import static com.kms.katalon.core.testdata.TestDataFactory.findTestData
 import static com.kms.katalon.core.testobject.ObjectRepository.findTestObject
 import static com.kms.katalon.core.testobject.ObjectRepository.findWindowsObject
 
+import java.time.Duration
+import java.time.Instant
 import java.util.List
 
 import com.kms.katalon.core.annotation.Keyword
@@ -26,6 +28,19 @@ import auxiliares.FileInput
 import auxiliares.StringFormatter
 
 
+
+import auxiliares.timer
+import sendEmail.emailDinamico;
+import auxiliares.GetHost;
+import auxiliares.leitorPdf;
+import java.time.Duration
+import java.time.Instant
+import auxiliares.ExtractDates
+
+
+
+
+
 /**
  * @author BE54955
  * 
@@ -42,6 +57,12 @@ public class CadastroDeRestricaoFuncionalidades  extends rpaCommands {
 	private static int cellCheck = 7
 	private static boolean p ;
 	private static String dataDoDocumento;
+	
+	
+	private static int cellCheckAlert = 8;
+	private static Instant start;
+	private static Instant end;
+	private static Duration timeLapnse;
 
 
 	/**
@@ -107,12 +128,57 @@ public class CadastroDeRestricaoFuncionalidades  extends rpaCommands {
 	 * @return
 	 */
 	public static fluxoCadastroDeRestricao(String aba){
+		String dataInicio = ExtractDates.dataAtual();
+		String horaInicial =  ExtractDates.horaAtualizada();
+		start = Instant.now();
 		initDataFiles()
 		fluxoCompletooCadastroDeRestricao(aba)
 		reprocessaFalhas(aba)
-		enviarEmailCadastroDeRestricao(aba)
+		//enviarEmailCadastroDeRestricaoXX(aba)
+		end =  Instant.now();
+		timeLapnse = Duration.between(start, end);
+		String dataFinal = ExtractDates.dataAtual();
+		String horaFinal =  ExtractDates.horaAtualizada();
+		try{
+		   enviarEmailCadastroDeRestricao(aba, timeLapnse, dataInicio, dataFinal, horaInicial, horaFinal );
+		} catch (Exception e){
+		}
 	}
 
+	
+	/**
+	 * @author Alz_sup54955
+	 * @param tipoAba
+	 * @param timeLapnse
+	 * @param dataInicio
+	 * @param dataFinal
+	 * @param horaInicial
+	 * @param horaFinal
+	 * @return
+	 */
+	public static enviarEmailCadastroDeRestricao(String tipoAba, Duration timeLapnse, String dataInicio, String dataFinal, String horaInicial, String horaFinal){
+		System.out.println()
+	 try{
+		 if(!validaDados(cellCheck)){
+			pathTxtEmail = "C:\\Users\\Public\\RPA_ALLIANZ\\Emails\\Sinistros\\CadastroDeRestricao\\ConfiguracoesCadastroDeRestricao.txt";
+			lerConfigurações(pathTxtEmail)
+			String emaildestination = StringFormatter.formatterEmailDestination(FileInput.readFile(pathTxtEmail));
+			String docName = "CadastroRestricao.xlsx";
+			// FORMATA SAIDA DO TEMPO DE EXECUÇÃO
+			long segds = timeLapnse.toSeconds();
+			String hours = timeLapnse.toHours()+"h "+
+						timer.converteMinutos(timeLapnse.toHours(), timeLapnse.toMinutes())+"m "+
+						timer.converteSegundos(timeLapnse.toMinutes(),segds)+"s";
+			// ENVIO DE E-MAIL
+			//DADOS DO DOCUMENTO
+			initDataFiles();
+			// ENVIA E-MAIL DINAMICO
+			emailDinamico.enviaEmailDinamico(sender, emaildestination, tipoAba, path, docName, emailDinamico.listaDeAlertas(data, cellCheckAlert)  , hours, horaInicial, horaFinal,  GetHost.getHostname() , dataInicio, dataFinal, dataDoDocumento );
+		 }
+	  } catch (Exception e){}
+	}
+	
+	
 	
 	public static String pegaDatas(TestData data ){
 		Set<String> hasDatas = new HashSet<String>();
@@ -150,7 +216,8 @@ public class CadastroDeRestricaoFuncionalidades  extends rpaCommands {
 			//Menu Produção & Sinistros
 			MenuMatriz.producaoSinistro();
 			//Gestão IVS
-			clickXpath('/*/body/div/div/app-root/app-private/app-displayed-menu/div/app-teaser/div/div/div/div[2]/ul/li[4]/a', 5);
+			String xpath ='/*/body/div/div/app-root/app-private/app-displayed-menu/div/app-teaser/div/div[2]/div/div[1]/ul'
+			selecionaItemListaContains("Gestão IVS", xpath, 'a');
 			WebUI.delay(17);
 			alteraJanejaGenerica(1,5);
 			WebUI.maximizeWindow()
@@ -186,7 +253,7 @@ public class CadastroDeRestricaoFuncionalidades  extends rpaCommands {
 						} else {
 							try{
 								auxiliares.WriteExcelFactory.updateSheetLine("", j, path, "Processado", 6, aba);
-								auxiliares.WriteExcelFactory.updateSheetLine("", j, path, "Falha no cadastro de restricao. "+alerta, 7, aba);
+								auxiliares.WriteExcelFactory.updateSheetLine("", j, path, "Alerta: Falha no cadastro de restricao. "+alerta, 7, aba);
 							} catch (Exception e){}
 						}
 					}
@@ -277,7 +344,7 @@ public class CadastroDeRestricaoFuncionalidades  extends rpaCommands {
 	 * @param t
 	 * @return
 	 */
-	public static enviarEmailCadastroDeRestricao(String tipoAba){
+	public static enviarEmailCadastroDeRestricaoOLD(String tipoAba){
 		System.out.println();
 		initDataFiles()
 		try{

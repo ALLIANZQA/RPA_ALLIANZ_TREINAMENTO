@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataFileEntity>
+   <description></description>
+   <name>ReentradaPropostaAutoData</name>
+   <tag></tag>
+   <containsHeaders>true</containsHeaders>
+   <csvSeperator></csvSeperator>
+   <dataFileGUID>b22111f9-a7c9-4baa-accd-df82d9e72ee0</dataFileGUID>
+   <dataSourceUrl>C:\Users\Public\RPA_ALLIANZ\Data Files\Auto\ReentradaPropostaAuto\ReentradaPropostaAuto.xlsx</dataSourceUrl>
+   <driver>ExcelFile</driver>
+   <isInternalPath>false</isInternalPath>
+   <query></query>
+   <secureUserAccount>false</secureUserAccount>
+   <sheetName>ReentradaPropostaAuto</sheetName>
+   <usingGlobalDBSetting>false</usingGlobalDBSetting>
+</DataFileEntity>
