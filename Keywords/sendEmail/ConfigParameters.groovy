@@ -20,6 +20,7 @@ import internal.GlobalVariable;
 
 public class ConfigParameters {
 
+	protected String user;
 	protected String sender;
 	protected String pwrsender;
 	protected String emaildestination;
@@ -57,4 +58,12 @@ public class ConfigParameters {
 	public void setMessagebory(String messagebory) {
 		this.messagebory = messagebory;
 	}
+	public String getUser() {
+		return user;
+	}
+	public void setUser(String user) {
+		this.user = user;
+	}
+	
+	
 }

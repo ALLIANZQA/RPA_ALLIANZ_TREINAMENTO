@@ -32,13 +32,14 @@ public static enviaEmailContactCenter(String tipoAba, String path, String file){
 			List<String> anexos = new ArrayList<>();
 			anexos[0] = path
 			anexos[1] = file
-			sendEmail.CreateEmail.createEmailSendMultipleFiles('denilson.inmetricsext@allpronet.com.br',
-															   'denilson.inmetricsext@allpronet.com.br',
-																'' ,
-																anexos,
-																'smtp.intrallianz.es',
-																'25',
-																tipoAba)
+			sendEmail.CreateEmail.createEmailSendMultipleFilesAuth('denilson.inmetricsext@allpronet.com.br',
+															       'denilson.inmetricsext@allpronet.com.br, andre.antunes@allianz.com.br',
+															       'p25lwx4',
+																   '-*31*Q45rke&nTb+gXR@',
+																   anexos,
+																   'TMU-CS.MAIL.ALLIANZ',
+																   '587',
+																   tipoAba)
 	} catch (Exception e){
 	}
 }

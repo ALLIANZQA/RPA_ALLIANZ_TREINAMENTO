@@ -26,6 +26,17 @@ import javax.mail.Session;
 
 
 public class Sessions {
+	
+	public Session createAuth(final String email, final String user, final String pwd, Properties config){
+		Session session = Session.getDefaultInstance(config,
+				new javax.mail.Authenticator() {
+					protected PasswordAuthentication getPasswordAuthentication() {
+						return new PasswordAuthentication(user, pwd)
+					}
+				});
+		session.setDebug(true);
+		return session;
+	}
 
 	public Session create(final String email, final String pwd, Properties config){
 		Session session = Session.getDefaultInstance(config,

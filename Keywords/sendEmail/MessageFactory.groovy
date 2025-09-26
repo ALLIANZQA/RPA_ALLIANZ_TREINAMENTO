@@ -56,12 +56,55 @@ public class MessageFactory extends ConfigParameters{
 	 * @param subject
 	 * @param messagebory
 	 */
-	public MessageFactory(String sender, String pwrsender, String emaildestination){
+	public MessageFactory(String sender, String user, String pwrsender, String emaildestination){
 		this.sender = sender;
 		this.pwrsender = pwrsender;
 		this.emaildestination = emaildestination;
+		this.user = user;
 	}
 
+	
+	/**
+	 * @author ALZ_ServiceQA
+	 * @param sender
+	 * @param pwrsender
+	 * @param emaildestination
+	 * @param subject
+	 * @param messagebory
+	 * @param config
+	 * @return
+	 */
+	public static addContextAuth(String sender,String user, String pwrsender, String emaildestination, Properties config  ){
+		try{
+			Sessions sessions = new Sessions();
+			message = new MimeMessage(sessions.createAuth(sender, user, pwrsender, config));
+			message.setFrom(new InternetAddress(sender));
+			Address[] toUser = InternetAddress.parse(emaildestination);
+			message.setRecipients(Message.RecipientType.TO, toUser);
+		} catch (MessagingException e){
+			throw new RuntimeException();
+		}
+	}
+	
+	/**
+	 * @author ALZ_ServiceQA
+	 * @param config
+	 */
+	public void createMessageFilesAuth(Properties config, List<String> anexos ,String ramo ){
+		try{
+			addContextAuth(sender,user, pwrsender, emaildestination, config );
+			addMessagesMultFiles(ramo,anexos);
+			transport();
+			System.err.println("Create Message Files Done !");
+		} catch (MessagingException e){
+			throw new RuntimeException();
+		}
+	}
+	
+	
+	
+	
+	
 	/**
 	 * @author ALZ_ServiceQA
 	 * @param config

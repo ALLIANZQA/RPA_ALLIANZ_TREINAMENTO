@@ -3,6 +3,32 @@ package sendEmail;
 
 public class CreateEmail {
 
+	
+	
+	/**
+	 * @author T_DCDias
+	 * @param sender
+	 * @param emaildestination
+	 * @param pwdsender
+	 * @param path1
+	 * @param nome1
+	 * @param path2
+	 * @param nome2
+	 * @param texto
+	 * @param subject
+	 * @param host
+	 * @param porta
+	 * @return
+	 */
+	public static createEmailSendMultipleFilesAuth(String sender, String emaildestination, String user, String pwdsender, List<String> anexos , String host, String  porta, String ramo ){
+		try{
+			ConfigOutlook configEmail = new ConfigOutlook();
+			MessageFactory messageFactory = new MessageFactory(sender,user, pwdsender,emaildestination );
+			messageFactory.createMessageFilesAuth(configEmail.configureOutLookAuth(host, porta), anexos, ramo);
+		} catch(Exception e){
+			System.err.println("Create Email Send Multiple Files FAIL\n"+e);
+		}
+	}
 
 	/**
 	 * @author T_DCDias
@@ -19,10 +45,10 @@ public class CreateEmail {
 	 * @param porta
 	 * @return
 	 */
-	public static createEmailSendMultipleFiles(String sender, String emaildestination,String pwdsender, List<String> anexos , String host, String  porta, String ramo ){
+	public static createEmailSendMultipleFiles(String sender, String emaildestination, String user, String pwdsender, List<String> anexos , String host, String  porta, String ramo ){
 		try{
 			ConfigOutlook configEmail = new ConfigOutlook();
-			MessageFactory messageFactory = new MessageFactory(sender,pwdsender,emaildestination );
+			MessageFactory messageFactory = new MessageFactory(sender,user, pwdsender,emaildestination );
 			messageFactory.createMessageFiles(configEmail.configureOutLook(host, porta), anexos, ramo);
 		} catch(Exception e){
 			System.err.println("Create Email Send Multiple Files FAIL\n"+e);
@@ -325,8 +351,8 @@ public class CreateEmail {
 			System.err.println("Create Email Send Multiple Files FAIL\n"+e);
 		}
 	}
-	
-	
+
+
 	public static createEmailSendError(String sender, String emaildestination,String pwdsender, List<String> anexos , String host, String  porta, String ramo, String assunto ){
 		try{
 			ConfigOutlook configEmail = new ConfigOutlook();
@@ -336,7 +362,7 @@ public class CreateEmail {
 			System.err.println("Create Email Send Multiple Files FAIL\n"+e);
 		}
 	}
-	
+
 	public static createEmailSend(String sender, String emaildestination,String pwdsender, List<String> anexos , String host, String  porta, String ramo, String assunto ){
 		try{
 			ConfigOutlook configEmail = new ConfigOutlook();
