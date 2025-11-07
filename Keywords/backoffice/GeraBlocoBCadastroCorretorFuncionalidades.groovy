@@ -30,6 +30,17 @@ import auxiliares.MenuMatriz
 import internal.GlobalVariable
 import rpacommands.rpaCommands
 
+
+import auxiliares.timer
+import sendEmail.emailDinamico;
+import auxiliares.GetHost;
+import auxiliares.leitorPdf;
+import java.time.Duration
+import java.time.Instant
+import auxiliares.ExtractDates
+
+
+
 public class GeraBlocoBCadastroCorretorFuncionalidades extends rpaCommands{
 
 	private static TestData data
@@ -39,6 +50,12 @@ public class GeraBlocoBCadastroCorretorFuncionalidades extends rpaCommands{
 	private static String path
 	private static String alerta
 	private static int cellCheck = 2
+	
+	private static int cellCheckAlert = 3;
+	private static Instant start;
+	private static Instant end;
+	private static Duration timeLapnse;
+	
 
 	/**
 	 * @author T_DCDias
@@ -106,9 +123,23 @@ public class GeraBlocoBCadastroCorretorFuncionalidades extends rpaCommands{
 	public static fluxoGeraBlocoBCadastroCorretor(String aba){
 		initDataFiles()
 		if(validaDados(cellCheck)){
+		  String dataInicio = ExtractDates.dataAtual();
+		  String horaInicial =  ExtractDates.horaAtualizada();
+		  start = Instant.now();
 		  fluxoCompletoGeraBlocoBCadastroCorretor(aba)
 		  reprocessaFalhas(aba)
-		  enviarEmailGeraBlocoBCadastroCorretor(aba)
+		  //enviarEmailGeraBlocoBCadastroCorretor(aba)
+		  end =  Instant.now();
+		  timeLapnse = Duration.between(start, end);
+		  String dataFinal = ExtractDates.dataAtual();
+		  String horaFinal =  ExtractDates.horaAtualizada();
+		  try{
+			 enviarEmailGeraBlocoBCadastroCorretor(aba, timeLapnse, dataInicio, dataFinal, horaInicial, horaFinal );
+		  } catch (Exception e){
+		  }
+		  
+		  
+		  
 		} else {
 		  System.out.println("Não existem dados para processar ");
 		}
@@ -141,7 +172,7 @@ public class GeraBlocoBCadastroCorretorFuncionalidades extends rpaCommands{
 					} else {
 						try{
 							auxiliares.WriteExcelFactory.updateSheetLine("", j, path, "Processado", 1, aba);
-							auxiliares.WriteExcelFactory.updateSheetLine("", j, path,alerta, 3, aba);
+							auxiliares.WriteExcelFactory.updateSheetLine("", j, path,"Alerta: "+alerta, 2, aba);
 						} catch (Exception e){}
 					}
 				}
@@ -346,7 +377,7 @@ public class GeraBlocoBCadastroCorretorFuncionalidades extends rpaCommands{
 	 * @param tipoAba
 	 * @return
 	 */
-	public static enviarEmailGeraBlocoBCadastroCorretor(String tipoAba){
+	public static enviarEmailGeraBlocoBCadastroCorretorOLD(String tipoAba){
 		initDataFiles()
 		if(!validaDados(cellCheck)){
 			pathTxtEmail = "C:\\Users\\Public\\RPA_ALLIANZ\\Emails\\backoffice\\GeraBlocoBCadastroCorretor\\ConfiguracoesGeraBlocoBCadastroCorretor.txt";
@@ -357,6 +388,38 @@ public class GeraBlocoBCadastroCorretorFuncionalidades extends rpaCommands{
 			anexos[1] = "GeraBlocoBCadastroCorretor.xlsx"
 			sendEmail.CreateEmail.createEmailSendMultipleFiles(sender, emaildestination, pwdsender, anexos, host, porta, tipoAba)
 		}
+	}
+	
+	/**
+	 * @author Alz_sup54955
+	 * @param tipoAba
+	 * @param timeLapnse
+	 * @param dataInicio
+	 * @param dataFinal
+	 * @param horaInicial
+	 * @param horaFinal
+	 * @return
+	 */
+	public static enviarEmailGeraBlocoBCadastroCorretor(String tipoAba, Duration timeLapnse, String dataInicio, String dataFinal, String horaInicial, String horaFinal){
+		System.out.println()
+	 try{
+		 if(!validaDados(cellCheck)){
+			pathTxtEmail = "C:\\Users\\Public\\RPA_ALLIANZ\\Emails\\backoffice\\GeraBlocoBCadastroCorretor\\ConfiguracoesGeraBlocoBCadastroCorretor.txt";
+			lerConfigurações(pathTxtEmail)
+			String emaildestination = StringFormatter.formatterEmailDestination(FileInput.readFile(pathTxtEmail));
+			String docName = "GeraBlocoBCadastroCorretor.xlsx";
+			// FORMATA SAIDA DO TEMPO DE EXECUÇÃO
+			long segds = timeLapnse.toSeconds();
+			String hours = timeLapnse.toHours()+"h "+
+						timer.converteMinutos(timeLapnse.toHours(), timeLapnse.toMinutes())+"m "+
+						timer.converteSegundos(timeLapnse.toMinutes(),segds)+"s";
+			// ENVIO DE E-MAIL
+			//DADOS DO DOCUMENTO
+			initDataFiles();
+			// ENVIA E-MAIL DINAMICO
+			emailDinamico.enviaEmailDinamico(sender, emaildestination, tipoAba, path, docName, emailDinamico.listaDeAlertas(data, cellCheckAlert)  , hours, horaInicial, horaFinal,  GetHost.getHostname() , dataInicio, dataFinal, "" );
+		 }
+	  } catch (Exception e){}
 	}
 
 	/**

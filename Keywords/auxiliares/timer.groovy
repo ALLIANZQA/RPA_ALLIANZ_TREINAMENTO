@@ -19,8 +19,47 @@ import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 
 import internal.GlobalVariable
+import java.time.Duration
+import java.time.Instant
 
 public class timer {
+	
+	
+    /**
+     * @author Alz_sup54955
+     * @param h
+     * @param ms
+     * @return
+     */
+	public static long converteMinutos(long h, long ms){
+	    long v;	
+		if(h>0){
+			long m = h*60;
+			long r = ms-m;
+			v = r;
+		} else {
+		v = ms;
+		}
+		return v;
+	}
+	
+	/**
+	 * @author Alz_sup54955
+	 * @param min
+	 * @param segs
+	 * @return
+	 */
+	public static long converteSegundos(long min, long segs){
+		long v;
+		if(min>0){
+			long m = min*60;
+			long r = segs-m;
+			v = r;
+		} else {
+		v = segs;
+		}
+		return v;
+	}
 
 	/**
 	 * @author BE54955
@@ -55,4 +94,14 @@ public class timer {
 		}
 		return h
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

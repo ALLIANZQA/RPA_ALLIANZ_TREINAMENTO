@@ -21,11 +21,16 @@ import auxiliares.StringFormatter
 import internal.GlobalVariable
 import rpacommands.rpaCommands
 import auxiliares.FileInput
+
+import java.time.Duration
+import java.time.Instant
 import java.util.List
 import auxiliares.MenuMatriz
 import auxiliares.ExtractDates
 import auxiliares.timer
 
+import sendEmail.emailDinamico;
+import auxiliares.GetHost;
 
 public class EditorCorrespondenciaFuncionalidades extends rpaCommands {
 	
@@ -40,6 +45,11 @@ public class EditorCorrespondenciaFuncionalidades extends rpaCommands {
 	private static String referencia
 	private static String pathFileValue = "C:\\Users\\Public\\RPA_ALLIANZ\\Data Files\\Backoffce\\EditorCorrespondencia\\Anexos\\";
 	
+    private static Instant start;
+	private static Instant end;
+	private static Duration timeLapnse;
+	private static String docName = "IndexacaoFG.xlsx"
+	private static int cellCheckAlert = 15;
 	
 	/**
 	 * @author T_DCDias
@@ -130,10 +140,24 @@ public class EditorCorrespondenciaFuncionalidades extends rpaCommands {
 	 * @return
 	 */
 	public static fluxoEditorCorrespondencia(String aba, String a){
+		
+		
+		String dataInicio = ExtractDates.dataAtual();
+		String horaInicial =  ExtractDates.horaAtualizada();
+		start = Instant.now();
 		initDataFiles()
 		fluxoCompletoEditorCorrespondencia(aba,a)
 		reprocessaFalhas(aba,a)
-		enviaEmailEditorCorrespondencia(aba)
+		//enviaEmailEditorCorrespondencia(aba)
+		end =  Instant.now();
+		timeLapnse = Duration.between(start, end);
+		String dataFinal = ExtractDates.dataAtual();
+		String horaFinal =  ExtractDates.horaAtualizada();
+		try{
+		   enviaEmailDEditorCorrespondenciaDinamico(aba, timeLapnse, dataInicio, dataFinal, horaInicial, horaFinal, "" );
+		} catch (Exception e){
+		}
+		  
 	}
 	
 	/**
@@ -161,7 +185,7 @@ public class EditorCorrespondenciaFuncionalidades extends rpaCommands {
 						} else {
 							try{
 								auxiliares.WriteExcelFactory.updateSheetLine("", j, path, status, 13, aba);
-								auxiliares.WriteExcelFactory.updateSheetLine("", j, path,msgAlerta, 14, aba);
+								auxiliares.WriteExcelFactory.updateSheetLine("", j, path,"Alerta: "+msgAlerta, 14, aba);
 							} catch (Exception e){}
 						}
 					}
@@ -446,7 +470,35 @@ public class EditorCorrespondenciaFuncionalidades extends rpaCommands {
 		}
 	}
 	
-	
+	/**
+	 * @author Alz_sup54955
+	 * @param tipoAba
+	 * @param timeLapnse
+	 * @param dataInicio
+	 * @param dataFinal
+	 * @param horaInicial
+	 * @param horaFinal
+	 * @return
+	 */
+	public static enviaEmailDEditorCorrespondenciaDinamico(String tipoAba, Duration timeLapnse, String dataInicio, String dataFinal, String horaInicial, String horaFinal, String assunto){
+	 try{
+		 if(!validaDados(cellCheck)){
+			 pathTxtEmail = "C:\\Users\\Public\\RPA_ALLIANZ\\Emails\\backoffice\\EditorCorrespondencia\\ConfiguracoesEditorCorrespondencia.txt"
+			 lerConfigurações(pathTxtEmail)
+			 String emaildestination = StringFormatter.formatterEmailDestination(FileInput.readFile(pathTxtEmail));
+			// FORMATA SAIDA DO TEMPO DE EXECUÇÃO
+			long segds = timeLapnse.toSeconds();
+			String hours = timeLapnse.toHours()+"h "+
+						timer.converteMinutos(timeLapnse.toHours(), timeLapnse.toMinutes())+"m "+
+						timer.converteSegundos(timeLapnse.toMinutes(),segds)+"s";
+			// ENVIO DE E-MAIL
+			//String emaildestination = "denilson.inmetricsext@allpronet.com.br"
+			initDataFiles();
+			// ENVIA E-MAIL DINAMICO
+			emailDinamico.enviaEmailDinamico(sender, emaildestination, tipoAba, path, docName, emailDinamico.listaDeAlertas(data, cellCheckAlert)  , hours, horaInicial, horaFinal,  GetHost.getHostname() , dataInicio, dataFinal, assunto);
+		 }
+	  } catch (Exception e){}
+	}
 	
 	
 	

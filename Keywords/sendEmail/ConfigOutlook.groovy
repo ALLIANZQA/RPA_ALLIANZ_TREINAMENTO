@@ -21,6 +21,7 @@ import java.security.Security;
 
 public class ConfigOutlook {
 
+	
 	/**
 	 * @author ALZ_ServiceQA
 	 * @return
@@ -37,6 +38,11 @@ public class ConfigOutlook {
 		return props;
 	}
 
+	
+	
+	
+	
+
 	/**
 	 * @author ALZ_ServiceQA
 	 * @return
@@ -47,6 +53,7 @@ public class ConfigOutlook {
 		props.put("mail.smtp.starttls.enable", "true");
 		props.put("mail.smtp.host", host);
 		props.put("mail.smtp.port", porta);
+		
 		props.put("mail.smtp.ssl.protocols", "TLSv1.2");
 		props.put("mail.smtp.ssl.trust", "*");
 		System.out.println("configureOutLook done")

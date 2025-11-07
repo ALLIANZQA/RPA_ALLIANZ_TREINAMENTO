@@ -57,7 +57,7 @@ public class CreateXMLBackoffice extends Xml{
 			Element body = new Element("Body", ns1);
 			Element cotacaoRequest = new Element("cotacaoRequest",ws);
 			body.addContent(cotacaoRequest);
-			
+
 			cotacaoRequest = XMLSelectionFlow.selectionFlowAuto(tipoDeSeguro, cotacaoRequest, massaEmail, sch);
 			root.addContent(body);
 			doc.setRootElement(root);

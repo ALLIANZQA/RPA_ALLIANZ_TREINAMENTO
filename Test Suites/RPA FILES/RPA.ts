@@ -11,21 +11,21 @@
    <rerunFailedTestCasesOnly>false</rerunFailedTestCasesOnly>
    <testSuiteGuid>fcf4a12a-8829-402e-a952-fb6bc537d9bd</testSuiteGuid>
    <testCaseLink>
-      <guid>96b8c797-9170-46d0-9f3c-ec56fb4cf29f</guid>
+      <guid>00820169-5c2d-44b9-8467-4b77a7dc0efc</guid>
+      <isReuseDriver>false</isReuseDriver>
+      <isRun>true</isRun>
+      <testCaseId>Test Cases/Web UI Test/Backoffce/CadastroCorretorFilialFisica</testCaseId>
+   </testCaseLink>
+   <testCaseLink>
+      <guid>2f1e5b39-26b4-4f4a-99ca-bed99d377dd4</guid>
       <isReuseDriver>false</isReuseDriver>
       <isRun>true</isRun>
       <testCaseId>Test Cases/Web UI Test/Backoffce/EnvioRetornoGo</testCaseId>
    </testCaseLink>
    <testCaseLink>
-      <guid>10441446-d4e1-424e-bcf7-feb393cf3b38</guid>
+      <guid>1c358726-ed72-4107-8282-5df7830e9ffa</guid>
       <isReuseDriver>false</isReuseDriver>
       <isRun>true</isRun>
-      <testCaseId>Test Cases/Web UI Test/Backoffce/GestaoCreditoDescarteincidencias</testCaseId>
-   </testCaseLink>
-   <testCaseLink>
-      <guid>169141b3-033b-4d6d-8c44-7f98ee2f5497</guid>
-      <isReuseDriver>false</isReuseDriver>
-      <isRun>true</isRun>
-      <testCaseId>Test Cases/Web UI Test/Backoffce/GestaoRegularizacaoIncidencias</testCaseId>
+      <testCaseId>Test Cases/Web UI Test/Backoffce/FluxoEnvioPDF</testCaseId>
    </testCaseLink>
 </TestSuiteEntity>

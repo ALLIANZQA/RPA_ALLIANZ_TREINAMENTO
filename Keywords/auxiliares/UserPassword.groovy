@@ -24,6 +24,9 @@ public class UserPassword{
 
 	private static user;
 	private static senha;
+	private static dominio;
+	private static email;
+
 
 	/**Recebe por parametro nome do RPA e imputa valores de usuario e senha equivalente;
 	 * @param nomeRpa
@@ -459,7 +462,27 @@ public class UserPassword{
 				user = returnUser(3)
 				senha = returnPwrd(3)
 				break;
-
+			case 'ReentradaPropostaAutoPRD':
+				user = returnUser(3)
+				senha = returnPwrd(3)
+				break;
+			case 'ReentradaPropostaAutoINT':
+				user = returnUser(3)
+				senha = returnPwrd(3)
+				break;
+			case 'GestorOperacoes':
+				dominio = returnDom(1);
+				email = returnEML(1);
+				senha = returnPwrd(11);
+				break;
+			case 'CotacaoRenovacaoInternaPRD':
+				user = returnUser(3)
+				senha = returnPwrd(3)
+				break;
+			case 'CotacaoRenovacaoInternaINT':
+				user = returnUser(3)
+				senha = returnPwrd(3)
+				break;
 
 
 
@@ -494,17 +517,40 @@ public class UserPassword{
 	 */
 	public static returnPwrd(int id){
 		Map<Integer, String> pwrd = new HashMap<Integer, String>()
-		pwrd.put(1, 'Allz202502' )
+		pwrd.put(1, 'Allz202505' )
 		pwrd.put(2, 'Allz202306' )
-		pwrd.put(3, 'Allz202504' )
-		pwrd.put(4, 'Allz202413' )
+		pwrd.put(3, 'Allz202506' )
+		pwrd.put(4, 'Allz202506' )
 		pwrd.put(5, 'Am@nda36' )
 		pwrd.put(6, 'Mari2005' )
 		pwrd.put(7, 'sinistro' )
 		pwrd.put(8, 'Caren045' )
 		pwrd.put(9, 'teste123' )
 		pwrd.put(10,'Brsp202305')
+		pwrd.put(11,'Allianz2025@')
 
+		return pwrd.get(id);
+	}
+
+	/**
+	 * @author T_DCDias
+	 * @param id
+	 * @return
+	 */
+	public static returnEML(int id){
+		Map<Integer, String> pwrd = new HashMap<Integer, String>()
+		pwrd.put(1, 'andre.antunes@allianz.com.br' )
+		return pwrd.get(id);
+	}
+
+	/**
+	 * @author T_DCDias
+	 * @param id
+	 * @return
+	 */
+	public static returnDom(int id){
+		Map<Integer, String> pwrd = new HashMap<Integer, String>()
+		pwrd.put(1, 'Allianzflow' )
 		return pwrd.get(id);
 	}
 
@@ -524,6 +570,24 @@ public class UserPassword{
 	public static void setSenha(java.lang.Object senha) {
 		UserPassword.senha = senha;
 	}
+
+	public static java.lang.Object getDominio() {
+		return dominio;
+	}
+
+	public static void setDominio(java.lang.Object dominio) {
+		UserPassword.dominio = dominio;
+	}
+
+	public static java.lang.Object getEmail() {
+		return email;
+	}
+
+	public static void setEmail(java.lang.Object email) {
+		UserPassword.email = email;
+	}
+
+
 
 }
 

@@ -18,3 +18,7 @@ import internal.GlobalVariable as GlobalVariable
 
 
 WebUI.openBrowser('')
+WebUI.delay(5)
+WebUI.navigateToUrl('https://portal.tech4h.com.br/login');
+WebUI.delay(5)
+WebUI.navigateToUrl('https://www.br.intrallianz.com/ngx-intranet/public/home');

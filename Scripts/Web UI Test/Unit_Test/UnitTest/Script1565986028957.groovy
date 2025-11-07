@@ -8,6 +8,8 @@ import java.util.regex.Pattern;
 import auxiliares.StringFormatter
 import auxiliares.BruteForceSubstringSearch
 import auxiliares.CurrencyMonetary
+
+import java.io.File
 import java.text.SimpleDateFormat;
 import java.time.LocalDate
 import java.time.LocalDateTime;
@@ -32,38 +34,153 @@ import auxiliares.leitorPdf;
 
 
 
+//System.out.println("["+leitorPdf.existeArquivo("AllianzSegurosBrasil")+"]" )
+
+//rpaCommands.deletaArquivoPdf(leitorPdf.pegaNomeDoArquivo("AllianzSegurosBrasil"))
+identificaArquivo("AllianzSegurosBrasil")
 
 
-String pathFileValue ="C:\\Users\\Public\\131072251.pdf";
+public static void identificaArquivo(String arquivoEsperado){
+	System.out.println("RECURSIVO...")
+	System.out.println("["+arquivoEsperado+"]")
+	while(!leitorPdf.existeArquivo(arquivoEsperado)){
+		//Avançar
+		WebUI.delay(2);
+		identificaArquivo(arquivoEsperado)
+	}
+	System.out.println("SAINDO DO RECURSIVO...")
+}
 
 
 
-
-String [] pdf = leitorPdf.pdfReader(pathFileValue).toString().split(" ");
- 
-System.out.println(pdf.size()  );
-
-String Cooperativa = buscaPorPalavra(pdf, "Cooperativa:").substring(0,4);
-String Atendimento = buscaPorPalavra(pdf, "Atendimento:")substring(0,2);
-String Angariador = buscaPorPalavra(pdf, "Angariador:")substring(0,2);
-
-System.out.println( "\nCooperativa: "+Cooperativa + "\nAtendimento: "+Atendimento+"\nAngariador: "+Angariador)
+String tela = "TABELA DE PREÇOS"
 
 
-public String buscaPorPalavra(String [] pdf, String p){
-   String s;
-   for(int i = 0; i<pdf.size();i++){
-	   if(  pdf[i].toString().equals(p)   ){
-	     s =  pdf[i+1].toString()
-	     break;
-	   }
-   }
-   return s;
+
+public static void identificaTela(String tela){
+	System.out.println("RECURSIVO...")
+	String t = "TABELA DE PREÇOS"
+	while(t.equals(tela)){
+		identificaTela(tela)
+	}
+	System.out.println("SAINDO DO RECURSIVO...")
 }
 
 
 
 
+
+
+String grupo = "01"
+System.out.println(grupo)
+int n = Integer.parseInt(grupo)
+grupo = String.valueOf(n)
+System.out.println(grupo)
+
+String premioTotal = "1.214,00"
+String premioRecuperado = "R\$ 121,41"
+
+//System.out.println(calculaDiferenca(premioTotal, premioRecuperado, 10) )
+
+
+public static double calculaDiferenca(String nPremioTotal, String recuperaValorPremio, int p ){
+		double dif;
+	    System.out.println("CALC DIF ["+nPremioTotal+"] ["+recuperaValorPremio+"] ["+p+"]")
+	    try{
+			String rvp = recuperaValorPremio.replace("R\$","")
+			double pt
+			try{
+				pt = Double.parseDouble(rvp.replace(".","").replace(",","."));
+			} catch (Exception e){}
+			try{
+				pt = Double.parseDouble(rvp.replace(",","."));
+			}catch (Exception e){}
+			try{
+				pt = Double.parseDouble(rvp.replace(".",""));
+			}catch (Exception e){}
+			
+			double pm
+			try{
+				pm = Double.parseDouble(nPremioTotal.replace(".","").replace(",","."));
+			} catch (Exception e){}
+			try{
+				pm = Double.parseDouble(nPremioTotal.replace(",","."));
+			}catch (Exception e){}
+			try{
+				pm = Double.parseDouble(nPremioTotal.replace(".",""));
+			}catch (Exception e){}
+			
+			System.out.println(pt+" - "+pm+" - "+p)
+			
+	        double vpTotal = pt*p;
+	        dif = Math.abs(vpTotal - pm)
+	   } catch (Exception e){}
+	return dif;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//   PDF da cotação
+//  ticket
+
+//System.out.println(identificaArquivo( path,  ext))
+
+	 
+ 
+
+//rpaCommands.acessoAmbiente(aba,a)
+
+
+
+/**
+ * Usar este trecho de código para novo projeto de leitura de pdf 
+ * @author Alz_sup54955
+ *
+ */
+String pathFileValue
+//String pathValue ="C:\\Users\\Public\\RPA_ALLIANZ\\Data Files\\Auto\\ReentradaPropostaAuto\\Arquivos\\";
+
+String pathValue ="C:\\Users\\Public\\";
+
+//String formulario = "389216282 Formularo Gestor de Operações.pdf";
+//pathFileValue = pathValue+formulario;
+//leitorPdf.pdfReaderNPagesList(pathFileValue);
+//System.out.println("\n\n");
+
+//String cotacao = "389216282 Cotação Fabio Goes.pdf";
+//pathFileValue = pathValue+cotacao;
+//leitorPdf.pdfReaderNPagesList(pathFileValue);
+
+
+//ArrayList<ArrayList<String>> cotacoes = new ArrayList<ArrayList<String>>();
+//cotacoes.add(leitorPdf.pdfReaderNPagesList(pathValue+"389216282 Cotação Fabio Goes.pdf"));
+//cotacoes.add(leitorPdf.pdfReaderNPagesList("C:\\Users\\Public\\e5a2e3a5-2491-4d76-9618-371173528def@PDF da cotação (1).pdf");
+
+//System.out.println("listOLists ["+cotacoes.size()+"]");
+
+//for(int i = 0; i<cotacoes.size();i++ ){
+//	int l = i+1;
+//	System.out.println("\nList: "+l+" **************************************************************************\n")
+	
+//	for(int j = 0; j<cotacoes.get(i).size();j++){
+//			   System.out.println(j+" - "+cotacoes[i][j].toString());
+//	}
+//}
 
 //String f = "MM/yyyy";
 

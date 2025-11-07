@@ -24,9 +24,14 @@ import auxiliares.FileInput
 import java.util.List
 import auxiliares.MenuMatriz
 import auxiliares.ExtractDates
+
+
 import auxiliares.timer
-
-
+import sendEmail.emailDinamico;
+import auxiliares.GetHost;
+import auxiliares.leitorPdf;
+import java.time.Duration
+import java.time.Instant
 
 public class GestaoCreditoDescarteincidenciasFuncionalidades  extends rpaCommands{
 
@@ -39,6 +44,15 @@ public class GestaoCreditoDescarteincidenciasFuncionalidades  extends rpaCommand
 	private static String msgAlerta
 	private static String status
 	private static String referencia
+
+	
+		
+	private static Instant start;
+	private static Instant end;
+	private static Duration timeLapnse;
+	private static String docName = "GestaoCreditoDescarteincidencias.xlsx"
+	private static int cellCheckAlert = 4;
+	
 
 	/**
 	 * @author T_DCDias
@@ -114,11 +128,24 @@ public class GestaoCreditoDescarteincidenciasFuncionalidades  extends rpaCommand
 	 * @return
 	 */
 	public static fluxoGestaoCreditoDescarteincidencias(String aba, String a){
+		String dataInicio = ExtractDates.dataAtual();
+		String horaInicial =  ExtractDates.horaAtualizada();
+		start = Instant.now();
 		initDataFiles()
 		fluxoCompletoGestaoCreditoDescarteincidencias(aba,a)
 		reprocessaFalhas(aba,a)
-		enviaEmailGestaoCreditoDescarteincidencias(aba)
+		//enviaEmailGestaoCreditoDescarteincidencias(aba)
+		end =  Instant.now();
+		timeLapnse = Duration.between(start, end);
+		String dataFinal = ExtractDates.dataAtual();
+		String horaFinal =  ExtractDates.horaAtualizada();
+		try{
+			enviaEmailGestaoRDescredenciamentoIncidenciasDinamico(aba, timeLapnse, dataInicio, dataFinal, horaInicial, horaFinal );
+		} catch (Exception e){
+		}
 	}
+	
+	
 
 	/**
 	 * @author be54955
@@ -146,7 +173,7 @@ public class GestaoCreditoDescarteincidenciasFuncionalidades  extends rpaCommand
 						} else {
 							try{
 								auxiliares.WriteExcelFactory.updateSheetLine("", j, path, status, 2, aba);
-								auxiliares.WriteExcelFactory.updateSheetLine("", j, path,msgAlerta, 3, aba);
+								auxiliares.WriteExcelFactory.updateSheetLine("", j, path,"Alerta: "+msgAlerta, 3, aba);
 							} catch (Exception e){}
 						}
 					}
@@ -371,7 +398,37 @@ public class GestaoCreditoDescarteincidenciasFuncionalidades  extends rpaCommand
 	}
 
 
-
+	/**
+	 * @author Alz_sup54955
+	 * @param tipoAba
+	 * @param timeLapnse
+	 * @param dataInicio
+	 * @param dataFinal
+	 * @param horaInicial
+	 * @param horaFinal
+	 * @return
+	 */
+	public static enviaEmailGestaoRDescredenciamentoIncidenciasDinamico(String tipoAba, Duration timeLapnse, String dataInicio, String dataFinal, String horaInicial, String horaFinal){
+		System.out.println()
+	 try{
+		 if(!validaDados(cellCheck)){
+			pathTxtEmail = "C:\\Users\\Public\\RPA_ALLIANZ\\Emails\\backoffice\\DescarteIncidencia\\ConfiguracoesDescarteIncidencia.txt"
+			lerConfigurações(pathTxtEmail)
+			String emaildestination = StringFormatter.formatterEmailDestination(FileInput.readFile(pathTxtEmail));
+			String docName = "GestaoCreditoDescarteincidencias.xlsx";
+			// FORMATA SAIDA DO TEMPO DE EXECUÇÃO
+			long segds = timeLapnse.toSeconds();
+			String hours = timeLapnse.toHours()+"h "+
+						timer.converteMinutos(timeLapnse.toHours(), timeLapnse.toMinutes())+"m "+
+						timer.converteSegundos(timeLapnse.toMinutes(),segds)+"s";
+			// ENVIO DE E-MAIL
+			//DADOS DO DOCUMENTO
+			initDataFiles();
+			// ENVIA E-MAIL DINAMICO
+			emailDinamico.enviaEmailDinamico(sender, emaildestination, tipoAba, path, docName, emailDinamico.listaDeAlertas(data, cellCheckAlert)  , hours, horaInicial, horaFinal,  GetHost.getHostname() , dataInicio, dataFinal, "" );
+		 }
+	  } catch (Exception e){}
+	}
 
 
 

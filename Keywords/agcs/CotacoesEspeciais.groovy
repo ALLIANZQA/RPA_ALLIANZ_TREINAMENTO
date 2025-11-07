@@ -1,5 +1,7 @@
 package agcs
 
+import java.time.Duration
+import java.time.Instant
 import java.util.List
 
 import backoffice.backofficeFuncionalidades
@@ -10,8 +12,18 @@ import sendEmail.envioDeEmail;
 import auxiliares.FileInput;
 import auxiliares.StringFormatter;
 import auxiliares.updateExcel
+
+import com.kms.katalon.core.testdata.TestData
 import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 import auxiliares.MenuMatriz
+
+import static com.kms.katalon.core.testdata.TestDataFactory.findTestData
+
+import auxiliares.timer;
+import auxiliares.ExtractDates
+import sendEmail.emailDinamico;
+import auxiliares.GetHost;
+
 
 public class CotacoesEspeciais extends backofficeFuncionalidades{
 
@@ -29,6 +41,27 @@ public class CotacoesEspeciais extends backofficeFuncionalidades{
 	public static String emailCDAGRUP
 
 	private static boolean geraPedido
+	
+	
+	private static Instant start;
+	private static Instant end;
+	private static Duration timeLapnse;
+	
+	private static TestData data
+	private static String testDataPath = 'Data Files/AGCS/AGCSTestData'
+	private static String path
+	
+	/**
+	 * @author T_DCDias
+	 * @return
+	 */
+	public static initDataFiles(){
+		data = findTestData(testDataPath)
+		path = data.sourceUrl
+	}
+
+	
+	
 
 	/**
 	 * @author ALZ_ServiceQA
@@ -36,16 +69,78 @@ public class CotacoesEspeciais extends backofficeFuncionalidades{
 	 * @return
 	 */
 	public static cotacoesEspeciais(String tipoAba){
+		String dataInicio = ExtractDates.dataAtual();
+		String horaInicial =  ExtractDates.horaAtualizada();
+		start = Instant.now();
 		fluxoCompletoCotacoesEspeciais(tipoAba);
-
 		try{
 			finalizar();
 		} catch (Exception e){}
-		enviarCotacoesEspeciais(tipoAba);
+		//enviarCotacoesEspeciais(tipoAba);
+		end =  Instant.now();
+		timeLapnse = Duration.between(start, end);
+		String dataFinal = ExtractDates.dataAtual();
+		String horaFinal =  ExtractDates.horaAtualizada();
+		String nomeIndex = " TRANSPORTE MAT- JUNHO 2025.";
+		try{
+		   enviaEmailAGCSDinamico(tipoAba, timeLapnse, dataInicio, dataFinal, horaInicial, horaFinal, nomeIndex );
+		} catch (Exception e){
+		}
 		//finalizaProcesso();
 		System.err.println('\nFinalizado...\n Casos finalizados  ['+ tamanhoListaOriginal+']\n');
 	}
 
+	
+	/**
+	 * @author Alz_sup54955
+	 * @param tipoAba
+	 * @param timeLapnse
+	 * @param dataInicio
+	 * @param dataFinal
+	 * @param horaInicial
+	 * @param horaFinal
+	 * @return
+	 */
+	public static enviaEmailAGCSDinamico(String tipoAba, Duration timeLapnse, String dataInicio, String dataFinal, String horaInicial, String horaFinal, String assunto){
+	  
+	  pathTxtEmail = "C:/Users/Public/RPA_ALLIANZ/Emails/ConfiguracoesCotacoesEspeciaisAGCS/ConfiguracoesCotacoesEspeciaisAGCS.txt";
+	  lerConfigurações(pathTxtEmail)
+	  String emaildestination = StringFormatter.formatterEmailDestination(FileInput.readFile(pathTxtEmail));
+	  String nomeArquivo = 'RenovacaoCotacoes.xlsx';
+	  System.out.println(nomeArquivo);
+	  System.err.println(caminhoExcel)
+	  long segds = timeLapnse.toSeconds();
+	  String hours = timeLapnse.toHours()+"h "+
+	  timer.converteMinutos(timeLapnse.toHours(), timeLapnse.toMinutes())+"m "+
+	  timer.converteSegundos(timeLapnse.toMinutes(),segds)+"s";
+	  
+	 
+	  try{
+		  int cellCheckAlert = 42;
+		  listaExcel = switchLeitorExcel.switchExcel(caminhoExcel, tipoAba);
+		  String emailCDAGRUP = emailCDAGRUP(carregaDados(switchLeitorExcel.switchAnyExcel(caminhoExcel, tipoAba)));
+		  System.out.println("emailCDAGRUP ["+emailCDAGRUP+"]");
+		  if(listaExcel.size()==0){
+			  List<String> anexos = new ArrayList<>();
+			  anexos[0] = caminhoExcel;
+			  anexos[1] = nomeArquivo;
+			  System.out.println("emaildestination ["+emaildestination+"]");
+			  String emails = emailCDAGRUP+","+emaildestination
+			  System.out.println(emails);
+			  //sendEmail.CreateEmail.createEmailSendMultipleFiles(sender, emails, pwdsender, anexos, host, porta, tipoAba )
+			  initDataFiles()
+			  emailDinamico.enviaEmailDinamico(sender, emaildestination, tipoAba, caminhoExcel, nomeArquivo, emailDinamico.listaDeAlertas(data, cellCheckAlert)  , hours, horaInicial, horaFinal,  GetHost.getHostname() , dataInicio, dataFinal, assunto);
+			  
+		  }
+	  } catch (Exception e){
+		  enviarCotacoesEspeciais(tipoAba);
+	  }
+	}
+
+	
+	
+	
+	
 	/**
 	 * @author ALZ_ServiceQA
 	 * @param tipoAba
@@ -166,6 +261,8 @@ public class CotacoesEspeciais extends backofficeFuncionalidades{
 							salvarInfoTelaAtualizarExcel("", Integer.parseInt(listaExcel.get(i).getLinha()), caminhoExcel , tipoAba, 36)
 							salvarInfoTelaAtualizarExcel(pendencia, Integer.parseInt(listaExcel.get(i).getLinha()), caminhoExcel , tipoAba, 39)
 							salvarInfoTelaAtualizarExcel("Gerado", Integer.parseInt(listaExcel.get(i).getLinha()), caminhoExcel , tipoAba, 40)
+							
+							salvarInfoTelaAtualizarExcel("O pedido foi corretamente gravado.", Integer.parseInt(listaExcel.get(i).getLinha()), caminhoExcel , tipoAba, 41)
 						}
 					} else {
 						String alerta = valueCheck
@@ -175,6 +272,9 @@ public class CotacoesEspeciais extends backofficeFuncionalidades{
 						switchAtualizarExcel.switchUpdateExcel('CotacoesEspeciais', caminhoExcel ,listaExcel.get(i).getApolice(), Integer.parseInt(listaExcel.get(i).getLinha()));
 						auxiliares.WriteExcelFactory.updateSheetLine("", Integer.parseInt(listaExcel.get(i).getLinha()),  caminhoExcel, msg, 34,'CotacoesEspeciais');
 						auxiliares.WriteExcelFactory.updateSheetLine("", Integer.parseInt(listaExcel.get(i).getLinha()),  caminhoExcel, alerta, 36,'CotacoesEspeciais');
+						
+						auxiliares.WriteExcelFactory.updateSheetLine("", Integer.parseInt(listaExcel.get(i).getLinha()),  caminhoExcel, "Alerta: "+alerta+" "+msg, 41,'CotacoesEspeciais');
+						
 						iniciaAplicacaoMatriz('IntranetProdução');
 						realizaLoginIntraNetProducao(tipoAba);
 					}//RESULTADO DE UMA FROTA
@@ -188,6 +288,9 @@ public class CotacoesEspeciais extends backofficeFuncionalidades{
 					switchAtualizarExcel.switchUpdateExcel('CotacoesEspeciais', caminhoExcel ,listaExcel.get(i).getApolice(), Integer.parseInt(listaExcel.get(i).getLinha()));
 					auxiliares.WriteExcelFactory.updateSheetLine("", Integer.parseInt(listaExcel.get(i).getLinha()),  caminhoExcel, msg, 34,'CotacoesEspeciais');
 					auxiliares.WriteExcelFactory.updateSheetLine("", Integer.parseInt(listaExcel.get(i).getLinha()),  caminhoExcel, "Não há dados para mostrar em FG", 36,'CotacoesEspeciais');
+					
+					auxiliares.WriteExcelFactory.updateSheetLine("", Integer.parseInt(listaExcel.get(i).getLinha()),  caminhoExcel, "Alerta: "+msg+" Não há dados para mostrar em FG", 41,'CotacoesEspeciais');
+					
 				}//LISTAGEM DE RECIBOS
 			} catch (Exception e) {
 
@@ -196,6 +299,7 @@ public class CotacoesEspeciais extends backofficeFuncionalidades{
 				salvarEvidencia( diretorioIMG, listaExcel.get(i).getLinha()+" "+listaExcel.get(i).getApolice()+" "+dataRecuerada)
 				switchAtualizarExcel.switchUpdateExcel('CotacoesEspeciais', caminhoExcel ,listaExcel.get(i).getApolice(), Integer.parseInt(listaExcel.get(i).getLinha()));
 				auxiliares.WriteExcelFactory.updateSheetLine("", Integer.parseInt(listaExcel.get(i).getLinha()),  caminhoExcel, msg, 34,'CotacoesEspeciais');
+				auxiliares.WriteExcelFactory.updateSheetLine("", Integer.parseInt(listaExcel.get(i).getLinha()),  caminhoExcel, "Alerta: "+msg, 41,'CotacoesEspeciais');
 				iniciaAplicacaoMatriz('IntranetProdução');
 				realizaLoginIntraNetProducao(tipoAba);
 			}

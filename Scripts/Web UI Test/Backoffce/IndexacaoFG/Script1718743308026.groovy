@@ -19,8 +19,19 @@ try {
 	 * IBLBDM-50785
 	 * Desenvolvimento: 18/06/2024
 	 *
+	 *
+	 ** INDEX PATH ** 
+	 * HONDA
+	 * MDS
+	 * SICOOB
+	 * SICRED 
+	 * NUP
+	 * SANTANDER
+	 * 
+	 *  "HONDA", "SANTANDER", "SICOOB", "MDS", "SICREDI", "NUP"
+	 *
 	 */
-	backoffice.IndexacaoFGFuncionalidades.fluxoIndexacaoFG('IndexacaoFG',"PRD");
+	backoffice.IndexacaoFGFuncionalidades.fluxoIndexacaoFG('IndexacaoFG',"PRD",  "HONDA", "SANTANDER");
 	WebUI.closeBrowser();
  }
    catch (Exception e) {

@@ -139,6 +139,5 @@
 	<classpathentry kind="lib" path="C:/Users/Public/RPA_ALLIANZ_TREINAMENTO/Drivers/xstream.jar"/>
 	<classpathentry kind="lib" path="//WWG00M.ROOTDOM.NET/BFS-HOME/BE54955-R0261105/ICM/Desktop/Katalon_Studio_Windows_64-7.2.1/configuration/plugin/install/237351/1.0.2/katalon-dbms-keywords.jar"/>
 	<classpathentry exported="true" kind="con" path="GROOVY_SUPPORT"/>
-	<classpathentry exported="true" kind="con" path="GROOVY_DSL_SUPPORT"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

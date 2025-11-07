@@ -5,6 +5,8 @@ import static com.kms.katalon.core.testcase.TestCaseFactory.findTestCase
 import static com.kms.katalon.core.testdata.TestDataFactory.findTestData
 import static com.kms.katalon.core.testobject.ObjectRepository.findTestObject
 
+import java.time.Duration
+import java.time.Instant
 import java.util.List
 
 import com.kms.katalon.core.annotation.Keyword
@@ -38,6 +40,13 @@ import auxiliares.FileInput;
 import auxiliares.MenuMatriz
 
 
+import auxiliares.ExtractDates
+import auxiliares.timer;
+import sendEmail.emailDinamico;
+import auxiliares.GetHost;
+import auxiliares.leitorPdf;
+
+
 public class DesbloqueioPropostaAgroFielDepositario extends backofficeFuncionalidades{
 
 	private static String aba = "FIEL"
@@ -50,19 +59,78 @@ public class DesbloqueioPropostaAgroFielDepositario extends backofficeFuncionali
 	private static int countEnviado
 	private static TestData data
 	private static String sAlert
-
-
+	private static String testDataPath = 'Data Files/Backoffce/FielDepositarioData/FielDepositario'
+	
+	private static int cellCheckAlert = 14;
+	private static Instant start;
+	private static Instant end;
+	private static Duration timeLapnse;
+	private static String docName;
+	
+	/**
+	 * @author T_DCDias
+	 * @return
+	 */
+	public static initDataFiles(){
+		data = findTestData(testDataPath)
+		path = data.sourceUrl
+	}
+	
+	
 	/**
 	 * @author t_dvlopes
 	 * @param tipoAba
 	 * @return
 	 */
 	public static desbloqueioPropostaAgroFielDepositario(){
-		//		carregaDados()
+		String dataInicio = ExtractDates.dataAtual();
+		String horaInicial =  ExtractDates.horaAtualizada();
+		start = Instant.now();
 		fluxoCompletoDesbloqueioPropostaAgroFielDepositario()
 		processaFalhas();
-		enviarEmailDesbloqueioPropostaAgroFielDepositario(aba)
+		//enviarEmailDesbloqueioPropostaAgroFielDepositario(aba)
 		finalizar();
+		end =  Instant.now();
+		timeLapnse = Duration.between(start, end);
+		String dataFinal = ExtractDates.dataAtual();
+		String horaFinal =  ExtractDates.horaAtualizada();
+		try{
+		   enviaEmailFielDepositarioDinamico(aba, timeLapnse, dataInicio, dataFinal, horaInicial, horaFinal );
+		} catch (Exception e){
+		}
+	}
+	
+	
+	/**
+	 * @author Alz_sup54955
+	 * @param tipoAba
+	 * @param timeLapnse
+	 * @param dataInicio
+	 * @param dataFinal
+	 * @param horaInicial
+	 * @param horaFinal
+	 * @return
+	 */
+	public static enviaEmailFielDepositarioDinamico(String tipoAba, Duration timeLapnse, String dataInicio, String dataFinal, String horaInicial, String horaFinal){
+		System.err.println("[Enviar Email desbloqueio...]")
+		try{
+		   path1 = 'C:\\Users\\Public\\RPA_ALLIANZ\\Data Files\\Backoffce\\FielDepositarioData\\EmissaoFielDepositario.xlsx';
+		   docName = 'EmissaoFielDepositario.xlsx';
+		   pathTxtEmail = "C:\\Users\\Public\\RPA_ALLIANZ\\Emails\\backoffice\\DesbloqueioPropostaAgroFielDepositario\\ConfiguracoesDesbloqueioPropostaAgroFielDepositario.txt";
+		   lerConfigurações(pathTxtEmail);
+		   System.out.println(pathTxtEmail)
+		   String emaildestination = StringFormatter.formatterEmailDestination(FileInput.readFile(pathTxtEmail));
+		   // FORMATA SAIDA DO TEMPO DE EXECUÇÃO
+		   long segds = timeLapnse.toSeconds();
+		   String hours = timeLapnse.toHours()+"h "+
+					   timer.converteMinutos(timeLapnse.toHours(), timeLapnse.toMinutes())+"m "+
+					   timer.converteSegundos(timeLapnse.toMinutes(),segds)+"s";
+		   // ENVIO DE E-MAIL
+		   //DADOS DO DOCUMENTO
+		   initDataFiles();
+		   // ENVIA E-MAIL DINAMICO
+		   emailDinamico.enviaEmailDinamico(sender, emaildestination, tipoAba, path1, docName, emailDinamico.listaDeAlertas(data, cellCheckAlert)  , hours, horaInicial, horaFinal,  GetHost.getHostname() , dataInicio, dataFinal, "" );
+	    } catch (Exception e){}
 	}
 
 	/**
@@ -97,7 +165,7 @@ public class DesbloqueioPropostaAgroFielDepositario extends backofficeFuncionali
 					pesquisar(i)
 					//WebUI.delay(10);
 					if (mensagemErro()){
-						setUpMessage("Não foram encontrados dados para a ação selecionada.", " ", "N" )
+						setUpMessage("Alerta: Não foram encontrados dados para a ação selecionada.", " ", "N" )
 						bProxReg = true
 					}
 
@@ -105,7 +173,7 @@ public class DesbloqueioPropostaAgroFielDepositario extends backofficeFuncionali
 					System.err.println("["+sAlert+"]")
 
 					if (sAlert.contains(" A apólice não é bloqueada".toString())  ){
-						setUpMessage(sAlert, " ", "N" )
+						setUpMessage("Alerta: "+sAlert, " ", "N" )
 						bProxReg = true
 						errooperaoMaiorQueValorDaCarteiraAtual()
 					}
@@ -124,7 +192,7 @@ public class DesbloqueioPropostaAgroFielDepositario extends backofficeFuncionali
 						if( !alertListBlocList(errorPage) ){
 						 try{
 							if (sAlert.contains(" A apólice não é bloqueada".toString())  ){
-								setUpMessage(sAlert, " ", "N" )
+								setUpMessage("Alerta: "+sAlert, " ", "N" )
 								bProxReg = true
 								//FECHAR
 								clickXpath('//*[@id="lnkTopLink_Close"]', 5);
@@ -138,7 +206,7 @@ public class DesbloqueioPropostaAgroFielDepositario extends backofficeFuncionali
 						try{
 							WebUI.delay(5)
 							if (pegaMsgErroSubvencao()){
-								setUpMessage("O valor da subvenção federal da operação é maior que o valor da carteira atual.", " ", "N" )
+								setUpMessage("Alerta: O valor da subvenção federal da operação é maior que o valor da carteira atual.", " ", "N" )
 								bProxReg = true
 								errooperaoMaiorQueValorDaCarteiraAtual()
 							}
@@ -149,7 +217,7 @@ public class DesbloqueioPropostaAgroFielDepositario extends backofficeFuncionali
 						try{
 							WebUI.delay(5)
 							if (pegaMsgErroSubvencaoEstadual()){
-								setUpMessage("O valor de subvenção estadual da operação é maior que o valor da carteira atual.", " ", "N" )
+								setUpMessage("Alerta: O valor de subvenção estadual da operação é maior que o valor da carteira atual.", " ", "N" )
 								bProxReg = true
 								errooperaoMaiorQueValorDaCarteiraAtual()
 							}
@@ -159,7 +227,7 @@ public class DesbloqueioPropostaAgroFielDepositario extends backofficeFuncionali
 
 						try{
 							if (pegaMsgErroEmissãoGenerico()){
-								setUpMessage("Erro no processo de emissão", " ", "N" )
+								setUpMessage("Alerta: Erro no processo de emissão", " ", "N" )
 								bProxReg = true
 								erroEmissão99999()
 							}
@@ -172,7 +240,7 @@ public class DesbloqueioPropostaAgroFielDepositario extends backofficeFuncionali
 							if(pegaMsgapoliceItensBloqueados()){
 								System.err.println()
 								
-								setUpMessage("Não pode ser autorizado, porque apólice tem itens bloqueados ou com erro. Entre por modificação.", " ", "N" )
+								setUpMessage("Alerta: Não pode ser autorizado, porque apólice tem itens bloqueados ou com erro. Entre por modificação.", " ", "N" )
 								bProxReg = true
 								erroApoliceItensBloqueados()
 							}
@@ -194,11 +262,11 @@ public class DesbloqueioPropostaAgroFielDepositario extends backofficeFuncionali
 								}
 							}
 							else {
-								setUpMessage("Liberação não efetuada!", "Proposta Não Liberada!", "E" )
+								setUpMessage("Alerta: Liberação não efetuada!", "Alerte: Proposta Não Liberada!", "E" )
 							}
 						}
 					  } else {
-						setUpMessage(errorPage, "Liberação não efetuada!" , "N" )
+						setUpMessage(errorPage, "Alerta: Liberação não efetuada!" , "N" )
 						 fecharJanelaAtual(2)
 						fecharJanelaAtual(1)
 						WebUI.switchToWindowIndex(0)
@@ -207,7 +275,7 @@ public class DesbloqueioPropostaAgroFielDepositario extends backofficeFuncionali
 					  }
 					  
 				   } else {
-					setUpMessage(errorMessagePage, "Liberação não efetuada!" , "N" )
+					setUpMessage(errorMessagePage, "Alerte: Liberação não efetuada!" , "N" )
 					fecharJanelaAtual(1)
 					WebUI.switchToWindowIndex(0)
 					navegarMenu()
@@ -506,7 +574,7 @@ public class DesbloqueioPropostaAgroFielDepositario extends backofficeFuncionali
 			msg = true
 		} else if (msgErro.contains("Erro no processo de emissão (00516)".toString())){
 
-			setUpMessage("Erro no processo de emissão (00516)", " ", "N" )
+			setUpMessage("Alerta: Erro no processo de emissão (00516)", " ", "N" )
 			bProxReg = true
 			WebUI.click(findTestObject('PageBackoffice/Page_E/div_Fechar'))
 			WebUI.switchToWindowIndex(0)
@@ -514,7 +582,7 @@ public class DesbloqueioPropostaAgroFielDepositario extends backofficeFuncionali
 
 		} else if (msgErro.contains("Nível de autorização insuficiente para desbloqueio".toString())){
 
-			setUpMessage("Nível de autorização insuficiente para desbloqueio", " ", "N" )
+			setUpMessage("Alerta: Nível de autorização insuficiente para desbloqueio", " ", "N" )
 			bProxReg = true
 
 

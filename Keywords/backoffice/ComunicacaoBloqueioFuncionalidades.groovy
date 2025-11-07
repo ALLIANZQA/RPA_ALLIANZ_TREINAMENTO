@@ -6,6 +6,8 @@ import static com.kms.katalon.core.testdata.TestDataFactory.findTestData
 import static com.kms.katalon.core.testobject.ObjectRepository.findTestObject
 import static com.kms.katalon.core.testobject.ObjectRepository.findWindowsObject
 
+import java.time.Duration
+import java.time.Instant
 import java.util.List
 
 import com.kms.katalon.core.annotation.Keyword
@@ -27,7 +29,12 @@ import auxiliares.RegrasEmailDestination
 import auxiliares.MenuMatriz
 import internal.GlobalVariable
 import rpacommands.rpaCommands
+
 import auxiliares.ExtractDates
+import auxiliares.timer;
+import sendEmail.emailDinamico;
+import auxiliares.GetHost;
+import auxiliares.leitorPdf;
 
 public class ComunicacaoBloqueioFuncionalidades extends rpaCommands{
 
@@ -39,6 +46,12 @@ public class ComunicacaoBloqueioFuncionalidades extends rpaCommands{
 	private static String nota = "não verificar "
 	private static String status
 	private static String referencia
+	
+	private static Instant start;
+	private static Instant end;
+	private static Duration timeLapnse;
+	private static int cellCheckAlert = 24;
+	
 
 	/**
 	 * @author T_DCDias
@@ -110,10 +123,23 @@ public class ComunicacaoBloqueioFuncionalidades extends rpaCommands{
 	 * @return
 	 */
 	public static fluxoComunicacaoBloqueio(String aba, String a){
+		
+		String dataInicio = ExtractDates.dataAtual();
+		String horaInicial =  ExtractDates.horaAtualizada();
+		start = Instant.now();
 		initDataFiles()
 		fluxoCompletoComunicacaoBloqueio(aba,a)
 		reprocessaFalhas(aba,a)
-		enviarComunicacaoBloqueio(aba)
+		//enviarComunicacaoBloqueio(aba)
+		end =  Instant.now();
+		timeLapnse = Duration.between(start, end);
+		String dataFinal = ExtractDates.dataAtual();
+		String horaFinal =  ExtractDates.horaAtualizada();
+		try{
+		   enviaEmailComunicacaoBloqueiooDinamico(aba, timeLapnse, dataInicio, dataFinal, horaInicial, horaFinal );
+		} catch (Exception e){
+		}
+		
 	}
 
 	/**
@@ -135,12 +161,12 @@ public class ComunicacaoBloqueioFuncionalidades extends rpaCommands{
 						if(bloqueio(registros, aba, a)) {
 							try{
 								auxiliares.WriteExcelFactory.updateSheetLine("", j, path, status, 22, aba);
-								auxiliares.WriteExcelFactory.updateSheetLine("", j, path, referencia+" - "+ExtractDates.dataAtualizada(), 23, aba);
+								auxiliares.WriteExcelFactory.updateSheetLine("", j, path, StringFormatter.startWhitch(referencia,"de") , 23, aba);
 							} catch (Exception e){}
 						} else {
 							try{
 								auxiliares.WriteExcelFactory.updateSheetLine("", j, path, status, 22, aba);
-								auxiliares.WriteExcelFactory.updateSheetLine("", j, path, alerta+" - "+ExtractDates.dataAtualizada(), 23, aba);
+								auxiliares.WriteExcelFactory.updateSheetLine("", j, path, +"Alerta: "+alerta, 23, aba);
 							} catch (Exception e){}
 						}
 					}
@@ -346,7 +372,37 @@ public class ComunicacaoBloqueioFuncionalidades extends rpaCommands{
 	}
 
 
-
+	/**
+	 * @author Alz_sup54955
+	 * @param tipoAba
+	 * @param timeLapnse
+	 * @param dataInicio
+	 * @param dataFinal
+	 * @param horaInicial
+	 * @param horaFinal
+	 * @return
+	 */
+	public static enviaEmailComunicacaoBloqueiooDinamico(String tipoAba, Duration timeLapnse, String dataInicio, String dataFinal, String horaInicial, String horaFinal){
+		System.out.println()
+	 try{
+		 if(!validaDados(cellCheck)){
+			pathTxtEmail = "C:\\Users\\Public\\RPA_ALLIANZ\\Emails\\backoffice\\ComunicacaoBloqueio\\ConfiguracoesComunicacaoBloqueio.txt";
+			lerConfigurações(pathTxtEmail)
+			String emaildestination = StringFormatter.formatterEmailDestination(FileInput.readFile(pathTxtEmail));
+			String docName = "ComunicacaoBloqueio.xlsx"
+			// FORMATA SAIDA DO TEMPO DE EXECUÇÃO
+			long segds = timeLapnse.toSeconds();
+			String hours = timeLapnse.toHours()+"h "+
+						timer.converteMinutos(timeLapnse.toHours(), timeLapnse.toMinutes())+"m "+
+						timer.converteSegundos(timeLapnse.toMinutes(),segds)+"s";
+			// ENVIO DE E-MAIL
+			//DADOS DO DOCUMENTO
+			initDataFiles();
+			// ENVIA E-MAIL DINAMICO
+			emailDinamico.enviaEmailDinamico(sender, emaildestination, tipoAba, path, docName, emailDinamico.listaDeAlertas(data, cellCheckAlert)  , hours, horaInicial, horaFinal,  GetHost.getHostname() , dataInicio, dataFinal, "" );
+		 }
+	  } catch (Exception e){}
+	}
 
 
 

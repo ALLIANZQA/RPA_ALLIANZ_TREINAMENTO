@@ -5,6 +5,8 @@ import static com.kms.katalon.core.testcase.TestCaseFactory.findTestCase
 import static com.kms.katalon.core.testdata.TestDataFactory.findTestData
 import static com.kms.katalon.core.testobject.ObjectRepository.findTestObject
 
+import java.util.List
+
 import com.kms.katalon.core.annotation.Keyword
 import com.kms.katalon.core.checkpoint.Checkpoint
 import com.kms.katalon.core.cucumber.keyword.CucumberBuiltinKeywords as CucumberKW
@@ -406,6 +408,8 @@ public class StringFormatter {
 	 */
 	public static String removeNumerosDeStrings(String b){
 		String result
+		try{
+		
 		List<String> registros = new ArrayList<>();
 		StringBuilder strb = new StringBuilder()
 		String[]t = b.split(" ")
@@ -413,6 +417,37 @@ public class StringFormatter {
 		for(int i = 0; i < t.size(); i++){
 			System.out.println("["+i+"] ["+t[i]+"]")
 			if(RegexCharacter.regexChar("[a-zA-Z]", t[i] )){
+				registros[j] = t[i].trim()
+				j++
+			}
+		}
+
+		for(int i = 0; i < registros.size(); i++){
+			strb.append(registros[i]+" ")
+		}
+
+		result = strb.toString().trim()
+
+		System.out.println("result ["+result+"]")
+		} catch (Exception e){}
+
+		return result
+	}
+
+	/**
+	 * @author be54955
+	 * @param b
+	 * @return
+	 */
+	public static String removeStrings(String b){
+		String result
+		List<String> registros = new ArrayList<>();
+		StringBuilder strb = new StringBuilder()
+		String[]t = b.split(" ")
+		int j = 0
+		for(int i = 0; i < t.size(); i++){
+			System.out.println("["+i+"] ["+t[i]+"]")
+			if(RegexCharacter.regexChar("[0-1-2-3-4-5-6-7-8-9]", t[i] )){
 				registros[j] = t[i].trim()
 				j++
 			}
@@ -597,5 +632,300 @@ public class StringFormatter {
 	}
 
 
+
+	public static String betweenStrings(String txt, String start, String end){
+		String s;
+		String t;
+		int stop;
+		if(txt.contains(start)){
+			s = txt.replace(start, "");
+		}
+
+		StringBuilder sb = new StringBuilder();
+		String[] stringList = s.split(" ")
+
+		if(end.length()>0){
+			for(int j = 0; j < stringList.size(); j++){
+				if(stringList[j].contains(end)){
+					System.out.println(j+" "+stringList[j])
+					stop = j;
+				}
+			}
+
+			for(int i = 0; i < stop; i++){
+				System.out.println(i+" "+stringList[i])
+				sb.append(stringList[i]+" ");
+			}
+		} else {
+			sb.append(s)
+		}
+
+		System.out.println("["+sb.toString().trim()+"]")
+		return sb.toString().trim();
+	}
+
+	public static String startWhitch(String txt, String start){
+		int inicio;
+		StringBuilder sb = new StringBuilder();
+		String [] stringList = txt.split(" ");
+		for(int i = 0; i< stringList.size(); i++){
+			if(stringList[i].contains(start)){
+				inicio = i;
+			}
+		}
+
+		for(int i = 0; i< stringList.size(); i++){
+			if(i > inicio){
+				sb.append(stringList[i]+" ");
+			}
+		}
+		System.out.println("["+sb.toString().trim()+"]")
+		return sb.toString().trim();
+	}
+
+	public static String nextStop(String txt, String stop, int index){
+		int inicio;
+		StringBuilder sb = new StringBuilder();
+		String [] stringList = txt.split(" ");
+		for(int i = 0; i< stringList.size(); i++){
+			if(stringList[i].contains(stop)){
+				inicio = i;
+			}
+		}
+
+		for(int i = 0; i< stringList.size(); i++){
+			if(i > inicio){
+				int next = i+index;
+				sb.append(stringList[next]);
+				break;
+			}
+		}
+		return sb.toString().trim();
+	}
+
+	public static String pointStop(String txt, String stop){
+		int inicio;
+		StringBuilder sb = new StringBuilder();
+		String [] stringList = txt.split(" ");
+		for(int i = 0; i< stringList.size(); i++){
+			if(stringList[i].contains(stop)){
+				inicio = i;
+			}
+		}
+
+		for(int i = 0; i< stringList.size(); i++){
+			if(i > inicio){
+				int next = i-1;
+				sb.append(stringList[next]);
+				break;
+			}
+		}
+		return sb.toString().trim();
+	}
+
+	public static String nextStopLength(String txt, String stop, int index, int len){
+		int inicio;
+		StringBuilder sb = new StringBuilder();
+		String [] stringList = txt.split(" ");
+		for(int i = 0; i< stringList.size(); i++){
+			if(stringList[i].contains(stop)){
+				inicio = i;
+			}
+		}
+
+		for(int i = 0; i< stringList.size(); i++){
+			if(i > inicio){
+				for(int l = 0 ; l < len; l++){
+					int next = l+i;
+					sb.append(stringList[next]+" ");
+				}
+				break;
+			}
+		}
+		return sb.toString().trim();
+	}
+
+
+	public static String startLength(String txt, String stop, int index, int len){
+		int inicio;
+		StringBuilder sb = new StringBuilder();
+		String [] stringList = txt.split(" ");
+		for(int i = 0; i< stringList.size(); i++){
+			if(stringList[i].contains(stop)){
+				inicio = i;
+			}
+		}
+
+		for(int i = 0; i< stringList.size(); i++){
+			if(i > inicio){
+				for(int l = 0 ; l < len; l++){
+					int next = l+i;
+					sb.append(stringList[l]+" ");
+					sb.append(stringList[next]+" ");
+				}
+				break;
+			}
+		}
+		return sb.toString().trim();
+	}
+
+
+	public static String stopString(String txt, String stop){
+		String [] stringList = txt.split(" ");
+		StringBuilder sb = new StringBuilder();
+		for(int i = 0; i< stringList.size(); i++){
+			System.out.println("["+stringList[i]+"]")
+			if(!stringList[i].toString().contains(stop)){
+				sb.append(stringList[i]+" ");
+			}
+			if(stringList[i].toString().contains(stop)){
+				break;
+			} else {
+			}
+		}
+		System.out.println("["+sb.toString().trim()+"]")
+		return sb.toString().trim();
+	}
+
+
+
+
+	public static int buscaComAntecessor(List<String> linha, String antecessor, String path ){
+		System.out.println("BUSCA COM ANTECESSOR \n")
+		int l;
+		for(int i = 0;i< linha.size();i++){
+			if(linha.get(i).contains(antecessor)){
+				int next = i+1;
+				if(linha.get(next).contains(path)){
+					System.out.println("["+next+"] ["+linha.get(next)+"]")
+					l =next;
+					break;
+				}
+			}
+		}
+		return l;
+	}
+
+	public static int buscaComAntecessorSelecionavel(List<String> linha, String antecessor, int a ){
+		System.out.println("BUSCA COM ANTECESSOR SELECIONAVEL\n")
+		int l;
+		for(int i = 0;i< linha.size();i++){
+			if(linha.get(i).contains(antecessor)){
+				int next = i+a;
+				System.out.println("["+next+"] ["+linha.get(next)+"]")
+				l =next;
+				break;
+			}
+		}
+		return l;
+	}
+
+	/**
+	 * @author Alz_sup54955
+	 * @param registros
+	 * @param path
+	 * @return
+	 */
+	public static int indexLine(List<String> registros, String path){
+		int line;
+		for(int i=0; i<registros.size();i++){
+			System.out.println("LINE ["+i+"] ["+registros[i]+"] ")
+			if(registros[i].toString().contains(path)){
+				System.out.println("FOUND ["+i+"] ["+registros[i]+"] ["+path+"]")
+				line = i;
+				break;
+			}
+		}
+		return line;
+	}
+
+	/**
+	 * @author Alz_sup54955
+	 * @param registros
+	 * @param path
+	 * @return
+	 */
+	public static int indexGroupLine(List<String> registros, String... path){
+		int line;
+		String[] args = path;
+
+		System.out.println("argssize ["+args.size()+"]")
+		for(int j=0;j<args.size();j++){
+			System.out.println("["+j+"] ["+args[j]+"]")
+		}
+
+		for(int i=0; i<registros.size();i++){
+			System.out.println("LINE ["+i+"] ["+registros[i]+"] ")
+			if(registros[i].toString().contains(args[0])){
+				System.out.println("FOUND ["+i+"] ["+registros[i]+"] ["+path+"]")
+				line = i;
+				break;
+			}
+		}
+		return line;
+	}
+
+	/**
+	 * @author Alz_sup54955
+	 * @param registros
+	 * @param path
+	 * @return
+	 */
+	public static int indexLineIgnoreDuplicates(List<String> registros, String path, String ignore){
+		int line;
+		for(int i=0; i<registros.size();i++){
+			System.out.println("LINE ["+i+"] ["+registros[i]+"] ")
+			if(registros[i].toString().contains(path)){
+				if(!registros[i].toString().contains(ignore)){
+					System.out.println("FOUND ["+i+"] ["+registros[i]+"] ["+path+"]")
+					line = i;
+					break;
+				}
+			}
+		}
+		return line;
+	}
+
+	public static String removeZeroDoInicioDeNumeroString(String sn){
+		String n
+		int i = Integer.parseInt(sn);
+		n = String.valueOf(i);
+		return n;
+	}
+
+
+	public static String sequenceString(String txt, String path){
+		String[] p = txt.split(" ")
+		StringBuilder stb = new StringBuilder()
+		for(int i; i < p.size();i++){
+			System.out.println("["+i+"] ["+p[i]+"]");
+			stb.append(p[i])
+			stb.append(" ")
+			if(p[i].toString().equals(path)){
+				break;
+			}
+		}
+		System.out.println("["+stb.toString().trim()+"]")
+		return stb.toString().trim()
+	}
+	
+	
+	private static boolean isValidCPF(String cpf) {
+		cpf = cpf.trim().replace(".", "").replace("-", "");
+		if ((cpf==null) || (cpf.length()!=11)){
+		 return false;
+		} else {
+		return true;
+		}
+	}
+	
+	private static boolean isValidCNPJ(String cnpj) {
+		cnpj = cnpj.trim().replace(".", "").replace("-", "").replace("/", "");
+		if ((cnpj==null)||(cnpj.length()!=14)) {
+		return false;
+		} else {
+		return true;
+		}
+	}
 
 }

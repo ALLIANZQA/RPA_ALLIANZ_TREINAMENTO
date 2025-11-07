@@ -21,6 +21,8 @@ import auxiliares.StringFormatter
 import internal.GlobalVariable
 import rpacommands.rpaCommands
 import auxiliares.FileInput
+
+import java.time.Duration
 import java.util.List
 import auxiliares.MenuMatriz
 import auxiliares.ExtractDates
@@ -30,6 +32,16 @@ import static com.kms.katalon.core.testcase.TestCaseFactory.findTestCase
 import static com.kms.katalon.core.testdata.TestDataFactory.findTestData
 import static com.kms.katalon.core.testobject.ObjectRepository.findTestObject
 import static com.kms.katalon.core.testobject.ObjectRepository.findWindowsObject
+
+
+
+
+import auxiliares.timer
+import sendEmail.emailDinamico;
+import auxiliares.GetHost;
+import auxiliares.leitorPdf;
+import java.time.Duration
+import java.time.Instant
 
 
 
@@ -44,6 +56,13 @@ public class GestaoRegularizacaoIncidenciasFuncionalidades extends rpaCommands {
 	private static String status
 	private static String referencia
 
+	
+	private static int cellCheckAlert = 4;
+	private static Instant start;
+	private static Instant end;
+	private static Duration timeLapnse;
+	
+	
 	/**
 	 * @author T_DCDias
 	 * @return
@@ -118,12 +137,55 @@ public class GestaoRegularizacaoIncidenciasFuncionalidades extends rpaCommands {
 	 * @return
 	 */
 	public static fluxoGestaoRegularizacaoIncidencias(String aba, String a){
+		
+		String dataInicio = ExtractDates.dataAtual();
+		String horaInicial =  ExtractDates.horaAtualizada();
+		start = Instant.now();
 		initDataFiles()
 		fluxoCompletoGestaoRegularizacaoIncidencias(aba,a)
 		reprocessaFalhas(aba,a)
-		enviaEmailGestaoRegularizacaoIncidencias(aba)
+		end =  Instant.now();
+		timeLapnse = Duration.between(start, end);
+		String dataFinal = ExtractDates.dataAtual();
+		String horaFinal =  ExtractDates.horaAtualizada();
+		try{
+		   enviaEmailGestaoRegularizacaoIncidenciasDinamico(aba, timeLapnse, dataInicio, dataFinal, horaInicial, horaFinal );
+		} catch (Exception e){
+		}
 	}
 
+	/**
+	 * @author Alz_sup54955
+	 * @param tipoAba
+	 * @param timeLapnse
+	 * @param dataInicio
+	 * @param dataFinal
+	 * @param horaInicial
+	 * @param horaFinal
+	 * @return
+	 */
+	public static enviaEmailGestaoRegularizacaoIncidenciasDinamico(String tipoAba, Duration timeLapnse, String dataInicio, String dataFinal, String horaInicial, String horaFinal){
+		System.out.println()
+	 try{
+		 if(!validaDados(cellCheck)){
+			pathTxtEmail = "C:\\Users\\Public\\RPA_ALLIANZ\\Emails\\backoffice\\RegularizaIncidencia\\ConfiguracoesRegularizaIncidencia.txt"
+			lerConfigurações(pathTxtEmail)
+			String emaildestination = StringFormatter.formatterEmailDestination(FileInput.readFile(pathTxtEmail));
+			String docName = "GestaoRegularizacaoIncidencias.xlsx";
+			// FORMATA SAIDA DO TEMPO DE EXECUÇÃO
+			long segds = timeLapnse.toSeconds();
+			String hours = timeLapnse.toHours()+"h "+
+						timer.converteMinutos(timeLapnse.toHours(), timeLapnse.toMinutes())+"m "+
+						timer.converteSegundos(timeLapnse.toMinutes(),segds)+"s";
+			// ENVIO DE E-MAIL
+			//DADOS DO DOCUMENTO
+			initDataFiles();
+			// ENVIA E-MAIL DINAMICO
+			emailDinamico.enviaEmailDinamico(sender, emaildestination, tipoAba, path, docName, emailDinamico.listaDeAlertas(data, cellCheckAlert)  , hours, horaInicial, horaFinal,  GetHost.getHostname() , dataInicio, dataFinal, "" );
+		 }
+	  } catch (Exception e){}
+	}
+	
 	/**
 	 * @author be54955
 	 * @param aba
@@ -150,7 +212,7 @@ public class GestaoRegularizacaoIncidenciasFuncionalidades extends rpaCommands {
 						} else {
 							try{
 								auxiliares.WriteExcelFactory.updateSheetLine("", j, path, status, 2, aba);
-								auxiliares.WriteExcelFactory.updateSheetLine("", j, path,msgAlerta, 3, aba);
+								auxiliares.WriteExcelFactory.updateSheetLine("", j, path,"Alerta: "+msgAlerta, 3, aba);
 							} catch (Exception e){}
 						}
 					}
