@@ -2,6 +2,43 @@ package sendEmail;
 
 
 public class CreateEmail {
+	
+	
+	
+	/**
+	 * @author T_DCDias
+	 * @param sender
+	 * @param emaildestination
+	 * @param pwdsender
+	 * @param path1
+	 * @param nome1
+	 * @param path2
+	 * @param nome2
+	 * @param texto
+	 * @param subject
+	 * @param host
+	 * @param porta
+	 * @return
+	 */
+	public static createEmailSendMultipleFilesAuth(String sender, String emaildestination,String user, String pwdsender, List<String> anexos , String host, String  porta, String ramo ){
+		try{
+			ConfigOutlook configEmail = new ConfigOutlook();
+			MessageFactory messageFactory = new MessageFactory(sender,user,pwdsender,emaildestination );
+			messageFactory.createMessageFilesAuth(configEmail.configureOutLookAuth(host, porta), anexos, ramo);
+		} catch(Exception e){
+			System.err.println("Create Email Send Multiple Files FAIL\n"+e);
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	/**
 	 * @author T_DCDias
@@ -251,6 +288,21 @@ public class CreateEmail {
 		}
 		return send
 	}
+	
+	public static boolean createEmailSendSantanderAnexos15DA( String sender,String emaildestination, String pwdsender, String host, String porta, String ramo, String segurado, String veiculo, String placa , String apolice, String vigencia, List<String> anexos ){
+		boolean send
+		try{
+			ConfigOutlook configEmail = new ConfigOutlook();
+			MessageFactory messageFactory = new MessageFactory(sender,pwdsender,emaildestination);
+			messageFactory.createMessageMutFiles(configEmail.configureOutLook(host, porta), anexos,  ramo, segurado, veiculo, placa, apolice, vigencia);
+			send = true
+		} catch(Exception e){
+			System.err.println("FAIL\n"+e);
+			send = false
+		}
+		return send
+	}
+	
 
 	public static boolean createEmailSendVoucherAnexo(String sender, String emaildestination,String pwdsender, String host, String  porta, String ramo, List<String> anexos, String assunto ){
 		boolean send
