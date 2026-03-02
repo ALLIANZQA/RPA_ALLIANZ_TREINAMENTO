@@ -122,7 +122,7 @@ public class DuplicadoRecibosFuncionalidades extends rpaCommands {
 			WebUI.delay(5);
 			MenuMatriz.producaoSinistro()
 			WebUI.delay(10);
-			MenuMatriz.subMenu('/html/body/div/div/app-root/app-private/app-displayed-menu/div/app-teaser/div/div[4]/div/div[1]/ul', 'a', 'Duplicados Recibos')
+			MenuMatriz.subMenuNome('a', 'Duplicados Recibos')
 		} catch (Exception e){}
 	}
 	
@@ -131,7 +131,8 @@ public class DuplicadoRecibosFuncionalidades extends rpaCommands {
 		System.out.println();
 		try{
 			WebUI.delay(5);
-			MenuMatriz.newFluxoGestao('/*/body/div/div/app-root/app-private/app-displayed-menu/div/app-teaser/div/div[3]/div/div[2]');
+			MenuMatriz.consultasEstatisticas()
+			MenuMatriz.subMenuNome('a', 'Nova Ficha de Gestão')
 			WebUI.delay(10);
 		} catch (Exception e){}
 	}
@@ -244,13 +245,19 @@ public class DuplicadoRecibosFuncionalidades extends rpaCommands {
 	public static boolean recibo(List<String> registros, String aba, int linha, String path){
 		System.out.println()
 		boolean r = true;
+		String msgAlert;
 		try{
 		if(registros[18].toString().equals("Processar")){
 		   initRecibo();
-		   alteraJanejaGenerica(1, 1);
+		   WebUI.delay(15);
+		   alteraJanejaGenerica(1, 0);
 		   String telaSegundaViaRecibo = recuperaValor('//*[@id="cellAppPromptHeaderArea"]', 'innerText', 1)
 		   System.out.println(telaSegundaViaRecibo)
 	 	   if(listaDeTelas("2ª VIA-RECIBO")){
+			
+			msgAlert = recuperaValor('//*[@id="dataErrorSection"]/table/tbody/tr/td[2]', 'innerText', 0)
+			System.out.println("alertaFG ["+msgAlert+"] ["+msgAlert.length()+"]")
+			if(!alertListBlocList(msgAlert)){
 			   //Numero Recibo 
 			   clickXpath('//*[@id="numRecibo"]', 0)
 			   preencheXpath('//*[@id="numRecibo"]', registros[0], 0)
@@ -266,8 +273,8 @@ public class DuplicadoRecibosFuncionalidades extends rpaCommands {
 			   System.out.println();
 			   //Aceitar
 			   selecionaItemListaTimer("Aceitar",'//*[@id="seccionBusquedaRecibosSectionBar"]/table/tbody/tr/td' , "div",0 )
-			   WebUI.delay(5);
-			   String msgErroAlerta = recuperaValor('//*[@id="dataErrorSection"]/table/tbody/tr/td[2]', 'innerText', 1)
+			   WebUI.delay(10);
+			   String msgErroAlerta = recuperaValor('//*[@id="dataErrorSection"]/table/tbody/tr/td[2]', 'innerText', 0)
 			   System.out.println("["+msgErroAlerta+"]")
 			   if(!alertListBlocList(msgErroAlerta)){
 			     identificaArquivo("AllianzSegurosBrasil")
@@ -294,19 +301,34 @@ public class DuplicadoRecibosFuncionalidades extends rpaCommands {
 			 	   r = true;
 			       }
 			     }
-			  } else {
-			    status = "Processado"
-			    msgAlerta="Alerta: "+msgErroAlerta
-			    fecharJanelaAtual(1)
-			    alteraJanejaGenerica(0, 2)
-				r = false;
-			  }
+			} else {
+			  status = "Processado"
+			  msgAlerta="Alerta: "+msgErroAlerta
+			  fecharJanelaAtual(1)
+			  alteraJanejaGenerica(0, 2)
+			  r = false;
+			}
+			  
+			} else {
+			  fecharJanelaAtual(1);
+			  alteraJanejaGenerica(0, 1)
+			  msgAlerta="Alerta: "+msgAlert +" - "+registros[1];
+			  status = "Processado"
+			}
+		   } else {
+		     r = false;
+		     status = "Processar"
+		     msgAlerta="Alerta: '2ª VIA-RECIBO' não apresentada"
+		     fecharJanelaAtual(1)
+		     alteraJanejaGenerica(0, 2)
 		   }
 		 }
 		} catch (Exception e){
 		  r = false;
 		  status = "Processar"
 		  msgAlerta="Alerta: Falha ao preencher '2ª VIA-RECIBO'"
+		  fecharJanelaAtual(1)
+		  alteraJanejaGenerica(0, 2)
 		}
 		return r;
 	}
@@ -324,10 +346,11 @@ public class DuplicadoRecibosFuncionalidades extends rpaCommands {
 		boolean arquivoAnexo;
 		String msgAlert;
 		try{
+			WebUI.delay(5);
 			initFG()
-			alteraJanejaGenerica(1, 1);
+			alteraJanejaGenerica(1, 10);
 			//FICHA GESTÃO
-			String telaFichaGestao = recuperaValor('/html/body/div/div/app-root/file-management/app-header/div/nx-ibl-header/div/div/div[1]', 'innerText', 1)
+			String telaFichaGestao = recuperaValor('/html/body/div/div/app-root/file-management/app-header/div/nx-ibl-header/div/div/div[1]', 'innerText', 0)
 			System.out.println(telaFichaGestao )
 			if(telaFichaGestao.contains("Ficha de Gestão") || telaFichaGestao.contains("Ficha Gestión") ){
 				/**
@@ -338,7 +361,7 @@ public class DuplicadoRecibosFuncionalidades extends rpaCommands {
 				//novaFichaGestaoProcesso(registros,0,1, registros[8])
 				tipoReferencia(registros, 6, 7,8)
 				WebUI.delay(5);
-				msgAlert = recuperaValor('//*[@id="componenteReferencia"]/div/div[2]/div/nx-message/div', 'innerText', 1)
+				msgAlert = recuperaValor('//*[@id="componenteReferencia"]/div/div[2]/div/nx-message/div', 'innerText', 0)
 				System.out.println("alertaFG ["+msgAlert+"] ["+msgAlert.length()+"]")
 				if(alertListBlocList(msgAlert)){
 					fecharJanelaAtual(1);
@@ -352,10 +375,11 @@ public class DuplicadoRecibosFuncionalidades extends rpaCommands {
 				  selecionaItemLista("Editor correspondencia",'/*/body/div[1]/div/app-root/file-management/app-header/div/nx-ibl-header/nx-ibl-navigation/div/div[1]/nx-ibl-navigation-desktop/div[1]/div/div' , "span" )
 				  alteraJanejaGenerica(2, 5);
 				  //Editor Correspondencia
+				  WebUI.delay(5);
 				  String telaEditorCorrespondencia = recuperaValor('//*[@id="cellAppPromptHeaderArea"]', 'innerText', 1)
 				  System.out.println(telaEditorCorrespondencia )
 				  if(listaDeTelas(telaEditorCorrespondencia)){
-					  
+					  WebUI.delay(5);
 					  //Meio de envio
 					  selecionaItemListaTimer(registros[9],'//*[@id="cbMedioEnvio"]' , "option",0 )
 					  //Tipo Destino
@@ -368,28 +392,40 @@ public class DuplicadoRecibosFuncionalidades extends rpaCommands {
 					  preencheXpath('//*[@id="txtNombre"]', registros[11], 0)
 					  
 					  //E-mail destino
-					  limpaCampo('//*[@id="txtEmail"]', 0);
+					  limpaCampo('//*[@id="txtEmail"]', 3);
 					  preencheXpath('//*[@id="txtEmail"]', registros[12], 0)
 					  
 					  //Email copia
-					  limpaCampo('//*[@id="txtEmailCC"]', 1);
+					  limpaCampo('//*[@id="txtEmailCC"]', 3);
 					  preencheXpath('//*[@id="txtEmailCC"]', registros[13], 0)
-					  
+					  WebUI.delay(2);
 					  //Continuar
 					  selecionaItemLista("Continuar",'//*[@id="divAppContent"]/table' , "div" )
+					  
+					  
+					  WebUI.delay(2);
+					  
+					  try{
 					  //Modelo descrição
 					  limpaCampo('//*[@id="numModCodi"]', 0);
 					  preencheXpath('//*[@id="numModCodi"]', registros[14], 0)
+					  } catch (Exception e){ }
 					  
 					  System.out.println();
+					  
+					  
+					  WebUI.delay(5);
+					  String msgSTRAlerta = recuperaValor('//*[@id="dataErrorSection"]/table/tbody/tr/td[2]', 'innerText', 0)
+					  System.out.println("Alerta ["+msgSTRAlerta+"]")
+				 	  if(!alertListBlocList(msgSTRAlerta)){
+					  
 					  //Aceitar
 					  selecionaItemListaTimer("Aceitar",'//*[@id="sectionFiltroDocumentoSectionBar"]/table/tbody/tr/td' , "div",0 )
-					  
 					  System.out.println();
 					  //Retorno Cobrança
 					  limpaCampo('//*[@id="txtModDesLibre"]', 5);
 					  preencheXpath('//*[@id="txtModDesLibre"]', registros[15], 0)
-					  
+					  WebUI.delay(5);
 					  System.out.println();
 					  if(!validaExistenciaDeArquivo(fileRootName+registros[3].toString()+".pdf")  ){
 						if(anexarPDF(registros, fileRootName+registros[3].toString()+".pdf")){
@@ -406,11 +442,13 @@ public class DuplicadoRecibosFuncionalidades extends rpaCommands {
 					  }
 					  System.out.println();
 					  if(arquivoAnexo.equals(true)){
+						 //Aceitar
+						 selecionaItemLista("Aceitar",'//*[@id="sectionAnexarSectionBar"]/table/tbody/tr/td/table' , "td" )
 						//Documento
 						selecionaItemLista("Documento",'//*[@id="tableOptMenu_"]/tbody' , "td" )
 						//Corpo E-mail
 						limpaCampo('//*[@id="999992"]', 3);
-						preencheXpath('//*[@id="999992"]', registros[16], 1)
+						preencheXpath('//*[@id="999992"]', registros[16], 0)
 						//Gravar
 						selecionaItemLista("Gravar",'//*[@id="divAppContent"]/table/tbody/tr[1]/td/table' , "div" )
 						enviado = true;
@@ -430,6 +468,17 @@ public class DuplicadoRecibosFuncionalidades extends rpaCommands {
 						fecharJanelaAtual(1)
 						alteraJanejaGenerica(0, 1)
 					  }
+					  
+			 	    } else {
+					  msgAlerta = "Alerta: "+msgSTRAlerta
+					  status = "Processado"
+					  fecharJanelaAtual(2)
+					  alteraJanejaGenerica(1, 2)
+					  fecharJanelaAtual(1)
+					  alteraJanejaGenerica(0, 1)
+					  enviado = false;
+				 	}
+					  
 				  } else {
 					enviado = false
 					msgAlerta="Tela 'Editor de Correspondência' não apresentada"
@@ -465,6 +514,7 @@ public class DuplicadoRecibosFuncionalidades extends rpaCommands {
 			selecionaItemLista("Anexar",'//*[@id="tableOptMenu_"]/tbody' , "td" )
 			System.err.println("pathValue ["+fileRootName+"]");
 			boolean result = validaExistenciaDeArquivo(fileRootName);
+			WebUI.delay(5);
 			if(!result){
 			  fileUpload('//*[@id="upFile1"]', fileRootName, 0);
 			}

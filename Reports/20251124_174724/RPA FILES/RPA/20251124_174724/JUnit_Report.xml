@@ -1,0 +1,2305 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="RPA" time="4505.6" tests="2" failures="0" errors="0">
+   <testsuite name="RPA" tests="2" failures="0" errors="0" time="4505.6" timestamp="2025-11-24 17:47:26" hostname="Alz_sup54955 - BRCLVLRPA07.agf.com.br" id="Test Suites/RPA FILES/RPA">
+      <properties>
+         <property name="deviceName" value=""/>
+         <property name="devicePlatform" value=""/>
+         <property name="logFolder" value="C:\\Users\\Public\\RPA_ALLIANZ\\Reports\\20251124_174724\\RPA FILES\\RPA\\20251124_174724"/>
+         <property name="logFiles" value="C:\\Users\\Public\\RPA_ALLIANZ\\Reports\\20251124_174724\\RPA FILES\\RPA\\20251124_174724\\execution0.log"/>
+         <property name="attachments" value=""/>
+         <property name="hostName" value="Alz_sup54955 - BRCLVLRPA07.agf.com.br"/>
+         <property name="os" value="Windows Server 2016 64bit"/>
+         <property name="katalonVersion" value="7.2.1.1"/>
+         <property name="browser" value="Chrome 142.0.0.0"/>
+         <property name="hostAddress" value="44.90.46.175"/>
+         <property name="sessionId" value="23f4b6f453dff5c00551d3ea8e90bd1b"/>
+         <property name="seleniumVersion" value="3.141.59"/>
+         <property name="proxyInformation" value="ProxyInformation{proxyOption=USE_SYSTEM, proxyServerType=HTTP, password=, proxyServerAddress=, proxyServerPort=0, executionList=}"/>
+         <property name="platform" value="Windows Server 2016"/>
+      </properties>
+      <testcase name="Test Cases/Web UI Test/Marketing/GestaoReclamacao" time="909.373" classname="Test Cases/Web UI Test/Marketing/GestaoReclamacao" status="PASSED">
+         <system-out><![CDATA[2025-11-24 17:47:27 - [TEST_CASE][PASSED] - Test Cases/Web UI Test/Marketing/GestaoReclamacao: Test Cases/Web UI Test/Marketing/GestaoReclamacao
+
+2025-11-24 17:47:27 - [TEST_STEP][PASSED] - try: Browser is closed
+
+2025-11-24 17:47:27 - [TEST_STEP][PASSED] - GestaoReclamacaoFuncionalidades.fluxoCotacaoRenovacaoInterna("GestaoReclamacao", "PRD"): Browser is closed
+
+2025-11-24 17:47:28 - [MESSAGE][INFO] - Starting 'Chrome' driver
+
+2025-11-24 17:47:28 - [MESSAGE][INFO] - User set preference: ['prefs', '{download.default_directory=C:\Users\Public\, profile.default_content_settings.popups=0.0, download.prompt_for_download=false, download.directory_upgrade=true, plugins.always_open_pdf_externally=true, pdfjs.disabled=true, safebrowsing.enabled=true}']
+
+2025-11-24 17:47:28 - [MESSAGE][INFO] - User set preference: ['args', '[--start-maximized, --disable-infobars,  safebrowsing-disable-download-protection,  safebrowsing-disable-extension-blacklist, --test-type, --disable-extensions]']
+
+2025-11-24 17:47:28 - [MESSAGE][INFO] - User set preference: ['CapabilityType.ACCEPT_SSL_CERTS', 'true']
+
+2025-11-24 17:47:28 - [MESSAGE][INFO] - User set preference: ['pageLoadStrategy', 'normal']
+
+2025-11-24 17:47:28 - [MESSAGE][INFO] - Action delay is set to 0 seconds
+
+2025-11-24 17:47:30 - [MESSAGE][PASSED] - Browser is opened with url: ''
+
+2025-11-24 17:47:45 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2025-11-24 17:47:45 - [MESSAGE][PASSED] - Current window maximized
+
+2025-11-24 17:47:48 - [MESSAGE][PASSED] - Navigate to 'https://www.br.intrallianz.com/ngx-intranet/public/home' successfully
+
+2025-11-24 17:48:08 - [MESSAGE][PASSED] - Delayed 20 second(s)
+
+2025-11-24 17:48:09 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2025-11-24 17:48:10 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2025-11-24 17:48:20 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 17:48:30 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 17:48:32 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:48:34 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:48:39 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 17:48:40 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2025-11-24 17:48:42 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:48:47 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 17:48:48 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2025-11-24 17:48:50 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:48:54 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2025-11-24 17:48:59 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 17:49:01 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:49:03 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:49:08 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 17:49:10 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:49:12 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:49:15 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:49:17 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:49:19 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:49:23 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:49:26 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2025-11-24 17:49:30 - [MESSAGE][PASSED] - Delayed 4 second(s)
+
+2025-11-24 17:49:32 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:49:34 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:49:39 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 17:49:40 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2025-11-24 17:49:42 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:49:48 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 17:49:49 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2025-11-24 17:49:51 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:49:54 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2025-11-24 17:49:59 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 17:50:01 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:50:03 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:50:08 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 17:50:10 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:50:13 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:50:15 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:50:18 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:50:20 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:50:24 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:50:27 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2025-11-24 17:50:31 - [MESSAGE][PASSED] - Delayed 4 second(s)
+
+2025-11-24 17:50:33 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:50:35 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:50:40 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 17:50:41 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2025-11-24 17:50:43 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:50:49 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 17:50:50 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2025-11-24 17:50:52 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:50:55 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2025-11-24 17:51:00 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 17:51:02 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:51:04 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:51:10 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 17:51:12 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:51:14 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:51:16 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:51:18 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:51:21 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:51:25 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:51:27 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:51:31 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2025-11-24 17:51:35 - [MESSAGE][PASSED] - Delayed 4 second(s)
+
+2025-11-24 17:51:38 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:51:40 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:51:45 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 17:51:46 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2025-11-24 17:51:48 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:51:53 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 17:51:54 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2025-11-24 17:51:56 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:52:00 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2025-11-24 17:52:05 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 17:52:07 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:52:09 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:52:14 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 17:52:16 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:52:18 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:52:20 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:52:23 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:52:25 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:52:29 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:52:31 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:52:34 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2025-11-24 17:52:39 - [MESSAGE][PASSED] - Delayed 4 second(s)
+
+2025-11-24 17:52:41 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:52:43 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:52:48 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 17:52:49 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2025-11-24 17:52:51 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:52:56 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 17:52:57 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2025-11-24 17:52:59 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:53:03 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2025-11-24 17:53:08 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 17:53:12 - [MESSAGE][PASSED] - Delayed 4 second(s)
+
+2025-11-24 17:53:14 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:53:16 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:53:21 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 17:53:22 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2025-11-24 17:53:24 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:53:30 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 17:53:31 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2025-11-24 17:53:33 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:53:36 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2025-11-24 17:53:41 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 17:53:43 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:53:45 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:53:50 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 17:53:52 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:53:54 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:53:57 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:53:59 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:54:01 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:54:05 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:54:07 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:54:10 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2025-11-24 17:54:14 - [MESSAGE][PASSED] - Delayed 4 second(s)
+
+2025-11-24 17:54:17 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:54:19 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:54:24 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 17:54:25 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2025-11-24 17:54:27 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:54:32 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 17:54:33 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2025-11-24 17:54:35 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:54:38 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2025-11-24 17:54:43 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 17:54:45 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:54:47 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:54:53 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 17:54:55 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:54:57 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:54:59 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:55:01 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:55:04 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:55:07 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:55:09 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:55:12 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2025-11-24 17:55:17 - [MESSAGE][PASSED] - Delayed 4 second(s)
+
+2025-11-24 17:55:19 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:55:21 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:55:26 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 17:55:27 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2025-11-24 17:55:29 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:55:35 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 17:55:36 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2025-11-24 17:55:38 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:55:41 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2025-11-24 17:55:46 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 17:55:48 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:55:50 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:55:55 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 17:55:57 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:56:00 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:56:02 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:56:04 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:56:06 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:56:10 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:56:13 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2025-11-24 17:56:17 - [MESSAGE][PASSED] - Delayed 4 second(s)
+
+2025-11-24 17:56:19 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:56:21 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:56:26 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 17:56:27 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2025-11-24 17:56:29 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:56:34 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 17:56:35 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2025-11-24 17:56:37 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:56:39 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2025-11-24 17:56:42 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2025-11-24 17:56:47 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 17:56:49 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:56:51 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:56:56 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 17:56:58 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:57:00 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:57:03 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:57:05 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:57:07 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:57:10 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:57:12 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:57:15 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2025-11-24 17:57:20 - [MESSAGE][PASSED] - Delayed 4 second(s)
+
+2025-11-24 17:57:22 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:57:24 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:57:29 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 17:57:30 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2025-11-24 17:57:32 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:57:38 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 17:57:39 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2025-11-24 17:57:41 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:57:44 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2025-11-24 17:57:49 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 17:57:51 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:57:53 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:57:58 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 17:58:01 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:58:03 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:58:05 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:58:07 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:58:10 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:58:12 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:58:16 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2025-11-24 17:58:20 - [MESSAGE][PASSED] - Delayed 4 second(s)
+
+2025-11-24 17:58:22 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:58:24 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:58:29 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 17:58:30 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2025-11-24 17:58:32 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:58:37 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 17:58:38 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2025-11-24 17:58:40 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:58:44 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2025-11-24 17:58:49 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 17:58:51 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:58:53 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:58:58 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 17:59:00 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:59:02 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:59:05 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:59:07 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:59:09 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:59:12 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:59:14 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:59:18 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2025-11-24 17:59:22 - [MESSAGE][PASSED] - Delayed 4 second(s)
+
+2025-11-24 17:59:25 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:59:27 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:59:32 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 17:59:33 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2025-11-24 17:59:35 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:59:40 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 17:59:41 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2025-11-24 17:59:43 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:59:47 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2025-11-24 17:59:52 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 17:59:54 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 17:59:56 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:00:01 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:00:03 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:00:05 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:00:07 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:00:10 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:00:12 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:00:16 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:00:18 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:00:21 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2025-11-24 18:00:26 - [MESSAGE][PASSED] - Delayed 4 second(s)
+
+2025-11-24 18:00:28 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:00:30 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:00:35 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:00:36 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2025-11-24 18:00:38 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:00:44 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:00:45 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2025-11-24 18:00:47 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:00:50 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2025-11-24 18:00:55 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:00:57 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:00:59 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:01:04 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:01:06 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:01:09 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:01:11 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:01:13 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:01:16 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:01:18 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:01:21 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:01:24 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2025-11-24 18:01:29 - [MESSAGE][PASSED] - Delayed 4 second(s)
+
+2025-11-24 18:01:31 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:01:33 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:01:38 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:01:39 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2025-11-24 18:01:41 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:01:47 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:01:48 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2025-11-24 18:01:50 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:01:53 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2025-11-24 18:01:58 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:02:00 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:02:02 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:02:07 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:02:09 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:02:11 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:02:14 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:02:16 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:02:18 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:02:22 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:02:24 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:02:27 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2025-11-24 18:02:31 - [MESSAGE][PASSED] - Delayed 4 second(s)
+
+2025-11-24 18:02:32 - [MESSAGE][PASSED] - Browser is closed
+
+2025-11-24 18:02:36 - [TEST_STEP][PASSED] - closeBrowser(): Browser is closed
+
+2025-11-24 18:02:36 - [MESSAGE][PASSED] - Browser is closed]]></system-out>
+         <system-err><![CDATA[]]></system-err>
+      </testcase>
+      <testcase name="Test Cases/Web UI Test/Backoffce/FluxoEnvioPDF" time="3595.883" classname="Test Cases/Web UI Test/Backoffce/FluxoEnvioPDF" status="PASSED">
+         <system-out><![CDATA[2025-11-24 18:02:36 - [TEST_CASE][PASSED] - Test Cases/Web UI Test/Backoffce/FluxoEnvioPDF: Test Cases/Web UI Test/Backoffce/FluxoEnvioPDF
+
+2025-11-24 18:02:36 - [TEST_STEP][PASSED] - try: Browser is closed
+
+2025-11-24 18:02:36 - [TEST_STEP][PASSED] - FluxoEnvioPDF.fluxoEnvioDePDF("EnvioPDF"): Delayed 1 second(s)
+
+2025-11-24 18:02:41 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:02:46 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:02:51 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:02:56 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:02:56 - [MESSAGE][INFO] - Starting 'Chrome' driver
+
+2025-11-24 18:02:56 - [MESSAGE][INFO] - User set preference: ['prefs', '{download.default_directory=C:\Users\Public\, profile.default_content_settings.popups=0.0, download.prompt_for_download=false, download.directory_upgrade=true, plugins.always_open_pdf_externally=true, pdfjs.disabled=true, safebrowsing.enabled=true}']
+
+2025-11-24 18:02:56 - [MESSAGE][INFO] - User set preference: ['args', '[--start-maximized, --disable-infobars,  safebrowsing-disable-download-protection,  safebrowsing-disable-extension-blacklist, --test-type, --disable-extensions]']
+
+2025-11-24 18:02:56 - [MESSAGE][INFO] - User set preference: ['CapabilityType.ACCEPT_SSL_CERTS', 'true']
+
+2025-11-24 18:02:56 - [MESSAGE][INFO] - User set preference: ['pageLoadStrategy', 'normal']
+
+2025-11-24 18:02:57 - [MESSAGE][PASSED] - Browser is opened with url: ''
+
+2025-11-24 18:03:12 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2025-11-24 18:03:12 - [MESSAGE][PASSED] - Current window maximized
+
+2025-11-24 18:03:16 - [MESSAGE][PASSED] - Navigate to 'https://www.br.intrallianz.com/ngx-intranet/public/home' successfully
+
+2025-11-24 18:03:36 - [MESSAGE][PASSED] - Delayed 20 second(s)
+
+2025-11-24 18:03:37 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2025-11-24 18:03:37 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2025-11-24 18:03:47 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:03:49 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:03:51 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:03:53 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:04:10 - [MESSAGE][PASSED] - Delayed 17 second(s)
+
+2025-11-24 18:04:15 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:04:16 - [MESSAGE][PASSED] - Current window maximized
+
+2025-11-24 18:04:21 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:04:22 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2025-11-24 18:04:32 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:04:42 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:04:44 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:04:46 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:04:48 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:04:50 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:04:52 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:04:54 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:04:56 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:05:11 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2025-11-24 18:05:22 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:05:24 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:05:26 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:05:29 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2025-11-24 18:05:32 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2025-11-24 18:05:37 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:05:47 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:05:49 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:05:54 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:05:59 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:06:04 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:06:08 - [MESSAGE][PASSED] - Delayed 4 second(s)
+
+2025-11-24 18:06:10 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:06:15 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:06:20 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:06:21 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2025-11-24 18:06:31 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:06:41 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:06:43 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:06:45 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:06:47 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:06:49 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:06:51 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:06:54 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:07:09 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2025-11-24 18:07:19 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:07:21 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:07:23 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:07:26 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2025-11-24 18:07:29 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2025-11-24 18:07:34 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:07:44 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:07:48 - [MESSAGE][PASSED] - Delayed 4 second(s)
+
+2025-11-24 18:07:50 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:07:55 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:08:00 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:08:01 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2025-11-24 18:08:11 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:08:21 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:08:23 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:08:26 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:08:28 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:08:30 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:08:32 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:08:34 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:08:36 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:08:38 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:08:40 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:08:42 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:08:44 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:08:46 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:09:01 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2025-11-24 18:09:11 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:09:13 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:09:15 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:09:18 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2025-11-24 18:09:21 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2025-11-24 18:09:26 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:09:36 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:09:38 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:09:43 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:09:48 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:09:53 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:09:57 - [MESSAGE][PASSED] - Delayed 4 second(s)
+
+2025-11-24 18:09:59 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:10:04 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:10:09 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:10:11 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2025-11-24 18:10:21 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:10:31 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:10:33 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:10:35 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:10:37 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:10:39 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:10:41 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:10:43 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:10:45 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:10:47 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:10:49 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:11:04 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2025-11-24 18:11:15 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:11:17 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:11:19 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:11:22 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2025-11-24 18:11:25 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2025-11-24 18:11:30 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:11:40 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:11:42 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:11:47 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:11:52 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:11:57 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:12:01 - [MESSAGE][PASSED] - Delayed 4 second(s)
+
+2025-11-24 18:12:03 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:12:08 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:12:13 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:12:14 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2025-11-24 18:12:24 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:12:34 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:12:36 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:12:38 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:12:40 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:12:42 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:12:44 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:12:46 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:12:49 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:12:51 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:13:06 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2025-11-24 18:13:16 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:13:18 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:13:20 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:13:23 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2025-11-24 18:13:26 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2025-11-24 18:13:31 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:13:41 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:13:43 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:13:48 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:13:53 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:13:58 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:14:02 - [MESSAGE][PASSED] - Delayed 4 second(s)
+
+2025-11-24 18:14:04 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:14:09 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:14:14 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:14:15 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2025-11-24 18:14:25 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:14:35 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:14:37 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:14:40 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:14:50 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:14:52 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:14:55 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:15:05 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:15:07 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:15:10 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:15:12 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:15:14 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:15:16 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:15:18 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:15:20 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:15:35 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2025-11-24 18:15:45 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:15:47 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:15:49 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:15:52 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2025-11-24 18:15:55 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2025-11-24 18:16:00 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:16:10 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:16:12 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:16:17 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:16:22 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:16:27 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:16:31 - [MESSAGE][PASSED] - Delayed 4 second(s)
+
+2025-11-24 18:16:34 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:16:39 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:16:44 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:16:45 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2025-11-24 18:16:55 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:17:05 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:17:07 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:17:09 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:17:20 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:17:22 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:17:24 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:17:35 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:17:37 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:17:40 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:17:42 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:17:44 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:17:46 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:17:48 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:17:50 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:17:52 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:17:54 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:17:56 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:18:11 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2025-11-24 18:18:21 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:18:23 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:18:25 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:18:28 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2025-11-24 18:18:31 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2025-11-24 18:18:36 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:18:46 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:18:48 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:18:53 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:18:58 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:19:03 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:19:07 - [MESSAGE][PASSED] - Delayed 4 second(s)
+
+2025-11-24 18:19:09 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:19:15 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:19:20 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:19:21 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2025-11-24 18:19:31 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:19:41 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:19:43 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:19:45 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:19:47 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:19:49 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:19:51 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:19:53 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:19:55 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:20:10 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2025-11-24 18:20:21 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:20:23 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:20:25 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:20:28 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2025-11-24 18:20:31 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2025-11-24 18:20:36 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:20:46 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:20:48 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:20:53 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:20:58 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:21:03 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:21:07 - [MESSAGE][PASSED] - Delayed 4 second(s)
+
+2025-11-24 18:21:09 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:21:14 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:21:19 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:21:20 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2025-11-24 18:21:30 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:21:40 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:21:42 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:21:45 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:21:47 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:21:49 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:21:51 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:21:53 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:21:55 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:21:57 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:21:59 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:22:01 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:22:03 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:22:05 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:22:07 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:22:09 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:22:11 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:22:13 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:22:28 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2025-11-24 18:22:38 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:22:40 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:22:43 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:22:46 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2025-11-24 18:22:49 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2025-11-24 18:22:54 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:23:04 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:23:06 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:23:11 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:23:16 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:23:21 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:23:25 - [MESSAGE][PASSED] - Delayed 4 second(s)
+
+2025-11-24 18:23:27 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:23:32 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:23:37 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:23:38 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2025-11-24 18:23:48 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:23:58 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:24:00 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:24:02 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:24:04 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:24:06 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:24:08 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:24:10 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:24:12 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:24:15 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:24:30 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2025-11-24 18:24:40 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:24:42 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:24:44 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:24:47 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2025-11-24 18:24:50 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2025-11-24 18:24:55 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:25:05 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:25:07 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:25:12 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:25:17 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:25:22 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:25:26 - [MESSAGE][PASSED] - Delayed 4 second(s)
+
+2025-11-24 18:25:28 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:25:33 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:25:38 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:25:39 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2025-11-24 18:25:49 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:25:59 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:26:01 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:26:03 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:26:05 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:26:07 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:26:09 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:26:12 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:26:27 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2025-11-24 18:26:37 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:26:39 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:26:41 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:26:44 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2025-11-24 18:26:47 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2025-11-24 18:26:52 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:27:02 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:27:04 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:27:09 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:27:14 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:27:19 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:27:23 - [MESSAGE][PASSED] - Delayed 4 second(s)
+
+2025-11-24 18:27:25 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:27:30 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:27:35 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:27:36 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2025-11-24 18:27:46 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:27:56 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:27:58 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:28:00 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:28:02 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:28:04 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:28:07 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:28:09 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:28:11 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:28:13 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:28:15 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:28:30 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2025-11-24 18:28:40 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:28:42 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:28:44 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:28:47 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2025-11-24 18:28:50 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2025-11-24 18:28:55 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:29:05 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:29:07 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:29:12 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:29:17 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:29:22 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:29:26 - [MESSAGE][PASSED] - Delayed 4 second(s)
+
+2025-11-24 18:29:28 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:29:33 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:29:38 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:29:39 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2025-11-24 18:29:50 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:30:00 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:30:02 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:30:04 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:30:06 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:30:08 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:30:10 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:30:12 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:30:14 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:30:29 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2025-11-24 18:30:39 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:30:41 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:30:43 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:30:46 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2025-11-24 18:30:49 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2025-11-24 18:30:54 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:31:04 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:31:06 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:31:11 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:31:16 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:31:21 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:31:25 - [MESSAGE][PASSED] - Delayed 4 second(s)
+
+2025-11-24 18:31:27 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:31:32 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:31:37 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:31:39 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2025-11-24 18:31:49 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:31:59 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:32:01 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:32:03 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:32:13 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:32:15 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:32:18 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:32:20 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:32:22 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:32:24 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:32:26 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:32:28 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:32:30 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:32:32 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:32:34 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:32:36 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:32:51 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2025-11-24 18:33:01 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:33:03 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:33:05 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:33:09 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2025-11-24 18:33:12 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2025-11-24 18:33:17 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:33:27 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:33:29 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:33:34 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:33:39 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:33:44 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:33:48 - [MESSAGE][PASSED] - Delayed 4 second(s)
+
+2025-11-24 18:33:50 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:33:55 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:34:00 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:34:01 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2025-11-24 18:34:11 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:34:21 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:34:23 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:34:26 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:34:28 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:34:30 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:34:32 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:34:34 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:34:49 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2025-11-24 18:34:59 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:35:01 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:35:03 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:35:06 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2025-11-24 18:35:09 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2025-11-24 18:35:14 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:35:24 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:35:26 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:35:31 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:35:36 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:35:41 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:35:45 - [MESSAGE][PASSED] - Delayed 4 second(s)
+
+2025-11-24 18:35:47 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:35:52 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:35:57 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:35:59 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2025-11-24 18:36:09 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:36:19 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:36:21 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:36:23 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:36:25 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:36:27 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:36:29 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:36:31 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:36:46 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2025-11-24 18:36:56 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:36:58 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:37:00 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:37:03 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2025-11-24 18:37:06 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2025-11-24 18:37:11 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:37:21 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:37:23 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:37:28 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:37:33 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:37:38 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:37:42 - [MESSAGE][PASSED] - Delayed 4 second(s)
+
+2025-11-24 18:37:44 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:37:49 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:37:54 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:37:56 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2025-11-24 18:38:06 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:38:16 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:38:18 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:38:20 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:38:22 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:38:24 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:38:26 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:38:28 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:38:43 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2025-11-24 18:38:53 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:38:55 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:38:58 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:39:01 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2025-11-24 18:39:04 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2025-11-24 18:39:09 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:39:19 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:39:21 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:39:26 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:39:31 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:39:36 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:39:40 - [MESSAGE][PASSED] - Delayed 4 second(s)
+
+2025-11-24 18:39:42 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:39:47 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:39:52 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:39:53 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2025-11-24 18:40:03 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:40:13 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:40:15 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:40:17 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:40:19 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:40:21 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:40:23 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:40:25 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:40:41 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2025-11-24 18:40:51 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:40:53 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:40:55 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:40:58 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2025-11-24 18:41:01 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2025-11-24 18:41:06 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:41:16 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:41:18 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:41:23 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:41:28 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:41:33 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:41:37 - [MESSAGE][PASSED] - Delayed 4 second(s)
+
+2025-11-24 18:41:39 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:41:44 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:41:49 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:41:50 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2025-11-24 18:42:00 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:42:10 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:42:12 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:42:15 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:42:25 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:42:27 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:42:30 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:42:40 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:42:42 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:42:45 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:42:56 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:42:58 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:43:01 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:43:12 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:43:14 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:43:18 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:43:29 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:43:31 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:43:35 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:43:37 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:43:39 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:43:41 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:43:43 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:43:46 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:43:48 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:43:50 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:43:52 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:43:54 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:43:56 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:43:58 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:44:13 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2025-11-24 18:44:23 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:44:25 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:44:27 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:44:30 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2025-11-24 18:44:33 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2025-11-24 18:44:38 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:44:48 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:44:50 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:44:55 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:45:00 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:45:05 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:45:09 - [MESSAGE][PASSED] - Delayed 4 second(s)
+
+2025-11-24 18:45:12 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:45:17 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:45:22 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:45:23 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2025-11-24 18:45:33 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:45:43 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:45:45 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:45:47 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:45:58 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:46:00 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:46:03 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:46:13 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:46:15 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:46:18 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:46:29 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:46:31 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:46:34 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:46:45 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:46:47 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:46:51 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:47:02 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:47:04 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:47:08 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:47:10 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:47:12 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:47:14 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:47:16 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:47:18 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:47:20 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:47:22 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:47:24 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:47:27 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:47:29 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:47:31 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:47:33 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:47:35 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:47:37 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:47:39 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:47:41 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:47:43 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:47:45 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:47:47 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:47:49 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:47:52 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:47:54 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:47:56 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:47:58 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:48:00 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:48:02 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:48:04 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:48:06 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:48:08 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:48:10 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:48:12 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:48:14 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:48:17 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:48:19 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:48:21 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:48:23 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:48:25 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:48:27 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:48:29 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:48:31 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:48:33 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:48:35 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:48:37 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:48:39 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:48:41 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:48:44 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:48:46 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:48:48 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:48:50 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:48:52 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:48:54 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:48:56 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:48:58 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:49:00 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:49:02 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:49:04 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:49:06 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:49:08 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:49:11 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:49:13 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:49:15 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:49:17 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:49:19 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:49:21 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:49:23 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:49:25 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:49:27 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:49:29 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:49:31 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:49:33 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:49:35 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:49:38 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:49:40 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:49:42 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:49:44 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:49:46 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:49:48 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:49:50 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:49:52 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:49:54 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:49:56 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:49:58 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:50:00 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:50:03 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:50:05 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:50:07 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:50:09 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:50:11 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:50:13 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:50:15 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:50:17 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:50:19 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:50:34 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2025-11-24 18:50:44 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:50:47 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:50:49 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:50:52 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2025-11-24 18:50:55 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2025-11-24 18:51:00 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:51:10 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:51:12 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:51:17 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:51:22 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:51:27 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:51:31 - [MESSAGE][PASSED] - Delayed 4 second(s)
+
+2025-11-24 18:51:33 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:51:38 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:51:42 - [MESSAGE][PASSED] - Delayed 4 second(s)
+
+2025-11-24 18:51:46 - [MESSAGE][PASSED] - Delayed 4 second(s)
+
+2025-11-24 18:51:46 - [MESSAGE][WARNING] - A browser is already opened. Closing browser and opening a new one
+
+2025-11-24 18:51:47 - [MESSAGE][INFO] - Starting 'Chrome' driver
+
+2025-11-24 18:51:47 - [MESSAGE][INFO] - User set preference: ['prefs', '{download.default_directory=C:\Users\Public\, profile.default_content_settings.popups=0.0, download.prompt_for_download=false, download.directory_upgrade=true, plugins.always_open_pdf_externally=true, pdfjs.disabled=true, safebrowsing.enabled=true}']
+
+2025-11-24 18:51:47 - [MESSAGE][INFO] - User set preference: ['args', '[--start-maximized, --disable-infobars,  safebrowsing-disable-download-protection,  safebrowsing-disable-extension-blacklist, --test-type, --disable-extensions]']
+
+2025-11-24 18:51:47 - [MESSAGE][INFO] - User set preference: ['CapabilityType.ACCEPT_SSL_CERTS', 'true']
+
+2025-11-24 18:51:47 - [MESSAGE][INFO] - User set preference: ['pageLoadStrategy', 'normal']
+
+2025-11-24 18:51:48 - [MESSAGE][PASSED] - Browser is opened with url: ''
+
+2025-11-24 18:52:03 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2025-11-24 18:52:03 - [MESSAGE][PASSED] - Current window maximized
+
+2025-11-24 18:52:06 - [MESSAGE][PASSED] - Navigate to 'https://www.br.intrallianz.com/ngx-intranet/public/home' successfully
+
+2025-11-24 18:52:26 - [MESSAGE][PASSED] - Delayed 20 second(s)
+
+2025-11-24 18:52:27 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2025-11-24 18:52:27 - [MESSAGE][PASSED] - Delayed 0 second(s)
+
+2025-11-24 18:52:32 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:52:34 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:52:36 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:52:52 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2025-11-24 18:52:57 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:52:57 - [MESSAGE][PASSED] - Current window maximized
+
+2025-11-24 18:53:00 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2025-11-24 18:53:01 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2025-11-24 18:53:06 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:53:16 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:53:18 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:53:20 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:53:23 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2025-11-24 18:53:33 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:53:46 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:53:56 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:54:01 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:54:06 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:54:12 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:54:17 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:54:20 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2025-11-24 18:54:21 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2025-11-24 18:54:26 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:54:36 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:54:38 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:54:40 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:54:43 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2025-11-24 18:54:53 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:55:08 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:55:18 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:55:23 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:55:28 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:55:33 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:55:38 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:55:41 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2025-11-24 18:55:42 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2025-11-24 18:55:48 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:55:58 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:56:00 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:56:02 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:56:05 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2025-11-24 18:56:15 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:56:29 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:56:39 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:56:44 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:56:49 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:56:54 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:56:59 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:57:03 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2025-11-24 18:57:04 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2025-11-24 18:57:09 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:57:19 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:57:21 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:57:23 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:57:26 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2025-11-24 18:57:36 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:57:50 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:58:00 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:58:05 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:58:10 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:58:15 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:58:20 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:58:23 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2025-11-24 18:58:24 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2025-11-24 18:58:29 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:58:40 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:58:42 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:58:44 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 18:58:47 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2025-11-24 18:58:57 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:59:11 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:59:21 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 18:59:26 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:59:31 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:59:36 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:59:41 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 18:59:44 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2025-11-24 18:59:45 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2025-11-24 18:59:50 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 19:00:01 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 19:00:03 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 19:00:05 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 19:00:08 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2025-11-24 19:00:18 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 19:00:31 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 19:00:41 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 19:00:46 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 19:00:51 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 19:00:56 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 19:01:01 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 19:01:05 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2025-11-24 19:01:06 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2025-11-24 19:01:11 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 19:01:21 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 19:01:23 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 19:01:25 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 19:01:28 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2025-11-24 19:01:38 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 19:01:52 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 19:02:02 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2025-11-24 19:02:07 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 19:02:12 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 19:02:17 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 19:02:22 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2025-11-24 19:02:30 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2025-11-24 19:02:31 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2025-11-24 19:02:31 - [TEST_STEP][PASSED] - closeBrowser(): Browser is closed
+
+2025-11-24 19:02:32 - [MESSAGE][PASSED] - Browser is closed]]></system-out>
+         <system-err><![CDATA[]]></system-err>
+      </testcase>
+      <system-out><![CDATA[2025-11-24 17:47:26 - [TEST_SUITE][PASSED] - RPA: Test Cases/Web UI Test/Backoffce/FluxoEnvioPDF]]></system-out>
+      <system-err><![CDATA[]]></system-err>
+   </testsuite>
+</testsuites>

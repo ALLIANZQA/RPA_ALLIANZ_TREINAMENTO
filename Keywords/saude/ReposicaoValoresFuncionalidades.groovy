@@ -606,7 +606,7 @@ public class ReposicaoValoresFuncionalidades extends rpaCommands{
 			List<String> anexos = new ArrayList<>();
 			anexos[0] = path
 			anexos[1] = "ReposicaoValores.xlsx"
-			sendEmail.CreateEmail.createEmailSendMultipleFiles(sender, emaildestination, pwdsender, anexos, host, porta, tipoAba)
+			sendEmail.CreateEmail.createEmailSendMultipleFiles(sender, emaildestination,  anexos, tipoAba)
 		}
 	}
 

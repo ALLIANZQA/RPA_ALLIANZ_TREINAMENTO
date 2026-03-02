@@ -155,7 +155,7 @@ public class GeraBlocoBCadastroCorretorFuncionalidades extends rpaCommands{
 			acessoAmbiente(aba)
 			WebUI.delay(10);
 			MenuMatriz.gestaoMarketing()
-			MenuMatriz.subMenu("/*/body/div/div/app-root/app-private/app-displayed-menu/div/app-teaser/div/div[1]/div/div[2]/ul", "a", "Gestão Corretores")
+			MenuMatriz.subMenuNome("a", "Gestão Corretores")
 			WebUI.delay(17);
 
 			for(int i = 1; i <= data.getRowNumbers(); i++) {
@@ -203,8 +203,7 @@ public class GeraBlocoBCadastroCorretorFuncionalidades extends rpaCommands{
 			 * TELA - GESTÃO PROCESSOS
 			 */
 			alteraJanejaGenerica(1, 5)
-			WebUI.maximizeWindow()
-
+	
 			/**
 			 * GESTÃO DE MEDIADORES
 			 */
@@ -231,9 +230,14 @@ public class GeraBlocoBCadastroCorretorFuncionalidades extends rpaCommands{
 			clickXpath('//*[@id="informacionGenerica"]/div[1]', 1);
 			//Dados Allianz
 			clickXpath('//*[@id="datosAllianz"]/div[1]', 1);
+			WebUI.delay(10);
+			System.out.println()
+			if(!codigoFilial(recuperaValor('//*[@id="sucursalText"]', 'defaultValue', 0).trim())){	
 			//Encerra produção
 			limpaCampo('//*[@id="fechaCierreProduccion"]',1)
 			WebUI.delay(3);
+			}
+			System.out.println()
 			//Aceitar
 			selecionaItemLista("Aceitar",'//*[@id="datosAllianzViewForm"]/table' , "div" )
 			//Info. Comercial
@@ -491,6 +495,30 @@ public class GeraBlocoBCadastroCorretorFuncionalidades extends rpaCommands{
 		return  r
 	}
 
+	public static boolean codigoFilial(String codFilial){
+		boolean r = false
+		List<String> listFiliais = new ArrayList<String>()
+		listFiliais.add("168-INT - ATNP 1")
+		listFiliais.add("70-INT - ATNP 2")
+		listFiliais.add("177-MG/CO - ATNP")
+		listFiliais.add("174-N/NE - ATNP")
+		listFiliais.add("182-RJ - ATNP")
+		listFiliais.add("102-SP - ATNP 2")
+		listFiliais.add("305-SP - ATNP 1")
+		listFiliais.add("172-SUL - ATNP 1")
+		listFiliais.add("107-SUL - ATNP 2")
+		System.out.println("Filial ["+codFilial+"]\n")
+		for(int i = 0; i < listFiliais.size(); i++){
+			System.out.println("["+i+"] ["+listFiliais[i]+"]")
+			if(listFiliais[i].contains(codFilial.toString())){
+				System.err.println("FOUND COD FILIAL ["+i+"] ["+listFiliais[i]+"]")
+				r = true
+				break
+			}
+		}
+		System.out.println("\nFILIAL ["+r+"]")
+		return  r
+	}
 
 
 

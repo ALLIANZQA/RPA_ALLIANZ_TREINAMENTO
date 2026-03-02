@@ -157,7 +157,7 @@ public class OficinasNaoReferenciadasFuncionalidades extends rpaCommands {
 			List<String> anexos = new ArrayList<>();
 			anexos[0] = pathOfininas
 			anexos[1] = "OficinasReferenciadasCredenciadas.xlsx"
-			sendEmail.CreateEmail.createEmailSendMultipleFiles(sender, emaildestination, pwdsender, anexos, host, porta, tipoAba)
+			sendEmail.CreateEmail.createEmailSendMultipleFiles(sender, emaildestination, anexos, tipoAba)
 		}
 	}
 

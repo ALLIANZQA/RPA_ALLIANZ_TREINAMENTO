@@ -403,7 +403,7 @@ public class ProcessosInspecaoRisco extends backofficeFuncionalidades{
 				List<String> anexos = new ArrayList<>();
 				anexos[0] = caminhoDiretorioExcel;
 				anexos[1] = 'RoboInspecaoRisco.xlsx';
-				sendEmail.CreateEmail.createEmailSendMultipleFiles(sender, emaildestination, pwdsender, anexos, host, porta, tipoAba);
+				sendEmail.CreateEmail.createEmailSendMultipleFiles(sender, emaildestination, anexos, tipoAba);
 			} catch (Exception e){
 			}
 		}

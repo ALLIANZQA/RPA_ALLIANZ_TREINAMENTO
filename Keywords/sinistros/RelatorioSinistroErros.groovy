@@ -373,7 +373,7 @@ public class RelatorioSinistroErros  extends backofficeFuncionalidades{
 			List<String> anexos = new ArrayList<>();
 			anexos[0] = path1;
 			anexos[1] = nome1;
-			sendEmail.CreateEmail.createEmailSendMultipleFiles(sender, emaildestination, pwdsender, anexos, host, porta, tipoAba )
+			sendEmail.CreateEmail.createEmailSendMultipleFiles(sender, emaildestination, anexos, tipoAba )
 			//}
 
 

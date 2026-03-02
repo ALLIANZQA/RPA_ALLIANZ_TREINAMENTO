@@ -216,8 +216,9 @@ public class CadastroDeRestricaoFuncionalidades  extends rpaCommands {
 			//Menu Produção & Sinistros
 			MenuMatriz.producaoSinistro();
 			//Gestão IVS
-			String xpath ='/*/body/div/div/app-root/app-private/app-displayed-menu/div/app-teaser/div/div[2]/div/div[1]/ul'
-			selecionaItemListaContains("Gestão IVS", xpath, 'a');
+		//	String xpath ='/*/body/div/div/app-root/app-private/app-displayed-menu/div/app-teaser/div/div[2]/div/div[1]/ul'
+		//	selecionaItemListaContains("Gestão IVS", xpath, 'a');
+			MenuMatriz.subMenuNome('a',"Gestão IVS")
 			WebUI.delay(17);
 			alteraJanejaGenerica(1,5);
 			WebUI.maximizeWindow()

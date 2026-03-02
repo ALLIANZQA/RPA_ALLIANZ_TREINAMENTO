@@ -134,8 +134,8 @@ public class ReativacaoApoliceFuncionalidades extends rpaCommands{
 	 * @return
 	 */
 	public static menuProducaoSinistros(){
-		MenuMatriz.subMenuEquals('/*/body/div/div/app-root/app-private/app-private-header/nx-ibl-navigation/div/div[1]/nx-ibl-navigation-desktop/div[1]/div/div/ul', "span", "Produção & Sinistros")
-		MenuMatriz.subMenuEquals("/*/body/div[1]/div/app-root/app-private/app-displayed-menu/div/app-teaser/div/div[1]/div/div[2]/ul", "a", "Cancelamento 2")
+		MenuMatriz.producaoSinistro()
+		MenuMatriz.subMenuNome("a", "Cancelamento 2")
 	}
 
 	/**
@@ -241,7 +241,7 @@ public class ReativacaoApoliceFuncionalidades extends rpaCommands{
 			System.out.println('['+aba+'] ['+a+']')
 			if(validaDados(rollCheck)){
 				acessoAmbiente(aba,a)
-				WebUI.waitForPageLoad(20)
+				WebUI.delay(20);
 				menuProducaoSinistros()
 				WebUI.waitForPageLoad(15)
 				alteraJanejaGenerica(1, 15)
@@ -311,6 +311,18 @@ public class ReativacaoApoliceFuncionalidades extends rpaCommands{
 					//Reavaliar
 					selecionaItemLista('Revalidar', '//*[@id="sectionPaginaCompletaSectionBar"]', 'div')
 					//Justificativa
+					
+					WebUI.delay(5);
+					s = recuperaValor('//*[@id="dataErrorSection"]/table/tbody/tr/td[2]', 'innerText', 0)
+					System.out.println("Erro ["+s+"]")
+					if(alertListBlocList(s)){
+						//Home
+						clicarEmElementoDaTela('//*[@id="imgOptMenuBackHome"]', 1)
+						registros[3] = 'Processado'
+						registros[4] = s
+						b = false
+					} else {
+					
 					try{
 						limpaCampo('//*[@id="justificacion"]', 0)
 						preencheXpath('//*[@id="justificacion"]', registros[2], 0);
@@ -325,6 +337,10 @@ public class ReativacaoApoliceFuncionalidades extends rpaCommands{
 					registros[3] = 'Processado'
 					registros[4] = s
 					b = true
+					
+					}
+					
+					
 				}
 			} catch (Exception e){
 				//Home

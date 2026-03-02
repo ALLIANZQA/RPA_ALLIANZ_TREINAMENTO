@@ -207,7 +207,7 @@ public class CotaResidFuncionalidades extends rpaCommands{
 				anexos[0] = path
 				anexos[1] = "Cota_Resid.xlsx"
 				System.out.println(anexos[0]+" - "+anexos[1])
-				sendEmail.CreateEmail.createEmailSendMultipleFiles(sender, emaildestination, pwdsender, anexos, host, porta, tipoAba)
+				sendEmail.CreateEmail.createEmailSendMultipleFiles(sender, emaildestination, anexos, tipoAba)
 			}
 		} catch (Exception e){
 		}

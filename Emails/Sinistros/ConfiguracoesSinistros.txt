@@ -2,4 +2,4 @@ C:/Users/Public/RPA_ALLIANZ/Emails/Sinistros/Sinistros.txt
 Rpa_Sinistros_InspecaoRisco@Allianz.com.br
 
 smtp.intrallianz.es
-25
+00

@@ -31,7 +31,7 @@ try {
 	 *  "HONDA", "SANTANDER", "SICOOB", "MDS", "SICREDI", "NUP"
 	 *
 	 */
-	backoffice.IndexacaoFGFuncionalidades.fluxoIndexacaoFG('IndexacaoFG',"PRD",  "HONDA", "SANTANDER");
+	backoffice.IndexacaoFGFuncionalidades.fluxoIndexacaoFG('IndexacaoFG', "PRD","SANTANDER");
 	WebUI.closeBrowser();
  }
    catch (Exception e) {

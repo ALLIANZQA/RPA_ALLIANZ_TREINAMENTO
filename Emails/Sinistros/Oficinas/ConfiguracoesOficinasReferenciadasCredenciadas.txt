@@ -2,4 +2,4 @@ C:/Users/Public/RPA_ALLIANZ/Emails/Sinistros/Oficinas/OficinasReferenciadasCrede
 rpa@allianz.com.br
 
 smtp.intrallianz.es
-25
+00

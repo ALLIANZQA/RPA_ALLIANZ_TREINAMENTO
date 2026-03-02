@@ -37,9 +37,11 @@ try{
      * Remoção do texto : Você já sabe, mas vale lembrar, a SulAmérica Auto agora é Allianz!
      * Do envio de cartas 15D 
      * 
+     * Atualização 22/10/2025 - IBLBDM-74087 
+     * Ajuste na comunicação HTML de renovação automática
      * 
 	 */
-	 backoffice.SantanderEnvioDeMensagens.enviaMensagem('PRD','RenovaSantander','30',"10/02/2025","11/02/2025","12/02/2025","13/02/2025","14/02/2025","15/02/2025","16/02/2025","17/02/2025","18/02/2025")
+	 backoffice.SantanderEnvioDeMensagens.enviaMensagem('PRD','RenovaSantander','NR',"02/01/2026")
 	 WebUI.closeBrowser()
    } catch (Exception e){
 	 System.err.println("Falha ao enviar cartas de aviso santander")

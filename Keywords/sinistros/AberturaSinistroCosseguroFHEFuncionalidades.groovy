@@ -538,7 +538,7 @@ public class AberturaSinistroCosseguroFHEFuncionalidades extends rpaCommands{
 			List<String> anexos = new ArrayList<>();
 			anexos[0] = "C:\\Users\\Public\\RPA_ALLIANZ\\Data Files\\Sinistro\\RoboCosseguroFHE.xlsx"
 			anexos[1] = "RoboCosseguroFHE.xlsx"
-			sendEmail.CreateEmail.createEmailSendMultipleFiles(sender, emaildestination, pwdsender, anexos, host, porta, tipoAba)
+			sendEmail.CreateEmail.createEmailSendMultipleFiles(sender, emaildestination, anexos, tipoAba)
 		}
 	}
 

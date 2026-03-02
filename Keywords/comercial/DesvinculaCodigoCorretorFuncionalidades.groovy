@@ -6,6 +6,8 @@ import static com.kms.katalon.core.testdata.TestDataFactory.findTestData
 import static com.kms.katalon.core.testobject.ObjectRepository.findTestObject
 import static com.kms.katalon.core.testobject.ObjectRepository.findWindowsObject
 
+import java.time.Duration
+import java.time.Instant
 import java.util.List
 
 import com.kms.katalon.core.annotation.Keyword
@@ -27,8 +29,10 @@ import auxiliares.RegrasEmailDestination
 import auxiliares.MenuMatriz
 import internal.GlobalVariable
 import rpacommands.rpaCommands
-
-
+import auxiliares.ExtractDates
+import auxiliares.timer;
+import sendEmail.emailDinamico;
+import auxiliares.GetHost;
 
 public class DesvinculaCodigoCorretor extends rpaCommands{
 	
@@ -38,6 +42,17 @@ public class DesvinculaCodigoCorretor extends rpaCommands{
 	private static String alerta
 	private static String statusFail
 	private static int cellCheck = 6
+	private static Instant start;
+	private static Instant end;
+	private static Duration timeLapnse;
+	private static String docName = 'DesvinculaCorretor.xlsx';
+	private static int cellCheckAlert = 7;
+	private static boolean enviado = true;
+	private static String xpath;
+	private static String tela;
+	private static boolean erroTela = false;
+	private static String msgAlerta
+	private static String status
 	
 	/**
 	 * @author T_DCDias
@@ -102,9 +117,21 @@ public class DesvinculaCodigoCorretor extends rpaCommands{
 	 * @return
 	 */
 	public static DesvinculaCodigoCorretorFuncionalidades(String tipoAba){
+		System.out.println()
+		String dataInicio = ExtractDates.dataAtual();
+		String horaInicial =  ExtractDates.horaAtualizada();
+		start = Instant.now();
 		DesvinculaCodigoCorretorFuncionalidadesCompleto(tipoAba)
 		processaFalhas(tipoAba)
-		enviarEmailDesvinculaCodigoCorretor(tipoAba)
+		//enviarEmailDesvinculaCodigoCorretor(tipoAba)
+		end =  Instant.now();
+		timeLapnse = Duration.between(start, end);
+		String dataFinal = ExtractDates.dataAtual();
+		String horaFinal =  ExtractDates.horaAtualizada();
+		try{
+			enviaEmailDinamico(tipoAba, timeLapnse, dataInicio, dataFinal, horaInicial, horaFinal );
+		} catch (Exception e){
+		}
 	}
 	
 	/**
@@ -119,7 +146,7 @@ public class DesvinculaCodigoCorretor extends rpaCommands{
 			WebUI.delay(15);
 			MenuMatriz.manutancaoGeral()
 			WebUI.delay(2);
-			MenuMatriz.subMenu("/*/body/div/div/app-root/app-private/app-displayed-menu/div/app-teaser/div/div/div/div[2]/ul", "a", "UMA")
+			MenuMatriz.subMenuNome( "a", "UMA")
 			WebUI.delay(17);
 			alteraJanejaGenerica(1, 5)
 			for(int i = 1; i <= data.getRowNumbers(); i++) {
@@ -245,6 +272,38 @@ public class DesvinculaCodigoCorretor extends rpaCommands{
 	}
 	
 	/**
+	 * @author Alz_sup54955
+	 * @param tipoAba
+	 * @param timeLapnse
+	 * @param dataInicio
+	 * @param dataFinal
+	 * @param horaInicial
+	 * @param horaFinal
+	 * @return
+	 */
+	public static enviaEmailDinamico(String tipoAba, Duration timeLapnse, String dataInicio, String dataFinal, String horaInicial, String horaFinal){
+		System.out.println()
+		try{
+			if(!validaDados(cellCheck)){
+				String pathTxtEmailConfig = "C:\\Users\\Public\\RPA_ALLIANZ\\Emails\\Marketing\\GestaoReclamacao\\ConfiguracoesGestaoReclamacao.txt";
+				lerConfigurações(pathTxtEmailConfig)
+				System.out.println(pathTxtEmail)
+				String emaildestination = StringFormatter.formatterEmailDestination(FileInput.readFile(pathTxtEmail));
+				// FORMATA SAIDA DO TEMPO DE EXECUÇÃO
+				long segds = timeLapnse.toSeconds();
+				String hours = timeLapnse.toHours()+"h "+
+						timer.converteMinutos(timeLapnse.toHours(), timeLapnse.toMinutes())+"m "+
+						timer.converteSegundos(timeLapnse.toMinutes(),segds)+"s";
+				// ENVIO DE E-MAIL
+				//DADOS DO DOCUMENTO
+				initDataFiles();
+				// ENVIA E-MAIL DINAMICO
+				emailDinamico.enviaEmailDinamico(sender, emaildestination, tipoAba, path, docName, emailDinamico.listaDeAlertas(data, cellCheckAlert)  , hours, horaInicial, horaFinal,  GetHost.getHostname() , dataInicio, dataFinal, "" );
+			}
+		} catch (Exception e){}
+	}
+	
+	/**
 	 * @author T_Dvlopes
 	 * @param tipoAba
 	 * @return
@@ -261,7 +320,7 @@ public class DesvinculaCodigoCorretor extends rpaCommands{
 		      List<String> anexos = new ArrayList<>();
 				   anexos[0] = path1;
 				   anexos[1] = nomeArquivo;
-			  sendEmail.CreateEmail.createEmailSendMultipleFiles(sender, emaildestination, pwdsender, anexos, host, porta, tipoAba);
+			  sendEmail.CreateEmail.createEmailSendMultipleFiles(sender, emaildestination, anexos, tipoAba);
 		} catch (Exception e){
 			enviarEmailDesvinculaCodigoCorretor(tipoAba);
 		}

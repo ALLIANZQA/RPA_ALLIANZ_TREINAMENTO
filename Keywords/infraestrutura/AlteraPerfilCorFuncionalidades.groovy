@@ -200,7 +200,7 @@ public class AlteraPerfilCorFuncionalidades extends rpaCommands {
 		 */
 		WebUI.delay(10);
 		MenuMatriz.manutancaoGeral()
-		MenuMatriz.subMenu("/html/body/div/div/app-root/app-private/app-displayed-menu/div/app-teaser/div/div/div/div[2]/ul", "a","UMA")
+		MenuMatriz.subMenuNome("a","UMA")
 		alteraJanejaGenerica(1, 5)
 		WebUI.maximizeWindow()
 		WebUI.delay(2);
@@ -249,7 +249,7 @@ public class AlteraPerfilCorFuncionalidades extends rpaCommands {
 			lerConfigurações(pathTxtEmail)
 			String pathAnexos = "C:/Users/Public/RPA_ALLIANZ/Emails/infraestrutura/Anexos.txt"
 			String emaildestination = StringFormatter.formatterEmailDestination(FileInput.readFile(pathTxtEmail));
-			sendEmail.CreateEmail.createEmailSendMultipleFiles(sender, emaildestination, pwdsender, FileInput.readFile(pathAnexos), host, porta, 'Planilha1' )
+			sendEmail.CreateEmail.createEmailSendMultipleFiles(sender, emaildestination, FileInput.readFile(pathAnexos), 'Planilha1' )
 		}
 	}
 

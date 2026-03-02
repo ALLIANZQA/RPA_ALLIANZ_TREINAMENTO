@@ -43,6 +43,7 @@ public class IndexacaoFGFuncionalidades extends rpaCommands{
 	private static String alerta
 	private static int cellCheck = 5
 	private static String filepath = "C:\\Users\\Public\\RPA_ALLIANZ\\Data Files\\Backoffce\\IndexacaoFG\\Arquivos\\"
+	private static String filepathIndex = "C:\\Users\\Public\\RPA_ALLIANZ\\Data Files\\Backoffce\\Index\\"
 	private static String completeFilePath
 	private static String nomeIndex;
 	private static String msgAlert;
@@ -177,7 +178,6 @@ public class IndexacaoFGFuncionalidades extends rpaCommands{
 		       } catch (Exception e){}
 		   }
 		}
-		
 	}
 	
 	public static boolean fluxoCompletoIndexacaoFG(String aba, String a){
@@ -190,7 +190,7 @@ public class IndexacaoFGFuncionalidades extends rpaCommands{
 						List<String> registros = new ArrayList<>();
 						lista( registros , i)
 						String arquivo = registros[3].toString()
-						if(!validaExistenciaDeArquivo(filepath)){
+						if(!validaExistenciaDeArquivo(filepathIndex+arquivo+".xlsx")){
 							if(indecacao(registros, aba)) {
 								try{
 									auxiliares.WriteExcelFactory.updateSheetLine("", j, path, "Processado", 4, aba);
@@ -275,7 +275,7 @@ public class IndexacaoFGFuncionalidades extends rpaCommands{
 								selecionaItemLista('Indexación', '/*/body/div[1]/div/app-root/file-management/app-header/div/nx-ibl-header/nx-ibl-navigation/div/div[1]/nx-ibl-navigation-desktop/div[1]/div/div', 'span')
 							} catch (Exception e){}
 
-							WebUI.delay(5);
+							WebUI.delay(10);
 							alteraJanejaGenerica(3, 5)
 							//Valida tela "ANEXAR DOCUMENTOS - LI"
 							tela = recuperaValor( '//*[@id="cellAppPromptHeaderArea"]', 'innerText', 2)
@@ -284,16 +284,24 @@ public class IndexacaoFGFuncionalidades extends rpaCommands{
 								//Modelo/Descrição
 								preencheXpath('//*[@id="codigo"]', registros[1], 1);
 								commandTAB('//*[@id="codigo"]')
-								WebUI.delay(3);
+								
 								msgAlert  = recuperaValor('//*[@id="dataErrorSection"]/table/tbody/tr/td[2]', 'innerText', 1)
 				                System.out.println("alertaFG ["+msgAlert+"] ["+msgAlert.length()+"]")
 			                    if(!alertListBlocList(msgAlert)){
-								  WebUI.delay(3);
+								  WebUI.delay(10);
+								  String fileName
+								  String pathIndex = '//*[@id="upFile1"]'
+								  try{
 								  //File Path
-								  String path = '//*[@id="upFile1"]'
-								  String fileName = identificaArquivosDiretorio( filepath, registros[3]+".xlsx");
+								  fileName = identificaArquivosDiretorio( filepathIndex, registros[3]+".xlsx");
+								  
 								  System.err.println(fileName);
-								  fileUpload(path,  filepath+fileName , 5)
+								  } catch (Exception e){}
+								
+								  try{
+								     fileUpload(pathIndex,  filepathIndex+fileName , 5)
+								  } catch (Exception e){}
+								
 								  //Observações/texto
 								  //preencheXpath('//*[@id="texto"]', registros[2], 1);
 								  preencheXpath('//*[@id="texto"]', registros[2], 1);
@@ -494,20 +502,20 @@ public class IndexacaoFGFuncionalidades extends rpaCommands{
 		StringBuilder strdts = new StringBuilder()
 		
 		for(int i=0 ; i < registros.size();i++){
+			System.out.println(registros[i])
 			strdts.append(registros[i])
 		}
-		
 		hasdates.putAll(ExtractDates.getSubDates(strdts.toString()))
-		
 		HashSet<String> strDT = new HashSet<String>();
 		HashSet<String> strIDX = new HashSet<String>();
 		
 		for(int j = 0; j <hasdates.size(); j++){
-			strIDX.add(StringFormatter.removeNumerosDeStrings(registros[j]))
+			if(j==0){
+			  strIDX.add(StringFormatter.removeNumerosDeStrings(registros[j]))
+			}
 			strDT.add(" - "+hasdates.get(j))
 		}
 		index = strIDX[0]
-		
 		for(int k=0; k<strDT.size();k++){
 			strb.append(strDT[k])
 		}

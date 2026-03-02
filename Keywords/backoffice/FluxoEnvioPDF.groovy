@@ -125,7 +125,7 @@ public class FluxoEnvioPDF extends backofficeFuncionalidades{
 		if(carregaDadosDownload()){
 			System.err.println('Fluxo Download - Registros ['+listaExcel.size()+']')
 			WebUI.delay(10);
-			MenuMatriz.newFluxoGestao("/*/body/div/div/app-root/app-private/app-displayed-menu/div/app-teaser/div/div[2]/div/div[1]/ul")
+			MenuMatriz.newFluxoGestaoNome()
 			WebUI.delay(17);
 			alteraJanejaGenerica(1, 5)
 			WebUI.maximizeWindow()
@@ -506,9 +506,9 @@ public class FluxoEnvioPDF extends backofficeFuncionalidades{
 			List<String> anexos = new ArrayList<>();
 			anexos[0] = 'C:\\Users\\Public\\'+novoDiretorio+'.zip';
 			anexos[1] = novoDiretorio+'.zip';
-			System.out.println(anexos[0]+" - "+anexos[1])
-			
-			if(sendEmail.CreateEmail.createEmailSendMultipleFilesCorretor(de, para+", enviopdfcorporate@allianz.com.br", pwdsender, anexos, host, porta, "emailCorretor", tomador, apolice.replaceAll("—", ""))){
+			System.out.println("["+anexos[0]+" - "+anexos[1]+"]")
+			System.out.println("["+tomador+"]")
+			if(sendEmail.CreateEmail.createEmailSendMultipleFilesCorretor(de, para+", enviopdfcorporate@allianz.com.br", anexos, "emailCorretor", tomador, apolice.replaceAll("—", ""))){
 				WebUI.delay(10);
 				deletarPasta(novoDiretorio)
 				deleteFileDiretory("C:\\Users\\Public\\"+novoDiretorio+".zip")
@@ -617,7 +617,7 @@ public class FluxoEnvioPDF extends backofficeFuncionalidades{
 		List<String> anexos = new ArrayList<>();
 		anexos[0] = caminhoExcel
 		anexos[1] = "RoboEnvioPdf.xlsx"
-		sendEmail.CreateEmail.createEmailSendMultipleFiles(sender, emaildestination, pwdsender, anexos, host, porta, tipoAba)
+		sendEmail.CreateEmail.createEmailSendMultipleFiles(sender, emaildestination, anexos, host, porta, tipoAba)
 		//		}
 	}
 	

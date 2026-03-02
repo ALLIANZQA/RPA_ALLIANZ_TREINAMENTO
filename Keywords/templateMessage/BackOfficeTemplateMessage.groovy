@@ -20,6 +20,8 @@ import internal.GlobalVariable
 import sendEmail.MessageFactory
 import auxiliares.StringFormatter
 import sendEmail.htmlCadastroCorretor
+import sendEmail.htmlAlteracoesRenovacaoBanrisul
+import sendEmail.*;
 
 public class BackOfficeTemplateMessage extends MessageFactory{
 
@@ -400,7 +402,22 @@ public class BackOfficeTemplateMessage extends MessageFactory{
 				//String sb = htmlCadastroCorretor.htmlBoasVindas(corretor, user, pwr, NOMEACCOUNT, EMAILACCOUNT, ddd, telefone, ddd_account, telefone_account,imagens)
 				String sb = htmlCadastroCorretor.htmlBoasVindasIBLBDM75460(corretor, user, pwr, NOMEACCOUNT, EMAILACCOUNT, ddd, telefone, ddd_account, telefone_account,imagens)
 				return sb;
-			}
+	}
+	
+	
+	public static String alteracoesRenovacaoBanrisul(String corretor, String email, String telefone, String susep, String proponente, String cpfcnpj, String apolice, String finalVigencia, String nome, List<String> imagens){
+		System.out.println(corretor)
+		System.out.println()
+		String sb = htmlAlteracoesRenovacaoBanrisul.htmlAlteracoesRenovacaoBanrisulBody(corretor, email, telefone, susep, proponente, cpfcnpj, apolice, finalVigencia, nome, imagens)
+		return sb;
+	}
+	
+	public static String naoRenovacaoBanrisul(String corretor, String email, String telefone, String susep, String proponente, String cpfcnpj, String apolice, String finalVigencia, String nome, List<String> imagens){
+		System.out.println(corretor)
+		System.out.println()
+		String sb = htmlNaoRenovacaoBanrisul.htmlNaoRenovacaoBanrisulBody(corretor, email, telefone, susep, proponente, cpfcnpj, apolice, finalVigencia, nome, imagens)
+		return sb;
+	}
 	
 	
 	public static String allFilialFisica(String totalError, 

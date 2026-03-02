@@ -22,9 +22,24 @@ import sendEmail.envioDeEmail;
 
 
 
+String s = "01 Data Averiguação *	 Data deve ser igual ou posterior ao dia de hoje 02 Telefone 1 *	 Campo necessário"
+campoObrigatorio(s)
+public static boolean campoObrigatorio(String alerta){
+	boolean b = false
+//	alerta=recuperaValor('//*[@id="cellDataErrorSection"]', 'innerText', 0)
+	System.out.println("Alerta ["+alerta+"]")
+	if(alerta.contains("Campo necessário") ){
+		b = true;
+	}
+	
+	if(alerta.contains("Campo obrigatório") ){
+		b = true;
+	}
+		System.out.println("Alerta ["+b+"]")
+ return b;
+}
 
-
-
+// || alerta.contains("Campo obrigatório")
 envioDeEmail.send()
 
 

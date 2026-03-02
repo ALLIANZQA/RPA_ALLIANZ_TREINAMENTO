@@ -1531,7 +1531,7 @@ public class RenovacaoAutoFrotaFuncionalidades extends rpaCommands{
 	public static menuProducao(){
 		MenuMatriz.producaoSinistro()
 		WebUI.delay(5);
-		MenuMatriz.subMenu('/html/body/div/div/app-root/app-private/app-displayed-menu/div/app-teaser/div/div[1]/div/div[2]/ul', 'a',"Produção")
+		MenuMatriz.subMenuNome('a',"Produção")
 	}
 
 	/**
@@ -1560,7 +1560,7 @@ public class RenovacaoAutoFrotaFuncionalidades extends rpaCommands{
 		List<String> anexos = new ArrayList<>();
 		anexos[0] = "C:\\Users\\Public\\RPA_ALLIANZ\\Data Files\\Auto\\RenovacaoAutoFrotaData\\RenovacaoAutoFrota.xlsx"
 		anexos[1] = "RenovacaoAutoFrota.xlsx"
-		sendEmail.CreateEmail.createEmailSendMultipleFiles(sender, emaildestination, pwdsender, anexos, host, porta, tipoAba)
+		sendEmail.CreateEmail.createEmailSendMultipleFiles(sender, emaildestination, anexos, host, porta, tipoAba)
 		//		}
 	}
 

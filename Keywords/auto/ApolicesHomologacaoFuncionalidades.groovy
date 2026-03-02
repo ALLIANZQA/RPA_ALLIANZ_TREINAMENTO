@@ -5,6 +5,9 @@ import static com.kms.katalon.core.testcase.TestCaseFactory.findTestCase
 import static com.kms.katalon.core.testdata.TestDataFactory.findTestData
 import static com.kms.katalon.core.testobject.ObjectRepository.findTestObject
 import static com.kms.katalon.core.testobject.ObjectRepository.findWindowsObject
+
+import java.time.Duration
+import java.time.Instant
 import java.util.List
 import com.kms.katalon.core.annotation.Keyword
 import com.kms.katalon.core.checkpoint.Checkpoint
@@ -27,6 +30,21 @@ import internal.GlobalVariable
 import rpacommands.rpaCommands
 import auxiliares.ExtractDates
 import auxiliares.timer
+import org.openqa.selenium.WebElement
+import sendEmail.emailDinamico;
+import auxiliares.GetHost;
+import auxiliares.CurrencyMonetary;
+
+import static com.kms.katalon.core.checkpoint.CheckpointFactory.findCheckpoint
+import static com.kms.katalon.core.testcase.TestCaseFactory.findTestCase
+import static com.kms.katalon.core.testdata.TestDataFactory.findTestData
+import static com.kms.katalon.core.testobject.ObjectRepository.findTestObject
+import static com.kms.katalon.core.testobject.ObjectRepository.findWindowsObject
+import static com.kms.katalon.core.checkpoint.CheckpointFactory.findCheckpoint
+import static com.kms.katalon.core.testcase.TestCaseFactory.findTestCase
+import static com.kms.katalon.core.testdata.TestDataFactory.findTestData
+import static com.kms.katalon.core.testobject.ObjectRepository.findTestObject
+import static com.kms.katalon.core.testobject.ObjectRepository.findWindowsObject
 
 
 public class ApolicesHomologacaoFuncionalidades extends rpaCommands{
@@ -41,6 +59,22 @@ public class ApolicesHomologacaoFuncionalidades extends rpaCommands{
 	private static String OEOrigen = "Allianz BR"
 	private static String entornoDestino = ""
 	private static String tipoTraspaso = "Poliza"
+	
+	private static Instant start;
+	private static Instant end;
+	private static Duration timeLapnse;
+	private static String docName = "ApolicesHomologacao.xlsx"
+	private static int cellCheckAlert = 82;
+	private static boolean enviado = true;
+	private static String xpath;
+	private static String tela;
+	private static boolean erroTela = false;
+	private static String msgAlerta
+	private static String xPath
+	private static String textoComplementar
+	private static String desbloqueio;
+	
+	
 
 	/**
 	 * @author be54955
@@ -48,11 +82,23 @@ public class ApolicesHomologacaoFuncionalidades extends rpaCommands{
 	 * @return
 	 */
 	public static fluxoApolicesHomologacaoFuncionalidades(String aba, String a, String b){
+		System.out.println()
+		String dataInicio = ExtractDates.dataAtual();
+		String horaInicial =  ExtractDates.horaAtualizada();
+		start = Instant.now();
 		entornoDestino = retornoDestino(b)
 		initDataFiles()
 		fluxoCompletoApolicesHomologacao(aba,a)
 		reprocessaFalhas(aba,a)
-		enviaEmailApolicesHomologacao(aba)
+		//enviaEmailApolicesHomologacao(aba)
+		end =  Instant.now();
+		timeLapnse = Duration.between(start, end);
+		String dataFinal = ExtractDates.dataAtual();
+		String horaFinal =  ExtractDates.horaAtualizada();
+		try{
+			enviaEmailDinamico(aba, timeLapnse, dataInicio, dataFinal, horaInicial, horaFinal );
+		} catch (Exception e){
+		}
 	}
 
 	/**
@@ -94,11 +140,45 @@ public class ApolicesHomologacaoFuncionalidades extends rpaCommands{
 				List<String> anexos = new ArrayList<>();
 				anexos[0] = path
 				anexos[1] = "ApolicesHomologacao.xlsx"
-				sendEmail.CreateEmail.createEmailSendMultipleFiles(sender, emaildestination, pwdsender, anexos, host, porta, tipoAba)
+				sendEmail.CreateEmail.createEmailSendMultipleFiles(sender, emaildestination, anexos, host, porta, tipoAba)
 			}
 		} catch (Exception e){
 		}
 	}
+	
+	
+	/**
+	 * @author Alz_sup54955
+	 * @param tipoAba
+	 * @param timeLapnse
+	 * @param dataInicio
+	 * @param dataFinal
+	 * @param horaInicial
+	 * @param horaFinal
+	 * @return
+	 */
+	public static enviaEmailDinamico(String tipoAba, Duration timeLapnse, String dataInicio, String dataFinal, String horaInicial, String horaFinal){
+		System.out.println()
+		try{
+			if(!validaDados(cellCheck)){
+				String pathTxtEmailConfig = "C:\\Users\\Public\\RPA_ALLIANZ\\Emails\\Auto\\ApolicesHomologacao\\ConfiguracoesApolicesHomologacao.txt"
+				lerConfigurações(pathTxtEmailConfig)
+				System.out.println(pathTxtEmail)
+				String emaildestination = StringFormatter.formatterEmailDestination(FileInput.readFile(pathTxtEmail));
+				// FORMATA SAIDA DO TEMPO DE EXECUÇÃO
+				long segds = timeLapnse.toSeconds();
+				String hours = timeLapnse.toHours()+"h "+
+						timer.converteMinutos(timeLapnse.toHours(), timeLapnse.toMinutes())+"m "+
+						timer.converteSegundos(timeLapnse.toMinutes(),segds)+"s";
+				// ENVIO DE E-MAIL
+				//DADOS DO DOCUMENTO
+				initDataFiles();
+				// ENVIA E-MAIL DINAMICO
+				emailDinamico.enviaEmailDinamico(sender, emaildestination, tipoAba, path, docName, emailDinamico.listaDeAlertas(data, cellCheckAlert)  , hours, horaInicial, horaFinal,  GetHost.getHostname() , dataInicio, dataFinal, "" );
+			}
+		} catch (Exception e){}
+	}
+
 
 	/**
 	 * @author T_DCDias
@@ -150,7 +230,15 @@ public class ApolicesHomologacaoFuncionalidades extends rpaCommands{
 		WebUI.delay(5)
 		MenuMatriz.manutancaoGeral()
 		WebUI.delay(5)
-		MenuMatriz.subMenu("/*/body/div/div/app-root/app-private/app-displayed-menu/div/app-teaser/div/div[1]/div/div[2]/ul", "a","Queries en Producción_BR")
+		System.err.println()
+		try{
+		MenuMatriz.subMenuNome("a","Queries en Producción_BR")
+		} catch (Exception e){}
+		
+		try{
+			MenuMatriz.subMenuNome("a","Queries en Producción")
+		} catch (Exception e){}
+			
 		WebUI.waitForPageLoad(30)
 		WebUI.switchToWindowIndex(1)
 	}
@@ -337,7 +425,7 @@ public class ApolicesHomologacaoFuncionalidades extends rpaCommands{
 			for(int l = 0; l <linha.size(); l++){
 				try{
 					auxiliares.WriteExcelFactory.updateSheetLine("", Integer.parseInt(linha[l]), path, status, 80, aba);
-					auxiliares.WriteExcelFactory.updateSheetLine("",Integer.parseInt(linha[l]), path,alerta+" - "+ExtractDates.dataAtualizada()+"/"+matriz[l][79], 81,  aba);
+					auxiliares.WriteExcelFactory.updateSheetLine("",Integer.parseInt(linha[l]), path,"Alerta: "+alerta+" - "+ExtractDates.dataAtualizada()+"/"+matriz[l][79], 81,  aba);
 				} catch (Exception e){}
 			}
 		}

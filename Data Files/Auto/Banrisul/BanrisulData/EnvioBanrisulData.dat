@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataFileEntity>
+   <description></description>
+   <name>EnvioBanrisulData</name>
+   <tag></tag>
+   <containsHeaders>true</containsHeaders>
+   <csvSeperator></csvSeperator>
+   <dataFileGUID>f9edc2e5-6bba-497c-a6f0-5f6dfb98cc2d</dataFileGUID>
+   <dataSourceUrl>C:\Users\Public\RPA_ALLIANZ\Data Files\Auto\Banrisul\BanrisulData\EnvioBanrisul.xlsx</dataSourceUrl>
+   <driver>ExcelFile</driver>
+   <isInternalPath>false</isInternalPath>
+   <query></query>
+   <secureUserAccount>false</secureUserAccount>
+   <sheetName>EnvioBanrisul</sheetName>
+   <usingGlobalDBSetting>false</usingGlobalDBSetting>
+</DataFileEntity>

@@ -290,7 +290,7 @@ public class ReabreReavaliaSinistroFuncionalidades extends rpaCommands{
 			List<String> anexos = new ArrayList<>();
 			anexos[0] = "C:\\Users\\Public\\RPA_ALLIANZ\\Data Files\\Sinistro\\ReabreReavaliaSinistro\\ReabreReavaliaSinistro.xlsx"
 			anexos[1] = "ReabreReavaliaSinistro.xlsx"
-			sendEmail.CreateEmail.createEmailSendMultipleFiles(sender, emaildestination, pwdsender, anexos, host, porta, tipoAba)
+			sendEmail.CreateEmail.createEmailSendMultipleFiles(sender, emaildestination, anexos, tipoAba)
 		}
 	}
 

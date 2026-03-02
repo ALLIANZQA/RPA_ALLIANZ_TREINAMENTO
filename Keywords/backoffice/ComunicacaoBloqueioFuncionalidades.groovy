@@ -110,7 +110,7 @@ public class ComunicacaoBloqueioFuncionalidades extends rpaCommands{
 		try{
 			acessoAmbiente(aba,a)
 			WebUI.delay(10);
-			MenuMatriz.newFluxoGestao('/html/body/div[1]/div/app-root/app-private/app-displayed-menu/div/app-teaser/div/div[3]/div/div[2]')
+			MenuMatriz.newFluxoGestaoNome()
 			alteraJanejaGenerica(1, 10)
 			WebUI.delay(10);
 		} catch (Exception e){}

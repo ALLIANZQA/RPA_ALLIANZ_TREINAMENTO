@@ -232,6 +232,14 @@ public class GestaoCreditoDescarteincidenciasFuncionalidades  extends rpaCommand
 									if(descartar()){
 										enviado = true
 										String confirm =  recuperaValor('//*[@id="dataErrorSection"]/table/tbody/tr/td[2]', 'textContent', 1)
+										
+										System.out.println(confirm)
+										
+										if(confirm.equals("atributo nao encontrado")){
+											confirm = "O registro não foi rejeitado"
+											enviado = false
+										}
+										
 										msgAlerta=  "Tela '"+telaDadosOcorrencia+"': "+ confirm;
 										status = "Processado"
 										//Gestão Ficheiros Bancarios

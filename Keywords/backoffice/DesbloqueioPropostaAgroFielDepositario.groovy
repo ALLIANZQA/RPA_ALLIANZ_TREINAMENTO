@@ -137,11 +137,15 @@ public class DesbloqueioPropostaAgroFielDepositario extends backofficeFuncionali
 	 * @author T_DCDias
 	 */
 	public static fluxoCompletoDesbloqueioPropostaAgroFielDepositario(){
-		iniciaAplicacaoMatrizCommands('IntranetProdução');
-		realizaLoginIntraNetProducaoCommands("userSenhaBloqueioFiel");
-		WebUI.delay(17);
-		navegarMenu()
-		fluxoDesbloqueioPropostaAgroFielDepositario()
+		try{
+		   iniciaAplicacaoMatrizCommands('IntranetProdução');
+		   realizaLoginIntraNetProducaoCommands("userSenhaBloqueioFiel");
+		   WebUI.delay(17);
+		   navegarMenu()
+		   fluxoDesbloqueioPropostaAgroFielDepositario()
+		} catch (Exception e){
+		  System.out.println("\n["+e.getMessage()+"]\n")
+		}
 	}
 
 	/**
@@ -295,7 +299,7 @@ public class DesbloqueioPropostaAgroFielDepositario extends backofficeFuncionali
 					fecharJanelaAtual(1);
 					alteraJanejaGenerica(0, 5)
 					WebUI.delay(5)
-					MenuMatriz.subMenu("/*/body/div/div/app-root/app-private/app-displayed-menu/div/app-teaser/div/div[1]/div/div[2]/ul", "a","Produção")
+					MenuMatriz.subMenuNome("a","Produção")
 					WebUI.waitForPageLoad(30)
 					WebUI.switchToWindowIndex(1)
 					WebUI.waitForPageLoad(30)
@@ -304,7 +308,14 @@ public class DesbloqueioPropostaAgroFielDepositario extends backofficeFuncionali
 				}
 					countEnviado++
 				}
-			} catch (Exception e){}
+			} catch (Exception e){
+			  System.out.println("\n["+e.getMessage()+"]\n")
+			  WebUI.closeBrowser();
+			  iniciaAplicacaoMatrizCommands('IntranetProdução');
+			  realizaLoginIntraNetProducaoCommands("userSenhaBloqueioFiel");
+			  WebUI.delay(17);
+			  navegarMenu()
+			}
 		}
 	}
 
@@ -393,10 +404,11 @@ public class DesbloqueioPropostaAgroFielDepositario extends backofficeFuncionali
 	 * @return
 	 */
 	public static navegarMenu(){
+		System.out.println()
 		WebUI.delay(5)
 		MenuMatriz.producaoSinistro()
-		WebUI.delay(5)
-		MenuMatriz.subMenu("/*/body/div/div/app-root/app-private/app-displayed-menu/div/app-teaser/div/div[1]/div/div[2]/ul", "a","Produção")
+		WebUI.delay(10)
+		MenuMatriz.subMenuNome("a","Produção")
 		WebUI.waitForPageLoad(30)
 		
 		

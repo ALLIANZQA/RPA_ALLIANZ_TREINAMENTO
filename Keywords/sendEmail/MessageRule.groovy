@@ -66,10 +66,27 @@ public class MessageRule extends AutoTemplateMessage{
 		subject.put('DistribuicaoAutomaticaIR', 'RPA - Distribuição automática Inspeção de risco ');
 		subject.put('EnvioPDF', 'RPA - Envio de PDF Corretores Corporate ');
 		subject.put('FIEL', 'RPA - Desbloqueio Proposta Agro Fiel Depositario ');
+		subject.put('GestaoReclamacao', 'RPA - Hugme x Gestão de Reclamação');
+		subject.put('GestaoVerificacoesAtribuicaoMan', 'RPA - Gestão Verificações – Atribuição Manual');
+		subject.put('RetornoGo', 'RPA - Envio de e-mail retorno GO Gestão Operacional');
+		subject.put('RecusaProposta', 'RPA - Recusa Proposta');
+		subject.put('GeraBoleto', 'RPA - Gera boleto ferramenta duplicado recibos');
+		subject.put('BoletoAvulso', 'RPA - Boleto Avulso');
+		subject.put('EndossoClausulas', 'RPA - Endosso Clausulas - Texto Complementar');
+		subject.put('EnvioBanrisul', 'RPA -  Envio Banrisul');
+		subject.put('ApolicesHomologacao', 'RPA - Carga de Apolices em Homologação');
+		subject.put('DesvinculaCodigoCorretor', 'RPA - Desvincula Codigo Corretor');
+		subject.put('RenovacaoSantander', 'RPA - Renovação Santander');
+		subject.put('Ressarcimento', 'RPA - Ressarcimento');
 
 		return subject.get(p.toString());
 	}
 
+	public static void valoresList(String[] valores){
+		for(int i =0; valores.size(); i++){
+			System.out.println("["+i+"] ["+valores[i]+"]")
+		}
+	}
 
 	/**
 	 * @author T_DCDias
@@ -77,7 +94,8 @@ public class MessageRule extends AutoTemplateMessage{
 	 * @return
 	 */
 	public static String messageRules(String[] valores){
-
+		System.out.println("MESSAGE RULES - RAMO\n"+valores[0])
+		System.out.println()
 		switch (valores[0]){
 
 			case "testnewbody":
@@ -105,6 +123,102 @@ public class MessageRule extends AutoTemplateMessage{
 				multipart.addBodyPart(adicionaImagem(cabecalho,"Content-ID", "image_id1"))
 				multipart.addBodyPart(adicionaImagem(rodape,"Content-ID", "image_id2"))
 				return AutoTemplateMessage.avisoRenovacaoAllianzSantander15(valores[1],valores[2], rodape, cabecalho, valores[4], valores[5])
+				break;
+
+			case "Carta_AvisoRenovacao_15DA":
+				List<String> imagens = new ArrayList<>();
+				imagens[0] = "C:/Users/Public/RPA_ALLIANZ/Images/IBLBDM74087/logo.png"
+			//imagens[1] = "C:/Users/Public/RPA_ALLIANZ/Images/IBLBDM74087/titulo.png"
+				imagens[3] = "C:/Users/Public/RPA_ALLIANZ/Images/IBLBDM74087/img1.png"
+				imagens[4] = "C:/Users/Public/RPA_ALLIANZ/Images/IBLBDM74087/icon1.png"
+				imagens[5] = "C:/Users/Public/RPA_ALLIANZ/Images/IBLBDM74087/icon2.png"
+				imagens[6] = "C:/Users/Public/RPA_ALLIANZ/Images/IBLBDM74087/icon3.png"
+				imagens[7] = "C:/Users/Public/RPA_ALLIANZ/Images/IBLBDM74087/icon4.png"
+			//imagens[8] = "C:/Users/Public/RPA_ALLIANZ/Images/IBLBDM74087/icon5.png"
+				imagens[9] = "C:/Users/Public/RPA_ALLIANZ/Images/IBLBDM74087/img2.png"
+				imagens[10] = "C:/Users/Public/RPA_ALLIANZ/Images/IBLBDM74087/qrcode1.png"
+				imagens[11] = "C:/Users/Public/RPA_ALLIANZ/Images/IBLBDM74087/qrcode2.png"
+				imagens[12] = "C:/Users/Public/RPA_ALLIANZ/Images/IBLBDM74087/qrcode3.png"
+				imagens[13] = "C:/Users/Public/RPA_ALLIANZ/Images/IBLBDM74087/logo2.png"
+				imagens[14] = "C:/Users/Public/RPA_ALLIANZ/Images/IBLBDM74087/face.png"
+				imagens[15] = "C:/Users/Public/RPA_ALLIANZ/Images/IBLBDM74087/linked.png"
+				imagens[16] = "C:/Users/Public/RPA_ALLIANZ/Images/IBLBDM74087/insta.png"
+				imagens[17] = "C:/Users/Public/RPA_ALLIANZ/Images/IBLBDM74087/line.png"
+				imagens[18] = "C:/Users/Public/RPA_ALLIANZ/Images/IBLBDM74087/telallnz.png"
+				imagens[19] = "C:/Users/Public/RPA_ALLIANZ/Images/IBLBDM74087/top.png"
+				imagens[20] = "C:/Users/Public/RPA_ALLIANZ/Images/IBLBDM74087/down.png"
+				message.setSubject("Aviso de Renovação Apólice Allianz/Santander - "+valores[2]);
+
+				multipart.addBodyPart(adicionaImagem(imagens[0],"Content-ID", "image_id1"))
+			//multipart.addBodyPart(adicionaImagem(imagens[1],"Content-ID", "image_id2"))
+				multipart.addBodyPart(adicionaImagem(imagens[3],"Content-ID", "image_id3"))
+				multipart.addBodyPart(adicionaImagem(imagens[4],"Content-ID", "image_id4"))
+				multipart.addBodyPart(adicionaImagem(imagens[5],"Content-ID", "image_id5"))
+				multipart.addBodyPart(adicionaImagem(imagens[6],"Content-ID", "image_id6"))
+				multipart.addBodyPart(adicionaImagem(imagens[7],"Content-ID", "image_id7"))
+			//multipart.addBodyPart(adicionaImagem(imagens[8],"Content-ID", "image_id8"))
+				multipart.addBodyPart(adicionaImagem(imagens[9],"Content-ID", "image_id9"))
+				multipart.addBodyPart(adicionaImagem(imagens[10],"Content-ID", "image_id10"))
+				multipart.addBodyPart(adicionaImagem(imagens[11],"Content-ID", "image_id11"))
+				multipart.addBodyPart(adicionaImagem(imagens[12],"Content-ID", "image_id12"))
+				multipart.addBodyPart(adicionaImagem(imagens[13],"Content-ID", "image_id13"))
+				multipart.addBodyPart(adicionaImagem(imagens[14],"Content-ID", "image_id14"))
+				multipart.addBodyPart(adicionaImagem(imagens[15],"Content-ID", "image_id15"))
+				multipart.addBodyPart(adicionaImagem(imagens[16],"Content-ID", "image_id16"))
+				multipart.addBodyPart(adicionaImagem(imagens[17],"Content-ID", "image_id17"))
+				multipart.addBodyPart(adicionaImagem(imagens[18],"Content-ID", "image_id18"))
+				multipart.addBodyPart(adicionaImagem(imagens[19],"Content-ID", "image_id19"))
+				multipart.addBodyPart(adicionaImagem(imagens[20],"Content-ID", "image_id20"))
+				System.out.println(valores[1]+" "+valores[2]+" "+valores[3]+" "+valores[4]+" "+valores[6]+" "+valores[7])
+				return AutoTemplateMessage.avisoRenovacaoAllianzSantander15A112025(valores[1],valores[2], valores[3] , valores[4], valores[6]+" "+valores[7])
+				break;
+
+			case "Carta_AvisoNaoRenovacao":
+				List<String> imagens = new ArrayList<>();
+				imagens[0] = "C:/Users/Public/RPA_ALLIANZ/Images/IBLBDM74087/logo.png"
+			//imagens[1] = "C:/Users/Public/RPA_ALLIANZ/Images/IBLBDM74087/titulo.png"
+				imagens[3] = "C:/Users/Public/RPA_ALLIANZ/Images/IBLBDM74087/img1.png"
+				imagens[4] = "C:/Users/Public/RPA_ALLIANZ/Images/IBLBDM74087/icon1.png"
+				imagens[5] = "C:/Users/Public/RPA_ALLIANZ/Images/IBLBDM74087/icon2.png"
+				imagens[6] = "C:/Users/Public/RPA_ALLIANZ/Images/IBLBDM74087/icon3.png"
+				imagens[7] = "C:/Users/Public/RPA_ALLIANZ/Images/IBLBDM74087/icon4.png"
+			//imagens[8] = "C:/Users/Public/RPA_ALLIANZ/Images/IBLBDM74087/icon5.png"
+				imagens[9] = "C:/Users/Public/RPA_ALLIANZ/Images/IBLBDM74087/img2.png"
+				imagens[10] = "C:/Users/Public/RPA_ALLIANZ/Images/IBLBDM74087/qrcode1.png"
+				imagens[11] = "C:/Users/Public/RPA_ALLIANZ/Images/IBLBDM74087/qrcode2.png"
+				imagens[12] = "C:/Users/Public/RPA_ALLIANZ/Images/IBLBDM74087/qrcode3.png"
+				imagens[13] = "C:/Users/Public/RPA_ALLIANZ/Images/IBLBDM74087/logo2.png"
+				imagens[14] = "C:/Users/Public/RPA_ALLIANZ/Images/IBLBDM74087/face.png"
+				imagens[15] = "C:/Users/Public/RPA_ALLIANZ/Images/IBLBDM74087/linked.png"
+				imagens[16] = "C:/Users/Public/RPA_ALLIANZ/Images/IBLBDM74087/insta.png"
+				imagens[17] = "C:/Users/Public/RPA_ALLIANZ/Images/IBLBDM74087/line.png"
+				imagens[18] = "C:/Users/Public/RPA_ALLIANZ/Images/IBLBDM74087/telallnz.png"
+				imagens[19] = "C:/Users/Public/RPA_ALLIANZ/Images/IBLBDM74087/top.png"
+				imagens[20] = "C:/Users/Public/RPA_ALLIANZ/Images/IBLBDM74087/down.png"
+				message.setSubject("Aviso de Não Renovação Apólice Allianz/Santander - "+valores[2]);
+
+				multipart.addBodyPart(adicionaImagem(imagens[0],"Content-ID", "image_id1"))
+			//multipart.addBodyPart(adicionaImagem(imagens[1],"Content-ID", "image_id2"))
+				multipart.addBodyPart(adicionaImagem(imagens[3],"Content-ID", "image_id3"))
+				multipart.addBodyPart(adicionaImagem(imagens[4],"Content-ID", "image_id4"))
+				multipart.addBodyPart(adicionaImagem(imagens[5],"Content-ID", "image_id5"))
+				multipart.addBodyPart(adicionaImagem(imagens[6],"Content-ID", "image_id6"))
+				multipart.addBodyPart(adicionaImagem(imagens[7],"Content-ID", "image_id7"))
+			//multipart.addBodyPart(adicionaImagem(imagens[8],"Content-ID", "image_id8"))
+				multipart.addBodyPart(adicionaImagem(imagens[9],"Content-ID", "image_id9"))
+				multipart.addBodyPart(adicionaImagem(imagens[10],"Content-ID", "image_id10"))
+				multipart.addBodyPart(adicionaImagem(imagens[11],"Content-ID", "image_id11"))
+				multipart.addBodyPart(adicionaImagem(imagens[12],"Content-ID", "image_id12"))
+				multipart.addBodyPart(adicionaImagem(imagens[13],"Content-ID", "image_id13"))
+				multipart.addBodyPart(adicionaImagem(imagens[14],"Content-ID", "image_id14"))
+				multipart.addBodyPart(adicionaImagem(imagens[15],"Content-ID", "image_id15"))
+				multipart.addBodyPart(adicionaImagem(imagens[16],"Content-ID", "image_id16"))
+				multipart.addBodyPart(adicionaImagem(imagens[17],"Content-ID", "image_id17"))
+				multipart.addBodyPart(adicionaImagem(imagens[18],"Content-ID", "image_id18"))
+				multipart.addBodyPart(adicionaImagem(imagens[19],"Content-ID", "image_id19"))
+				multipart.addBodyPart(adicionaImagem(imagens[20],"Content-ID", "image_id20"))
+				System.out.println(valores[1]+" "+valores[2]+" "+valores[3]+" "+valores[4]+" "+valores[6]+" "+valores[7])
+				return AutoTemplateMessage.avisoNaoRenovacaoAllianzSantander112025(valores[1],valores[2], valores[3] , valores[4], valores[6]+" "+valores[7])
 				break;
 
 			case "Carta_RenovacaoApolice_30D":
@@ -501,15 +615,6 @@ public class MessageRule extends AutoTemplateMessage{
 				return BackOfficeTemplateMessage.envioRetornoGoUnit(valores[1])
 				break;
 
-			case "RetornoGo":
-				String cabecalho = "C:/Users/Public/RPA_ALLIANZ/Images/logo_allianz_rs.png";
-				String rodape = "C:/Users/Public/RPA_ALLIANZ/Images/RODAPEACEITACAO.png";
-				message.setSubject("RPA - Envio de e-mail retorno GO Gestão Operacional");
-				multipart.addBodyPart(adicionaImagem(cabecalho,"Content-ID", "image_id1"))
-				multipart.addBodyPart(adicionaImagem(rodape,"Content-ID", "image_id2"))
-				return BackOfficeTemplateMessage.envioRetornoGoEmail(cabecalho, rodape)
-				break;
-
 			case "PendenciaAutomáticaCorretor":
 				String cabecalho = "C:/Users/Public/RPA_ALLIANZ/Images/logo_allianz_rs.png";
 				String rodape = "C:/Users/Public/RPA_ALLIANZ/Images/RODAPEACEITACAO.png";
@@ -552,7 +657,7 @@ public class MessageRule extends AutoTemplateMessage{
 				return SaudeTemplateMessage.reposicaoValores(cabecalho, rodape)
 				break;
 
-			case "DesvinculaCodigoCorretor":
+			case "DesvinculaCodigoCorretorOLD":
 				String cabecalho = "C:/Users/Public/RPA_ALLIANZ/Images/logo_allianz_rs.png";
 				String rodape = "C:/Users/Public/RPA_ALLIANZ/Images/RODAPEACEITACAO.png";
 				message.setSubject("RPA - Desvincula Codigo Corretor");
@@ -577,15 +682,6 @@ public class MessageRule extends AutoTemplateMessage{
 				multipart.addBodyPart(adicionaImagem(cabecalho,"Content-ID", "image_id1"))
 				multipart.addBodyPart(adicionaImagem(rodape,"Content-ID", "image_id2"))
 				return BackOfficeTemplateMessage.distribuicaoPropostasGOlEmail(cabecalho, rodape)
-				break;
-
-			case "RecusaProposta":
-				String cabecalho = "C:/Users/Public/RPA_ALLIANZ/Images/logo_allianz_rs.png";
-				String rodape = "C:/Users/Public/RPA_ALLIANZ/Images/RODAPEACEITACAO.png";
-				message.setSubject("RPA - Recusa Proposta");
-				multipart.addBodyPart(adicionaImagem(cabecalho,"Content-ID", "image_id1"))
-				multipart.addBodyPart(adicionaImagem(rodape,"Content-ID", "image_id2"))
-				return BackOfficeTemplateMessage.recusaPropostaEmail(cabecalho, rodape)
 				break;
 
 			case "ReativacaoApolice":
@@ -669,7 +765,7 @@ public class MessageRule extends AutoTemplateMessage{
 				return SinistroTemplateMessage.aberturaSinistroCoFHE(cabecalho, rodape);
 				break;
 
-			case "ApolicesHomologacao":
+			case "ApolicesHomologacaoOLD":
 				String cabecalho = "C:/Users/Public/RPA_ALLIANZ/Images/logo_allianz_rs.png";
 				String rodape = "C:/Users/Public/RPA_ALLIANZ/Images/RODAPEACEITACAO.png";
 				message.setSubject("RPA - Carga de Apolices em Homologação");
@@ -748,6 +844,65 @@ public class MessageRule extends AutoTemplateMessage{
 				multipart.addBodyPart(adicionaImagem(cabecalho,"Content-ID", "image_id1"))
 				multipart.addBodyPart(adicionaImagem(rodape,"Content-ID", "image_id2"))
 				return SaudeTemplateMessage.reposicaoValores(cabecalho, rodape)
+				break;
+
+			case "RenovaSantander":
+				String cabecalho = "C:/Users/Public/RPA_ALLIANZ/Images/logo_allianz_rs.png";
+				String rodape = "C:/Users/Public/RPA_ALLIANZ/Images/RODAPEACEITACAO.png";
+				message.setSubject("RPA - Renovação Santander "+valores[1]);
+				multipart.addBodyPart(adicionaImagem(cabecalho,"Content-ID", "image_id1"))
+				multipart.addBodyPart(adicionaImagem(rodape,"Content-ID", "image_id2"))
+				return AutoTemplateMessage.renovaSantander(cabecalho, rodape)
+				break;
+
+			case "AlteracoesRenovacaoBanrisul":
+				List<String> imagens = new ArrayList<>();
+				imagens[0] = "C:/Users/Public/RPA_ALLIANZ/Images/banrisul/allianzlogo.png"
+				imagens[1] = "C:/Users/Public/RPA_ALLIANZ/Images/banrisul/banrisul.png"
+				imagens[3] = "C:/Users/Public/RPA_ALLIANZ/Images/banrisul/face.png"
+				imagens[4] = "C:/Users/Public/RPA_ALLIANZ/Images/banrisul/insta.png"
+				imagens[5] = "C:/Users/Public/RPA_ALLIANZ/Images/banrisul/linked.png"
+				imagens[6] = "C:/Users/Public/RPA_ALLIANZ/Images/banrisul/coberturas.png"
+				imagens[7] = "C:/Users/Public/RPA_ALLIANZ/Images/banrisul/line.png"
+				message.setSubject("Alterações Renovação Banrisul Automática - Auto 1211, 1212 e 121");
+				multipart.addBodyPart(adicionaImagem(imagens[0],"Content-ID", "image_id1"))
+				multipart.addBodyPart(adicionaImagem(imagens[3],"Content-ID", "image_id2"))
+				multipart.addBodyPart(adicionaImagem(imagens[4],"Content-ID", "image_id3"))
+				multipart.addBodyPart(adicionaImagem(imagens[5],"Content-ID", "image_id4"))
+				multipart.addBodyPart(adicionaImagem(imagens[6],"Content-ID", "image_id5"))
+				multipart.addBodyPart(adicionaImagem(imagens[7],"Content-ID", "image_id6"))
+				System.out.println("MESSAGE RULES - CORRETOR\n"+valores[1])
+
+				for(int i = 0; i< valores.size();i++){
+					System.out.println("["+i+"] ["+valores[i]+"]")
+				}
+
+				return BackOfficeTemplateMessage.alteracoesRenovacaoBanrisul(valores[1], valores[2], valores[3], valores[4], valores[5], valores[6], valores[7], valores[8], valores[9], imagens)
+				break;
+
+			case "naoRenovacaoBanrisul":
+				List<String> imagens = new ArrayList<>();
+				imagens[0] = "C:/Users/Public/RPA_ALLIANZ/Images/banrisul/allianzlogo.png"
+				imagens[1] = "C:/Users/Public/RPA_ALLIANZ/Images/banrisul/banrisul.png"
+				imagens[3] = "C:/Users/Public/RPA_ALLIANZ/Images/banrisul/face.png"
+				imagens[4] = "C:/Users/Public/RPA_ALLIANZ/Images/banrisul/insta.png"
+				imagens[5] = "C:/Users/Public/RPA_ALLIANZ/Images/banrisul/linked.png"
+				imagens[6] = "C:/Users/Public/RPA_ALLIANZ/Images/banrisul/chat-2.png"
+				imagens[7] = "C:/Users/Public/RPA_ALLIANZ/Images/banrisul/line.png"
+				message.setSubject("Não Renovação Banrisul Automática - Auto 1211, 1212 e 121");
+				multipart.addBodyPart(adicionaImagem(imagens[0],"Content-ID", "image_id1"))
+				multipart.addBodyPart(adicionaImagem(imagens[3],"Content-ID", "image_id2"))
+				multipart.addBodyPart(adicionaImagem(imagens[4],"Content-ID", "image_id3"))
+				multipart.addBodyPart(adicionaImagem(imagens[5],"Content-ID", "image_id4"))
+				multipart.addBodyPart(adicionaImagem(imagens[6],"Content-ID", "image_id5"))
+				multipart.addBodyPart(adicionaImagem(imagens[7],"Content-ID", "image_id6"))
+				System.out.println("MESSAGE RULES - CORRETOR\n"+valores[1])
+
+				for(int i = 0; i< valores.size();i++){
+					System.out.println("["+i+"] ["+valores[i]+"]")
+				}
+
+				return BackOfficeTemplateMessage.naoRenovacaoBanrisul(valores[1], valores[2], valores[3], valores[4], valores[5], valores[6], valores[7], valores[8], valores[9], imagens)
 				break;
 
 
@@ -857,15 +1012,6 @@ public class MessageRule extends AutoTemplateMessage{
 				multipart.addBodyPart(adicionaImagem(cabecalho,"Content-ID", "image_id1"))
 				multipart.addBodyPart(adicionaImagem(rodape,"Content-ID", "image_id2"))
 				return SinistroTemplateMessage.aberturaSinistroCoFHE(cabecalho, rodape);
-				break;
-
-			case "RenovaSantander":
-				String cabecalho = "C:/Users/Public/RPA_ALLIANZ/Images/logo_allianz_rs.png";
-				String rodape = "C:/Users/Public/RPA_ALLIANZ/Images/RODAPEACEITACAO.png";
-				message.setSubject("RPA - Renovação Santander "+assunto);
-				multipart.addBodyPart(adicionaImagem(cabecalho,"Content-ID", "image_id1"))
-				multipart.addBodyPart(adicionaImagem(rodape,"Content-ID", "image_id2"))
-				return AutoTemplateMessage.renovaSantander(cabecalho, rodape)
 				break;
 
 			case "IndexacaoFG":

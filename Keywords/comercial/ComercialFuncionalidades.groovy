@@ -414,7 +414,7 @@ public class ComercialFuncionalidades extends rpaCommands{
 				List<String> anexos = new ArrayList<>();
 				anexos[0] = "C:\\Users\\Public\\LOGSUSEP\\"+nomeArquivo
 				anexos[1] = nomeArquivo
-				sendEmail.CreateEmail.createEmailSendMultipleFiles(sender, emaildestination, pwdsender, anexos, host, porta, tipoAba)
+				sendEmail.CreateEmail.createEmailSendMultipleFiles(sender, emaildestination,  anexos, tipoAba)
 			}
 		} catch (Exception e){}
 	}

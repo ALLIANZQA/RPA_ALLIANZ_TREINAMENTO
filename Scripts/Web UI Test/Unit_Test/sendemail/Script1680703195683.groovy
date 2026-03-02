@@ -32,14 +32,35 @@ public static enviaEmailContactCenter(String tipoAba, String path, String file){
 			List<String> anexos = new ArrayList<>();
 			anexos[0] = path
 			anexos[1] = file
-			sendEmail.CreateEmail.createEmailSendMultipleFilesAuth('denilson.inmetricsext@allpronet.com.br',
-															       'denilson.inmetricsext@allpronet.com.br, andre.antunes@allianz.com.br',
-															       'p25lwx4',
-																   '-*31*Q45rke&nTb+gXR@',
-																   anexos,
-																   'TMU-CS.MAIL.ALLIANZ',
-																   '587',
-																   tipoAba)
-	} catch (Exception e){
+//			sendEmail.CreateEmail.createEmailSendMultipleFiles('denilson.inmetricsext@allpronet.com.br',
+//															   'denilson.inmetricsext@allpronet.com.br',
+//																anexos,
+//																'TMU-CS.MAIL.ALLIANZ',
+//																'587',
+//																tipoAba)
+	
+		
+//			sendEmail.CreateEmail.createEmailSend('denilson.inmetricsext@allpronet.com.br', 
+//				                                  'denilson.inmetricsext@allpronet.com.br', 
+//												   anexos, 
+//												   'TMU-CS.MAIL.ALLIANZ', 
+//												   '587', 
+//												   "CadastroDeRestricao",
+//												   "2025"
+//												    );
+			
+			sendEmail.CreateEmail.createEmailSendSantanderAnexos('denilson.inmetricsext@allpronet.com.br', 
+				                                                 'denilson.inmetricsext@allpronet.com.br', 
+																 'TMU-CS.MAIL.ALLIANZ', 
+												                 '587', 
+																 'Carta_AvisoRenovacao_15D', 
+																 'DENILSON DIAS', 
+																 '20252024', 
+																 '2025', 
+																 '2026', 
+																 '10', 
+																 anexos )
+			
+			} catch (Exception e){
 	}
 }

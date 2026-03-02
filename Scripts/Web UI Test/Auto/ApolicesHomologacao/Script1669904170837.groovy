@@ -34,7 +34,7 @@ try {
 	 * INT: Integración
 	 * PRE: Pre-Producción
 	 */
-   auto.ApolicesHomologacaoFuncionalidades.fluxoApolicesHomologacaoFuncionalidades('ApolicesHomologacao', 'PRD', 'INT')
+   auto.ApolicesHomologacaoFuncionalidades.fluxoApolicesHomologacaoFuncionalidades('ApolicesHomologacao', 'PRD', 'PRE')
    WebUI.closeBrowser();
   } catch (Exception e) {
     auto.ApolicesHomologacaoFuncionalidades.enviarEmailError("Error", 'ApolicesHomologacao' );

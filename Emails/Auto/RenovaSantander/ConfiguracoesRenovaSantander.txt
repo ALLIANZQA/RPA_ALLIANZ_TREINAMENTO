@@ -2,4 +2,4 @@ C:\\Users\\Public\\RPA_ALLIANZ\\Emails\\Auto\\RenovaSantander\\RenovaSantander.t
 rpa@allianz.com.br
 
 smtp.intrallianz.es
-25
+00

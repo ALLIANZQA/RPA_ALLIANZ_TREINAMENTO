@@ -484,6 +484,41 @@ public class UserPassword{
 				senha = returnPwrd(3)
 				break;
 
+			case 'GestaoReclamacaoPRD':
+				user = returnUser(3)
+				senha = returnPwrd(3)
+				break;
+			case 'GestaoReclamacaoINT':
+				user = returnUser(3)
+				senha = returnPwrd(3)
+				break;
+
+			case 'GestaoVerificacoesAtribuicaoManPRD':
+				user = returnUser(4)
+				senha = returnPwrd(4)
+				break;
+			case 'GestaoVerificacoesAtribuicaoManINT':
+				user = returnUser(4)
+				senha = returnPwrd(4)
+				break;
+
+			case 'EndossoClausulasPRD':
+				user = returnUser(3)
+				senha = returnPwrd(3)
+				break;
+			case 'EndossoClausulasINT':
+				user = returnUser(3)
+				senha = returnPwrd(3)
+				break;
+				
+			case 'RessarcimentoPRD':
+				user = returnUser(4)
+				senha = returnPwrd(4)
+				break;
+			case 'RessarcimentoINT':
+				user = returnUser(4)
+				senha = returnPwrd(4)
+				break;
 
 
 		}
@@ -517,10 +552,10 @@ public class UserPassword{
 	 */
 	public static returnPwrd(int id){
 		Map<Integer, String> pwrd = new HashMap<Integer, String>()
-		pwrd.put(1, 'Allz202505' )
+		pwrd.put(1, 'Allz202601' )
 		pwrd.put(2, 'Allz202306' )
-		pwrd.put(3, 'Allz202506' )
-		pwrd.put(4, 'Allz202506' )
+		pwrd.put(3, 'Allz202603' )
+		pwrd.put(4, 'Allz202601' )
 		pwrd.put(5, 'Am@nda36' )
 		pwrd.put(6, 'Mari2005' )
 		pwrd.put(7, 'sinistro' )

@@ -29,7 +29,27 @@ import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
 
-String doc = "41.063.201/0001-15"
+String txt = "LOURIVAL LOPES DO NASCIMENTO"
+
+System.out.println(pointStopWord(txt, 0))
+System.out.println()
+
+public static String pointStopWord(String txt, int stop){
+	int inicio;
+	StringBuilder sb = new StringBuilder();
+	String [] stringList = txt.split(" ");
+	for(int i = 0; i< stringList.size(); i++){
+		System.out.println("["+i+"] ["+stringList[i]+"]")
+		sb.append(stringList[i]+" ");
+		if(i==stop){
+			break;
+		}
+	}
+	return sb.toString().trim();
+}
+
+
+
 
 
 List<String> registros = new ArrayList<>();

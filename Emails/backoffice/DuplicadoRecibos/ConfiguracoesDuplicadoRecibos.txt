@@ -2,4 +2,4 @@ C:/Users/Public/RPA_ALLIANZ/Emails/backoffice/DuplicadoRecibos/DuplicadoRecibos.
 rpa@allianz.com.br
 
 smtp.intrallianz.es
-25
+00

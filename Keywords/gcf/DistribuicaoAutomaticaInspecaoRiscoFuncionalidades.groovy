@@ -183,13 +183,14 @@ public class DistribuicaoAutomaticaInspecaoRiscoFuncionalidades extends rpaComma
 					if(selecionatemTabelaVerificacao){
 						criarRegistro(distribuicao)
 					}
-
+					System.out.println("alerta ["+alerta+"]")
 					try{
 						if(registroModificado){
-							System.out.println("alerta ["+alerta+"]")
+							
 							auxiliares.WriteExcelFactory.updateSheetLine("", lina,path, 'Processado', 22, 'DistribuicaoAutomaticaIR');
 							auxiliares.WriteExcelFactory.updateSheetLine("", lina,path, alerta+" - "+ExtractDates.dataAtualizada(), 24, 'DistribuicaoAutomaticaIR');
 						} else {
+						   
 							auxiliares.WriteExcelFactory.updateSheetLine("", lina,path, 'Processado', 22, 'DistribuicaoAutomaticaIR');
 							auxiliares.WriteExcelFactory.updateSheetLine("", lina,path, 'Alerta: Distribuição não confirmada'+"  "+alerta, 23, 'DistribuicaoAutomaticaIR');
 							WebUI.closeBrowser();
@@ -221,33 +222,36 @@ public class DistribuicaoAutomaticaInspecaoRiscoFuncionalidades extends rpaComma
 			//Assignação Automática
 			//clickXpath('//*[@id="1"]', 10);
 			selecionaList("Assignação Automática", '//*[@id="tableOptMenu_"]', 'td', 15 )
-			
+			WebUI.delay(10)
 			//Tipo Profissão
-			selecionaList(distribuicao[10], '//*[@id="tipoProf"]', 'option', 0 )
+			selecionaList(distribuicao[10], '//*[@id="tipoProf"]', 'option', 2 )
 
 			//Cod Prof
-			selecionaList(distribuicao[1], '//*[@id="grupoProf"]', 'option', 0 )
+			selecionaList(distribuicao[1], '//*[@id="grupoProf"]', 'option', 2 )
 
 			//Opcoes Disponiveis
-			selecionaList(distribuicao[9], '//*[@id="opcao"]', 'option', 0 )
+			selecionaList(distribuicao[9], '//*[@id="opcao"]', 'option', 2 )
+			
+			//stado
+			//selecionaItemListaAtributo(distribuicao[11], '//*[@id="situacion"]', 'option', 'value' )
 
 			//Aceitar
 			//clickXpath('//*[@id="o_4"]', 5);
 			selecionaList("Aceitar", '//*[@id="sectionEscolhaInicialSectionBar"]/table/tbody', 'div', 5 )
-
+			WebUI.delay(10)
 			//Zona
 			limpaCampo('//*[@id="pesquisaZona"]', 0)
 			preencheXpath('//*[@id="pesquisaZona"]', distribuicao[2], 0);
 
 			//Aceitar
 			clickXpath('//*[@id="o_3"]', 5);
-			WebUI.delay(5)
+			WebUI.delay(10)
 			//TABELA VERIFICAÇÕES
 			selecionatemTabelaVerificacao(distribuicao)
-			WebUI.delay(5)
+			WebUI.delay(10)
 			System.out.println()
 			alerta = recuperaValor('//*[@id="dataErrorSection"]/table/tbody/tr/td[2]', 'innerText', 2)
-			WebUI.delay(5)
+			WebUI.delay(10)
 			if( alertListBlocList(alerta)){
 				modificar = false;
 			}else{
@@ -408,12 +412,13 @@ public class DistribuicaoAutomaticaInspecaoRiscoFuncionalidades extends rpaComma
 	 * @return
 	 */
 	public static init(String tipoAba){
+		System.out.println()
 		iniciaAplicacaoMatrizCommands('IntranetProdução');
 		realizaLoginIntraNetProducaoCommands(tipoAba);
 		WebUI.delay(15);
 		MenuMatriz.producaoSinistro()
 		WebUI.delay(15);
-		MenuMatriz.subMenu("/*/body/div/div/app-root/app-private/app-displayed-menu/div/app-teaser/div/div/div/div[2]/ul", "a","Manutençao Atribuição Professionais")
+		MenuMatriz.subMenuNome("a","Manutençao Atribuição Professionais")
 		WebUI.delay(15);
 		alteraJanejaGenerica(1, 5)
 		WebUI.maximizeWindow()

@@ -5,6 +5,8 @@ import static com.kms.katalon.core.testcase.TestCaseFactory.findTestCase
 import static com.kms.katalon.core.testdata.TestDataFactory.findTestData
 import static com.kms.katalon.core.testobject.ObjectRepository.findTestObject
 
+import java.util.List
+
 import com.kms.katalon.core.annotation.Keyword
 import com.kms.katalon.core.checkpoint.Checkpoint
 import com.kms.katalon.core.cucumber.keyword.CucumberBuiltinKeywords as CucumberKW
@@ -139,6 +141,1306 @@ public class AutoTemplateMessage extends MessageFactory{
 				"</center></table>"
 		return sb;
 	}
+	
+	
+	/**
+	 * Aviso de Renovação Apólice Allianz/Santander
+	 * IBLBDM-74087
+	 * @return
+	 */
+	public static String avisoRenovacaoAllianzSantander15A(String segurado,  String apolice, String vigencia, String placa, String veiculo  ){
+	
+	String sb = "<html>" +
+	"<head>" +
+	"<center><table>" +
+	"<meta charset='UTF-8'>" +
+	"<link rel='stylesheet' href='style.css'>"+
+	"<meta name='viewport' content='width=device-width, initial-scale=1.0'>" +
+	"<title>Allianz</title>" +
+    "</head>"+
+	"<body>"+
+	"<main class='container'>"+
+	"<div class='center'>"+
+	"<div class='container'>"+
+	"<div class='center'>"+
+	"<header class='header'>"+
+    "		<img src='cid:image_id1' alt='Logo Allianz'>"+
+	"</header>"+
+	"</div>"+
+	"<tr>"+
+	"<td>"+
+	"	<table border='0' cellpadding='0' cellspacing='0'>"+
+	"		<tr>"+
+	"			<td>"+
+	"				<table border='0' cellpadding='0' cellspacing='0'>"+
+	"					<tr>"+
+	"						<td>"+
+	"							<table border='0' cellpadding='0' cellspacing='0'>"+
+	"									<td style='color: #282828; font-size: 25px; text-align: center;'>"+
+	"				                      <strong> Olá, "+segurado+"</strong>"+
+	"									</td>"+
+	"								</tr>"+
+	"								<tr>"+
+	"									<td >"+
+	"			                            <img src='cid:image_id2' alt='Título'>"+
+	"									</td>"+
+	"								</tr>"+
+	"							</table>"+
+	"						</td>"+
+	"						<td valign='bottom'>"+
+	"							<table border='0' cellpadding='0' cellspacing='0'>"+
+	"								<tr>"+
+	"									<td>"+
+	"		                              <img src='cid:image_id3' alt='Imagem 1'>"+
+	"									</td>"+
+	"								</tr>"+
+	"							</table>"+
+	"						</td>"+
+	"					</tr>"+
+	"				</table>"+
+	"			</td>"+
+	"		</tr>"+
+	"	</table>"+
+	"</td>"+
+    "</tr>"+
+	
+	"<tr style='height: 30px;'>"+
+	"</tr>"+
+	
+	"<center><table>" +
+	"<tr>"+
+	"<td>"+
+	"	<table border='0' cellpadding='0' cellspacing='0'>"+
+	"		<tr>"+
+	"			<td>"+
+	"				<table border='0' cellpadding='0' cellspacing='0'>"+
+	"					<tr>"+
+	"						<p style=' font-size: 18px;' >"+
+	"							Para garantir a sua tranquilidade e proteção, a <strong>Allianz Seguros</strong> em <br>"+
+	"							parceria com o <strong>Autocompara</strong> preparou a renovação do seu seguro <br>"+
+	"							auto, mantendo as coberturas já contratadas. <br>"+
+	"						</p>"+
+	"					</tr>"+
+	"<tr style='height: 40px;'>"+
+	"</tr>"+
+	"				</table>"+
+	"			</td>"+
+	"		</tr>"+
+	"	</table>"+
+	"</td>"+
+    "</tr>"+
+	"</center></table>" +
+	
+	"<tr style='height: 80px;'>"+
+	"</tr>"+
+		
+	"<center><table border='0' cellpadding='0' cellspacing='0' class='width-1'>" +
+	"<div>"+
+	"<img src='cid:image_id19' alt='top' width='495' heigh='390' style='display: block;' >"+
+	"	<table  bgcolor='#e8e8e8' style='margin: 0; padding: 0; width: 495' >" +
+	"		<tr style='height: 35px;' >" +
+	"			<td>" +
+	"				<img src='cid:image_id4' alt='Ícone Veículo'>"+
+	"			</td>" +
+	"		    <td style=' font-size: 15px;' >" +
+	"				<strong>Veículo</strong> "+veiculo+""+
+	"			</td>" +
+	"		</tr>" +
+	"		<tr style='height: 35px;' >" +
+	"			<td>" +
+	"				<img src='cid:image_id5' alt='Ícone Placa'>"+
+	"			</td>" +
+	"		    <td style=' font-size: 15px;' >" +
+	"				<strong>Placa</strong> "+placa+""+
+	"			</td>" +
+	"		</tr>" +
+	"		<tr  style='height: 35px;' >" +
+	"			<td>" +
+	"				<img src='cid:image_id6' alt='Ícone Apólice'>"+
+	"			</td>" +
+	"		    <td style=' font-size: 15px;' >" +
+	"				<strong>Apólice</strong> "+apolice+""+
+	"			</td>" +
+	"		</tr>" +
+	"		<tr  style='height: 35px;'>" +
+	"			<td >" +
+	"				<img src='cid:image_id7' alt='Ícone Vigência'>"+
+	"			</td>" +
+	"		    <td style=' font-size: 15px; ' >" +
+	"				<strong>Vigência</strong> "+vigencia+""+
+	"			</td>" +
+	"		</tr>" +
+	"	</table>" +
+	"<img src='cid:image_id20' alt='down' width='495' heigh='390' >"+
+	"</div>"+
+	"</center></table>" +
+	
+	"<tr style='height: 80px;'>"+
+	"</tr>"+
+	
+	"<center><table>" +
+	"<tr>"+
+	"<td>"+
+	"	<table border='0' cellpadding='0' cellspacing='0'>"+
+	"		<tr>"+
+	"			<td>"+
+	"				<table border='0' cellpadding='0' cellspacing='0'>"+
+	"<tr style='height: 40px;'>"+
+	"</tr>"+
+	"					<tr>"+
+	"						<p style=' font-size: 17px;' >"+
+    "			            Caso alguma informação do seu seguro mudou nos últimos meses, e <br>"+
+	"			            você ainda não informou, por favor, entre em contato com a central <br>"+
+	"			            Autocompara. Teremos o maior prazer em esclarecer suas duvidas <br>"+
+	"			            ou em atualizar as informações."+
+	"						</p>"+
+	"					</tr>"+
+	"				</table>"+
+	"			</td>"+
+	"		</tr>"+
+	"	</table>"+
+	"</td>"+
+	"</tr>"+
+	"</center></table>" +
+	
+	"<div>"+
+	"<img src='cid:image_id18' alt='Lelefones' width='600' heigh='500' >"+
+	"</div>"+
+	
+	"<center><table  >" +
+	"<div>"+
+	"<tr>" +
+	"<td bgcolor='#e8e8e8'  >" +
+	"	<table border='0' cellpadding='0' cellspacing='0'>" +
+	"		    <td style=' font-size: 30px; color: #ec0000'  align='left' >" +
+	"				<strong>Fale com a Seguradora</strong><br><br>"+
+	"			</td>" +
+	"	</table>" +
+	"	<table border='0' cellpadding='0' cellspacing='0'>"+
+	"		<tr>"+
+	"			<td>"+
+	"				<table border='0' cellpadding='0' cellspacing='0'>"+
+	"					<tr>"+
+	
+	"						<td  style='width: 200px;'>"+
+	"							<table border='0' cellpadding='0' cellspacing='0'>"+
+	"								<tr>"+
+	"									<td >"+
+	"			                            <img src='cid:image_id9' alt='Título'>"+
+	"									</td>"+
+	"								</tr>"+
+	"							</table>"+
+	"						</td>"+
+	
+	"						<td valign='bottom' style='width: 219px;' >"+
+	"							<table border='0' cellpadding='0' cellspacing='0'>"+
+	"                               <tr>"+
+	"								<td style='color: #282828; font-size: 20px; text-align: left;'>"+
+	"				                      <strong> Central de atendimento</strong>"+
+	"									</td>"+
+	"								</td>"+
+	"                               </tr>"+
+	"                               <tr>"+
+	"								<td style='color: #282828; font-size: 12px; text-align: left;'>"+
+	"				                      Linha Direta Allianz Seguros"+
+	"									</td>"+
+	"								</td>"+
+	"                               </tr>"+
+	"                               <tr>"+
+	"								<td style='color: #282828; font-size: 12px; text-align: left;'>"+
+	"				                      Capitais e regiões metropolitanas"+
+	"								</td>"+
+	"                               </tr>"+
+	"                               <tr>"+
+	"                               <td style='color: #282828; font-size: 22px; text-align: left;'>"+
+	"				                      <strong> 4090-1110</strong><br>"+
+	"									  </td>"+
+	"								</td>"+
+	"                               </tr>"+
+	"                               <tr style='height: 12px;'>"+
+	"								</tr>"+
+	"                               <tr>"+
+	"								<td style='color: #282828; font-size: 12px; text-align: left;'>"+
+	"				                      Demais localidades"+
+	"									</td>"+
+	"								</td>"+
+	"                               </tr>"+
+	"                               <tr>"+
+	"								<td style='color: #282828; font-size: 20px; text-align: left;'>"+
+	"				                      <strong> 0800 777 7243</strong><br>"+
+	"									</td>"+
+	"								</td>"+
+	"                               </tr>"+
+	"                               <tr style='height: 12px;'>"+
+	"								</tr>"+
+	"                               <tr>"+
+	"								<td style='color: #282828; font-size: 12px; text-align: left;'>"+
+	"				                      Atendimento WhatsApp"+
+	"								</td>"+
+	"								</tr>"+
+	"                               <tr>"+
+	"								<td style='color: #282828; font-size: 20px; text-align: left;'>"+
+	"				                      <strong> (11) 4090 1110</strong>"+
+	"				                      ______________________<br>"+
+	"									</td>"+
+	"								</tr>"+
+	"                               <tr style='height: 12px;'>"+
+	"								</tr>"+
+	"                               <tr>"+
+	"								<td style='color: #282828; font-size: 20px; text-align: left;'>"+
+	"				                      <strong> Portal de atendimento</strong>"+
+	"									</td>"+
+	"								</tr>"+
+	"                               <tr>"+
+	"								<td style='color: #282828; font-size: 12px; text-align: left;'>"+
+	"				                      Acesse o portal pelo link abaixo<br>"+
+	"				                      ou pelo QR code.<br>"+
+	"								</td>"+
+	
+	"								</tr>"+
+	"                               <tr style='height: 12px;'>"+
+	"								</tr>"+
+	"                               <tr>"+
+	"								<td style='color: #282828; font-size: 12px; text-align: left;'>"+
+	"				                      Acesse"+
+	"								</td>"+
+	"								</tr>"+
+	"                               <tr>"+
+	"								<td style='color: #282828; font-size: 12px; text-align: left;'>"+
+	"				                      <a href='https://www.allianz.com.br' style='color: #ec0000; text-decoration: underline;'><strong>www.allianz.com.br</strong></a>'<br>"+
+	"				                      _____________________________________<br>"+
+	"								</td>"+
+	"								</tr>"+
+	"                               <tr style='height: 12px;'>"+
+	"								</tr>"+
+	"                               <tr>"+
+	"								<td style='color: #282828; font-size: 20px; text-align: left;'>"+
+	"				                      <strong> Aplicativo da seguradora</strong>"+
+	"									</td>"+
+	"								</tr>"+
+	"                               <tr>"+
+	"								<td style='color: #282828; font-size: 12px; text-align: left;'>"+
+	"				                      Baixe nosso App pelo link abaixo<br>"+
+	"				                      ou acesse o QR code.<br>"+
+	"								</td>"+
+	"								</tr>"+
+	"                               <tr style='height: 12px;'>"+
+	"								</tr>"+
+	"                               <tr>"+
+	"								<td style='color: #282828; font-size: 12px; text-align: left;'>"+
+	"				                      <a href='https://apps.apple.com/br/app/allianz-cliente/id1554862261?mt=8' style='color: #ec0000; text-decoration: underline;'><strong>Baixar aplicativo</strong></a><br>"+
+    "				                      _____________________________________<br>"+
+	"								</td>"+
+	"								</tr>"+
+	"                               <tr style='height: 10px;'>"+
+	"								</tr>"+
+	"							</table>"+
+	"						</td>"+
+	"                       <td valign='bottom'>"+
+	"							<table border='0' cellpadding='0' cellspacing='0'>"+
+	"								<tr>"+
+	"									<td>"+
+	"		                              <img src='cid:image_id10' alt='Imagem 1' align='middle' >"+
+	"									</td>"+
+	"								</tr>"+
+	"                               <tr style='height: 130px;'>"+
+	"								</tr>"+
+	"								<tr>"+
+	"									<td>"+
+	"		                              <img src='cid:image_id11' alt='Imagem 1' align='middle' >"+
+	"									</td>"+
+	"								</tr>"+
+	"                               <tr style='height: 35px;'>"+
+	"								</tr>"+
+	"								<tr>"+
+	"									<td>"+
+	"		                              <img src='cid:image_id12' alt='Imagem 1' align='middle' >"+
+	"									</td>"+
+	"								</tr>"+
+	"                               <tr style='height: 20px;'>"+
+	"								</tr>"+
+	"							</table>"+
+	"						</td>"+
+	"                       <td valign='bottom' style='width: 10px;' >"+
+	"						</td>"+
+	"					</tr>"+
+	"				</table>"+
+	"			</td>"+
+	"		</tr>"+
+	"	</table>"+
+	"</td>"+
+	"</tr>"+
+	"</table>"+
+	"</td>" +
+	"<tr>" +
+	"</div>"+
+	"</center></table>" +
+	
+	"<tr style='height: 30px;'>"+
+	"</tr>"+
+	
+	"<div>"+
+	"<img src='cid:image_id13' alt='Logo 2'>"+
+    "</div>"+
+	"<center><table  style='line-height: 1; letter-spacing: -0.3px; font-size: 13px; margin: 30px 0px; color: #282828; '>" +
+	"<div class='space-component' >"+
+	"<div style='width: 85%; '>"+
+	"	<div style='line-height: 1; letter-spacing: -0.3px; font-size: 13px; margin: 30px 0px; color: #282828; justify-content: center; '>"+
+	"		<p>"+
+	"			O serviço Santander Autocompara é prestado pela Santander Corretora de Seguros,<br>"+
+	"			Investimentos e Serviços S.A., registro SUSEP 10.2041572.9 e CNPJ 04.270.778/0001-71. O<br>"+
+	"			registro dos planos na SUSEP não implica, por parte da Autarquia, incentivo ou recomendação<br>"+
+	"			a sua comercialização."+
+	"		</p>"+
+	"	</div>"+
+	"</div>"+
+	"</div>"+
+	"</center></table>" +
+	"<center><table  style='line-height: 1; letter-spacing: -0.3px; font-size: 11px; margin: 7px 0px; color: #282828; '>" +
+	"<div class='space-container' '>"+
+	"<div style='width: 85%; '>"+
+	"	<div style='line-height: 1; letter-spacing: -0.3px; font-size: 11px; margin: 7px 0px; color: #282828; text-align: left;'  >"+
+	"		<p>"+
+	"			Caro cliente, este é um e-mail automático, pedimos a gentileza de não respondê-lo, contate nossa central de<br>"+
+	"			atendimento para mais informações. Você está recebendo este e-mail porque fez uma simulação no nosso site<br>"+
+	"			e autorizou receber comunicações, de acordo com nossos Termos de Uso.<br>"+
+	"			<br><br>"+
+	"		</p>"+
+	"	</div>"+
+	"</div>"+
+	"</div>"+
+	"</center></table>" +
+	"<center><table  >" +
+	"<div>"+
+	"<tr>" +
+	"<td>" +
+	"	<table border='0' cellpadding='0' cellspacing='0'>" +
+	"		<tr>" +
+	"			<td width='75' style='line-height: 1.2; letter-spacing: -0.1px; font-size: 19px;  margin: 7px 0px; color: #282828'>" +
+	"				Siga-nos"+
+	"			</td>" +
+	"		   <td width='30'>" +
+	"				<a href='https://www.facebook.com/allianzbrasil/' target='_blank'>" +
+	"				<img src='cid:image_id14' alt='Facebook'></a>" +
+	"			</td>" +
+	"		   <td width='30'>" +
+	"				<a href='https://www.linkedin.com/company/allianzbrasil/mycompany/verification/'>" +
+	"					<img src='cid:image_id15' alt='LinkedIn'></a>" +
+	"				</td>" +
+	"		   <td>" +
+	"				<a href='https://www.instagram.com/allianzbrasil/'>" +
+	"					<img src='cid:image_id16' alt='Instagram'></a>" +
+	"				</td>" +
+	"		</tr>" +
+	"	</table>" +
+	"</td>" +
+    "</tr>" +
+    "<tr>" +
+	"</div>"+
+	"</center></table>" +
+    "<div>"+
+	"  <img src='cid:image_id17' alt='Linha'>"+
+    "</div>"+
+    "</div>"+
+    "</div>"+
+    "</main>"+
+	"</body>"+
+	"</center></table>" +
+	"</html>"
+		
+	return sb;
+	}
+	
+	
+	
+	/**
+	 * Aviso de Renovação Apólice Allianz/Santander
+	 * IBLBDM-74087
+	 * @return
+	 */
+	public static String avisoRenovacaoAllianzSantander15A112025(String segurado,  String apolice, String vigencia, String placa, String veiculo  ){
+	
+	String sb = "<html>" +
+	"<head>" +
+	"<center><table>" +
+	"<meta charset='UTF-8'>" +
+	"<link rel='stylesheet' href='style.css'>"+
+	"<meta name='viewport' content='width=device-width, initial-scale=1.0'>" +
+	"<title>Allianz</title>" +
+	"</head>"+
+	"<body>"+
+	"<main class='container'>"+
+	"<div class='center'>"+
+	"<div class='container'>"+
+	"<div class='center'>"+
+	"<header class='header'>"+
+	"		<img src='cid:image_id1' alt='Logo Allianz'>"+
+	"</header>"+
+	"</div>"+
+	"<tr>"+
+	"<td>"+
+	"	<table border='0' cellpadding='0' cellspacing='0'>"+
+	"		<tr>"+
+	"			<td>"+
+	"				<table border='0' cellpadding='0' cellspacing='0'>"+
+	"					<tr>"+
+	"						<td>"+
+	"							<table border='0' cellpadding='0' cellspacing='0'>"+
+	"									<td style='color: #282828; font-size: 24px; text-align: center;'>"+
+	"				                      <strong> Olá, "+segurado+"</strong><br>"+
+	"                                     Temos uma informação <br> importante<br>"+
+	"                                     sobre o seu seguro."+
+	"									</td>"+
+	"								</tr>"+
+	"							</table>"+
+	"						</td>"+
+	"						<td valign='bottom'>"+
+	"							<table border='0' cellpadding='0' cellspacing='0'>"+
+	"								<tr>"+
+	"									<td>"+
+	"		                              <img src='cid:image_id3' alt='Imagem 1'>"+
+	"									</td>"+
+	"								</tr>"+
+	"							</table>"+
+	"						</td>"+
+	"					</tr>"+
+	"				</table>"+
+	"			</td>"+
+	"		</tr>"+
+	"	</table>"+
+	"</td>"+
+	"</tr>"+
+	
+	"<tr style='height: 30px;'>"+
+	"</tr>"+
+	
+	"<center><table>" +
+	"<tr>"+
+	"<td>"+
+	"	<table border='0' cellpadding='0' cellspacing='0'>"+
+	"		<tr>"+
+	"			<td>"+
+	"				<table border='0' cellpadding='0' cellspacing='0'>"+
+	"					<tr>"+
+	"						<p style=' font-size: 18px;' >"+
+	"                           Informamos que o seguro do seu veículo com a Allianz Seguros <br>"+
+	"							<strong>será renovado</strong> na próxima data de vencimento. <br><br>"+
+    "                            Nas próximas semanas, enviaremos a apólice renovada para sua <br>"+
+	"							revisão. Segue abaixo um resumo das principais alterações entre <br>"+
+	"							sua apólice atual e a renovada, refletindo as atualizações em nosso <br>"+
+	"							produto. <br><br>"+
+	"							<strong> Coberturas:</strong><br>"+
+	"							Sim, agora inclui a nova cobertura de Gastos com Defesa. <br><br>"+
+	"							<strong>Assistência 24 Horas: </strong><br>"+
+	"							Condições mantidas conforme a apólice anterior.<br><br>"+
+	"							<strong>Franquias:</strong><br>"+
+	"							Sim, tipo de franquia mantido alinhado ao valor de mercado do veículo. <br><br>"+
+	"						</p>"+
+	"					</tr>"+
+	"<tr style='height: 40px;'>"+
+	"</tr>"+
+	"				</table>"+
+	"			</td>"+
+	"		</tr>"+
+	"	</table>"+
+	"</td>"+
+	"</tr>"+
+	"</center></table>" +
+	
+	"<tr style='height: 80px;'>"+
+	"</tr>"+
+		
+	"<center><table border='0' cellpadding='0' cellspacing='0' class='width-1'>" +
+	"<div>"+
+	"<img src='cid:image_id19' alt='top' width='495' heigh='390' style='display: block;' >"+
+	"	<table  bgcolor='#e8e8e8' style='margin: 0; padding: 0; width: 495' >" +
+	"		<tr style='height: 35px;' >" +
+	"			<td>" +
+	"				<img src='cid:image_id4' alt='Ícone Veículo'>"+
+	"			</td>" +
+	"		    <td style=' font-size: 15px;' >" +
+	"				<strong>Veículo</strong> "+veiculo+""+
+	"			</td>" +
+	"		</tr>" +
+	"		<tr style='height: 35px;' >" +
+	"			<td>" +
+	"				<img src='cid:image_id5' alt='Ícone Placa'>"+
+	"			</td>" +
+	"		    <td style=' font-size: 15px;' >" +
+	"				<strong>Placa</strong> "+placa+""+
+	"			</td>" +
+	"		</tr>" +
+	"		<tr  style='height: 35px;' >" +
+	"			<td>" +
+	"				<img src='cid:image_id6' alt='Ícone Apólice'>"+
+	"			</td>" +
+	"		    <td style=' font-size: 15px;' >" +
+	"				<strong>Apólice</strong> "+apolice+""+
+	"			</td>" +
+	"		</tr>" +
+	"		<tr  style='height: 35px;'>" +
+	"			<td >" +
+	"				<img src='cid:image_id7' alt='Ícone Vigência'>"+
+	"			</td>" +
+	"		    <td style=' font-size: 15px; ' >" +
+	"				<strong>Vigência</strong> "+vigencia+""+
+	"			</td>" +
+	"		</tr>" +
+	"	</table>" +
+	"<img src='cid:image_id20' alt='down' width='495' heigh='390' >"+
+	"</div>"+
+	"</center></table>" +
+	
+	"<tr style='height: 80px;'>"+
+	"</tr>"+
+	
+	"<center><table>" +
+	"<tr>"+
+	"<td>"+
+	"	<table border='0' cellpadding='0' cellspacing='0'>"+
+	"		<tr>"+
+	"			<td>"+
+	"				<table border='0' cellpadding='0' cellspacing='0'>"+
+	"<tr style='height: 40px;'>"+
+	"</tr>"+
+	"					<tr>"+
+	"			            <p>Caso alguma informação do seu seguro mudou nos últimos meses, e <br>"+
+	"			            você ainda não informou, por favor, entre em contato com a central <br>"+
+	"			            Autocompara. Teremos o maior prazer em esclarecer suas duvidas <br>"+
+	"			            ou em atualizar as informações.<br><br>"+
+    "                       Caso não esteja de acordo com a contratação, por favor, entrar <br>"+
+	"			            em contato com o <strong>Serviço de Atendimento ao Cliente Allianz,</strong><br>"+
+	"			            <strong>através dos telefones</strong></p>"+
+    "	                    <p><strong>08000 115 215</strong><br>"+
+    "                       <strong>08000 121 239</strong> "+
+    "                       <span class='texto-extra-small'>(exclusivo para portadores de limitação auditiva e de fala)</span></p>"+
+	"					</tr>"+
+	"				</table>"+
+	"			</td>"+
+	"		</tr>"+
+	"	</table>"+
+	"</td>"+
+	"</tr>"+
+	"</center></table>" +
+	
+	"<div>"+
+	"<img src='cid:image_id18' alt='Lelefones' width='600' heigh='500' >"+
+	"</div>"+
+	
+	"<center><table  >" +
+	"<div>"+
+	"<tr>" +
+	"<td bgcolor='#e8e8e8'  >" +
+	"	<table border='0' cellpadding='0' cellspacing='0'>" +
+	"		    <td style=' font-size: 30px; color: #ec0000'  align='left' >" +
+	"				<strong>Fale com a Seguradora</strong><br><br>"+
+	"			</td>" +
+	"	</table>" +
+	"	<table border='0' cellpadding='0' cellspacing='0'>"+
+	"		<tr>"+
+	"			<td>"+
+	"				<table border='0' cellpadding='0' cellspacing='0'>"+
+	"					<tr>"+
+	
+	"						<td  style='width: 200px;'>"+
+	"							<table border='0' cellpadding='0' cellspacing='0'>"+
+	"								<tr>"+
+	"									<td >"+
+	"			                            <img src='cid:image_id9' alt='Título'>"+
+	"									</td>"+
+	"								</tr>"+
+	"							</table>"+
+	"						</td>"+
+	
+	"						<td valign='bottom' style='width: 219px;' >"+
+	"							<table border='0' cellpadding='0' cellspacing='0'>"+
+	"                               <tr>"+
+	"								<td style='color: #282828; font-size: 20px; text-align: left;'>"+
+	"				                      <strong> Central de atendimento</strong>"+
+	"									</td>"+
+	"								</td>"+
+	"                               </tr>"+
+	"                               <tr>"+
+	"								<td style='color: #282828; font-size: 12px; text-align: left;'>"+
+	"				                      Linha Direta Allianz Seguros"+
+	"									</td>"+
+	"								</td>"+
+	"                               </tr>"+
+	"                               <tr>"+
+	"								<td style='color: #282828; font-size: 12px; text-align: left;'>"+
+	"				                      Capitais e regiões metropolitanas"+
+	"								</td>"+
+	"                               </tr>"+
+	"                               <tr>"+
+	"                               <td style='color: #282828; font-size: 22px; text-align: left;'>"+
+	"				                      <strong> 4090-1110</strong><br>"+
+	"									  </td>"+
+	"								</td>"+
+	"                               </tr>"+
+	"                               <tr style='height: 12px;'>"+
+	"								</tr>"+
+	"                               <tr>"+
+	"								<td style='color: #282828; font-size: 12px; text-align: left;'>"+
+	"				                      Demais localidades"+
+	"									</td>"+
+	"								</td>"+
+	"                               </tr>"+
+	"                               <tr>"+
+	"								<td style='color: #282828; font-size: 20px; text-align: left;'>"+
+	"				                      <strong> 0800 777 7243</strong><br>"+
+	"									</td>"+
+	"								</td>"+
+	"                               </tr>"+
+	"                               <tr style='height: 12px;'>"+
+	"								</tr>"+
+	"                               <tr>"+
+	"								<td style='color: #282828; font-size: 12px; text-align: left;'>"+
+	"				                      Atendimento WhatsApp"+
+	"								</td>"+
+	"								</tr>"+
+	"                               <tr>"+
+	"								<td style='color: #282828; font-size: 20px; text-align: left;'>"+
+	"				                      <strong> (11) 4090 1110</strong>"+
+	"				                      ______________________<br>"+
+	"									</td>"+
+	"								</tr>"+
+	"                               <tr style='height: 12px;'>"+
+	"								</tr>"+
+	"                               <tr>"+
+	"								<td style='color: #282828; font-size: 20px; text-align: left;'>"+
+	"				                      <strong> Portal de atendimento</strong>"+
+	"									</td>"+
+	"								</tr>"+
+	"                               <tr>"+
+	"								<td style='color: #282828; font-size: 12px; text-align: left;'>"+
+	"				                      Acesse o portal pelo link abaixo<br>"+
+	"				                      ou pelo QR code.<br>"+
+	"								</td>"+
+	
+	"								</tr>"+
+	"                               <tr style='height: 12px;'>"+
+	"								</tr>"+
+	"                               <tr>"+
+	"								<td style='color: #282828; font-size: 12px; text-align: left;'>"+
+	"				                      Acesse"+
+	"								</td>"+
+	"								</tr>"+
+	"                               <tr>"+
+	"								<td style='color: #282828; font-size: 12px; text-align: left;'>"+
+	"				                      <a href='https://www.allianz.com.br' style='color: #ec0000; text-decoration: underline;'><strong>www.allianz.com.br</strong></a>'<br>"+
+	"				                      _____________________________________<br>"+
+	"								</td>"+
+	"								</tr>"+
+	"                               <tr style='height: 12px;'>"+
+	"								</tr>"+
+	"                               <tr>"+
+	"								<td style='color: #282828; font-size: 20px; text-align: left;'>"+
+	"				                      <strong> Aplicativo da seguradora</strong>"+
+	"									</td>"+
+	"								</tr>"+
+	"                               <tr>"+
+	"								<td style='color: #282828; font-size: 12px; text-align: left;'>"+
+	"				                      Baixe nosso App pelo link abaixo<br>"+
+	"				                      ou acesse o QR code.<br>"+
+	"								</td>"+
+	"								</tr>"+
+	"                               <tr style='height: 12px;'>"+
+	"								</tr>"+
+	"                               <tr>"+
+	"								<td style='color: #282828; font-size: 12px; text-align: left;'>"+
+	"				                      <a href='https://apps.apple.com/br/app/allianz-cliente/id1554862261?mt=8' style='color: #ec0000; text-decoration: underline;'><strong>Baixar aplicativo</strong></a><br>"+
+	"				                      _____________________________________<br>"+
+	"								</td>"+
+	"								</tr>"+
+	"                               <tr style='height: 10px;'>"+
+	"								</tr>"+
+	"							</table>"+
+	"						</td>"+
+	"                       <td valign='bottom'>"+
+	"							<table border='0' cellpadding='0' cellspacing='0'>"+
+	"								<tr>"+
+	"									<td>"+
+	"		                              <img src='cid:image_id10' alt='Imagem 1' align='middle' >"+
+	"									</td>"+
+	"								</tr>"+
+	"                               <tr style='height: 130px;'>"+
+	"								</tr>"+
+	"								<tr>"+
+	"									<td>"+
+	"		                              <img src='cid:image_id11' alt='Imagem 1' align='middle' >"+
+	"									</td>"+
+	"								</tr>"+
+	"                               <tr style='height: 35px;'>"+
+	"								</tr>"+
+	"								<tr>"+
+	"									<td>"+
+	"		                              <img src='cid:image_id12' alt='Imagem 1' align='middle' >"+
+	"									</td>"+
+	"								</tr>"+
+	"                               <tr style='height: 20px;'>"+
+	"								</tr>"+
+	"							</table>"+
+	"						</td>"+
+	"                       <td valign='bottom' style='width: 10px;' >"+
+	"						</td>"+
+	"					</tr>"+
+	"				</table>"+
+	"			</td>"+
+	"		</tr>"+
+	"	</table>"+
+	"</td>"+
+	"</tr>"+
+	"</table>"+
+	"</td>" +
+	"<tr>" +
+	"</div>"+
+	"</center></table>" +
+	
+	"<tr style='height: 30px;'>"+
+	"</tr>"+
+	
+	"<div>"+
+	"<img src='cid:image_id13' alt='Logo 2'>"+
+	"</div>"+
+	
+	
+	"<center><table  style='line-height: 1; letter-spacing: -0.3px; font-size: 14px; margin: 30px 0px; color: #282828; '>" +
+	"<div class='space-component' >"+
+	"<div style='width: 80%; '>"+
+	"	<div style='line-height: 1; letter-spacing: -0.1px; font-size: 13px; margin: 20px 0px; color: #282828; justify-content: center; '>"+
+	"		<p>"+
+	"			O serviço Santander Autocompara é prestado pela Santander Corretora de Seguros,<br>"+
+	"			Investimentos e Serviços S.A., registro SUSEP 10.2041572.9 e CNPJ 04.270.778/0001-71. O<br>"+
+	"			registro dos planos na SUSEP não implica, por parte da Autarquia, incentivo ou recomendação<br>"+
+	"			a sua comercialização."+
+	"		</p>"+
+	"	</div>"+
+	"</div>"+
+	"</div>"+
+	"</center></table>" +
+	
+	
+	
+	"<table width='520' border='0' cellpadding='0' cellspacing='0'>"+
+	"<tr>"+
+	"       <td style='line-height: 1; letter-spacing: -0.1px; font-size: 11px; margin: 20px 0px; color: #282828; justify-content: center;'>"+
+	"			Caro cliente, este é um e-mail automático, pedimos a gentileza de não respondê-lo, contate nossa"+
+    "           central de atendimento para mais informações. Você está recebendo este e-mail porque fez uma"+
+    "           simulação no nosso site e autorizou receber comunicações, de acordo com nossos Termos de Uso."+
+	"			Allianz Seguros S.A., CNPJ: 61.573.796/0001<a href='#' style='color: #414141; text-decoration: none;'>-66, Rua Eugênio de Medeiros no 303,</a> ands. 1-parte, 2 ao"+
+    "           9, 15 e 16, Pinheiros, São Paulo - CEP: 05425-000. Processo SUSEP 15414.002216/2004-57,"+
+    "           15414.002901.2007/26, 15414.900597/2017-56, 15414.004661/2004-51, 15414.004732/2004-16,"+
+    "           15414.900340/2018-85, 15414.100898/2004-62, 15414.001289.2007-74.. Consulte as Condições Gerais,"+
+    "           assim como os planos de assistência 24h, serviços e abrangência do seguro no site  carência"+
+    "           <a href='https://www.allianz.com.br' style='color: #414141; text-decoration: none;'>www.allianz.com.br.</a> O registro do produto é automático e não representa aprovação ou recomendação"+
+	"           por parte da SUSEP. A aceitação do seguro está sujeita a análise do risco. Algumas coberturas e"+  
+    "           erviços possuem restrições, e limites diferenciados. Para saber todos os detalhes e"+
+    "           conhecer a lista completa consulte o Manual do Segurado/Condições Gerais. Linha Direta Allianz"+
+	"           Corretor: 4090 1120 (Capitais e Regiões Metropolitanas), 0800 777 8243 (demais regiões). SAC (24 horas):"+
+    "           08000 115 215. Ouvidoria Allianz Seguros: 0800 771 3313. Atendimento à pessoa com"+
+    "           deficiência auditiva ou de fala: 08000 121 239. A Allianz Seguros respeita a sua privacidade e é contra o"+
+    "           spam na rede. Para mais informações, acesse a Política de Privacidade de Dados da Allianz, disponível"+
+    "           em: <a href='https://www.allianz.com.br/politica-de-privacidade' style='color: #414141; text-decoration: none;'>www.allianz.com.br/politica-de-privacidade.</a>"+ 
+	"       </td>"+
+	"</tr>"+
+	"<tr>"+
+	"	<td style='height: 26px;'>"+
+	"		&nbsp;"+
+	"	</td>"+
+	"</tr>"+
+	"</table>" +
+	
+	
+	
+
+	
+	
+	
+	"<center><table  >" +
+	"<div>"+
+	"<tr>" +
+	"<td>" +
+	"	<table border='0' cellpadding='0' cellspacing='0'>" +
+	"		<tr>" +
+	"			<td width='75' style='line-height: 1.2; letter-spacing: -0.1px; font-size: 19px;  margin: 7px 0px; color: #282828'>" +
+	"				Siga-nos"+
+	"			</td>" +
+	"		   <td width='30'>" +
+	"				<a href='https://www.facebook.com/allianzbrasil/' target='_blank'>" +
+	"				<img src='cid:image_id14' alt='Facebook'></a>" +
+	"			</td>" +
+	"		   <td width='30'>" +
+	"				<a href='https://www.linkedin.com/company/allianzbrasil/mycompany/verification/'>" +
+	"					<img src='cid:image_id15' alt='LinkedIn'></a>" +
+	"				</td>" +
+	"		   <td>" +
+	"				<a href='https://www.instagram.com/allianzbrasil/'>" +
+	"					<img src='cid:image_id16' alt='Instagram'></a>" +
+	"				</td>" +
+	"		</tr>" +
+	"	</table>" +
+	"</td>" +
+	"</tr>" +
+	"<tr>" +
+	"</div>"+
+	"</center></table>" +
+	
+	
+	"<div>"+
+	"  <img src='cid:image_id17' alt='Linha'>"+
+	"</div>"+
+	"</div>"+
+	"</div>"+
+	"</main>"+
+	"</body>"+
+	"</center></table>" +
+	"</html>"
+		
+	return sb;
+	}
+	
+	
+	/**
+	 * Aviso de Renovação Apólice Allianz/Santander
+	 * IBLBDM-74087
+	 * @return
+	 */
+	public static String avisoNaoRenovacaoAllianzSantander112025(String segurado,  String apolice, String vigencia, String placa, String veiculo  ){
+	
+	String sb = "<html>" +
+	"<head>" +
+	"<center><table>" +
+	"<meta charset='UTF-8'>" +
+	"<link rel='stylesheet' href='style.css'>"+
+	"<meta name='viewport' content='width=device-width, initial-scale=1.0'>" +
+	"<title>Allianz</title>" +
+	"</head>"+
+	"<body>"+
+	"<main class='container'>"+
+	"<div class='center'>"+
+	"<div class='container'>"+
+	"<div class='center'>"+
+	"<header class='header'>"+
+	"		<img src='cid:image_id1' alt='Logo Allianz'>"+
+	"</header>"+
+	"</div>"+
+	"<tr>"+
+	"<td>"+
+	"	<table border='0' cellpadding='0' cellspacing='0'>"+
+	"		<tr>"+
+	"			<td>"+
+	"				<table border='0' cellpadding='0' cellspacing='0'>"+
+	"					<tr>"+
+	"						<td>"+
+	"							<table border='0' cellpadding='0' cellspacing='0'>"+
+	"									<td style='color: #282828; font-size: 24px; text-align: center;'>"+
+	"				                      <strong> Olá, "+segurado+"</strong><br>"+
+	"                                     Temos uma informação <br> importante<br>"+
+	"                                     sobre o seu seguro."+
+	"									</td>"+
+	"								</tr>"+
+	"								<tr>"+
+	"									<td >"+
+//	"			                            <img src='cid:image_id2' alt='Título'>"+
+	"									</td>"+
+	"								</tr>"+
+	"							</table>"+
+	"						</td>"+
+	"						<td valign='bottom'>"+
+	"							<table border='0' cellpadding='0' cellspacing='0'>"+
+	"								<tr>"+
+	"									<td>"+
+	"		                              <img src='cid:image_id3' alt='Imagem 1'>"+
+	"									</td>"+
+	"								</tr>"+
+	"							</table>"+
+	"						</td>"+
+	"					</tr>"+
+	"				</table>"+
+	"			</td>"+
+	"		</tr>"+
+	"	</table>"+
+	"</td>"+
+	"</tr>"+
+	
+	"<tr style='height: 30px;'>"+
+	"</tr>"+
+	
+	"<center><table>" +
+	"<tr>"+
+	"<td>"+
+	"	<table border='0' cellpadding='0' cellspacing='0'>"+
+	"		<tr>"+
+	"			<td>"+
+	"				<table border='0' cellpadding='0' cellspacing='0'>"+
+	"					<tr>"+
+	"						<p style=' font-size: 18px;' >"+
+	"                           Informamos que o seguro do seu veículo com a Allianz Seguros<br>"+
+	"							<strong>não será renovado</strong> na próxima data de vencimento.<br><br>"+
+    "                           Entendemos a importância de manter sua proteção e, por isso, já<br>"+
+	"							acionamos o Autocompara para auxiliá-lo na busca por novas<br>"+
+	"							opções em outras seguradoras, garantindo uma transição<br>"+
+	"							tranquila."+
+	"						</p>"+
+	"					</tr>"+
+	"<tr style='height: 40px;'>"+
+	"</tr>"+
+	"				</table>"+
+	"			</td>"+
+	"		</tr>"+
+	"	</table>"+
+	"</td>"+
+	"</tr>"+
+	"</center></table>" +
+	
+	"<tr style='height: 80px;'>"+
+	"</tr>"+
+		
+	"<center><table border='0' cellpadding='0' cellspacing='0' class='width-1'>" +
+	"<div>"+
+	"<img src='cid:image_id19' alt='top' width='495' heigh='390' style='display: block;' >"+
+	"	<table  bgcolor='#e8e8e8' style='margin: 0; padding: 0; width: 495' >" +
+	"		<tr style='height: 35px;' >" +
+	"			<td>" +
+	"				<img src='cid:image_id4' alt='Ícone Veículo'>"+
+	"			</td>" +
+	"		    <td style=' font-size: 15px;' >" +
+	"				<strong>Veículo</strong> "+veiculo+""+
+	"			</td>" +
+	"		</tr>" +
+	"		<tr style='height: 35px;' >" +
+	"			<td>" +
+	"				<img src='cid:image_id5' alt='Ícone Placa'>"+
+	"			</td>" +
+	"		    <td style=' font-size: 15px;' >" +
+	"				<strong>Placa</strong> "+placa+""+
+	"			</td>" +
+	"		</tr>" +
+	"		<tr  style='height: 35px;' >" +
+	"			<td>" +
+	"				<img src='cid:image_id6' alt='Ícone Apólice'>"+
+	"			</td>" +
+	"		    <td style=' font-size: 15px;' >" +
+	"				<strong>Apólice</strong> "+apolice+""+
+	"			</td>" +
+	"		</tr>" +
+	"		<tr  style='height: 35px;'>" +
+	"			<td >" +
+	"				<img src='cid:image_id7' alt='Ícone Vigência'>"+
+	"			</td>" +
+	"		    <td style=' font-size: 15px; ' >" +
+	"				<strong>Vigência</strong> "+vigencia+""+
+	"			</td>" +
+	"		</tr>" +
+	"	</table>" +
+	"<img src='cid:image_id20' alt='down' width='495' heigh='390' >"+
+	"</div>"+
+	"</center></table>" +
+	
+	"<tr style='height: 80px;'>"+
+	"</tr>"+
+	
+	"<center><table>" +
+	"<tr>"+
+	"<td>"+
+	"	<table border='0' cellpadding='0' cellspacing='0'>"+
+	"		<tr>"+
+	"			<td>"+
+	"				<table border='0' cellpadding='0' cellspacing='0'>"+
+	"<tr style='height: 40px;'>"+
+	"</tr>"+
+	"					<tr>"+
+	"						<p style=' font-size: 17px;' >"+
+	"			            Caso tenha alguma dúvida, entre em contato com o Autocompara.<br>"+
+	"			            Obrigado por escolher a Allianz e esperamos atender você em<br>"+
+	"			            uma próxima oportunidade.<br>"+
+	"					</tr>"+
+	"				</table>"+
+	"			</td>"+
+	"		</tr>"+
+	"	</table>"+
+	"</td>"+
+	"</tr>"+
+	"</center></table>" +
+	
+	"<div>"+
+	"<img src='cid:image_id18' alt='Lelefones' width='600' heigh='500' >"+
+	"</div>"+
+	
+	"<center><table  >" +
+	"<div>"+
+	"<tr>" +
+	"<td bgcolor='#e8e8e8'  >" +
+	"	<table border='0' cellpadding='0' cellspacing='0'>" +
+	"		    <td style=' font-size: 30px; color: #ec0000'  align='left' >" +
+	"				<strong>Fale com a Seguradora</strong><br><br>"+
+	"			</td>" +
+	"	</table>" +
+	"	<table border='0' cellpadding='0' cellspacing='0'>"+
+	"		<tr>"+
+	"			<td>"+
+	"				<table border='0' cellpadding='0' cellspacing='0'>"+
+	"					<tr>"+
+	
+	"						<td  style='width: 200px;'>"+
+	"							<table border='0' cellpadding='0' cellspacing='0'>"+
+	"								<tr>"+
+	"									<td >"+
+	"			                            <img src='cid:image_id9' alt='Título'>"+
+	"									</td>"+
+	"								</tr>"+
+	"							</table>"+
+	"						</td>"+
+	
+	"						<td valign='bottom' style='width: 219px;' >"+
+	"							<table border='0' cellpadding='0' cellspacing='0'>"+
+	"                               <tr>"+
+	"								<td style='color: #282828; font-size: 20px; text-align: left;'>"+
+	"				                      <strong> Central de atendimento</strong>"+
+	"									</td>"+
+	"								</td>"+
+	"                               </tr>"+
+	"                               <tr>"+
+	"								<td style='color: #282828; font-size: 12px; text-align: left;'>"+
+	"				                      Linha Direta Allianz Seguros"+
+	"									</td>"+
+	"								</td>"+
+	"                               </tr>"+
+	"                               <tr>"+
+	"								<td style='color: #282828; font-size: 12px; text-align: left;'>"+
+	"				                      Capitais e regiões metropolitanas"+
+	"								</td>"+
+	"                               </tr>"+
+	"                               <tr>"+
+	"                               <td style='color: #282828; font-size: 22px; text-align: left;'>"+
+	"				                      <strong> 4090-1110</strong><br>"+
+	"									  </td>"+
+	"								</td>"+
+	"                               </tr>"+
+	"                               <tr style='height: 12px;'>"+
+	"								</tr>"+
+	"                               <tr>"+
+	"								<td style='color: #282828; font-size: 12px; text-align: left;'>"+
+	"				                      Demais localidades"+
+	"									</td>"+
+	"								</td>"+
+	"                               </tr>"+
+	"                               <tr>"+
+	"								<td style='color: #282828; font-size: 20px; text-align: left;'>"+
+	"				                      <strong> 0800 777 7243</strong><br>"+
+	"									</td>"+
+	"								</td>"+
+	"                               </tr>"+
+	"                               <tr style='height: 12px;'>"+
+	"								</tr>"+
+	"                               <tr>"+
+	"								<td style='color: #282828; font-size: 12px; text-align: left;'>"+
+	"				                      Atendimento WhatsApp"+
+	"								</td>"+
+	"								</tr>"+
+	"                               <tr>"+
+	"								<td style='color: #282828; font-size: 20px; text-align: left;'>"+
+	"				                      <strong> (11) 4090 1110</strong>"+
+	"				                      ______________________<br>"+
+	"									</td>"+
+	"								</tr>"+
+	"                               <tr style='height: 12px;'>"+
+	"								</tr>"+
+	"                               <tr>"+
+	"								<td style='color: #282828; font-size: 20px; text-align: left;'>"+
+	"				                      <strong> Portal de atendimento</strong>"+
+	"									</td>"+
+	"								</tr>"+
+	"                               <tr>"+
+	"								<td style='color: #282828; font-size: 12px; text-align: left;'>"+
+	"				                      Acesse o portal pelo link abaixo<br>"+
+	"				                      ou pelo QR code.<br>"+
+	"								</td>"+
+	
+	"								</tr>"+
+	"                               <tr style='height: 12px;'>"+
+	"								</tr>"+
+	"                               <tr>"+
+	"								<td style='color: #282828; font-size: 12px; text-align: left;'>"+
+	"				                      Acesse"+
+	"								</td>"+
+	"								</tr>"+
+	"                               <tr>"+
+	"								<td style='color: #282828; font-size: 12px; text-align: left;'>"+
+	"				                      <a href='https://www.allianz.com.br' style='color: #ec0000; text-decoration: underline;'><strong>www.allianz.com.br</strong></a>'<br>"+
+	"				                      _____________________________________<br>"+
+	"								</td>"+
+	"								</tr>"+
+	"                               <tr style='height: 12px;'>"+
+	"								</tr>"+
+	"                               <tr>"+
+	"								<td style='color: #282828; font-size: 20px; text-align: left;'>"+
+	"				                      <strong> Aplicativo da seguradora</strong>"+
+	"									</td>"+
+	"								</tr>"+
+	"                               <tr>"+
+	"								<td style='color: #282828; font-size: 12px; text-align: left;'>"+
+	"				                      Baixe nosso App pelo link abaixo<br>"+
+	"				                      ou acesse o QR code.<br>"+
+	"								</td>"+
+	"								</tr>"+
+	"                               <tr style='height: 12px;'>"+
+	"								</tr>"+
+	"                               <tr>"+
+	"								<td style='color: #282828; font-size: 12px; text-align: left;'>"+
+	"				                      <a href='https://apps.apple.com/br/app/allianz-cliente/id1554862261?mt=8' style='color: #ec0000; text-decoration: underline;'><strong>Baixar aplicativo</strong></a><br>"+
+	"				                      _____________________________________<br>"+
+	"								</td>"+
+	"								</tr>"+
+	"                               <tr style='height: 10px;'>"+
+	"								</tr>"+
+	"							</table>"+
+	"						</td>"+
+	"                       <td valign='bottom'>"+
+	"							<table border='0' cellpadding='0' cellspacing='0'>"+
+	"								<tr>"+
+	"									<td>"+
+	"		                              <img src='cid:image_id10' alt='Imagem 1' align='middle' >"+
+	"									</td>"+
+	"								</tr>"+
+	"                               <tr style='height: 130px;'>"+
+	"								</tr>"+
+	"								<tr>"+
+	"									<td>"+
+	"		                              <img src='cid:image_id11' alt='Imagem 1' align='middle' >"+
+	"									</td>"+
+	"								</tr>"+
+	"                               <tr style='height: 35px;'>"+
+	"								</tr>"+
+	"								<tr>"+
+	"									<td>"+
+	"		                              <img src='cid:image_id12' alt='Imagem 1' align='middle' >"+
+	"									</td>"+
+	"								</tr>"+
+	"                               <tr style='height: 20px;'>"+
+	"								</tr>"+
+	"							</table>"+
+	"						</td>"+
+	"                       <td valign='bottom' style='width: 10px;' >"+
+	"						</td>"+
+	"					</tr>"+
+	"				</table>"+
+	"			</td>"+
+	"		</tr>"+
+	"	</table>"+
+	"</td>"+
+	"</tr>"+
+	"</table>"+
+	"</td>" +
+	"<tr>" +
+	"</div>"+
+	"</center></table>" +
+	
+	"<tr style='height: 30px;'>"+
+	"</tr>"+
+	
+	"<div>"+
+	"<img src='cid:image_id13' alt='Logo 2'>"+
+	"</div>"+
+	
+	
+	"<center><table  style='line-height: 1; letter-spacing: -0.3px; font-size: 14px; margin: 30px 0px; color: #282828; '>" +
+	"<div class='space-component' >"+
+	"<div style='width: 80%; '>"+
+	"	<div style='line-height: 1; letter-spacing: -0.1px; font-size: 13px; margin: 20px 0px; color: #282828; justify-content: center; '>"+
+	"		<p>"+
+	"			O serviço Santander Autocompara é prestado pela Santander Corretora de Seguros,<br>"+
+	"			Investimentos e Serviços S.A., registro SUSEP 10.2041572.9 e CNPJ 04.270.778/0001-71.<br>"+
+	"			O registro dos planos na SUSEP não implica, por parte da Autarquia, incentivo ou recomendação<br>"+
+	"			a sua comercialização."+
+	"		</p>"+
+	"	</div>"+
+	"</div>"+
+	"</div>"+
+	"</center></table>" +
+	
+	"<table width='520' border='0' cellpadding='0' cellspacing='0'>"+
+	"<tr>"+
+	"       <td style='line-height: 1; letter-spacing: -0.1px; font-size: 11px; margin: 20px 0px; color: #282828; justify-content: center;'>"+
+    "           Caro cliente, este é um e-mail automático, pedimos a gentileza de não respondê-lo, contate nossa central de"+ 
+    "           atendimento para mais informações. Você está recebendo este e-mail porque fez uma simulação no nosso site "+ 
+    "           e autorizou receber comunicações, de acordo com nossos Termos de Uso.Allianz Seguros S.A., CNPJ:"+ 
+    "           61.573.796/0001-66, Rua Eugênio de Medeiros no 303,ands. 1-parte, 2 ao 9, 15 e 16, Pinheiros, São Paulo -"+ 
+    "           CEP: 05425-000. Processo SUSEP 15414.002216/2004-57, 15414.002901.2007/26, 15414.900597/2017-56,"+ 
+    "           15414.004661/2004-51, 15414.004732/2004-16, 15414.900340/2018-85, 15414.100898/2004-62,"+ 
+    "           15414.001289.2007-74. Consulte as Condições Gerais, assim como os planos de assistência 24h, serviços e"+ 
+    "           abrangência do seguro no site <a href='https://www.allianz.com.br' style='color: #414141; text-decoration: none;'>www.allianz.com.br.</a> O registro do produto é automático e não representa"+ 
+	"			aprovação ou recomendação por parte da SUSEP. A aceitação do seguro está sujeita a análise do risco."+ 
+    "           Algumas coberturas e serviços possuem restrições, carência e limites diferenciados. Para saber todos os"+ 
+    "           detalhes e conhecer a lista completa consulte o Manual do Segurado/Condições Gerais. Linha Direta Allianz"+ 
+    "           Corretor: 4090 1120 (Capitais e Regiões Metropolitanas),0800 777 8243 (demais regiões). SAC (24 horas):"+
+    "           08000 115 215. Ouvidoria Allianz Seguros: 0800 771 3313. Atendimento à pessoa com deficiência auditiva ou"+ 
+    "           de fala: 08000 121 239. A Allianz Seguros respeita a sua privacidade e é contra o spam na rede. Para mais"+ 
+    "           informações, acesse a Política de Privacidade de Dados da Allianz, disponível em: <a href='https://www.allianz.com.br/politica-de-privacidade' style='color: #414141; text-decoration: none;'>www.allianz.com.br/politica-"+
+    "           de-privacidade.</a>"+
+	"       </td>"+
+	"</tr>"+
+	"<tr>"+
+	"	<td style='height: 26px;'>"+
+	"		&nbsp;"+
+	"	</td>"+
+	"</tr>"+
+	"</table>" +
+	"		</p>"+
+	"	</div>"+
+	"</div>"+
+	"</div>"+
+	"</center></table>" +
+	
+	
+	
+
+	
+	
+	
+	"<center><table  >" +
+	"<div>"+
+	"<tr>" +
+	"<td>" +
+	"	<table border='0' cellpadding='0' cellspacing='0'>" +
+	"		<tr>" +
+	"			<td width='75' style='line-height: 1.2; letter-spacing: -0.1px; font-size: 19px;  margin: 7px 0px; color: #282828'>" +
+	"				Siga-nos"+
+	"			</td>" +
+	"		   <td width='30'>" +
+	"				<a href='https://www.facebook.com/allianzbrasil/' target='_blank'>" +
+	"				<img src='cid:image_id14' alt='Facebook'></a>" +
+	"			</td>" +
+	"		   <td width='30'>" +
+	"				<a href='https://www.linkedin.com/company/allianzbrasil/mycompany/verification/'>" +
+	"					<img src='cid:image_id15' alt='LinkedIn'></a>" +
+	"				</td>" +
+	"		   <td>" +
+	"				<a href='https://www.instagram.com/allianzbrasil/'>" +
+	"					<img src='cid:image_id16' alt='Instagram'></a>" +
+	"				</td>" +
+	"		</tr>" +
+	"	</table>" +
+	"</td>" +
+	"</tr>" +
+	"<tr>" +
+	"</div>"+
+	"</center></table>" +
+	
+	
+	"<div>"+
+	"  <img src='cid:image_id17' alt='Linha'>"+
+	"</div>"+
+	"</div>"+
+	"</div>"+
+	"</main>"+
+	"</body>"+
+	"</center></table>" +
+	"</html>"
+		
+	return sb;
+	}
+	
 
 	/**
 	 * Aviso de Renovação Apólice Allianz/Santander

@@ -2,4 +2,4 @@ C:/Users/Public/RPA_ALLIANZ/Emails/SeguroFuncionarioRenovResidencia/SeguroFuncio
 renovacaoaz@allianz.com.br
 
 smtp.intrallianz.es
-25
+00

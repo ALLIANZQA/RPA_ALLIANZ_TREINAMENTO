@@ -2,4 +2,4 @@ C:/Users/Public/RPA_ALLIANZ/Emails/backoffice/EditorCorrespondencia/EditorCorres
 rpa@allianz.com.br
 
 smtp.intrallianz.es
-25
+00

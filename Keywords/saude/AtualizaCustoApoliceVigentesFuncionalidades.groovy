@@ -546,7 +546,7 @@ public class AtualizaCustoApoliceVigentesFuncionalidades extends rpaCommands {
 			lerConfigurações(pathTxtEmail)
 			String pathAnexos = "C:\\Users\\Public\\RPA_ALLIANZ\\Emails\\Saude\\AtualizaCustoApolicesVigentes\\Anexos.txt"
 			String emaildestination = StringFormatter.formatterEmailDestination(FileInput.readFile(pathTxtEmail));
-			sendEmail.CreateEmail.createEmailSendMultipleFiles(sender, emaildestination, pwdsender, FileInput.readFile(pathAnexos), host, porta, tipoAba )
+			sendEmail.CreateEmail.createEmailSendMultipleFiles(sender, emaildestination,  FileInput.readFile(pathAnexos), tipoAba )
 		}
 	}
 

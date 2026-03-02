@@ -97,6 +97,7 @@ import auxiliares.TakesScreenshots
 import auxiliares.MenuMatriz
 import auxiliares.ExtractDates
 import auxiliares.StringFormatter
+import auxiliares.GetHost;
 
 /**
  * @author T_dvlopes
@@ -124,6 +125,7 @@ public class rpaCommands  {
 	 */
 	protected static String pathTxtEmail
 	protected static String sender
+	protected static String user
 	protected static String pwdsender
 	protected static String subject
 	protected static String texto
@@ -146,6 +148,8 @@ public class rpaCommands  {
 	 * Valida premio total do fluxo AGCS
 	 */
 	public static int premioTotal
+	
+	
 
 
 	/**
@@ -323,10 +327,10 @@ public class rpaCommands  {
 	 * @param delay
 	 * @return
 	 */
-	public static fileUpload(String path, String filepath, int delay){
+	public static fileUpload(String xpath, String filepath, int delay){
 		WebUI.delay(delay);
 		WebDriver driver = DriverFactory.getWebDriver();
-		WebElement fileInput = driver.findElement(By.xpath(path)).sendKeys(filepath);
+		WebElement fileInput = driver.findElement(By.xpath(xpath)).sendKeys(filepath);
 		WebUI.delay(delay);
 	}
 
@@ -538,7 +542,7 @@ public class rpaCommands  {
 	public static okAlerta(){
 		try{
 			WebDriver driver = DriverFactory.getWebDriver();
-			driver.switchTo().alert().accept();
+			driver.switchTo().alert().accept().finalize()
 		}catch (Exception e){
 		}
 	}
@@ -638,6 +642,28 @@ public class rpaCommands  {
 		driver.switchTo().window(parent);
 	}
 
+	
+	public static alteraAbaChild(){
+		WebDriver driver = DriverFactory.getWebDriver();
+		Set  st= driver.getWindowHandles();
+		Iterator it = st.iterator();
+		String parent =  it.next();
+		String child =it.next();
+		driver.switchTo().window(parent);
+		driver.switchTo().window(child);
+	}
+	
+	public static alteraAbaParent(){
+		WebDriver driver = DriverFactory.getWebDriver();
+		Set  st= driver.getWindowHandles();
+		Iterator it = st.iterator();
+		String parent =  it.next();
+		String child =it.next();
+		driver.switchTo().window(parent);
+		driver.switchTo().window(child);
+		driver.close();
+		driver.switchTo().window(parent);
+	}
 
 
 	/**Altera aba para pagina do download e fecha o mesmo
@@ -2578,6 +2604,26 @@ public class rpaCommands  {
 			}
 		}
 	}
+	
+	public static lerConfiguraçõesAuth(String path){
+				List<String> linhas = FileInput.readFile(path)
+				for(int i = 0; i < linhas.size();i++){
+					switch (i)  {
+						case 0:
+							user = linhas.get(i).toString();
+							break;
+						case 1:
+							pwdsender = linhas.get(i).toString();
+							break;
+						case 2:
+							host = linhas.get(i).toString();
+							break;
+						case 3:
+							porta = linhas.get(i).toString();
+							break;
+					}
+				}
+			}
 
 	/**
 	 * @author T_DCDias
@@ -3428,12 +3474,13 @@ public class rpaCommands  {
 		for(int i = 0; i < listOfElements.size(); i++){
 			System.err.println("FOUND ["+i+"] ["+listOfElements[i].getText()+"] ["+listOfElements[i].getAttribute(attrib)+"]")
 			if(listOfElements[i].getAttribute(attrib).contains(tipo.toString().trim())){
-				System.err.println("FOUND ["+i+"] ["+listOfElements[i].getText()+"]")
+				System.err.println("FOUND ["+i+"] ["+listOfElements[i].getAttribute(attrib)+"]")
 				listOfElements[i].click()
 				f = true
 				break
 			}
 		}
+		System.out.println("TIPO ["+tipo+"] ["+f+"]")
 		return f
 		WebUI.delay(2)
 	}
@@ -3501,7 +3548,7 @@ public class rpaCommands  {
 		} catch (Exception e){}
 
 		//SELECIONAR
-		MenuMatriz.subMenu('//*[@id="cdk-overlay-0"]/div/div[2]', "span","APÓLICE")
+		MenuMatriz.subMenu('//*[@id="nx-dropdown-modal-1"]', "div","APÓLICE")
 		//Proposta
 		preencheXpath('//*[@id="nx-input-1"]', registros[p],0);
 		//Aplica
@@ -3537,7 +3584,7 @@ public class rpaCommands  {
 
 		//SELECIONAR
 		System.out.println("Processo ["+processo+"]")
-		MenuMatriz.subMenu('//*[@id="cdk-overlay-0"]/div/div[2]', "div",processoFG(processo))
+		MenuMatriz.subMenu('//*[@id="nx-dropdown-modal-1"]', "div",processoFG(processo))
 
 		switch(processo){
 			case "P":
@@ -4020,6 +4067,7 @@ public class rpaCommands  {
 			listOfAlerts.add(" Erro no processo de emissão (00227)")
 			listOfAlerts.add(" Erro no processo de emissão (99999)")
 			listOfAlerts.add(" Erro no processo de emissão (00100)")
+			listOfAlerts.add(" Erro no processo de emissão (00388)")
 			listOfAlerts.add(" Erro de validação de datos")
 			listOfAlerts.add(" NÃO EXISTEM DADOS.")
 			listOfAlerts.add(" Nenhum registro encontrado para os parâmetros informados!")
@@ -4042,6 +4090,27 @@ public class rpaCommands  {
 			listOfAlerts.add(" Erro de cálculo - (RL)")
 			listOfAlerts.add(" ERROR[Modelo inexistente]")
 			listOfAlerts.add(" DATA DE VIGÊNCIA MÁXIMA DA APÓLICE")
+			listOfAlerts.add(" LOCALIDADE INEXISTENTE")
+			listOfAlerts.add(" Houve um erro.")
+			listOfAlerts.add(" Fonte da apólice anterior informada inválida")
+			listOfAlerts.add(" Saldo no Conta Corrente insuficiente para efetivação desta proposta. Favor ajustar as condições comerciais inseridas na cotação e tente novamente")
+			listOfAlerts.add(" Erro no formato de correio eletrónico")
+			listOfAlerts.add(" APóLICE ANULADA")
+			listOfAlerts.add(" BU12CO03-ER-CARGA.RC=99998.SQL= 52576CDCARGA=9998.")
+			listOfAlerts.add(" APÓLICE INEXISTENTE")
+			listOfAlerts.add(" SINISTRO INEXISTENTE")
+			listOfAlerts.add(" Data deve ser igual ou posterior ao dia de hoje")
+			listOfAlerts.add(" A apólice não está em vigor")
+			listOfAlerts.add("Deve informar um tipo de referência valido")
+			listOfAlerts.add(" Numeric value for field 'rcw0061__r1__poliza' is out of range, valid from 0 to 999999999: 1.708.052.712")
+			listOfAlerts.add(" Existem ITEMs pendentes de emissão.")
+			listOfAlerts.add(" Erro ao recuperar Informação")
+			listOfAlerts.add(" Obrigatório informar o campo E-mail Segurado.")
+			listOfAlerts.add(" Data início endosso maior a data de cancelamento")
+			listOfAlerts.add(" Código GPS inválido")
+			listOfAlerts.add(" Não reposição de apólice")
+			listOfAlerts.add(" Existe uma averiguação ativa para esta apólice")
+			listOfAlerts.add(" Sinistro não encontrado.")
 			
 			for(int i = 0; i < listOfAlerts.size(); i++){
 				System.err.println("["+i+"] ["+listOfAlerts[i]+"]")
@@ -4052,7 +4121,7 @@ public class rpaCommands  {
 				}
 			}
 		}
-		System.out.println("\nAlert ["+r+"]")
+		System.out.println(r)
 		return  r
 	}
 	
@@ -4224,6 +4293,11 @@ public class rpaCommands  {
 		listOfAlerts.add(" Vistoria Prévia Dispensada")
 		listOfAlerts.add(" Existe(m) item(ns) com aviso(s)")
 		listOfAlerts.add(" Nome alterado conforme a receita federal, favor avaliar")
+		listOfAlerts.add(" Vistoria Prévia Digital Obrigatória")
+		listOfAlerts.add(" Apólice informada não disponível para renovação no Gestão de Renovações.")
+		listOfAlerts.add(" Tipo de Seguro alterado para Renovação Interna Com Sinistro.")
+		listOfAlerts.add(" Risco sem aceitação - Data de Plantio")
+		listOfAlerts.add(" Restrição técnica - Acúmulo de Risco (Categoria de Risco/Estado)")
 		
 		System.out.println("Alert -["+alert+"]-")
 		for(int i = 0; i < listOfAlerts.size(); i++){
@@ -4296,7 +4370,27 @@ public class rpaCommands  {
 		listOfAlerts.add("APPLICATION.PAGE.PDADOSAPOLFROTA")
 		listOfAlerts.add("ITENS DA FROTA")
 		listOfAlerts.add("Clique na linha para escolher o veículo desejado...")
-
+		listOfAlerts.add("OPERAÇÕES PENDENTES")
+		listOfAlerts.add("GESTÃO DE RECLAMAÇÕES")
+		listOfAlerts.add("DETALHE RECLAMAÇÃO")
+		listOfAlerts.add("INFORMAÇÕES ADICIONAIS DO RISCO")
+		listOfAlerts.add("NOVA AVERIGUAÇÃO")
+		listOfAlerts.add("SELEÇÃO")
+		listOfAlerts.add("AVERIGUAÇÕES")
+		listOfAlerts.add("RESUMO AVERIGUAÇÃO")
+		listOfAlerts.add("ATRIBUIR")
+		listOfAlerts.add("DADOS DA APÓLICE")
+		listOfAlerts.add("DIR.ITENS")
+		listOfAlerts.add("DADOS DE RISCO")
+		listOfAlerts.add("COBERTURAS")
+		listOfAlerts.add("DADOS LOCALIZADOR")
+		listOfAlerts.add("D. EMISSÃO")
+		listOfAlerts.add("D. CLIENTE")
+		listOfAlerts.add("D. COMUNS")
+		listOfAlerts.add("CONFIRMAÇÃO DE EMISSÃO")
+		listOfAlerts.add("GESTÃO INTEGRADA DE SINISTROS")
+//		listOfAlerts.add("Lista bloqueios")
+		//listOfAlerts.add("PANTALLA ESPECIFICA POR DEFINIR")
 		//	listOfAlerts.add(" Emissão não permitida! Fora do prazo de 30 dias permitido pela SUSEP")
 
 		System.out.println("Tela -["+alert+"]-")
@@ -4672,7 +4766,7 @@ public class rpaCommands  {
 			lerConfigurações(pathTxtEmail);
 			String emaildestination = StringFormatter.formatterEmailDestination(FileInput.readFile(pathTxtEmail));
 			List<String> anexos = new ArrayList<>();
-			sendEmail.CreateEmail.createEmailSendError(sender, emaildestination, pwdsender, anexos, host, porta, tipoAba, assunto+" - "+ ExtractDates.horaAtualizada() );
+			sendEmail.CreateEmail.createEmailSendError(sender, emaildestination, anexos, host, porta, tipoAba, assunto+" - "+ExtractDates.horaAtualizada()+" - "+GetHost.getHostname() );
 		} catch (Exception e){
 			System.err.print("Falha ao enviar e-mail de notificação de erro no robô. "+e)
 		}
@@ -4714,8 +4808,9 @@ public class rpaCommands  {
 		//ABRIR SELEÇÃO
 		abreReferencia();
 		//SELECIONAR
+		WebUI.delay(2);
 		System.out.println("Processo ["+registros[6]+"]")
-		MenuMatriz.subMenu('//*[@id="cdk-overlay-0"]/div/div[2]', "div",processoFGEditorCorrespondencia(registros[a]))
+		MenuMatriz.subMenu('//*[@id="nx-dropdown-modal-1"]', "div",processoFGEditorCorrespondencia(registros[a]))
 		switch(registros[a]){
 			case "Apólice":
 			//Proposta
@@ -4755,6 +4850,22 @@ public class rpaCommands  {
 		} catch (Exception e){}
 	}
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
 
 

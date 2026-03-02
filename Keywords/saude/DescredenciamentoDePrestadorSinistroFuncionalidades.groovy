@@ -471,7 +471,7 @@ public class DescredenciamentoDePrestadorSinistroFuncionalidades extends rpaComm
 				List<String> anexos = new ArrayList<>();
 				anexos[0] = path
 				anexos[1] = "DescredenciamentoDePrestadorSinistro.xlsx"
-				sendEmail.CreateEmail.createEmailSendMultipleFiles(sender, emaildestination, pwdsender, anexos, host, porta, tipoAba)
+				sendEmail.CreateEmail.createEmailSendMultipleFiles(sender, emaildestination, anexos, tipoAba)
 			}
 		} catch (Exception e){
 		}

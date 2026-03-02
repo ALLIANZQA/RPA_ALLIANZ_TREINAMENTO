@@ -276,7 +276,7 @@ public class ReprocessamentoEmissaoApoliceFuncionalidades extends rpaCommands{
 		String emaildestination = StringFormatter.formatterEmailDestination(FileInput.readFile(pathTxtEmail));
 //		String dataAnterior = ExtractDates.retornaDataInferior(1)
 //		String dataAnterior = ExtractDates.formatDateToBR(fechaData)
-		sendEmail.CreateEmail.createEmailSendMultipleFilesReprocessaEmissaoApolice(sender, emaildestination, pwdsender, FileInput.readFile(pathAnexos), host, porta, tipoAba, datasProcessadas )
+		sendEmail.CreateEmail.createEmailSendMultipleFilesReprocessaEmissaoApolice(sender, emaildestination, FileInput.readFile(pathAnexos), host, porta, tipoAba, datasProcessadas )
 	}
 
 	/**

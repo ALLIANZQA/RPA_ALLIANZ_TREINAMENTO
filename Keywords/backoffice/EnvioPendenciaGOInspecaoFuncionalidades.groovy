@@ -114,7 +114,7 @@ public class EnvioPendenciaGOInspecaoFuncionalidades extends backofficeFuncional
 	 * @return
 	 */
 	public static fluxoEnvioPendenciaGOInspecao(String aba){
-		
+		System.out.println()
 		String dataInicio = ExtractDates.dataAtual();
 		String horaInicial =  ExtractDates.horaAtualizada();
 		start = Instant.now();
@@ -153,12 +153,13 @@ public class EnvioPendenciaGOInspecaoFuncionalidades extends backofficeFuncional
 	 * @return
 	 */
 	public static fluxoCompletoEnvioPendenciaGOInspecao(aba){
+	  try{
 		if(validaDados(cellCheck)){
 			iniciaAplicacaoMatriz('IntranetProdução');
 			WebUI.delay(15);
 			realizaLoginIntraNetProducao(aba);
-			WebUI.delay(15);
-			MenuMatriz.newFluxoGestao('/*/body/div/div/app-root/app-private/app-displayed-menu/div/app-teaser/div/div[2]/div/div[1]/ul');
+			WebUI.delay(20);
+			MenuMatriz.newFluxoGestaoNome();
 			WebUI.delay(10);
 
 			for(int i = 1; i <= data.getRowNumbers(); i++) {
@@ -184,6 +185,9 @@ public class EnvioPendenciaGOInspecaoFuncionalidades extends backofficeFuncional
 		} else {
 			System.err.println('Não existem dados para processar')
 		}
+	  } catch (Exception e){
+	     System.err.println('EXCEPTION\n'+e.printStackTrace())
+	  }
 	}
 
 	/**
@@ -288,18 +292,23 @@ public class EnvioPendenciaGOInspecaoFuncionalidades extends backofficeFuncional
 				alerta="Tela 'Ficha de Gestão' não apresentada"
 				status = "Processar"
 				WebUI.closeBrowser();
+				alteraJanejaGenerica(0, 1)
 				iniciaAplicacaoMatriz('IntranetProdução');
 				realizaLoginIntraNetProducao(aba);
+				alteraJanejaGenerica(1, 2)
 				WebUI.delay(15);
-				MenuMatriz.newFluxoGestao('/*/body/div/div/app-root/app-private/app-displayed-menu/div/app-teaser/div/div[2]/div/div[1]/ul');
+				MenuMatriz.newFluxoGestaoNome();
 				WebUI.delay(20);
 			}
 		} catch (Exception e) {
 			enviado = false
+			WebUI.closeBrowser();
+			alteraJanejaGenerica(0, 1)
 			iniciaAplicacaoMatriz('IntranetProdução');
 			realizaLoginIntraNetProducao(aba);
+			alteraJanejaGenerica(1, 2)
 			WebUI.delay(15);
-			MenuMatriz.newFluxoGestao('/*/body/div/div/app-root/app-private/app-displayed-menu/div/app-teaser/div/div[2]/div/div[1]/ul');
+			MenuMatriz.newFluxoGestaoNome();
 			WebUI.delay(30);
 		}
 		return enviado

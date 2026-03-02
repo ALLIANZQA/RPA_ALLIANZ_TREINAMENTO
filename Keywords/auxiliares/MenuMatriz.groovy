@@ -21,23 +21,25 @@ import rpacommands.rpaCommands
 
 public class MenuMatriz extends rpaCommands{
 
-	
-	
+
+	private static String xpathMenu = '/*/body/div[1]/main/app-root/app-private/app-private-header/nx-ibl-navigation/div/div[1]/nx-ibl-navigation-desktop/div[1]/div';
+	private static String xpathSubMenu = "/*/body/div[1]/main/app-root/app-private/app-displayed-menu/div/app-teaser";
+
 	/**
 	 * @author T_DCDias
 	 * @return
 	 */
 	public static gestaoArquivosBancarios(){
-		subMenu('/*/body/div/div/app-root/app-private/app-displayed-menu/div/app-teaser/div/div[2]/div/div[1]/ul', 'a',"Gestão Arquivos Bancários")
+		subMenu(xpathSubMenu, 'a',"Gestão Arquivos Bancários")
 	}
-	
-	
+
+
 	/**
 	 * @author T_DCDias
 	 * @return
 	 */
 	public static producaoSinistro(){
-		subMenuEquals('/*/body/div/div/app-root/app-private/app-private-header/nx-ibl-navigation/div/div[1]/nx-ibl-navigation-desktop/div[1]/div/div/ul', "span", "Produção & Sinistros")
+		subMenuEquals(xpathMenu, "span", "Produção & Sinistros")
 	}
 
 	/**
@@ -45,7 +47,7 @@ public class MenuMatriz extends rpaCommands{
 	 * @return
 	 */
 	public static gestaoMarketing(){
-		subMenuEquals('/*/body/div/div/app-root/app-private/app-private-header/nx-ibl-navigation/div/div[1]/nx-ibl-navigation-desktop/div[1]/div/div/ul', "span", "Gestão & Marketing")
+		subMenuEquals(xpathMenu, "span", "Gestão & Marketing")
 	}
 
 	/**
@@ -63,9 +65,9 @@ public class MenuMatriz extends rpaCommands{
 	public static producao(){
 		clickXpath("/html/body/div/div/app-root/app-private/app-displayed-menu/div/app-teaser/div/div[1]/div/div[2]/ul/li[6]/a", 2)
 	}
-	
+
 	public static producaoINTPRD(){
-		MenuMatriz.subMenuEquals("/html/body/div[1]/div/app-root/app-private/app-displayed-menu/div/app-teaser/div/div[1]/div/div[2]/ul", "a", "Produção")
+		MenuMatriz.subMenuEquals(xpathMenu, "a", "Produção")
 	}
 
 	/**
@@ -73,7 +75,7 @@ public class MenuMatriz extends rpaCommands{
 	 * @return
 	 */
 	public static consultasEstatisticas(){
-		subMenuEquals('/*/body/div/div/app-root/app-private/app-private-header/nx-ibl-navigation/div/div[1]/nx-ibl-navigation-desktop/div[1]/div/div/ul', "span", "Consultas & Estatísticas")
+		subMenuEquals(xpathMenu, "span", "Consultas & Estatísticas")
 	}
 
 	/**
@@ -97,7 +99,7 @@ public class MenuMatriz extends rpaCommands{
 	 * @return
 	 */
 	public static consultasGerais(){
-		subMenu("/*/body/div/div/app-root/app-private/app-displayed-menu/div/app-teaser/div/div[1]/div/div[2]/ul","a","Consultas Gerais")
+		subMenu(xpathSubMenu,"a","Consultas Gerais")
 	}
 
 	/**
@@ -129,7 +131,7 @@ public class MenuMatriz extends rpaCommands{
 	 * @return
 	 */
 	public static manutancaoGeral(){
-		subMenuEquals('/*/body/div/div/app-root/app-private/app-private-header/nx-ibl-navigation/div/div[1]/nx-ibl-navigation-desktop/div[1]/div/div/ul', "span", "Manutenção Geral")
+		subMenuEquals(xpathMenu, "span", "Manutenção Geral")
 	}
 
 	/**
@@ -159,7 +161,7 @@ public class MenuMatriz extends rpaCommands{
 	 * @return
 	 */
 	public static servicosCorporativos(){
-		subMenuEquals('/*/body/div[1]/div/app-root/file-management/app-header/div/nx-ibl-header/nx-ibl-navigation/div/div[1]/nx-ibl-navigation-desktop/div[1]/div/div/ul', 'a','Serviços Corporativos')
+		subMenuEquals(xpathMenu, 'a','Serviços Corporativos')
 	}
 
 	/**
@@ -169,30 +171,33 @@ public class MenuMatriz extends rpaCommands{
 	public static inicioFichaGestao(){
 		clickXpath("/*/body/div[1]/div/app-root/file-management/app-header/div/nx-ibl-header/nx-ibl-navigation/div/div[1]/nx-ibl-navigation-desktop/div[1]/div/a/img", 2)
 	}
-	
+
 	/**
 	 * @author be54955
 	 * @return
 	 */
 	public static prestadores(){
-		subMenuEquals('/*/body/div/div/app-root/app-private/app-displayed-menu/div/app-teaser/div/div/div/div[2]', "a", "Prestadores")
+		subMenuEquals('/html/body/div/div/app-root/app-private/app-displayed-menu/div/app-teaser/div/div[2]/div/div[1]', "a", "Prestadores")
 	}
-	
+
 	/**
 	 * @author be54955
 	 * @return
 	 */
 	public static subMenuSinistroSaude(){
-		subMenuEquals('/*/body/div/div/app-root/app-private/app-displayed-menu/div/app-teaser/div/div/div/div[2]', "a", "Sinistros de Saude")
+		subMenuEquals('/*/body/div/div/app-root/app-private/app-displayed-menu/div/app-teaser/div/div[2]/div/div[1]/ul', "a", "Sinistros de Saude")
 	}
-	
+
 	/**
 	 * @author be54955
 	 * @return
 	 */
 	public static avisoDeCredito(){
-		subMenuEquals('/*/body/div/div/app-root/app-private/app-displayed-menu/div/app-teaser/div/div[1]/div/div[2]/ul', "a", "Aviso de Crédito")
+		subMenuEquals(xpathSubMenu, "a", "Aviso de Crédito")
 	}
+	
+	
+	
 
 	/**
 	 * @author ALZ_ServiceQA
@@ -204,6 +209,25 @@ public class MenuMatriz extends rpaCommands{
 	public static subMenu(String xpath, String tag,String menu){
 		WebUI.delay(2)
 		selecionaListaDeElementos(xpath,tag)
+		for(int i = 0; i < listOfElements.size(); i++){
+			System.out.println("["+i+"] ["+listOfElements[i].getText()+"]" )
+			if(listOfElements[i].getText().contains(menu.toString())){
+				listOfElements[i].click()
+				break
+			}
+		}
+	}
+	
+	/**
+	 * @author ALZ_ServiceQA
+	 * @param xpath
+	 * @param tag
+	 * @param menu
+	 * @return
+	 */
+	public static subMenuNome(String tag,String menu){
+		WebUI.delay(2)
+		selecionaListaDeElementos(xpathSubMenu,tag)
 		for(int i = 0; i < listOfElements.size(); i++){
 			System.out.println("["+i+"] ["+listOfElements[i].getText()+"]" )
 			if(listOfElements[i].getText().contains(menu.toString())){
@@ -251,6 +275,29 @@ public class MenuMatriz extends rpaCommands{
 
 		try{
 			MenuMatriz.subMenu(xpath, "a","Nueva Ficha de Gestión")
+		} catch (Exception e){
+		}
+	}
+	
+	/**NAVEGA NOS NOVOS MENUS!!!
+	 * Consultas & Estatísticas
+	 * Arquivo Digital
+	 * Ficha de Gestão
+	 *
+	 */
+	public static void newFluxoGestaoNome(){
+		try{
+			MenuMatriz.consultasEstatisticas()
+		} catch (Exception e){
+		}
+
+		try{
+			MenuMatriz.subMenu(xpathSubMenu, "a","Nova Ficha de Gestão")
+		} catch (Exception e){
+		}
+
+		try{
+			MenuMatriz.subMenu(xpathSubMenu, "a","Nueva Ficha de Gestión")
 		} catch (Exception e){
 		}
 	}

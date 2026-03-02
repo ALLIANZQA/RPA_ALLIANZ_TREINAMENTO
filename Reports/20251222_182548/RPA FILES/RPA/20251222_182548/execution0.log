@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2025-12-22T18:25:52</date>
+  <millis>1766435152502</millis>
+  <sequence>0</sequence>
+  <level>START</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>startSuite</method>
+  <thread>1</thread>
+  <message>Start Test Suite : Test Suites/RPA FILES/RPA</message>
+  <nestedLevel>0</nestedLevel>
+  <property name="name">RPA</property>
+  <property name="description"></property>
+  <property name="id">Test Suites/RPA FILES/RPA</property>
+</record>
+<record>
+  <date>2025-12-22T18:25:52</date>
+  <millis>1766435152517</millis>
+  <sequence>1</sequence>
+  <level>RUN_DATA</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>logMessage</method>
+  <thread>1</thread>
+  <message>hostName = ALZ_ServiceQA - BRCLVLRPA06.agf.com.br</message>
+  <nestedLevel>0</nestedLevel>
+  <property name="hostName">ALZ_ServiceQA - BRCLVLRPA06.agf.com.br</property>
+</record>
+<record>
+  <date>2025-12-22T18:25:52</date>
+  <millis>1766435152518</millis>
+  <sequence>2</sequence>
+  <level>RUN_DATA</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>logMessage</method>
+  <thread>1</thread>
+  <message>os = Windows Server 2016 64bit</message>
+  <nestedLevel>0</nestedLevel>
+  <property name="os">Windows Server 2016 64bit</property>
+</record>
+<record>
+  <date>2025-12-22T18:25:52</date>
+  <millis>1766435152518</millis>
+  <sequence>3</sequence>
+  <level>RUN_DATA</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>logMessage</method>
+  <thread>1</thread>
+  <message>hostAddress = 44.90.46.226</message>
+  <nestedLevel>0</nestedLevel>
+  <property name="hostAddress">44.90.46.226</property>
+</record>
+<record>
+  <date>2025-12-22T18:25:52</date>
+  <millis>1766435152519</millis>
+  <sequence>4</sequence>
+  <level>RUN_DATA</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>logMessage</method>
+  <thread>1</thread>
+  <message>katalonVersion = 7.2.1.1</message>
+  <nestedLevel>0</nestedLevel>
+  <property name="katalonVersion">7.2.1.1</property>
+</record>
+<record>
+  <date>2025-12-22T18:25:52</date>
+  <millis>1766435152783</millis>
+  <sequence>5</sequence>
+  <level>START</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>startTest</method>
+  <thread>1</thread>
+  <message>Start Test Case : Test Cases/Web UI Test/Backoffce/EnvioPendenciaGOInspecao</message>
+  <nestedLevel>1</nestedLevel>
+  <property name="name">Test Cases/Web UI Test/Backoffce/EnvioPendenciaGOInspecao</property>
+  <property name="description"></property>
+  <property name="id">Test Cases/Web UI Test/Backoffce/EnvioPendenciaGOInspecao</property>
+  <property name="source">C:\\Users\\Public\\RPA_ALLIANZ\\Test Cases\\Web UI Test\\Backoffce\\EnvioPendenciaGOInspecao.tc</property>
+  <property name="tag"></property>
+  <property name="isOptional">false</property>
+</record>
+<record>
+  <date>2025-12-22T18:25:53</date>
+  <millis>1766435153057</millis>
+  <sequence>7</sequence>
+  <level>START</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>startKeyword</method>
+  <thread>1</thread>
+  <message>Start action : try</message>
+  <nestedLevel>1</nestedLevel>
+  <property name="startLine">16</property>
+  <property name="stepIndex">1</property>
+</record>
+<record>
+  <date>2025-12-22T18:25:53</date>
+  <millis>1766435153058</millis>
+  <sequence>8</sequence>
+  <level>START</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>startKeyword</method>
+  <thread>1</thread>
+  <message>Start action : EnvioPendenciaGOInspecaoFuncionalidades.fluxoEnvioPendenciaGOInspecao(\&amp;quot;envioPendenciaGOInspecao\&amp;quot;)</message>
+  <nestedLevel>2</nestedLevel>
+  <property name="startLine">21</property>
+  <property name="stepIndex">1</property>
+</record>
+<record>
+  <date>2025-12-22T18:25:54</date>
+  <millis>1766435154463</millis>
+  <sequence>14</sequence>
+  <level>INFO</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>logMessage</method>
+  <thread>1</thread>
+  <message>Starting &amp;apos;Chrome&amp;apos; driver</message>
+  <nestedLevel>1</nestedLevel>
+</record>
+<record>
+  <date>2025-12-22T18:25:54</date>
+  <millis>1766435154483</millis>
+  <sequence>16</sequence>
+  <level>INFO</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>logMessage</method>
+  <thread>1</thread>
+  <message>User set preference: [&amp;apos;prefs&amp;apos;, &amp;apos;{download.default_directory=C:\\Users\\Public\\, profile.default_content_settings.popups=0.0, download.prompt_for_download=false, download.directory_upgrade=true, plugins.always_open_pdf_externally=true, pdfjs.disabled=true, safebrowsing.enabled=true}&amp;apos;]</message>
+  <nestedLevel>1</nestedLevel>
+</record>
+<record>
+  <date>2025-12-22T18:25:54</date>
+  <millis>1766435154483</millis>
+  <sequence>17</sequence>
+  <level>INFO</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>logMessage</method>
+  <thread>1</thread>
+  <message>User set preference: [&amp;apos;args&amp;apos;, &amp;apos;[--start-maximized, --disable-infobars,  safebrowsing-disable-download-protection,  safebrowsing-disable-extension-blacklist, --test-type, --disable-extensions]&amp;apos;]</message>
+  <nestedLevel>1</nestedLevel>
+</record>
+<record>
+  <date>2025-12-22T18:25:54</date>
+  <millis>1766435154484</millis>
+  <sequence>18</sequence>
+  <level>INFO</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>logMessage</method>
+  <thread>1</thread>
+  <message>User set preference: [&amp;apos;CapabilityType.ACCEPT_SSL_CERTS&amp;apos;, &amp;apos;true&amp;apos;]</message>
+  <nestedLevel>1</nestedLevel>
+</record>
+<record>
+  <date>2025-12-22T18:25:54</date>
+  <millis>1766435154484</millis>
+  <sequence>19</sequence>
+  <level>INFO</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>logMessage</method>
+  <thread>1</thread>
+  <message>User set preference: [&amp;apos;pageLoadStrategy&amp;apos;, &amp;apos;normal&amp;apos;]</message>
+  <nestedLevel>1</nestedLevel>
+</record>
+<record>
+  <date>2025-12-22T18:25:54</date>
+  <millis>1766435154514</millis>
+  <sequence>20</sequence>
+  <level>INFO</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>logMessage</method>
+  <thread>1</thread>
+  <message>Action delay is set to 0 seconds</message>
+  <nestedLevel>1</nestedLevel>
+</record>
+<record>
+  <date>2025-12-22T18:25:58</date>
+  <millis>1766435158509</millis>
+  <sequence>24</sequence>
+  <level>FAILED</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>logMessage</method>
+  <thread>1</thread>
+  <message>Unable to open browser with url: &amp;apos;&amp;apos; (Root cause: com.kms.katalon.core.exception.StepFailedException: Unable to open browser with url: &amp;apos;&amp;apos;\r\n\tat com.kms.katalon.core.webui.keyword.internal.WebUIKeywordMain.stepFailed(WebUIKeywordMain.groovy:64)\r\n\tat com.kms.katalon.core.webui.keyword.internal.WebUIKeywordMain.runKeyword(WebUIKeywordMain.groovy:26)\r\n\tat com.kms.katalon.core.webui.keyword.builtin.OpenBrowserKeyword.openBrowser(OpenBrowserKeyword.groovy:81)\r\n\tat com.kms.katalon.core.webui.keyword.builtin.OpenBrowserKeyword.execute(OpenBrowserKeyword.groovy:67)\r\n\tat com.kms.katalon.core.keyword.internal.KeywordExecutor.executeKeywordForPlatform(KeywordExecutor.groovy:72)\r\n\tat com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords.openBrowser(WebUiBuiltInKeywords.groovy:60)\r\n\tat com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords$openBrowser.call(Unknown Source)\r\n\tat rpacommands.rpaCommands.abreBrowser(rpaCommands.groovy:934)\r\n\tat backoffice.backofficeFuncionalidades.iniciaAplicacaoMatriz(backofficeFuncionalidades.groovy:43)\r\n\tat backoffice.EnvioPendenciaGOInspecaoFuncionalidades.fluxoCompletoEnvioPendenciaGOInspecao(EnvioPendenciaGOInspecaoFuncionalidades.groovy:157)\r\n\tat backoffice.EnvioPendenciaGOInspecaoFuncionalidades$fluxoCompletoEnvioPendenciaGOInspecao$0.callStatic(Unknown Source)\r\n\tat backoffice.EnvioPendenciaGOInspecaoFuncionalidades.fluxoEnvioPendenciaGOInspecao(EnvioPendenciaGOInspecaoFuncionalidades.groovy:122)\r\n\tat backoffice.EnvioPendenciaGOInspecaoFuncionalidades$fluxoEnvioPendenciaGOInspecao.call(Unknown Source)\r\n\tat EnvioPendenciaGOInspecao.run(EnvioPendenciaGOInspecao:21)\r\n\tat com.kms.katalon.core.main.ScriptEngine.run(ScriptEngine.java:194)\r\n\tat com.kms.katalon.core.main.ScriptEngine.runScriptAsRawText(ScriptEngine.java:119)\r\n\tat com.kms.katalon.core.main.TestCaseExecutor.runScript(TestCaseExecutor.java:337)\r\n\tat com.kms.katalon.core.main.TestCaseExecutor.doExecute(TestCaseExecutor.java:328)\r\n\tat com.kms.katalon.core.main.TestCaseExecutor.processExecutionPhase(TestCaseExecutor.java:307)\r\n\tat com.kms.katalon.core.main.TestCaseExecutor.accessMainPhase(TestCaseExecutor.java:299)\r\n\tat com.kms.katalon.core.main.TestCaseExecutor.execute(TestCaseExecutor.java:233)\r\n\tat com.kms.katalon.core.main.TestSuiteExecutor.accessTestCaseMainPhase(TestSuiteExecutor.java:169)\r\n\tat com.kms.katalon.core.main.TestSuiteExecutor.accessTestSuiteMainPhase(TestSuiteExecutor.java:142)\r\n\tat com.kms.katalon.core.main.TestSuiteExecutor.execute(TestSuiteExecutor.java:91)\r\n\tat com.kms.katalon.core.main.TestCaseMain.startTestSuite(TestCaseMain.java:157)\r\n\tat com.kms.katalon.core.main.TestCaseMain$startTestSuite$0.call(Unknown Source)\r\n\tat TempTestSuite1766435148826.run(TempTestSuite1766435148826.groovy:36)\r\nCaused by: org.openqa.selenium.SessionNotCreatedException: session not created: Chrome instance exited. Examine ChromeDriver verbose log to determine the cause.\nBuild info: version: &amp;apos;3.141.59&amp;apos;, revision: &amp;apos;e82be7d358&amp;apos;, time: &amp;apos;2018-11-14T08:25:53&amp;apos;\nSystem info: host: &amp;apos;BRCLVLRPA06&amp;apos;, ip: &amp;apos;44.90.46.226&amp;apos;, os.name: &amp;apos;Windows Server 2016&amp;apos;, os.arch: &amp;apos;amd64&amp;apos;, os.version: &amp;apos;10.0&amp;apos;, java.version: &amp;apos;1.8.0_181&amp;apos;\nDriver info: driver.version: CChromeDriver\nremote stacktrace: Symbols not available. Dumping unresolved backtrace:\n\t0xd64103\n\t0xd64144\n\t0xb6e71d\n\t0xba3892\n\t0xb9ff2a\n\t0xbe8943\n\t0xbe82ba\n\t0xbdc706\n\t0xbada30\n\t0xbaed54\n\t0xfd57b4\n\t0xfd098a\n\t0xd8c392\n\t0xd7c4c8\n\t0xd8324d\n\t0xd6c478\n\t0xd6c63c\n\t0xd567ca\n\t0x76ee62c4\n\t0x773f09a9\n\t0x773f0974\n\r\n\tat org.openqa.selenium.remote.W3CHandshakeResponse.lambda$errorHandler$0(W3CHandshakeResponse.java:62)\r\n\tat org.openqa.selenium.remote.HandshakeResponse.lambda$getResponseFunction$0(HandshakeResponse.java:30)\r\n\tat org.openqa.selenium.remote.ProtocolHandshake.lambda$createSession$0(ProtocolHandshake.java:126)\r\n\tat org.openqa.selenium.remote.ProtocolHandshake.createSession(ProtocolHandshake.java:128)\r\n\tat org.openqa.selenium.remote.ProtocolHandshake.createSession(ProtocolHandshake.java:74)\r\n\tat org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:136)\r\n\tat org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)\r\n\tat com.kms.katalon.selenium.driver.CChromeDriver.execute(CChromeDriver.java:19)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.startSession(RemoteWebDriver.java:213)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.&amp;lt;init&amp;gt;(RemoteWebDriver.java:131)\r\n\tat org.openqa.selenium.chrome.ChromeDriver.&amp;lt;init&amp;gt;(ChromeDriver.java:181)\r\n\tat org.openqa.selenium.chrome.ChromeDriver.&amp;lt;init&amp;gt;(ChromeDriver.java:147)\r\n\tat com.kms.katalon.selenium.driver.CChromeDriver.&amp;lt;init&amp;gt;(CChromeDriver.java:13)\r\n\tat com.kms.katalon.core.webui.driver.DriverFactory.createNewChromeDriver(DriverFactory.java:356)\r\n\tat com.kms.katalon.core.webui.driver.DriverFactory.startNewBrowser(DriverFactory.java:317)\r\n\tat com.kms.katalon.core.webui.driver.DriverFactory.openWebDriver(DriverFactory.java:208)\r\n\tat com.kms.katalon.core.webui.keyword.builtin.OpenBrowserKeyword$_openBrowser_closure1.doCall(OpenBrowserKeyword.groovy:74)\r\n\tat com.kms.katalon.core.webui.keyword.builtin.OpenBrowserKeyword$_openBrowser_closure1.call(OpenBrowserKeyword.groovy)\r\n\tat com.kms.katalon.core.webui.keyword.internal.WebUIKeywordMain.runKeyword(WebUIKeywordMain.groovy:20)\r\n\tat com.kms.katalon.core.webui.keyword.builtin.OpenBrowserKeyword.openBrowser(OpenBrowserKeyword.groovy:81)\r\n\tat com.kms.katalon.core.webui.keyword.builtin.OpenBrowserKeyword.execute(OpenBrowserKeyword.groovy:67)\r\n\tat com.kms.katalon.core.keyword.internal.KeywordExecutor.executeKeywordForPlatform(KeywordExecutor.groovy:72)\r\n\tat com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords.openBrowser(WebUiBuiltInKeywords.groovy:60)\r\n\tat com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords$openBrowser.call(Unknown Source)\r\n\tat rpacommands.rpaCommands.abreBrowser(rpaCommands.groovy:934)\r\n\tat backoffice.backofficeFuncionalidades.iniciaAplicacaoMatriz(backofficeFuncionalidades.groovy:43)\r\n\tat backoffice.EnvioPendenciaGOInspecaoFuncionalidades.fluxoCompletoEnvioPendenciaGOInspecao(EnvioPendenciaGOInspecaoFuncionalidades.groovy:157)\r\n\tat backoffice.EnvioPendenciaGOInspecaoFuncionalidades$fluxoCompletoEnvioPendenciaGOInspecao$0.callStatic(Unknown Source)\r\n\tat backoffice.EnvioPendenciaGOInspecaoFuncionalidades.fluxoEnvioPendenciaGOInspecao(EnvioPendenciaGOInspecaoFuncionalidades.groovy:122)\r\n\tat backoffice.EnvioPendenciaGOInspecaoFuncionalidades$fluxoEnvioPendenciaGOInspecao.call(Unknown Source)\r\n\tat Script1626114095743.run(Script1626114095743.groovy:21)\r\n\t... 13 more\r\n)</message>
+  <nestedLevel>1</nestedLevel>
+  <property name="failed.exception.class">org.openqa.selenium.SessionNotCreatedException</property>
+  <property name="failed.exception.stacktrace">org.openqa.selenium.SessionNotCreatedException: session not created: Chrome instance exited. Examine ChromeDriver verbose log to determine the cause.\nBuild info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:25:53&apos;\nSystem info: host: &apos;BRCLVLRPA06&apos;, ip: &apos;44.90.46.226&apos;, os.name: &apos;Windows Server 2016&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;1.8.0_181&apos;\nDriver info: driver.version: CChromeDriver\nremote stacktrace: Symbols not available. Dumping unresolved backtrace:\n\t0xd64103\n\t0xd64144\n\t0xb6e71d\n\t0xba3892\n\t0xb9ff2a\n\t0xbe8943\n\t0xbe82ba\n\t0xbdc706\n\t0xbada30\n\t0xbaed54\n\t0xfd57b4\n\t0xfd098a\n\t0xd8c392\n\t0xd7c4c8\n\t0xd8324d\n\t0xd6c478\n\t0xd6c63c\n\t0xd567ca\n\t0x76ee62c4\n\t0x773f09a9\n\t0x773f0974\n\r\n\tat org.openqa.selenium.remote.W3CHandshakeResponse.lambda$errorHandler$0(W3CHandshakeResponse.java:62)\r\n\tat org.openqa.selenium.remote.HandshakeResponse.lambda$getResponseFunction$0(HandshakeResponse.java:30)\r\n\tat org.openqa.selenium.remote.ProtocolHandshake.lambda$createSession$0(ProtocolHandshake.java:126)\r\n\tat org.openqa.selenium.remote.ProtocolHandshake.createSession(ProtocolHandshake.java:128)\r\n\tat org.openqa.selenium.remote.ProtocolHandshake.createSession(ProtocolHandshake.java:74)\r\n\tat org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:136)\r\n\tat org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)\r\n\tat com.kms.katalon.selenium.driver.CChromeDriver.execute(CChromeDriver.java:19)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.startSession(RemoteWebDriver.java:213)\r\n\tat org.openqa.selenium.remote.RemoteWebDriver.&lt;init&gt;(RemoteWebDriver.java:131)\r\n\tat org.openqa.selenium.chrome.ChromeDriver.&lt;init&gt;(ChromeDriver.java:181)\r\n\tat org.openqa.selenium.chrome.ChromeDriver.&lt;init&gt;(ChromeDriver.java:147)\r\n\tat com.kms.katalon.selenium.driver.CChromeDriver.&lt;init&gt;(CChromeDriver.java:13)\r\n\tat com.kms.katalon.core.webui.driver.DriverFactory.createNewChromeDriver(DriverFactory.java:356)\r\n\tat com.kms.katalon.core.webui.driver.DriverFactory.startNewBrowser(DriverFactory.java:317)\r\n\tat com.kms.katalon.core.webui.driver.DriverFactory.openWebDriver(DriverFactory.java:208)\r\n\tat com.kms.katalon.core.webui.keyword.builtin.OpenBrowserKeyword$_openBrowser_closure1.doCall(OpenBrowserKeyword.groovy:74)\r\n\tat com.kms.katalon.core.webui.keyword.builtin.OpenBrowserKeyword$_openBrowser_closure1.call(OpenBrowserKeyword.groovy)\r\n\tat com.kms.katalon.core.webui.keyword.internal.WebUIKeywordMain.runKeyword(WebUIKeywordMain.groovy:20)\r\n\tat com.kms.katalon.core.webui.keyword.builtin.OpenBrowserKeyword.openBrowser(OpenBrowserKeyword.groovy:81)\r\n\tat com.kms.katalon.core.webui.keyword.builtin.OpenBrowserKeyword.execute(OpenBrowserKeyword.groovy:67)\r\n\tat com.kms.katalon.core.keyword.internal.KeywordExecutor.executeKeywordForPlatform(KeywordExecutor.groovy:72)\r\n\tat com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords.openBrowser(WebUiBuiltInKeywords.groovy:60)\r\n\tat com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords$openBrowser.call(Unknown Source)\r\n\tat rpacommands.rpaCommands.abreBrowser(rpaCommands.groovy:934)\r\n\tat backoffice.backofficeFuncionalidades.iniciaAplicacaoMatriz(backofficeFuncionalidades.groovy:43)\r\n\tat backoffice.EnvioPendenciaGOInspecaoFuncionalidades.fluxoCompletoEnvioPendenciaGOInspecao(EnvioPendenciaGOInspecaoFuncionalidades.groovy:157)\r\n\tat backoffice.EnvioPendenciaGOInspecaoFuncionalidades$fluxoCompletoEnvioPendenciaGOInspecao$0.callStatic(Unknown Source)\r\n\tat backoffice.EnvioPendenciaGOInspecaoFuncionalidades.fluxoEnvioPendenciaGOInspecao(EnvioPendenciaGOInspecaoFuncionalidades.groovy:122)\r\n\tat backoffice.EnvioPendenciaGOInspecaoFuncionalidades$fluxoEnvioPendenciaGOInspecao.call(Unknown Source)\r\n\tat EnvioPendenciaGOInspecao.run(EnvioPendenciaGOInspecao:21)\r\n\tat com.kms.katalon.core.main.ScriptEngine.run(ScriptEngine.java:194)\r\n\tat com.kms.katalon.core.main.ScriptEngine.runScriptAsRawText(ScriptEngine.java:119)\r\n\tat com.kms.katalon.core.main.TestCaseExecutor.runScript(TestCaseExecutor.java:337)\r\n\tat com.kms.katalon.core.main.TestCaseExecutor.doExecute(TestCaseExecutor.java:328)\r\n\tat com.kms.katalon.core.main.TestCaseExecutor.processExecutionPhase(TestCaseExecutor.java:307)\r\n\tat com.kms.katalon.core.main.TestCaseExecutor.accessMainPhase(TestCaseExecutor.java:299)\r\n\tat com.kms.katalon.core.main.TestCaseExecutor.execute(TestCaseExecutor.java:233)\r\n\tat com.kms.katalon.core.main.TestSuiteExecutor.accessTestCaseMainPhase(TestSuiteExecutor.java:169)\r\n\tat com.kms.katalon.core.main.TestSuiteExecutor.accessTestSuiteMainPhase(TestSuiteExecutor.java:142)\r\n\tat com.kms.katalon.core.main.TestSuiteExecutor.execute(TestSuiteExecutor.java:91)\r\n\tat com.kms.katalon.core.main.TestCaseMain.startTestSuite(TestCaseMain.java:157)\r\n\tat com.kms.katalon.core.main.TestCaseMain$startTestSuite$0.call(Unknown Source)\r\n\tat TempTestSuite1766435148826.run(TempTestSuite1766435148826.groovy:36)\r\n</property>
+  <property name="failed.exception.message">session not created: Chrome instance exited. Examine ChromeDriver verbose log to determine the cause.\nBuild info: version: &apos;3.141.59&apos;, revision: &apos;e82be7d358&apos;, time: &apos;2018-11-14T08:25:53&apos;\nSystem info: host: &apos;BRCLVLRPA06&apos;, ip: &apos;44.90.46.226&apos;, os.name: &apos;Windows Server 2016&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;1.8.0_181&apos;\nDriver info: driver.version: CChromeDriver\nremote stacktrace: Symbols not available. Dumping unresolved backtrace:\n\t0xd64103\n\t0xd64144\n\t0xb6e71d\n\t0xba3892\n\t0xb9ff2a\n\t0xbe8943\n\t0xbe82ba\n\t0xbdc706\n\t0xbada30\n\t0xbaed54\n\t0xfd57b4\n\t0xfd098a\n\t0xd8c392\n\t0xd7c4c8\n\t0xd8324d\n\t0xd6c478\n\t0xd6c63c\n\t0xd567ca\n\t0x76ee62c4\n\t0x773f09a9\n\t0x773f0974\n</property>
+</record>
+<record>
+  <date>2025-12-22T18:26:00</date>
+  <millis>1766435160552</millis>
+  <sequence>26</sequence>
+  <level>PASSED</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>logMessage</method>
+  <thread>1</thread>
+  <message>Delayed 2 second(s)</message>
+  <nestedLevel>1</nestedLevel>
+</record>
+<record>
+  <date>2025-12-22T18:26:01</date>
+  <millis>1766435161555</millis>
+  <sequence>28</sequence>
+  <level>PASSED</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>logMessage</method>
+  <thread>1</thread>
+  <message>Delayed 1 second(s)</message>
+  <nestedLevel>1</nestedLevel>
+</record>
+<record>
+  <date>2025-12-22T18:26:01</date>
+  <millis>1766435161565</millis>
+  <sequence>29</sequence>
+  <level>END</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>endKeyword</method>
+  <thread>1</thread>
+  <message>End action : EnvioPendenciaGOInspecaoFuncionalidades.fluxoEnvioPendenciaGOInspecao(\&amp;quot;envioPendenciaGOInspecao\&amp;quot;)</message>
+  <nestedLevel>2</nestedLevel>
+</record>
+<record>
+  <date>2025-12-22T18:26:01</date>
+  <millis>1766435161565</millis>
+  <sequence>30</sequence>
+  <level>END</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>endKeyword</method>
+  <thread>1</thread>
+  <message>End action : try</message>
+  <nestedLevel>1</nestedLevel>
+</record>
+<record>
+  <date>2025-12-22T18:26:01</date>
+  <millis>1766435161565</millis>
+  <sequence>31</sequence>
+  <level>START</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>startKeyword</method>
+  <thread>1</thread>
+  <message>Start action : catch (Exception e)</message>
+  <nestedLevel>1</nestedLevel>
+  <property name="startLine">23</property>
+  <property name="stepIndex">2</property>
+</record>
+<record>
+  <date>2025-12-22T18:26:01</date>
+  <millis>1766435161566</millis>
+  <sequence>32</sequence>
+  <level>START</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>startKeyword</method>
+  <thread>1</thread>
+  <message>Start action : EnvioPendenciaGOInspecaoFuncionalidades.enviarEmailError(\&amp;quot;Error\&amp;quot;, \&amp;quot;envioPendenciaGOInspecao\&amp;quot;)</message>
+  <nestedLevel>2</nestedLevel>
+  <property name="startLine">24</property>
+  <property name="stepIndex">1</property>
+</record>
+<record>
+  <date>2025-12-22T18:26:01</date>
+  <millis>1766435161831</millis>
+  <sequence>33</sequence>
+  <level>END</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>endKeyword</method>
+  <thread>1</thread>
+  <message>End action : EnvioPendenciaGOInspecaoFuncionalidades.enviarEmailError(\&amp;quot;Error\&amp;quot;, \&amp;quot;envioPendenciaGOInspecao\&amp;quot;)</message>
+  <nestedLevel>2</nestedLevel>
+</record>
+<record>
+  <date>2025-12-22T18:26:01</date>
+  <millis>1766435161831</millis>
+  <sequence>34</sequence>
+  <level>START</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>startKeyword</method>
+  <thread>1</thread>
+  <message>Start action : err.println(\&amp;quot;Falha ao Realizar Enviso Aviso Inspe\u00E7\u00E3o Go\n\&amp;quot; + e)</message>
+  <nestedLevel>2</nestedLevel>
+  <property name="startLine">25</property>
+  <property name="stepIndex">2</property>
+</record>
+<record>
+  <date>2025-12-22T18:26:01</date>
+  <millis>1766435161832</millis>
+  <sequence>35</sequence>
+  <level>END</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>endKeyword</method>
+  <thread>1</thread>
+  <message>End action : err.println(\&amp;quot;Falha ao Realizar Enviso Aviso Inspe\u00E7\u00E3o Go\n\&amp;quot; + e)</message>
+  <nestedLevel>2</nestedLevel>
+</record>
+<record>
+  <date>2025-12-22T18:26:01</date>
+  <millis>1766435161832</millis>
+  <sequence>36</sequence>
+  <level>START</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>startKeyword</method>
+  <thread>1</thread>
+  <message>Start action : closeBrowser()</message>
+  <nestedLevel>2</nestedLevel>
+  <property name="startLine">26</property>
+  <property name="stepIndex">3</property>
+</record>
+<record>
+  <date>2025-12-22T18:26:01</date>
+  <millis>1766435161844</millis>
+  <sequence>38</sequence>
+  <level>PASSED</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>logMessage</method>
+  <thread>1</thread>
+  <message>Browser is closed</message>
+  <nestedLevel>1</nestedLevel>
+</record>
+<record>
+  <date>2025-12-22T18:26:01</date>
+  <millis>1766435161845</millis>
+  <sequence>39</sequence>
+  <level>END</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>endKeyword</method>
+  <thread>1</thread>
+  <message>End action : closeBrowser()</message>
+  <nestedLevel>2</nestedLevel>
+</record>
+<record>
+  <date>2025-12-22T18:26:01</date>
+  <millis>1766435161845</millis>
+  <sequence>40</sequence>
+  <level>END</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>endKeyword</method>
+  <thread>1</thread>
+  <message>End action : catch (Exception e)</message>
+  <nestedLevel>1</nestedLevel>
+</record>
+<record>
+  <date>2025-12-22T18:26:01</date>
+  <millis>1766435161845</millis>
+  <sequence>41</sequence>
+  <level>PASSED</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>logMessage</method>
+  <thread>1</thread>
+  <message>Test Cases/Web UI Test/Backoffce/EnvioPendenciaGOInspecao</message>
+  <nestedLevel>1</nestedLevel>
+</record>
+<record>
+  <date>2025-12-22T18:26:01</date>
+  <millis>1766435161846</millis>
+  <sequence>42</sequence>
+  <level>END</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>endTest</method>
+  <thread>1</thread>
+  <message>End Test Case : Test Cases/Web UI Test/Backoffce/EnvioPendenciaGOInspecao</message>
+  <nestedLevel>0</nestedLevel>
+</record>
+<record>
+  <date>2025-12-22T18:26:01</date>
+  <millis>1766435161903</millis>
+  <sequence>43</sequence>
+  <level>END</level>
+  <class>com.kms.katalon.core.logging.XmlKeywordLogger</class>
+  <method>endSuite</method>
+  <thread>1</thread>
+  <message>End Test Suite : Test Suites/RPA FILES/RPA</message>
+  <nestedLevel>0</nestedLevel>
+</record>
+</log>

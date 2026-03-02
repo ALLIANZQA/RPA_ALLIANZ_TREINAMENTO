@@ -221,6 +221,7 @@ public class CotacoesEspeciais extends backofficeFuncionalidades{
 								switchAtualizarExcel.switchUpdateExcel('CotacoesEspeciais', caminhoExcel ,listaExcel.get(i).getApolice(), Integer.parseInt(listaExcel.get(i).getLinha()));
 								iniciaAplicacaoMatriz('IntranetProdução');
 								realizaLoginIntraNetProducao(tipoAba);
+								NewfluxoCompletoConsultasGerais();
 							}
 						}
 
@@ -277,6 +278,7 @@ public class CotacoesEspeciais extends backofficeFuncionalidades{
 						
 						iniciaAplicacaoMatriz('IntranetProdução');
 						realizaLoginIntraNetProducao(tipoAba);
+						NewfluxoCompletoConsultasGerais();
 					}//RESULTADO DE UMA FROTA
 
 					//ALERTA
@@ -302,6 +304,7 @@ public class CotacoesEspeciais extends backofficeFuncionalidades{
 				auxiliares.WriteExcelFactory.updateSheetLine("", Integer.parseInt(listaExcel.get(i).getLinha()),  caminhoExcel, "Alerta: "+msg, 41,'CotacoesEspeciais');
 				iniciaAplicacaoMatriz('IntranetProdução');
 				realizaLoginIntraNetProducao(tipoAba);
+				NewfluxoCompletoConsultasGerais();
 			}
 
 			//for
@@ -387,7 +390,7 @@ public class CotacoesEspeciais extends backofficeFuncionalidades{
 		try{
 			//Produção Sinistros
 			MenuMatriz.producaoSinistro()
-			MenuMatriz.subMenu("/*/body/div/div/app-root/app-private/app-displayed-menu/div/app-teaser/div/div[1]/div/div[2]/ul", "a", "Cotações especiais")
+			MenuMatriz.subMenuNome("a", "Cotações especiais")
 			WebUI.delay(15);
 		} catch (Exception e) {
 			finalizar();

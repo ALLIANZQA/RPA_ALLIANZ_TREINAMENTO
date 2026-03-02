@@ -140,7 +140,6 @@ public class CadastroCorretorFilialFisica extends backofficeFuncionalidades{
 	 * @return
 	 */
 	public static boolean enviarEmail(String emaildestination, String corretor,String intermediario, String cpfcnpj, String user, String pwr,String NOMEACCOUNT,String EMAILACCOUNT,String ddd, String telefone, String ddd_account, String telefone_account, String ramo){
-
 		boolean enviado
 		try{
 			pathTxtEmail = "C://Users//Public//RPA_ALLIANZ//Emails//backoffice//CadastroCorretorFilialFisica//ConfiguracoesEnvioCorretor.txt";
@@ -148,7 +147,7 @@ public class CadastroCorretorFilialFisica extends backofficeFuncionalidades{
 			System.err.println('Sender ['+sender+'] Corretor ['+corretor+"] Destino ["+emaildestination.replaceAll(" ", "")+"] EMAILACCOUNT ["+EMAILACCOUNT.replaceAll(" ", "")+"]")
 			System.err.println()
 			alerta = emaildestination
-			enviado = sendEmail.CreateEmail.createEmailCadastroCorretorFilialFisica(sender.replaceAll(" ", ""), emaildestination.replaceAll(" ", "")+", "+EMAILACCOUNT.replaceAll(" ", "")+', retornoprecadastro@allianz.com.br',pwdsender, host,  porta, ramo, corretor,intermediario, cpfcnpj, user, pwr,NOMEACCOUNT,EMAILACCOUNT, ddd,  telefone, ddd_account, telefone_account)
+			enviado = sendEmail.CreateEmail.createEmailCadastroCorretorFilialFisica(sender.replaceAll(" ", ""), emaildestination.replaceAll(" ", "")+", "+EMAILACCOUNT.replaceAll(" ", "")+', retornoprecadastro@allianz.com.br', ramo, corretor,intermediario, cpfcnpj, user, pwr,NOMEACCOUNT,EMAILACCOUNT, ddd,  telefone, ddd_account, telefone_account)
 		} catch (Exception e){
 			enviado = false
 		}
@@ -188,7 +187,7 @@ public class CadastroCorretorFilialFisica extends backofficeFuncionalidades{
 			List<String> anexos = new ArrayList<>();
 			anexos[0] = path
 			anexos[1] = "CadastroCorretor.xlsx"
-			sendEmail.CreateEmail.createEmailSendMultipleFiles(sender, emaildestination, pwdsender, anexos, host, porta, "CadastroCorretorFilialFisicaFinalProcesso")
+			sendEmail.CreateEmail.createEmailSendMultipleFiles(sender, emaildestination, anexos, "CadastroCorretorFilialFisicaFinalProcesso")
 		}
 	}
 }

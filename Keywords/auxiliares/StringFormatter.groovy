@@ -409,26 +409,26 @@ public class StringFormatter {
 	public static String removeNumerosDeStrings(String b){
 		String result
 		try{
-		
-		List<String> registros = new ArrayList<>();
-		StringBuilder strb = new StringBuilder()
-		String[]t = b.split(" ")
-		int j = 0
-		for(int i = 0; i < t.size(); i++){
-			System.out.println("["+i+"] ["+t[i]+"]")
-			if(RegexCharacter.regexChar("[a-zA-Z]", t[i] )){
-				registros[j] = t[i].trim()
-				j++
+
+			List<String> registros = new ArrayList<>();
+			StringBuilder strb = new StringBuilder()
+			String[]t = b.split(" ")
+			int j = 0
+			for(int i = 0; i < t.size(); i++){
+				System.out.println("["+i+"] ["+t[i]+"]")
+				if(RegexCharacter.regexChar("[a-zA-Z]", t[i] )){
+					registros[j] = t[i].trim()
+					j++
+				}
 			}
-		}
 
-		for(int i = 0; i < registros.size(); i++){
-			strb.append(registros[i]+" ")
-		}
+			for(int i = 0; i < registros.size(); i++){
+				strb.append(registros[i]+" ")
+			}
 
-		result = strb.toString().trim()
+			result = strb.toString().trim()
 
-		System.out.println("result ["+result+"]")
+			System.out.println("result ["+result+"]")
 		} catch (Exception e){}
 
 		return result
@@ -723,6 +723,22 @@ public class StringFormatter {
 		return sb.toString().trim();
 	}
 
+
+	public static String pointStopWord(String txt, int stop){
+		int inicio;
+		StringBuilder sb = new StringBuilder();
+		String [] stringList = txt.split(" ");
+		for(int i = 0; i< stringList.size(); i++){
+			System.out.println("["+i+"] ["+stringList[i]+"]")
+			sb.append(stringList[i]+" ");
+			if(i==stop){
+				break;
+			}
+		}
+		return sb.toString().trim();
+	}
+
+
 	public static String nextStopLength(String txt, String stop, int index, int len){
 		int inicio;
 		StringBuilder sb = new StringBuilder();
@@ -908,23 +924,23 @@ public class StringFormatter {
 		System.out.println("["+stb.toString().trim()+"]")
 		return stb.toString().trim()
 	}
-	
-	
+
+
 	private static boolean isValidCPF(String cpf) {
 		cpf = cpf.trim().replace(".", "").replace("-", "");
 		if ((cpf==null) || (cpf.length()!=11)){
-		 return false;
+			return false;
 		} else {
-		return true;
+			return true;
 		}
 	}
-	
+
 	private static boolean isValidCNPJ(String cnpj) {
 		cnpj = cnpj.trim().replace(".", "").replace("-", "").replace("/", "");
 		if ((cnpj==null)||(cnpj.length()!=14)) {
-		return false;
+			return false;
 		} else {
-		return true;
+			return true;
 		}
 	}
 

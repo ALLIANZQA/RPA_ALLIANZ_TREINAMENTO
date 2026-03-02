@@ -1,0 +1,1 @@
+.\TMUEmailTest.ps1 -from '<remetente@allianz.com.br>' -to '<destinatario@allianz.com.br>' -subject 'assunto' -body 'corpo do e-mail' -smtpUser 'usuarioNPI' -smtpPassword 'senhaNPI'

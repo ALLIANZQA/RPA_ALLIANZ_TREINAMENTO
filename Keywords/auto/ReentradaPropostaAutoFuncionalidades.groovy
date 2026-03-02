@@ -388,6 +388,9 @@ public class ReentradaPropostaAutoFuncionalidades  extends rpaCommands {
 								auxiliares.WriteExcelFactory.updateSheetLine("", j, path, "Alerta: Falha ao importar os dados. "+alerta, 4, aba);
 							} catch (Exception e){}
 						}
+						registros.clear();
+						cotacao.clear();
+						formulario.clear();
 					} 
 				//	} else {
 				//	    try{
@@ -567,9 +570,10 @@ public class ReentradaPropostaAutoFuncionalidades  extends rpaCommands {
 		
 		if(!enviado){
 		  acessoAmbiente(abaGestorOperacoes,aGOS)
+		  WebUI.delay(15)
 		  // AGENT PAINEL
 		  clicarEmElementoDaTela('//*[@id="side-menu"]/li[2]', 0);
-		  WebUI.delay(5)
+		  WebUI.delay(10)
 		  int index = 0;
 		  selecionaListaDeElementos('//*[@id="layout-wrapper"]/div[2]/div[1]/div/div/div[1]/div[3]','h5')
 		  System.out.println(listOfElements.size());
@@ -588,34 +592,38 @@ public class ReentradaPropostaAutoFuncionalidades  extends rpaCommands {
 			   }
 		  }
 		}
-		
+		WebUI.delay(5)
 		try{
 			//MENU
 			clicarEmElementoDaTela('//*[@id="engagementScroll"]/div[1]/div/div[1]/div[4]/li/div', 2);
 		} catch (Exception e){}
-		WebUI.delay(3)
+		WebUI.delay(5)
 		
 		try{
 			//Inserir comentário
 			 selecionaItemLista('Inserir comentário', '//*[@id="layout-wrapper"]/div[2]/div[1]/div/div/div[2]', 'label');
 		} catch (Exception e){}
-		
+		WebUI.delay(5)
 		try{
 		 // Public Note
 		 xpath = '//*[@id="commentary"]'
 		 preencheXpath(xpath, msg, 0);
 		} catch (Exception e){}
-		
+		WebUI.delay(12)
 		try{
 			// Add Comment
-			xpath = '/html/body/div[4]/div/div[1]/div/div'
-			selecionaItemLista('Add Comment', xpath, 'button');
+			xpath = '/html/body'
+			selecionaItemLista('Add Comment', xpath, 'span');
 		} catch (Exception e){}
+		
+		WebUI.delay(2)
 		
 		try{
 			//MENU
 			clicarEmElementoDaTela('//*[@id="engagementScroll"]/div[1]/div/div[1]/div[4]/li/div', 2);
 		} catch (Exception e){}
+		
+		WebUI.delay(2)
 		
 		try{
 			//Transfer chat
@@ -668,12 +676,12 @@ public class ReentradaPropostaAutoFuncionalidades  extends rpaCommands {
 				 break;
 			 }
 		}
-
+		WebUI.delay(5)
 		try{
 			//MENU 
 			clicarEmElementoDaTela('//*[@id="engagementScroll"]/div[1]/div/div[1]/div[4]/li/div', 2);
 		} catch (Exception e){}
-		
+		WebUI.delay(5)
 		try{
 			//Tabulation
 			 selecionaItemLista('Tabulation', '//*[@id="layout-wrapper"]/div[2]/div[1]/div/div/div[2]', 'label');
@@ -712,18 +720,20 @@ public class ReentradaPropostaAutoFuncionalidades  extends rpaCommands {
 		
 		try{
 		//SAIR
-		
+			enviado = false;
 		//MENU
-		clicarEmElementoDaTela('//*[@id="page-header-user-dropdown"]/div/div[1]', 2);
+		//clicarEmElementoDaTela('//*[@id="page-header-user-dropdown"]/div/div[1]', 2);
 		//Logout
 		//selecionaItemLista('Logout', '//*[@id="page-topbar"]/div/div[2]/div/div/div', 'button');
 		//fecharJanelaAtual(0)
 		} catch (Exception e){
 		  b = false;
+		  enviado = true
 		}
 		
 		} catch (Exception e){
 		 b = false;
+		 enviado = true
 		}
 	 return b;
 	}
@@ -1101,13 +1111,19 @@ public class ReentradaPropostaAutoFuncionalidades  extends rpaCommands {
 					 linha = StringFormatter.indexLine(formulario, "Apolice")
 					 //limpaCampo(xpath, 0)
 					 preencheXpathFormulario(xpath, StringFormatter.startWhitch(formulario[linha], "Anterior:" ), 0);
+					 } catch (Exception e){}
+					 
+					 try{
 					 //CI
 					 xpath = '//*[@id="InfoApoAnteriorBean$nmrCI"]'
 					 linha = StringFormatter.indexLine(formulario, "CI:")
 					 //limpaCampo(xpath, 0)
-					 preencheXpathFormulario(xpath, StringFormatter.startWhitch(formulario[linha], "CI:" ), 0);
+					 preencheXpathFormulario(xpath, StringFormatter.startWhitch(formulario[linha].replace(".",""), "CI:" ), 0);
+					 } catch (Exception e){
+					   preencheXpathFormulario(xpath, StringFormatter.startWhitch(formulario[linha], "CI:" ), 0);
+					 }
 					 System.out.println()
-					 } catch (Exception e){}
+					 
 					 
 					 System.out.println()
 					 
@@ -1504,6 +1520,9 @@ public class ReentradaPropostaAutoFuncionalidades  extends rpaCommands {
 			String nPremioTotal; 
 			String nValorPacote; 
 			String valorPacote;
+			double limite = 2.00;
+			double dif;
+			String vr;
 			
 			WebUI.delay(10);
 			msgAlert = recuperaValor('//*[@id="dataErrorSection"]/table/tbody/tr/td[2]', 'innerText', 0)
@@ -1522,19 +1541,20 @@ public class ReentradaPropostaAutoFuncionalidades  extends rpaCommands {
 					//linha = StringFormatter.indexLine(formulario, "Oferta Contratada:")
 					//String sPacote = StringFormatter.nextStop(formulario[linha], "Contratada:",0 ).trim()
 					linha = StringFormatter.indexLine(cotacao, "Parcelas Juros")
-					String sPacote = StringFormatter.startWhitch(cotacao[linha], "Juros" ).trim()
-					System.out.println("Pacote :"+sPacote)
+					String sPacote;
+				//	String sPacote = StringFormatter.startWhitch(cotacao[linha], "Juros" ).trim()
+				//	System.out.println("Pacote :"+sPacote)
 					
 					if(produto.equals("Automoveis 1211")){
-						if(sPacote.length() == 0){
+				//		if(sPacote.length() == 0){
 						linha = StringFormatter.indexLine(formulario, "Oferta Contratada:")
 						sPacote = StringFormatter.startWhitch(formulario[linha], "Contratada:" ).trim()
 						System.out.println("Pacote :"+ sPacote)
-						}
+					//	}
 					}
 					
 					if(produto.equals("Moto 1212")){
-						linha = StringFormatter.indexLine(formulario, "Oferta Contratada:")
+						linha = StringFormatter.indexLine(formulario, "Oferta Contratada")
 						sPacote = StringFormatter.startWhitch(formulario[linha], "Contratada:" ).trim()
 						System.out.println("Pacote :"+ sPacote)
 					}
@@ -1578,6 +1598,9 @@ public class ReentradaPropostaAutoFuncionalidades  extends rpaCommands {
 					
 					//NUMERO PARCELAMENTO -FORMULARIO
 					selecionaItemListaContains(p, '//*[@id="ParrillaBean$numFracciones"]', 'option');
+					
+					ajusteTelaTabelaDePrecos(formulario)
+					
 					//FORMA DE PAGAMENTO - FORMULARIO
 					linha = StringFormatter.indexLine(formulario, "Forma de Pagamento:")
 					selecionaItemListaContains(StringFormatter.startWhitch( formulario[linha], "Pagamento:"), '//*[@id="ParrillaBean$primRecibo"]', 'option');
@@ -1615,6 +1638,7 @@ public class ReentradaPropostaAutoFuncionalidades  extends rpaCommands {
 					
 					//CALCULAR
 					clicarEmElementoDaTela('//*[@id="btnCalcular"]', 0);
+					ajusteTelaTabelaDePrecos(formulario)
 					System.out.println()
 					//WebUI.delay(15);
 					valorPacote = recuperaValorPremio(produto, sPacote, p)
@@ -1650,11 +1674,16 @@ public class ReentradaPropostaAutoFuncionalidades  extends rpaCommands {
 							//CALCULAR
 							clicarEmElementoDaTela('//*[@id="btnCalcular"]', 0);
 							WebUI.delay(5);
-							String vr = recuperaValorPremio(produto, sPacote, p)
-							double dif = calculaDiferenca(premioTotal,vr, Integer.parseInt(p) );
+							ajusteTelaTabelaDePrecos(formulario)
+							WebUI.delay(5);
+							vr = recuperaValorPremio(produto, sPacote, p)
+							dif = calculaDiferenca(premioTotal,vr, Integer.parseInt(p) );
 							System.out.println("Dif "+dif)
 							}
 						} catch (Exception e ){}
+						
+						
+					if(limiteDeDIferençaDeCalculoProposta(dif, limite)){	
 					//EMITIR
 					clicarEmElementoDaTela('//*[@id="ParrillaBean$btnEmitir"]', 0);
 					WebUI.delay(3);
@@ -1679,6 +1708,13 @@ public class ReentradaPropostaAutoFuncionalidades  extends rpaCommands {
 							WebUI.delay(3);
 						}
 					} catch (Exception e){}
+		
+					} else {
+					  fecharJanelaAtual(1)
+					  alteraJanejaGenerica(0, 0)
+					  alerta = "Falha: Diferença de "+dif+" do valor calculado. Total: "+premioTotal+" - "+valorPacote+" Valor recuperado: "+vr+"";
+					  enviado = false;
+					}
 					} else {
 					  fecharJanelaAtual(1)
 					  alteraJanejaGenerica(0, 0)
@@ -1704,6 +1740,20 @@ public class ReentradaPropostaAutoFuncionalidades  extends rpaCommands {
 		  alerta = msgAlert;
 		  enviado = false;
 		}
+	}
+	
+	/**
+	 * @author Alz_sup54955
+	 * @param dif
+	 * @param limite
+	 * @return
+	 */
+	public static boolean limiteDeDIferençaDeCalculoProposta(double dif, double limite){
+		boolean v = false;
+		if(dif<limite){
+			v=true;
+		}
+		return v;
 	}
 	
 	/**
@@ -1884,6 +1934,7 @@ public class ReentradaPropostaAutoFuncionalidades  extends rpaCommands {
 					hasdates = ExtractDates.getSubDates(formulario[linha].replaceAll("/",""))
 					//limpaCampo(xpath, 0)
 					preencheXpathFormulario(xpath, hasdates.get(0), 0);
+					commandTAB(xpath)
 					} catch (Exception e ){}
 					
 					// DADOS CONTATO
@@ -2040,8 +2091,35 @@ public class ReentradaPropostaAutoFuncionalidades  extends rpaCommands {
 					clicarEmElementoDaTela('//*[@id="btnAceptar"]', 0);
 					fechaAlerta();
 					WebUI.delay(5);
+					System.out.println()
 					try{
-						String alert = recuperaValor('//*[@id="dataErrorSection"]/table/tbody/tr/td[2]', 'innerText', 0)
+						// DATA NASCIMENTO
+						xpath = '//*[@id="DadosGeraisClienteBeanConductor$dataNascimento"]';
+						linha = StringFormatter.indexLine(formulario, "Data de Nascimento:");
+						hasdates = ExtractDates.getSubDates(formulario[linha].replaceAll("/",""))
+						//limpaCampo(xpath, 0)
+						preencheXpathFormulario(xpath, hasdates.get(0), 0);
+						//commandTAB(xpath)
+						// Sexo
+						xpath = '//*[@id="OutrosDadosClienteBeanConductor$sexo"]';
+						selecionaItemListaContains(sexo, xpath, 'option');
+						// Estado Civil
+						xpath = '//*[@id="OutrosDadosClienteBeanConductor$estadoCivil"]';
+						selecionaItemListaContains(estadoCivil, xpath, 'option');
+						// Profissão
+						xpath = '//*[@id="OutrosDadosClienteBeanConductor$profissao"]';
+						selecionaItemListaContains(profissao, xpath, 'option');
+						// Renda Mensal
+						xpath = '//*[@id="OutrosDadosClienteBeanConductor$rendaMensal"]';
+						selecionaItemListaContains(rendaMensal, xpath, 'option');
+						// AVANÇAR
+						clicarEmElementoDaTela('//*[@id="btnAceptar"]', 0);
+						fechaAlerta();
+						WebUI.delay(5);
+					} catch (Exception e){}
+					
+					try{
+						String alert = recuperaValor('//*[@id="dataErrorSection"]/table/tbody/tr[1]/td[2]', 'innerText', 0)
 						if(alertListContinueList(alert)){
 							if(alert.contains(" Celular não válido")){
 								// TELEFONE 3 - CELULAR
@@ -2059,6 +2137,7 @@ public class ReentradaPropostaAutoFuncionalidades  extends rpaCommands {
 								String logradouroCliente = StringFormatter.startWhitch(formulario[linha], "Logradouro:")
 								preencheXpathFormulario(xpath, logradouroCliente, 0);
 							}
+							System.out.println()
 							//Avançar
 							clicarEmElementoDaTela('//*[@id="btnAceptar"]', 0);
 							WebUI.delay(3);
@@ -2068,6 +2147,19 @@ public class ReentradaPropostaAutoFuncionalidades  extends rpaCommands {
 							//clicarEmElementoDaTela('//*[@id="btnAceptar"]', 0);
 						}
 					} catch (Exception e){}
+					//INFORMAÇÕES DO CONDUTOR PRINCIPAL
+					WebUI.delay(5);
+					tela = recuperaValor( '//*[@id="cellAppPromptHeaderArea"]', 'innerText', 2)
+					 if(tela.contains("LISTA CLIENTES")){
+						 linha = StringFormatter.buscaComAntecessor(cotacao, 'INFORMAÇÕES DO CONDUTOR PRINCIPAL', "Nome" )
+						 String tipo =  StringFormatter.betweenStrings(cotacao[linha], "Nome:" , "CPF:") 
+						 System.out.println("TIPO "+tipo)
+						 selecionaItemListaContains(tipo, '//*[@id="ListaClientesBean$listaClientes"]', 'tr');
+						 WebUI.delay(5);
+						 // AVANÇAR
+						 clicarEmElementoDaTela('//*[@id="btnAceptar"]', 0);
+					 }
+					
 				} else {
 				fecharJanelaAtual(1)
 				alteraJanejaGenerica(0, 0)
@@ -2146,11 +2238,12 @@ public class ReentradaPropostaAutoFuncionalidades  extends rpaCommands {
 	 */
 	public static  clausulas(List<String> cotacao, List<String> formulario){
 		if(enviado){
-			WebUI.delay(5);
+			WebUI.delay(10);
 			msgAlert = recuperaValor('//*[@id="dataErrorSection"]/table/tbody/tr/td[2]', 'innerText', 1)
 			if(!alertListBlocList(msgAlert)){
 				tela = recuperaValor( '//*[@id="cellAppPromptHeaderArea"]', 'innerText', 2)
 				 if(tela.contains("CLÁUSULAS")){
+					 System.out.println()
 					 // AVANÇAR
 					 clicarEmElementoDaTela('//*[@id="btnAceptar"]', 0);
 					 WebUI.delay(5);
@@ -2168,6 +2261,16 @@ public class ReentradaPropostaAutoFuncionalidades  extends rpaCommands {
 							ajusteTDO(cotacao, formulario);
 						}
 					 } catch (Exception e){}
+					 
+					 WebUI.delay(5);
+					 try{
+						 String alert = recuperaValor('//*[@id="dataErrorSection"]/table/tbody/tr/td[2]', 'innerText', 1)
+						 if(alertListContinueList(alert)){
+							 //Avançar
+							  clicarEmElementoDaTela('//*[@id="btnAceptar"]', 0);
+						 }
+					 } catch (Exception e){}
+					 
 				 } else {
 				 fecharJanelaAtual(1)
 				 alteraJanejaGenerica(0, 0)
@@ -2187,7 +2290,7 @@ public class ReentradaPropostaAutoFuncionalidades  extends rpaCommands {
 		dadosDeRiscoTDO(cotacao, formulario);
 		tabelaDePrecos(cotacao, formulario);
 		dadosEmissaoDTO();
-		dadosClientesDTO();
+		dadosClientesDTO(cotacao);
 		dadosComuns();
 		if(produto.equals("Moto 1212")){ clausulas(cotacao, formulario); confirmarPagamento();}
 		else {confirmarPagamento(); clausulas(cotacao, formulario);}
@@ -2262,7 +2365,7 @@ public class ReentradaPropostaAutoFuncionalidades  extends rpaCommands {
 	 * @param formulario
 	 * @return
 	 */
-	public static dadosClientesDTO(){
+	public static dadosClientesDTO(List<String> cotacao){
 		if(enviado){
 			System.out.println()
 			WebUI.delay(10);
@@ -3131,4 +3234,44 @@ public class ReentradaPropostaAutoFuncionalidades  extends rpaCommands {
 		System.out.println("["+nome+"]");
 		return nome
 	}
+	
+	
+	
+	public static void ajusteTelaTabelaDePrecos(List<String> formulario){
+		System.out.println()
+		System.out.println("RECURSIVO...")
+		WebUI.delay(3)
+		try{
+	    boolean r 
+		String msg = recuperaValor('//*[@id="dataErrorSection"]/table/tbody/tr/td[2]', 'innerText', 0)
+		if(msg.equals(" Nova Apólice0Nova Apólice")){
+		   r=true;
+		} else {
+		   r=false;
+		}
+		System.out.println(r)
+		if(r.equals(true)){
+			Random gerador = new Random(); // 1. Cria um objeto da classe Random
+			int numeroAleatorio = gerador.nextInt(9) + 1;
+			String n = String.valueOf(numeroAleatorio)
+			selecionaItemListaContains(n, '//*[@id="ParrillaBean$numFracciones"]', 'option');
+			WebUI.delay(3)
+			//NUMERO DE PERCELAS - FORMULARIO
+			linha = StringFormatter.indexLine(formulario, "Numero de Parcelas")
+			String p = StringFormatter.nextStop(formulario[linha],"Parcelas:", 0).replace("x","");
+			//NUMERO PARCELAMENTO -FORMULARIO
+			selecionaItemListaContains(p, '//*[@id="ParrillaBean$numFracciones"]', 'option');
+			WebUI.delay(5)
+			r=false;
+			ajusteTelaTabelaDePrecos(formulario)
+		}
+		
+		
+		} catch (Exception e){}
+		System.out.println("SAINDO DO RECURSIVO...")
+	}
+	
+	
+	
+	
 }

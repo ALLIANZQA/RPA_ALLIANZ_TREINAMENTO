@@ -1,5 +1,3 @@
 C:/Users/Public/RPA_ALLIANZ/Emails/backoffice/EnvioRetornoGo/EnvioRetornoGoFinalProcesso.txt
 rpa@allianz.com.br
 
-smtp.intrallianz.es
-25

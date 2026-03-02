@@ -22,9 +22,11 @@ import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 import com.kms.katalon.core.windows.keyword.WindowsBuiltinKeywords as Windows
 
 import internal.GlobalVariable
+import rpacommands.rpaCommands
 
-public class emailDinamico {
+public class emailDinamico extends rpaCommands {
 
+	private static String authPathConfigEmail = "C:\\Users\\Public\\RPA_ALLIANZ\\Emails\\Credenciais\\ConfigAuthEmail.txt"
 
 	/**
 	 * @author Alz_sup54955
@@ -41,18 +43,18 @@ public class emailDinamico {
 	 * @return
 	 */
 	public static enviaEmailDinamico(String sender,String emaildestination, String tipoAba, String path, String file,List<String> msgs, String hours, String horaInicial, String horaFinal, String hostName, String dataInicio, String dataFinal, String assunto){
-
 		try{
+			lerConfiguraçõesAuth(authPathConfigEmail)
 			List<String> anexos = new ArrayList<>();
 			anexos[0] = path
 			anexos[1] = file
-
 			sendEmail.CreateEmail.createAllEmailSendMultipleFiles(sender,
 					emaildestination,
-					'' ,
+					user,
+					pwdsender,
 					anexos,
-					'smtp.intrallianz.es',
-					'25',
+				    host,
+					porta,
 					tipoAba,
 					Integer.toString(setMessagesTotalAlerts(msgs)),
 					Integer.toString(setMessagesTotalPassed(msgs)),

@@ -76,7 +76,7 @@ public class SantanderEnvioDeMensagensSasam extends rpaCommands{
 				try{
 					//System.err.println("[PROPOSTA ["+inativacao[51].substring(0, 9)+"]")
 					//PROPOSTA
-					preencheXpath('//*[@id="apolice"]', inativacao[24].substring(0, 9) , 1)
+					preencheXpath('//*[@id="apolice"]', inativacao[28].substring(0, 9) , 1)
 					//PESQUISAR
 					selecionaItemLista('Pesquisar','//*[@id="divAppContent"]/table/tbody/tr[1]/td/table/tbody/tr[2]/td' , 'td' )
 					//BT FICHA GESTÃO
@@ -87,12 +87,12 @@ public class SantanderEnvioDeMensagensSasam extends rpaCommands{
 					deletaArquivoGenerico(fileToDell);
 					System.out.println()
 					try{
-						novaFichaGestaoPorAtributo(formataProposta(inativacao[24], ' / 0 / 0'),'')
+						novaFichaGestaoPorAtributo(formataProposta(inativacao[28], ' / 0 / 0'),'')
 						WebUI.delay(10);
 					} catch (Exception e){}
 					selecionaItemNaTabelaFichaGestao("Publico", 'Proposta')
 					WebUI.delay(30);
-					renomearArquivo(fileToDell, inativacao[24].substring(0, 9), ".pdf")
+					renomearArquivo(fileToDell, inativacao[28].substring(0, 9), ".pdf")
 					fecharJanelaAtual(2)
 					alteraJanejaGenerica(1, 5)
 					fecharJanelaAtual(1)

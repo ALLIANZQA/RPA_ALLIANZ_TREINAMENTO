@@ -2,4 +2,4 @@ C:/Users/Public/RPA_ALLIANZ/Emails/Auto/ApolicesHomologacao/ApolicesHomologacao.
 rpa@allianz.com.br
 
 smtp.intrallianz.es
-25
+00

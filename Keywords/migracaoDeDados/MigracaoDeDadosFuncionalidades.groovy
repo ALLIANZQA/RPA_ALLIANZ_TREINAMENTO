@@ -240,7 +240,7 @@ public class MigracaoDeDadosFuncionalidades extends rpaCommands{
 				anexos[0] = path
 				anexos[1] = pathXLSX(tipoAba)+".xlsx"
 				System.out.println(anexos[0]+" - "+anexos[1])
-				sendEmail.CreateEmail.createEmailSendMultipleFilesMigracaoDeDados(sender, emaildestination, pwdsender, anexos, host, porta, tipoAba, tipoSelecao )
+				sendEmail.CreateEmail.createEmailSendMultipleFilesMigracaoDeDados(sender, emaildestination, anexos, tipoAba, tipoSelecao )
 			}
 		} catch (Exception e){
 		}

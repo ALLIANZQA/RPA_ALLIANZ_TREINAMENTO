@@ -298,7 +298,7 @@ public class SeguroFuncionarioRenovAuto extends backofficeFuncionalidades{
 			List<String> anexos = new ArrayList<>();
 			anexos[0] = path1;
 			anexos[1] = nome1;
-			if(sendEmail.CreateEmail.createEmailSendMultipleFilesSeguroFuncionario(sender, destinatarioEmail, pwdsender, anexos, host, porta, tipoAba, assunto)){
+			if(sendEmail.CreateEmail.createEmailSendMultipleFilesSeguroFuncionario(sender, destinatarioEmail, anexos, tipoAba, assunto)){
 				valueCheckSendEmail="Enviado"
 				validaErro = ""
 			} else {
@@ -329,7 +329,7 @@ public class SeguroFuncionarioRenovAuto extends backofficeFuncionalidades{
 			List<String> anexos = new ArrayList<>();
 			anexos[0] = path1;
 			anexos[1] = nome1;
-			if(sendEmail.CreateEmail.createEmailSendMultipleFilesSeguroFuncionario(sender, emaildestination, pwdsender, anexos, host, porta, tipoAba, assunto)){
+			if(sendEmail.CreateEmail.createEmailSendMultipleFilesSeguroFuncionario(sender, emaildestination, anexos, tipoAba, assunto)){
 				valueCheckSendEmail="Enviado"
 				validaErro = ""
 			} else {
@@ -359,7 +359,7 @@ public class SeguroFuncionarioRenovAuto extends backofficeFuncionalidades{
 			List<String> anexos = new ArrayList<>();
 			anexos[0] = caminhoDiretorioExcel;
 			anexos[1] = "RoboRenovAuto.xlsx";
-			sendEmail.CreateEmail.createEmailSendMultipleFiles(sender, destinatarioEmail, pwdsender, anexos, host, porta, 'finalRenovAuto')
+			sendEmail.CreateEmail.createEmailSendMultipleFiles(sender, destinatarioEmail, anexos, 'finalRenovAuto')
 			finalizar();
 		} catch (Exception e){
 			finalizar();

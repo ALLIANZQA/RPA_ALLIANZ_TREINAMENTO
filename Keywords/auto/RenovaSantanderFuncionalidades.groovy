@@ -4,6 +4,9 @@ import static com.kms.katalon.core.checkpoint.CheckpointFactory.findCheckpoint
 import static com.kms.katalon.core.testcase.TestCaseFactory.findTestCase
 import static com.kms.katalon.core.testdata.TestDataFactory.findTestData
 import static com.kms.katalon.core.testobject.ObjectRepository.findTestObject
+
+import java.time.Duration
+import java.time.Instant
 import java.util.List
 import org.openqa.selenium.WebElement
 import com.kms.katalon.core.annotation.Keyword
@@ -40,6 +43,10 @@ import auxiliares.StringFormatter;
 import auxiliares.MenuMatriz
 import auxiliares.ExtractDates
 
+import sendEmail.emailDinamico;
+import auxiliares.timer;
+import auxiliares.GetHost;
+
 
 /**
  * ATUALIZAÇÃO 22/02/2024
@@ -50,6 +57,7 @@ public class RenovaSantanderFuncionalidades extends rpaCommands {
 
 	protected static List<WebElement> listOfElements
 	protected static TestData data
+	protected static TestData dataSelecionada
 	private static TestData dataCap
 	//	private static String testDataPath = 'Data Files/Auto/RenovacoesSantanderData/RenovaSantander'
 	//	private static String tabCapPath = 'Data Files/Auto/RenovacoesSantanderData/TabCap (1)'
@@ -115,13 +123,22 @@ public class RenovaSantanderFuncionalidades extends rpaCommands {
 	protected static boolean alertaSistemaPD
 	protected static boolean alertaNR
 	protected static boolean alertaDadosDeRisco
-	protected static String aba
+	protected static String aba = 'RenovacaoSantander';
 	protected static List<String> registros
 	protected static coringa = true
 	protected static String limitePremio
 	private static String dataDoDocumento;
 
 
+	private static Instant start;
+	private static Instant end;
+	private static Duration timeLapnse;
+	private static String docName = "RenovaSantander.xlsx"
+	private static int cellCheckAlert = 31;
+	
+	private static List<String> apolices;
+	
+	
 	/**
 	 * @author T_DCDias
 	 * @return
@@ -156,7 +173,7 @@ public class RenovaSantanderFuncionalidades extends rpaCommands {
 	 * @return
 	 */
 	public static menuRenovaSantander(String a){
-		MenuMatriz.subMenuEquals('/*/body/div/div/app-root/app-private/app-private-header/nx-ibl-navigation/div/div[1]/nx-ibl-navigation-desktop/div[1]/div/div/ul', "span", "Produção & Sinistros")
+		MenuMatriz.subMenuEquals('/*/body/div[1]/main/app-root/app-private/app-private-header/nx-ibl-navigation/div/div[1]/nx-ibl-navigation-desktop/div[1]/div', "span", "Produção & Sinistros")
 		String xpathGR =  xpathGestaoRenovacoes(a);
 		clickXpath(xpathGR, 5)
 		WebUI.waitForPageLoad(30)
@@ -171,8 +188,8 @@ public class RenovaSantanderFuncionalidades extends rpaCommands {
 	 */
 	public static String xpathGestaoRenovacoes(String a){
 		Map<String, String> mes = new HashMap<String, String>();
-		mes.put("PRD",'/html/body/div/div/app-root/app-private/app-displayed-menu/div/app-teaser/div/div[2]/div/div[1]/ul/li[1]/a');
-		mes.put("DEV",'/*/body/div[1]/div/app-root/app-private/app-displayed-menu/div/app-teaser/div/div[5]/div/div[2]/ul/li[4]/a');
+		mes.put("PRD",'/*/body/div[1]/main/app-root/app-private/app-displayed-menu/div/app-teaser/div/div[2]/div/div[1]/ul/li[1]/a');
+		mes.put("DEV",'/*/body/div[1]/main/app-root/app-private/app-displayed-menu/div/app-teaser/div/div[2]/div/div[1]/ul/li[4]/a');
 		return mes.get(a);;
 	}
 
@@ -308,10 +325,29 @@ public class RenovaSantanderFuncionalidades extends rpaCommands {
 	
 	
 	public static fluxoInicialRenovaSantander(String tipoAba,String a,  String[] dataParaExecutar){
+		System.out.println()
+		String dataInicio = ExtractDates.dataAtual();
+		String horaInicial =  ExtractDates.horaAtualizada();
+		start = Instant.now();
 		iniURLDateFiles()
 		initDataFiles(testDataPath, tabCapPath )
 		fluxoCompletoRenovaSantander(tipoAba, a, dataParaExecutar);
 		recursivo(tipoAba,a, dataParaExecutar)
+		end =  Instant.now();
+		timeLapnse = Duration.between(start, end);
+		String dataFinal = ExtractDates.dataAtual();
+		String horaFinal =  ExtractDates.horaAtualizada();
+		aba = 'RenovacaoSantander';
+		System.out.println()
+		List<String> msgAlertas = new ArrayList<String>()
+		msgAlertas.addAll(confrmaData(tipoAba, dataParaExecutar))
+		System.out.println("ALERTAS: "+msgAlertas.size())
+		
+		try{
+			enviarEmailSantanderDinamico(aba, timeLapnse, dataInicio, dataFinal, horaInicial, horaFinal, msgAlertas );
+		  } catch (Exception e){
+		}
+		
 	}
 	
 	public static recursivo(String tipoAba,String a,  String[] dataParaExecutar){
@@ -356,6 +392,7 @@ public class RenovaSantanderFuncionalidades extends rpaCommands {
 					dataDoDocumento = dataParaExecutar[i]
 				}
 				if(validaDataParaPorcessar(dataParaExecutar[i])){
+				System.out.println()
 					renovaSantander(tipoAba,a ,dataParaExecutar[i])
 					if(!enviarEmailRenovaSantander(tipoAba, dataParaExecutar[i])){
 						enviarEmailError("Error", "RenovaSantander" );
@@ -366,8 +403,10 @@ public class RenovaSantanderFuncionalidades extends rpaCommands {
 			fluxoCompletoRenovaSantander(tipoAba, dataParaExecutar)
 			//finalizar()
 		}
-		WebUI.closeBrowser()
-		finalizar()
+		try{
+		  WebUI.closeBrowser()
+		  finalizar()
+		} catch (Exception e){}
 	}
 
 	/**
@@ -836,46 +875,46 @@ public class RenovaSantanderFuncionalidades extends rpaCommands {
 				case "RenovaSantander":
 				WriteExcelFactory.updateSheetLine('',i, path,'',2,aba);
 				WriteExcelFactory.updateSheetLine('',i, path,'x',3,aba);
-				WriteExcelFactory.updateSheetLine('',i, path,sPacote,21,aba);
-				WriteExcelFactory.updateSheetLine('',i, path,iPrLiqAtlAnt,22,aba);
-				WriteExcelFactory.updateSheetLine('',i, path,dPrliqAtuCalc,23,aba);
-				WriteExcelFactory.updateSheetLine('',i, path,sProposta,24,aba);
-				WriteExcelFactory.updateSheetLine('',i, path,sApoliceRenov,25,aba);
-				WriteExcelFactory.updateSheetLine('',i, path,sAlerta,26,aba);
-				WriteExcelFactory.updateSheetLine('',i, path,sLog,27,aba);
+				WriteExcelFactory.updateSheetLine('',i, path,sPacote,25,aba);
+				WriteExcelFactory.updateSheetLine('',i, path,iPrLiqAtlAnt,26,aba);
+				WriteExcelFactory.updateSheetLine('',i, path,dPrliqAtuCalc,27,aba);
+				WriteExcelFactory.updateSheetLine('',i, path,sProposta,28,aba);
+				WriteExcelFactory.updateSheetLine('',i, path,sApoliceRenov,29,aba);
+				WriteExcelFactory.updateSheetLine('',i, path,sAlerta,30,aba);
+				WriteExcelFactory.updateSheetLine('',i, path,sLog,31,aba);
 				break;
 				case "RenovaSantanderSASAM":
 				WriteExcelFactory.updateSheetLine('',i, path,'',2,aba);
 				WriteExcelFactory.updateSheetLine('',i, path,'x',3,aba);
-				WriteExcelFactory.updateSheetLine('',i, path,sPacote,83,aba);
-				WriteExcelFactory.updateSheetLine('',i, path,iPrLiqAtlAnt,84,aba);
-				WriteExcelFactory.updateSheetLine('',i, path,dPrliqAtuCalc,85,aba);
-				WriteExcelFactory.updateSheetLine('',i, path,sProposta,86,aba);
-				WriteExcelFactory.updateSheetLine('',i, path,sApoliceRenov,87,aba);
-				WriteExcelFactory.updateSheetLine('',i, path,sAlerta,88,aba);
-				WriteExcelFactory.updateSheetLine('',i, path,sLog,89,aba);
+				WriteExcelFactory.updateSheetLine('',i, path,sPacote,87,aba);
+				WriteExcelFactory.updateSheetLine('',i, path,iPrLiqAtlAnt,88,aba);
+				WriteExcelFactory.updateSheetLine('',i, path,dPrliqAtuCalc,89,aba);
+				WriteExcelFactory.updateSheetLine('',i, path,sProposta,90,aba);
+				WriteExcelFactory.updateSheetLine('',i, path,sApoliceRenov,91,aba);
+				WriteExcelFactory.updateSheetLine('',i, path,sAlerta,92,aba);
+				WriteExcelFactory.updateSheetLine('',i, path,sLog,93,aba);
 				break;
 				case "RenovaEmissaoIncorreta":
 				WriteExcelFactory.updateSheetLine('',i, path,'',2,aba);
 				WriteExcelFactory.updateSheetLine('',i, path,'x',3,aba);
-				WriteExcelFactory.updateSheetLine('',i, path,sPacote,73,aba);
-				WriteExcelFactory.updateSheetLine('',i, path,iPrLiqAtlAnt,74,aba);
-				WriteExcelFactory.updateSheetLine('',i, path,dPrliqAtuCalc,75,aba);
-				WriteExcelFactory.updateSheetLine('',i, path,sProposta,76,aba);
-				WriteExcelFactory.updateSheetLine('',i, path,sApoliceRenov,77,aba);
-				WriteExcelFactory.updateSheetLine('',i, path,sAlerta,78,aba);
-				WriteExcelFactory.updateSheetLine('',i, path,sLog,79,aba);
+				WriteExcelFactory.updateSheetLine('',i, path,sPacote,77,aba);
+				WriteExcelFactory.updateSheetLine('',i, path,iPrLiqAtlAnt,78,aba);
+				WriteExcelFactory.updateSheetLine('',i, path,dPrliqAtuCalc,79,aba);
+				WriteExcelFactory.updateSheetLine('',i, path,sProposta,80,aba);
+				WriteExcelFactory.updateSheetLine('',i, path,sApoliceRenov,81,aba);
+				WriteExcelFactory.updateSheetLine('',i, path,sAlerta,82,aba);
+				WriteExcelFactory.updateSheetLine('',i, path,sLog,83,aba);
 				break;
 				case "RenovaSantanderSASAM2":
 				WriteExcelFactory.updateSheetLine('',i, path,'',4,aba);
 				WriteExcelFactory.updateSheetLine('',i, path,'x',5,aba);
-				WriteExcelFactory.updateSheetLine('',i, path,sPacote,49,aba);
-				WriteExcelFactory.updateSheetLine('',i, path,iPrLiqAtlAnt,50,aba);
-				WriteExcelFactory.updateSheetLine('',i, path,dPrliqAtuCalc,51,aba);
-				WriteExcelFactory.updateSheetLine('',i, path,sProposta,52,aba);
-				WriteExcelFactory.updateSheetLine('',i, path,sApoliceRenov,53,aba);
-				WriteExcelFactory.updateSheetLine('',i, path,sAlerta,54,aba);
-				WriteExcelFactory.updateSheetLine('',i, path,sLog,55,aba);
+				WriteExcelFactory.updateSheetLine('',i, path,sPacote,53,aba);
+				WriteExcelFactory.updateSheetLine('',i, path,iPrLiqAtlAnt,54,aba);
+				WriteExcelFactory.updateSheetLine('',i, path,dPrliqAtuCalc,55,aba);
+				WriteExcelFactory.updateSheetLine('',i, path,sProposta,56,aba);
+				WriteExcelFactory.updateSheetLine('',i, path,sApoliceRenov,57,aba);
+				WriteExcelFactory.updateSheetLine('',i, path,sAlerta,58,aba);
+				WriteExcelFactory.updateSheetLine('',i, path,sLog,59,aba);
 				break;
 			}
 
@@ -911,16 +950,16 @@ public class RenovaSantanderFuncionalidades extends rpaCommands {
 		i = i-1;
 		switch (aba){
 			case "RenovaSantander":
-			WriteExcelFactory.updateSheetLine('',i, path,sAlerta,26,aba);
+			WriteExcelFactory.updateSheetLine('',i, path,sAlerta,30,aba);
 			break;
 			case "RenovaSantanderSASAM":
-			WriteExcelFactory.updateSheetLine('',i, path,sAlerta,78,aba);
+			WriteExcelFactory.updateSheetLine('',i, path,sAlerta,82,aba);
 			break;
 			case "RenovaEmissaoIncorreta":
-			WriteExcelFactory.updateSheetLine('',i, path,sAlerta,78,aba);
+			WriteExcelFactory.updateSheetLine('',i, path,sAlerta,82,aba);
 			break;
 			case "RenovaSantanderSASAM2":
-			WriteExcelFactory.updateSheetLine('',i, path,sAlerta,54,aba);
+			WriteExcelFactory.updateSheetLine('',i, path,sAlerta,58,aba);
 			break;
 		}
 
@@ -940,28 +979,28 @@ public class RenovaSantanderFuncionalidades extends rpaCommands {
 			case "RenovaSantander":
 			WriteExcelFactory.updateSheetLine('',i, path,'',2,aba);
 			WriteExcelFactory.updateSheetLine('',i, path,'x',3,aba);
-			WriteExcelFactory.updateSheetLine('',i, path,"",21,aba);
-			WriteExcelFactory.updateSheetLine('',i, path,"",22,aba);
-			WriteExcelFactory.updateSheetLine('',i, path,"",23,aba);
-			WriteExcelFactory.updateSheetLine('',i, path,"",24,aba);
 			WriteExcelFactory.updateSheetLine('',i, path,"",25,aba);
-			WriteExcelFactory.updateSheetLine('',i, path,sAlerta,26,aba);
+			WriteExcelFactory.updateSheetLine('',i, path,"",26,aba);
 			WriteExcelFactory.updateSheetLine('',i, path,"",27,aba);
+			WriteExcelFactory.updateSheetLine('',i, path,"",28,aba);
+			WriteExcelFactory.updateSheetLine('',i, path,"",29,aba);
+			WriteExcelFactory.updateSheetLine('',i, path,sAlerta,30,aba);
+			WriteExcelFactory.updateSheetLine('',i, path,"",31,aba);
 			break;
 			case "RenovaSantanderSASAM":
 			WriteExcelFactory.updateSheetLine('',i, path,'',2,aba);
 			WriteExcelFactory.updateSheetLine('',i, path,'x',3,aba);
-			WriteExcelFactory.updateSheetLine('',i, path,sAlerta,78,aba);
+			WriteExcelFactory.updateSheetLine('',i, path,sAlerta,82,aba);
 			break;
 			case "RenovaEmissaoIncorreta":
 			WriteExcelFactory.updateSheetLine('',i, path,'',2,aba);
 			WriteExcelFactory.updateSheetLine('',i, path,'x',3,aba);
-			WriteExcelFactory.updateSheetLine('',i, path,sAlerta,78,aba);
+			WriteExcelFactory.updateSheetLine('',i, path,sAlerta,82,aba);
 			break;
 			case "RenovaSantanderSASAM2":
 			WriteExcelFactory.updateSheetLine('',i, path,'',4,aba);
 			WriteExcelFactory.updateSheetLine('',i, path,'x',5,aba);
-			WriteExcelFactory.updateSheetLine('',i, path,sAlerta,54,aba);
+			WriteExcelFactory.updateSheetLine('',i, path,sAlerta,58,aba);
 			break;
 		}
 
@@ -1057,16 +1096,16 @@ public class RenovaSantanderFuncionalidades extends rpaCommands {
 			WebUI.sendKeys(findTestObject('Object Repository/PageBackoffice/RenovaSantander/Page_Renovaes/input_poliza_SUSEP'), Keys.chord(Keys.TAB))
 			WebUI.click(findTestObject('Object Repository/PageBackoffice/RenovaSantander/Page_Renovaes/div_Filtrar'))
 		} catch (Exception e ){ }
-		    WebUI.delay(5)
+			WebUI.delay(5)
 			System.out.println();
 			
 			try {
 			   if (WebUI.verifyElementPresent(findTestObject('Object Repository/PageBackoffice/RenovaSantander/Page_Renovaes/td_error.PREO9918.9524'),2) ) {
-				    WebUI.click(findTestObject('Object Repository/PageBackoffice/RenovaSantander/Page_Renovaes/div_Filtrar'))
+					WebUI.click(findTestObject('Object Repository/PageBackoffice/RenovaSantander/Page_Renovaes/div_Filtrar'))
 			   }
 			} catch (Exception e){
 			  System.err.println('[IDENTIFICADOR DE LUPA]')
-		    }
+			}
 				
 			if (alertListContinueList(recuperaValor('//*[@id="dataErrorSection"]/table/tbody/tr/td[2]', 'innerText', 1))) {
 				WebUI.click(findTestObject('Object Repository/PageBackoffice/RenovaSantander/Page_Renovaes/div_Filtrar'))
@@ -1764,6 +1803,8 @@ public class RenovaSantanderFuncionalidades extends rpaCommands {
 					WebUI.selectOptionByLabel(findTestObject('Object Repository/PageBackoffice/RenovaSantander/Page_Tren/select_1    2    3    4    5') ,data.getValue(10, i),false)
 					dQtdParcelas = data.getValue(10, i)
 				} catch (Exception e){}
+				
+				
 			}
 
 			if(!aba.equals("RenovaSantanderSASAM2")){
@@ -3088,8 +3129,7 @@ public class RenovaSantanderFuncionalidades extends rpaCommands {
 				lerConfigurações(pathTxtEmail)
 				String pathAnexos = "C:/Users/Public/RPA_ALLIANZ/Emails/Auto/RenovaSantander/Anexos.txt"
 				String emaildestination = StringFormatter.formatterEmailDestination(FileInput.readFile(pathTxtEmail));
-				//sendEmail.CreateEmail.createEmailSendMultipleFiles(sender, emaildestination, pwdsender, FileInput.readFile(pathAnexos), host, porta, tipoAba )
-				sendEmail.CreateEmail.createEmailSend(sender, emaildestination, pwdsender, FileInput.readFile(pathAnexos), host, porta, tipoAba, dataDoDocumento );
+				sendEmail.CreateEmail.createEmailSendEmissaoSantander(sender, emaildestination, FileInput.readFile(pathAnexos), tipoAba, dataDoDocumento );
 				b = true;
 				} catch (Exception e){}
 			}
@@ -3240,7 +3280,7 @@ public class RenovaSantanderFuncionalidades extends rpaCommands {
 					}
 				}
 			}
-			System.err.println('Data Encontrada ['+dataEncontrada+']')
+			System.out.println('Data Encontrada ['+dataEncontrada+']')
 			return dataEncontrada
 		}
 
@@ -3653,7 +3693,7 @@ public class RenovaSantanderFuncionalidades extends rpaCommands {
 			listOfAlerts.add(" Vistoria Prévia Dispensada")
 			listOfAlerts.add(" Vistoria Prévia Digital Obrigatória")
 			listOfAlerts.add(" Não mostra as modalidade cujo o prêmio é inferior ao mínimo da parcela")
-			listOfAlerts.add(" error.BREO9918.9524")    
+			listOfAlerts.add(" error.BREO9918.9524")
 			listOfAlerts.add("Veículo possui kit gás instalado?")
 			System.out.println("Alert ["+alert+"]")
 			for(int i = 0; i < listOfAlerts.size(); i++){
@@ -4021,8 +4061,184 @@ public class RenovaSantanderFuncionalidades extends rpaCommands {
 		}
 
 
+		public static void ajusteTelaTabelaDePrecos(List<String> registro){
+			System.out.println()
+			System.out.println("RECURSIVO...")
+			WebUI.delay(3)
+			try{
+			boolean r
+			String msg = recuperaValor('//*[@id="dataErrorSection"]/table/tbody/tr/td[2]', 'innerText', 0)
+			if(msg.equals(" Nova Apólice0Nova Apólice")){
+			   r=true;
+			} else {
+			   r=false;
+			}
+			System.out.println(r)
+			if(r.equals(true)){
+				Random gerador = new Random(); // 1. Cria um objeto da classe Random
+				int numeroAleatorio = gerador.nextInt(9) + 1;
+				String n = String.valueOf(numeroAleatorio)
+				selecionaItemListaContains(n, '//*[@id="ParrillaBean$numFracciones"]', 'option');
+				WebUI.delay(3)
+				//NUMERO DE PERCELAS - FORMULARIO
+				String p = registro[9];
+				//NUMERO PARCELAMENTO -FORMULARIO
+				selecionaItemListaContains(p, '//*[@id="ParrillaBean$numFracciones"]', 'option');
+				WebUI.delay(5)
+				r=false;
+				ajusteTelaTabelaDePrecos(registro)
+			}
+			
+			
+			} catch (Exception e){}
+			System.out.println("SAINDO DO RECURSIVO...")
+		}
+		
+		
+		/**
+		 * @author ALZ_ServiceQA
+		 * @param date
+		 * @return
+		 */
+		public static boolean calculoDadasProcessadas(String date){
+			boolean dataEncontrada = false
+			//initDataFiles()
+			System.err.println(data.getRowNumbers())
+			for (int i = 1; i <= data.getRowNumbers(); i++) {
+				if (data.getValue(3, i).equals('x')) {
+					if(auxiliares.ExtractDates.compareDate(date, data.getValue(2, i))){
+						
+						dataSelecionada
+						dataEncontrada = true
+						break
+					}
+				}
+			}
+			System.err.println('Data Encontrada ['+dataEncontrada+']')
+			return dataEncontrada
+		}
+		
+		
+		/**
+		 * @author Alz_sup54955
+		 * @param tipoAba
+		 * @param timeLapnse
+		 * @param dataInicio
+		 * @param dataFinal
+		 * @param horaInicial
+		 * @param horaFinal
+		 * @return
+		 */
+		public static enviarEmailSantanderDinamico(String tipoAba, Duration timeLapnse, String dataInicio, String dataFinal, String horaInicial, String horaFinal, List<String> msgAlertas){
+		 System.out.println()
+		 try{
+				iniURLDateFiles()
+				initDataFiles(testDataPath, tabCapPath )
+				String pathTxtEmailConfig = "C:/Users/Public/RPA_ALLIANZ/Emails/Auto/RenovaSantander/ConfiguracoesRenovaSantander.txt";
+				lerConfigurações(pathTxtEmailConfig)
+				System.out.println(pathTxtEmail)
+				String emaildestination = StringFormatter.formatterEmailDestination(FileInput.readFile(pathTxtEmail));
+				System.out.println(emaildestination)
+				// FORMATA SAIDA DO TEMPO DE EXECUÇÃO
+				long segds = timeLapnse.toSeconds();
+				String hours = timeLapnse.toHours()+"h "+
+							timer.converteMinutos(timeLapnse.toHours(), timeLapnse.toMinutes())+"m "+
+							timer.converteSegundos(timeLapnse.toMinutes(),segds)+"s";
+				// ENVIO DE E-MAIL
+				// DADOS DO DOCUMENTO
+				// ENVIA E-MAIL DINAMICO
+				System.out.println(sender+" - "+ emaildestination+" - "+ tipoAba+" - "+ path+" - "+ docName+" - "+msgAlertas.size()+" - "+ hours+" - "+ horaInicial+" - "+ horaFinal+" - "+  GetHost.getHostname() +" - "+ dataInicio+" - "+ dataFinal+" - "+ dataDoDocumento)
+				emailDinamico.enviaEmailDinamico(sender, emaildestination, tipoAba, path, docName, msgAlertas  , hours, horaInicial, horaFinal,  GetHost.getHostname() , dataInicio, dataFinal, dataDoDocumento+" - "+GetHost.getHostname() );
+		  } catch (Exception e){}
+		}
 
 
+		/**
+		 * @author T_DCDias
+		 * @return
+		 */
+		public static confrmaData(String tipoAba, String[] dataParaExecutar){
+			try{
+				List<String> msgAlertas = new ArrayList<String>()
+				for(int i = 0; i < dataParaExecutar.size(); i++){
+					System.err.println('Data ['+i+'] ['+dataParaExecutar[i]+']')
+					if(i==0){
+						dataDoDocumento = dataParaExecutar[i]
+					}
+					if(validaDataParaPorcessar(dataParaExecutar[i])){
+					System.out.println()
+					msgAlertas.addAll(listaDeApolices(tipoAba, dataParaExecutar))
+					}
+				}
+				return msgAlertas;
+			} catch (Exception e){
+			}
+		}
+	
+		/**
+		 * @author ALZ_SUP54955
+		 * @param tipoAba
+		 * @param dataParaExecutar
+		 * @return
+		 */
+		public static List<String> listaDeApolices(String tipoAba, String[] dataParaExecutar){
+			System.out.println()
+			apolices = new ArrayList<String>()
+			System.out.println("LISTA DE APOLICES ["+data.getRowNumbers()+"] LISTA DE DATAS "+dataParaExecutar.size()+"")
+			for (int i = 1; i <= data.getRowNumbers(); i++) {
+				for( int j = 0; j < dataParaExecutar.size(); j++){
+					if(data.getValue(3, i).toString().equals("N") || data.getValue(fluxoSantander(tipoAba), i).toLowerCase().equals('x')){
+						if (auxiliares.ExtractDates.formatDateToBR(data.getValue(2, i).toString()).equals(dataParaExecutar[j]) ) {
+							apolices.add(data.getValue(1, i).trim())
+						}
+					}
+				}
+			}
+	//		System.out.println("APÓLICES ["+apolices.size()+"]")
+	//		System.out.println()
+			return recuperaAlertas( apolices)
+		}
+		
+		/**
+		 * @author ALZ_SUP54955
+		 * @param apolices
+		 * @return
+		 */
+		public static List<String> recuperaAlertas(List<String> apolices){
+			List<String> msg = new ArrayList<String>();
+			for(int i = 1; data.getRowNumbers(); i++){
+				for( int j = 0; j < apolices.size(); j++){
+					if(data.getValue(1, i).trim().equals(apolices[j])){
+						msg.add(alerta(data.getValue(31, i), data.getValue(32, i))+data.getValue(31, i))
+					}
+				}
+				if(apolices.size() == msg.size()){
+					break
+				}
+			}
+			System.out.println("\n")
+			for(int k = 0; k < msg.size(); k++){
+				System.out.println("["+msg[k].trim()+"] ["+msg[k].length()+"]")
+			}
+			System.out.println("\nRECUPERA ALERTAS ["+msg.size()+"]")
+			System.out.println()
+			return msg;
+		}
 
-
-	}
+		/**
+		 * @author ALZ_SUP54955
+		 * @param a
+		 * @param b
+		 * @return
+		 */
+		public static String alerta(String a, String b){
+			String txt;
+			if(a.length()>0){
+				txt="Alerta: "
+			} else {
+				txt=b;
+			}
+			return txt;
+		}
+		
+}

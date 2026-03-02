@@ -6,6 +6,8 @@ import static com.kms.katalon.core.testdata.TestDataFactory.findTestData
 import static com.kms.katalon.core.testobject.ObjectRepository.findTestObject
 import static com.kms.katalon.core.testobject.ObjectRepository.findWindowsObject
 
+import java.time.Duration
+import java.time.Instant
 import java.util.List
 
 import com.kms.katalon.core.annotation.Keyword
@@ -28,6 +30,10 @@ import auxiliares.MenuMatriz
 import internal.GlobalVariable
 import rpacommands.rpaCommands
 import auxiliares.ExtractDates
+import sendEmail.emailDinamico;
+import auxiliares.timer;
+import auxiliares.GetHost;
+import auxiliares.CurrencyMonetary;
 
 public class BoletoAvulsoFuncionalidades extends rpaCommands {
 
@@ -36,9 +42,21 @@ public class BoletoAvulsoFuncionalidades extends rpaCommands {
 	private static String path
 	private static String alerta
 	private static int cellCheck = 8
-	private static String filepath = "C:\\Users\\Public\\"
+	private static String filepath = "C:\\Users\\Public\\RPA_ALLIANZ\\Data Files\\Backoffce\\BoletoAvulso\\arquivo\\"
 	private static String completeFilePath
 
+	private static Instant start;
+	private static Instant end;
+	private static Duration timeLapnse;
+	private static String docName =  "BoletoAvulso.xlsx"
+	private static int cellCheckAlert = 10;
+	private static boolean enviado = true;
+	private static String xpath;
+	private static String tela;
+	private static boolean erroTela = false;
+	private static String msgAlerta
+	private static String status
+	
 	/**
 	 * @author T_DCDias
 	 * @return
@@ -102,11 +120,59 @@ public class BoletoAvulsoFuncionalidades extends rpaCommands {
 	 * @return
 	 */
 	public static fluxoBoletoAvulso(String aba){
+		System.out.println()
+		String dataInicio = ExtractDates.dataAtual();
+		String horaInicial =  ExtractDates.horaAtualizada();
+		start = Instant.now();
 		initDataFiles()
 		fluxoCompletoBoletoAvulso(aba)
 		reprocessaFalhas(aba)
-		enviarEmailBoletoAvulso(aba)
+		//enviarEmailBoletoAvulso(aba)
+		end =  Instant.now();
+		timeLapnse = Duration.between(start, end);
+		String dataFinal = ExtractDates.dataAtual();
+		String horaFinal =  ExtractDates.horaAtualizada();
+		try{
+			enviaEmailDinamico(aba, timeLapnse, dataInicio, dataFinal, horaInicial, horaFinal );
+		} catch (Exception e){
+		}
 	}
+	
+	
+	/**
+	 * @author Alz_sup54955
+	 * @param tipoAba
+	 * @param timeLapnse
+	 * @param dataInicio
+	 * @param dataFinal
+	 * @param horaInicial
+	 * @param horaFinal
+	 * @return
+	 */
+	public static enviaEmailDinamico(String tipoAba, Duration timeLapnse, String dataInicio, String dataFinal, String horaInicial, String horaFinal){
+		System.out.println()
+		try{
+			if(!validaDados(cellCheck)){
+				String pathTxtEmailConfig ="C:\\Users\\Public\\RPA_ALLIANZ\\Emails\\backoffice\\BoletoAvulso\\ConfiguracoesBoletoAvulso.txt";
+				lerConfigurações(pathTxtEmailConfig)
+				System.out.println(pathTxtEmail)
+				String emaildestination = StringFormatter.formatterEmailDestination(FileInput.readFile(pathTxtEmail));
+				// FORMATA SAIDA DO TEMPO DE EXECUÇÃO
+				long segds = timeLapnse.toSeconds();
+				String hours = timeLapnse.toHours()+"h "+
+						timer.converteMinutos(timeLapnse.toHours(), timeLapnse.toMinutes())+"m "+
+						timer.converteSegundos(timeLapnse.toMinutes(),segds)+"s";
+				// ENVIO DE E-MAIL
+				//DADOS DO DOCUMENTO
+				initDataFiles();
+				// ENVIA E-MAIL DINAMICO
+				emailDinamico.enviaEmailDinamico(sender, emaildestination, tipoAba, path, docName, emailDinamico.listaDeAlertas(data, cellCheckAlert)  , hours, horaInicial, horaFinal,  GetHost.getHostname() , dataInicio, dataFinal, "" );
+			}
+		} catch (Exception e){}
+	}
+	
+	
+	
 
 	/**
 	 * @author be54955
@@ -124,25 +190,26 @@ public class BoletoAvulsoFuncionalidades extends rpaCommands {
 						List<String> registros = new ArrayList<>();
 						lista( registros , i)
 						String arquivo = registros[4].toString()
-						if(!validaExistenciaDeArquivo('C:\\Users\\Public\\'+arquivo+'.pdf')){
+						if(!validaExistenciaDeArquivo('C:\\Users\\Public\\RPA_ALLIANZ\\Data Files\\Backoffce\\BoletoAvulso\\arquivo\\'+arquivo+extensaoArquivo(registros))){
 							if(exportarArquivo(registros, aba)) {
 								try{
 									auxiliares.WriteExcelFactory.updateSheetLine("", j, path, "Processado", 7, aba);
-									auxiliares.WriteExcelFactory.updateSheetLine("", j, path, "Processado", cellCheck, aba);
+									auxiliares.WriteExcelFactory.updateSheetLine("", j, path, "Processado", 8, aba);
+									auxiliares.WriteExcelFactory.updateSheetLine("", j, path, alerta, 9, aba);
 									deleteFileDiretory(completeFilePath)
 								} catch (Exception e){}
 							} else {
 								try{
 									auxiliares.WriteExcelFactory.updateSheetLine("", j, path, "Processado", 7, aba);
-									auxiliares.WriteExcelFactory.updateSheetLine("", j, path, "Processado", cellCheck, aba);
-									auxiliares.WriteExcelFactory.updateSheetLine("", j, path, "Falha ao anexar arquivo. "+alerta, 9, aba);
+									auxiliares.WriteExcelFactory.updateSheetLine("", j, path, "Processado", 8, aba);
+									auxiliares.WriteExcelFactory.updateSheetLine("", j, path, "Alerta: Falha ao anexar arquivo. "+alerta, 9, aba);
 								} catch (Exception e){}
 							}
 						} else {
 							try{
 								auxiliares.WriteExcelFactory.updateSheetLine("", j, path, "Processado", 7, aba);
 								auxiliares.WriteExcelFactory.updateSheetLine("", j, path, "Processado", cellCheck, aba);
-								auxiliares.WriteExcelFactory.updateSheetLine("", j, path, "Arquivo "+arquivo+" não encontrado para indexação", 9, aba);
+								auxiliares.WriteExcelFactory.updateSheetLine("", j, path, "Alerta: Arquivo "+arquivo+" não encontrado para indexação", 9, aba);
 							} catch (Exception e){}
 						}
 					}
@@ -169,7 +236,7 @@ public class BoletoAvulsoFuncionalidades extends rpaCommands {
 		WebUI.delay(15);
 		System.out.println()
 		MenuMatriz.consultasEstatisticas()
-		MenuMatriz.subMenu('/html/body/div/div/app-root/app-private/app-displayed-menu/div/app-teaser/div/div[3]/div/div[2]/ul', 'a','Nova Ficha de Gestão')
+		MenuMatriz.subMenuNome('a','Nova Ficha de Gestão')
 		boolean enviado
 		try{
 			alerta=""
@@ -235,7 +302,12 @@ public class BoletoAvulsoFuncionalidades extends rpaCommands {
 
 				//Salvar
 				clickXpath('//*[@id="o_5"]', 0);
+				WebUI.delay(2);
+				alerta = pegaMSGAlerta()
+				WebUI.delay(2);
+				fechaAlerta();
 				WebUI.delay(5);
+				alteraJanejaGenerica(1, 5)
 				String s = recuperaValor('//*[@id="dataErrorSection"]/table/tbody/tr/td[2]','innerText', 3)
 				System.err.println("["+s+"]")
 				if(alertListBlocList(s)){
@@ -244,7 +316,7 @@ public class BoletoAvulsoFuncionalidades extends rpaCommands {
 					selecionaItemLista('Cancelar','//*[@id="divAppContent"]/table/tbody/tr[1]/td/table/tbody/tr[2]/td/table' , 'div' )
 					fechaAlerta();
 					enviado = false
-					alteraJanejaGenerica(1, 5)
+					//alteraJanejaGenerica(1, 5)
 					fecharJanelaAtual(1)
 					alteraJanejaGenerica(0, 5)
 
@@ -254,7 +326,7 @@ public class BoletoAvulsoFuncionalidades extends rpaCommands {
 					fechaAlerta();
 					enviado = true
 					System.err.println("Indexado ["+enviado+"]")
-					alteraJanejaGenerica(1, 5)
+					//alteraJanejaGenerica(1, 5)
 					fecharJanelaAtual(1)
 					alteraJanejaGenerica(0, 5)
 				}
@@ -402,7 +474,7 @@ public class BoletoAvulsoFuncionalidades extends rpaCommands {
 			List<String> anexos = new ArrayList<>();
 			anexos[0] = path
 			anexos[1] = "BoletoAvulso.xlsx"
-			sendEmail.CreateEmail.createEmailSendMultipleFiles(sender, emaildestination, pwdsender, anexos, host, porta, tipoAba)
+			sendEmail.CreateEmail.createEmailSendMultipleFiles(sender, emaildestination, anexos, tipoAba)
 		}
 
 

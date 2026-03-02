@@ -2,4 +2,4 @@ C:/Users/Public/RPA_ALLIANZ/Emails/Financeiro/validaQuadrosPDF/ValidaQuadrosPDF.
 rpa@allianz.com.br
 
 smtp.intrallianz.es
-25
+00

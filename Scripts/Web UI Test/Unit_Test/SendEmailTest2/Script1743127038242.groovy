@@ -67,16 +67,16 @@ String dataInicio = ExtractDates.dataAtual();
 String dataFinal = ExtractDates.dataAtual();
 	
 // ANEXO DO E-MAIL
-String tipoAba = 'DuplicadoRecibos'
-String pathFile = 'C:\\Users\\Public\\RPA_ALLIANZ\\Data Files\\Sinistro\\DescontosEspecíficosSinistro.xlsx'
-String file = "DescontosEspecíficosSinistro.xlsx"
+String tipoAba = 'CotacaoRenovacaoInterna'
+String pathFile = 'C:\\Users\\Public\\RPA_ALLIANZ\\Data Files\\AutoFrota\\CotacaoRenovacaoInterna.xlsx'
+String file = "CotacaoRenovacaoInterna.xlsx"
 
 // ENVIO DE E-MAIL 
 String sender = "denilson.inmetricsext@allpronet.com.br";
-String emaildestination = "denilson.inmetricsext@allpronet.com.br, andre.antunes@allianz.com.br"
+String emaildestination = "denilson.inmetricsext@allpronet.com.br"
 
 //DADOS DO DOCUMENTO 
-String testDataPath = 'Data Files/Sinistro/DescontosEspecíficosSinistroData'
+String testDataPath = 'Data Files/AutoFrota/CotacaoRenovacaoInternaData'
 TestData data = findTestData(testDataPath);
 
 // ENVIA E-MAIL DINAMICO

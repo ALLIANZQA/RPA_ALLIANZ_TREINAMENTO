@@ -215,6 +215,8 @@ public class DescontosEspecíficosSinistroFuncionalidades extends rpaCommands{
 			}
 		} catch (Exception e){
 			WebUI.closeBrowser();
+			initDataFiles()
+			
 		}
 	}
 
@@ -269,13 +271,13 @@ public class DescontosEspecíficosSinistroFuncionalidades extends rpaCommands{
 				if(descontosAbertos( sinistro)){
 					status ="Processado";
 				} else {
-					alerta = 'Alerte: Reserva não efetuada'
+					alerta = 'Alerta: Reserva não efetuada'
 					b = false
 				}
 				System.out.println("["+b+"]")
 				status ="Processado";
 			} else {
-				alerta = 'Alerte: tela "GESTÃO INTEGRADA DE SINISTROS" não apresentada'
+				alerta = 'Alerta: tela "GESTÃO INTEGRADA DE SINISTROS" não apresentada'
 				status ="Processar";
 				b = false
 			}
@@ -357,7 +359,7 @@ public class DescontosEspecíficosSinistroFuncionalidades extends rpaCommands{
 			WebUI.delay(2);
 			alerta = recuperaValor('//*[@id="dataErrorSection"]/table/tbody/tr/td[2]', 'innerText', 2)
 			System.out.println(alerta)
-			if(!alertListBlocList(alerta)){
+			if(!alertListBlocListDecEsp(alerta)){
 				System.out.println("Encerrar "+encerrado+"]")
 				//Reembolsar
 				selecionaItemLista('Reembolsar', '//*[@id="SectionPagosRecobrosSectionBar"]/table/tbody/tr/td', 'div')
@@ -374,6 +376,15 @@ public class DescontosEspecíficosSinistroFuncionalidades extends rpaCommands{
 				selecionaItemLista('CPF / CNPJ', '//*[@id="dniafavor_tipoDoc"]', 'option')
 				preencheXpath('//*[@id="dniafavor_doc"]',sinistro[6], 0);
 				commandTAB('//*[@id="dniafavor_doc"]')
+				
+//				alerta = recuperaValor('//*[@id="dataErrorSection"]/table/tbody/tr/td[2]', 'innerText', 3)
+//				if(alertListBlocList(alerta)){
+//					 evidencia = alerta;
+//					 exec = false
+//					 //Home
+//					 clickXpath('//*[@id="imgOptMenuBackHome"]', 5);
+//				} else {
+				
 				//Endereço
 				selecionaItemLista(sinistro[17], '//*[@id="domiciliotype"]', 'option')
 				preencheXpath('//*[@id="domicilioaddressPart2"]',sinistro[18], 0);
@@ -404,7 +415,7 @@ public class DescontosEspecíficosSinistroFuncionalidades extends rpaCommands{
 			
 				alerta = recuperaValor('//*[@id="dataErrorSection"]/table/tbody/tr/td[2]', 'innerText', 3)
 				if(alertListBlocList(alerta)){
-					evidencia = alerta;
+			        evidencia = "Alerta: "+alerta;
 					exec = false
 				} else {
 				 String msg1 = recuperaValor('//*[@id="dataErrorSection"]/table/tbody/tr/td[2]', 'innerText', 0)
@@ -424,12 +435,17 @@ public class DescontosEspecíficosSinistroFuncionalidades extends rpaCommands{
 				
 				//Home
 				clickXpath('//*[@id="imgOptMenuBackHome"]', 5);
-			} else {
-				exec = false
+				
+				}
+				
+				
+				
+//			    } else {
+//				exec = false
 				//Home
-				clickXpath('//*[@id="imgOptMenuBackHome"]', 5);
-				alerta
-			}
+//				clickXpath('//*[@id="imgOptMenuBackHome"]', 5);
+//				alerta
+//			}
 		} else {
 			exec = false
 			alerta = "Ressarcimento não efetuado"
@@ -479,7 +495,7 @@ public class DescontosEspecíficosSinistroFuncionalidades extends rpaCommands{
 	public static menuGIS(){
 		MenuMatriz.producaoSinistro()
 		WebUI.delay(5);
-		MenuMatriz.subMenu('/*/body/div/div/app-root/app-private/app-displayed-menu/div/app-teaser/div/div[2]/div/div[1]/ul', 'a',"GIS")
+		MenuMatriz.subMenuNome('a',"GIS")
 	}
 
 	/**
@@ -569,7 +585,7 @@ public class DescontosEspecíficosSinistroFuncionalidades extends rpaCommands{
 	 * @param alert
 	 * @return
 	 */
-	public static alertListBlocList(String alert){
+	public static alertListBlocListDecEsp(String alert){
 		System.err.println("\nalertListBloc ["+alert+"]")
 		boolean r = false
 		List<String> listOfAlerts = new ArrayList<String>()

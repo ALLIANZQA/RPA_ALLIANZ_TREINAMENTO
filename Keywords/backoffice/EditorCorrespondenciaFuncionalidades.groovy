@@ -48,7 +48,7 @@ public class EditorCorrespondenciaFuncionalidades extends rpaCommands {
     private static Instant start;
 	private static Instant end;
 	private static Duration timeLapnse;
-	private static String docName = "IndexacaoFG.xlsx"
+	private static String docName = "EditorCorrespondencia.xlsx"
 	private static int cellCheckAlert = 15;
 	
 	/**
@@ -112,7 +112,7 @@ public class EditorCorrespondenciaFuncionalidades extends rpaCommands {
 		System.out.println();
 		try{
 			WebUI.delay(5);
-			MenuMatriz.newFluxoGestao('/*/body/div/div/app-root/app-private/app-displayed-menu/div/app-teaser/div/div[3]/div/div[2]');
+			MenuMatriz.newFluxoGestaoNome();
 			WebUI.delay(10);
 		} catch (Exception e){}
 	}
@@ -254,6 +254,7 @@ public class EditorCorrespondenciaFuncionalidades extends rpaCommands {
 					status = "Processado"
 					init()
 				} else{
+				  WebUI.delay(10);
 				  //Editor de correspondencia
 				  selecionaItemLista("Editor correspondencia",'/*/body/div[1]/div/app-root/file-management/app-header/div/nx-ibl-header/nx-ibl-navigation/div/div[1]/nx-ibl-navigation-desktop/div[1]/div/div' , "span" )
 				  alteraJanejaGenerica(2, 10);
@@ -372,14 +373,14 @@ public class EditorCorrespondenciaFuncionalidades extends rpaCommands {
 		try{
 			//Anexar
 			selecionaItemLista("Anexar",'//*[@id="tableOptMenu_"]/tbody' , "td" )
-			String fileName =pathFileValue+""+registros[11].toString()+".xlsx";
+			String fileName =pathFileValue+""+registros[11].toString()+".pdf";
 			System.err.println("pathValue ["+fileName+"]");
 			boolean result = validaExistenciaDeArquivo(fileName);
 			if(!result){
 			  fileUpload('//*[@id="upFile1"]', fileName, 0);
 			}
 			String file = recuperaValor('//*[@id="inputFile1"]', 'Value', 1)
-			if(file.equals(registros[11].toString()+".xlsx")){
+			if(file.equals(registros[11].toString()+".pdf")){
 				anexo = true 
 				//deletaArquivoPdf(fileName)
 			}
@@ -395,7 +396,7 @@ public class EditorCorrespondenciaFuncionalidades extends rpaCommands {
 		abreReferencia();
 		//SELECIONAR
 		System.out.println("Processo ["+registros[0]+"]")
-		MenuMatriz.subMenu('//*[@id="cdk-overlay-0"]/div/div[2]', "div",processoFGEditorCorrespondencia(registros[0]))
+		MenuMatriz.subMenu('//*[@id="nx-dropdown-modal-1"]', "div",processoFGEditorCorrespondencia(registros[0]))
 		switch(registros[0]){
 			case "Apólice":
 			//Proposta
@@ -464,7 +465,7 @@ public class EditorCorrespondenciaFuncionalidades extends rpaCommands {
 				List<String> anexos = new ArrayList<>();
 				anexos[0] = path
 				anexos[1] = "EditorCorrespondencia.xlsx"
-				sendEmail.CreateEmail.createEmailSendMultipleFiles(sender, emaildestination, pwdsender, anexos, host, porta, tipoAba)
+				sendEmail.CreateEmail.createEmailSendMultipleFiles(sender, emaildestination, anexos, host, porta, tipoAba)
 			}
 		} catch (Exception e){
 		}

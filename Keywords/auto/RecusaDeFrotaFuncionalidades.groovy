@@ -127,7 +127,7 @@ public class RecusaDeFrotaFuncionalidades extends rpaCommands {
 			String emaildestination = StringFormatter.formatterEmailDestination(FileInput.readFile(pathTxtEmail));
 			data =  getData()
 			if(validaExecutados(data, 'x', 3)){
-				sendEmail.CreateEmail.createEmailSendMultipleFiles(sender, emaildestination, pwdsender, FileInput.readFile(pathAnexos), host, porta, tipoAba )
+				sendEmail.CreateEmail.createEmailSendMultipleFiles(sender, emaildestination, FileInput.readFile(pathAnexos), host, porta, tipoAba )
 			}
 		}
 	}

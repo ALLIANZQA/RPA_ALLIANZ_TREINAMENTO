@@ -675,7 +675,7 @@ public class ImobiliariaFuncionalidades extends rpaCommands{
 
 
 				System.out.println(anexos[0]+" - "+anexos[1])
-				sendEmail.CreateEmail.createEmailSendMultipleFiles(sender, emaildestination, pwdsender, anexos, host, porta, tipoAba)
+				sendEmail.CreateEmail.createEmailSendMultipleFiles(sender, emaildestination, anexos, tipoAba)
 			}
 		} catch (Exception e){
 		}

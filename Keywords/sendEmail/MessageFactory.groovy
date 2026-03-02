@@ -58,6 +58,21 @@ public class MessageFactory extends ConfigParameters{
 	 * @param subject
 	 * @param messagebory
 	 */
+	public MessageFactory(String sender, String pwrsender, String emaildestination){
+		this.sender = sender;
+		this.pwrsender = pwrsender;
+		this.emaildestination = emaildestination;
+	}
+
+
+	/**
+	 * @author ALZ_ServiceQA
+	 * @param sender
+	 * @param pwrsender
+	 * @param emaildestination
+	 * @param subject
+	 * @param messagebory
+	 */
 	public MessageFactory(String sender, String user, String pwrsender, String emaildestination){
 		this.sender = sender;
 		this.pwrsender = pwrsender;
@@ -65,7 +80,22 @@ public class MessageFactory extends ConfigParameters{
 		this.user = user;
 	}
 
-	
+
+	/**
+	 * @author ALZ_ServiceQA
+	 * @param config
+	 */
+	public void createMessageFilesAuth(Properties config, List<String> anexos ,String ramo ){
+		try{
+			addContextAuth(sender,user, pwrsender, emaildestination, config );
+			addMessagesMultFiles(ramo,anexos);
+			transport();
+			System.err.println("Create Message Files Auth Done !");
+		} catch (MessagingException e){
+			throw new RuntimeException();
+		}
+	}
+
 	/**
 	 * @author ALZ_ServiceQA
 	 * @param sender
@@ -76,10 +106,10 @@ public class MessageFactory extends ConfigParameters{
 	 * @param config
 	 * @return
 	 */
-	public static addContextAuth(String sender,String user, String pwrsender, String emaildestination, Properties config  ){
+	public static addContextAuth(String sender, String user, String pwrsender, String emaildestination, Properties config  ){
 		try{
 			Sessions sessions = new Sessions();
-			message = new MimeMessage(sessions.createAuth(sender, user, pwrsender, config));
+			message = new MimeMessage(sessions.creatAuth(user, pwrsender, config));
 			message.setFrom(new InternetAddress(sender));
 			Address[] toUser = InternetAddress.parse(emaildestination);
 			message.setRecipients(Message.RecipientType.TO, toUser);
@@ -87,36 +117,24 @@ public class MessageFactory extends ConfigParameters{
 			throw new RuntimeException();
 		}
 	}
-	
-	/**
-	 * @author ALZ_ServiceQA
-	 * @param config
-	 */
-	public void createMessageFilesAuth(Properties config, List<String> anexos ,String ramo ){
-		try{
-			addContextAuth(sender,user, pwrsender, emaildestination, config );
-			addMessagesMultFiles(ramo,anexos);
-			transport();
-			System.err.println("Create Message Files Done !");
-		} catch (MessagingException e){
-			throw new RuntimeException();
-		}
-	}
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
 	/**
 	 * @author ALZ_ServiceQA
 	 * @param config
 	 */
 	public void createMessageFiles(Properties config, List<String> anexos ,String ramo ){
 		try{
-			addContext(sender, pwrsender, emaildestination, config );
+			//		addContext(sender, pwrsender, emaildestination, config );
+			addContextAuth(sender,user,pwrsender, emaildestination, config );
 			addMessagesMultFiles(ramo,anexos);
 			transport();
-			System.err.println("Create Message Files Done !");
+			System.err.println("Create Message Files Done Auth !");
 		} catch (MessagingException e){
 			throw new RuntimeException();
 		}
@@ -128,7 +146,7 @@ public class MessageFactory extends ConfigParameters{
 	 */
 	public void createAllMessageFiles(Properties config, List<String> anexos ,String ramo, String totalAlert, String totalPassed, String messagesAlerts, String messagesPassed, String startHour, String endHours, String totalHours, String hostName, String totalRegistros, String porcentagem, String porcentagemDeAlertas, String dataInicio, String dataFinal, String assunto){
 		try{
-			addContext(sender, pwrsender, emaildestination, config );
+			addContextAuth(sender,user,pwrsender, emaildestination, config );
 			addAllMessagesMultFiles(anexos, ramo,totalAlert, totalPassed, messagesAlerts, messagesPassed, startHour, endHours, totalHours, hostName, totalRegistros, porcentagem, porcentagemDeAlertas, dataInicio, dataFinal , assunto );
 			transport();
 			System.err.println("Create Message Files Done !");
@@ -144,10 +162,12 @@ public class MessageFactory extends ConfigParameters{
 	 */
 	public void createMessageFilesCorretor(Properties config, List<String> anexos ,String ramo ,String tomador, String apolice){
 		try{
-			addContext(sender, pwrsender, emaildestination, config );
+			//	addContext(sender, pwrsender, emaildestination, config );
+			System.err.println()
+			addContextAuth(sender,user, pwrsender, emaildestination, config );
 			addMessagesMultFilesCorretor(anexos,ramo ,tomador,apolice);
 			transport();
-			System.err.println("Create Message Files Done !");
+			System.err.println("Create Message Files Done Auth !");
 		} catch (MessagingException e){
 			throw new RuntimeException();
 		}
@@ -160,7 +180,7 @@ public class MessageFactory extends ConfigParameters{
 	 */
 	public void createMessageFilesSeguroFuncionario(Properties config, List<String> anexos ,String ramo, String assunto){
 		try{
-			addContext(sender, pwrsender, emaildestination, config );
+			addContextAuth(sender,user, pwrsender, emaildestination, config );
 			addMessagesMultFilesSegurFuncionario(ramo,anexos, assunto);
 			transport();
 			System.err.println("Create Message Files Done !");
@@ -175,7 +195,7 @@ public class MessageFactory extends ConfigParameters{
 	 */
 	public void createMessageFilesReprocessaEmissaoApolice(Properties config, List<String> anexos ,String ramo, String dataAtual){
 		try{
-			addContext(sender, pwrsender, emaildestination, config );
+			addContextAuth(sender,user, pwrsender, emaildestination, config );
 			addMessagesMultFilesReprocessaEmissaoApolice(ramo,anexos, dataAtual);
 			transport();
 			System.err.println("Create Message Files Done !");
@@ -190,7 +210,7 @@ public class MessageFactory extends ConfigParameters{
 	 */
 	public void createMessageFilesMigracaoDeDados(Properties config, List<String> anexos ,String ramo, String dataAtual){
 		try{
-			addContext(sender, pwrsender, emaildestination, config );
+			addContextAuth(sender,user, pwrsender, emaildestination, config );
 			addMessagesMultFilesReprocessaMigracaoDeDados(ramo,anexos, dataAtual);
 			transport();
 			System.err.println("Create Message Files Done !");
@@ -225,10 +245,10 @@ public class MessageFactory extends ConfigParameters{
 	public void createMessage(Properties config, String ...args ){
 		try{
 			String[] valores = args
-			addContext(sender, pwrsender, emaildestination, config );
+			addContextAuth(sender,user, pwrsender, emaildestination, config );
 			addMessage(valores);
 			transport();
-			System.err.println("Create Message Done !");
+			System.err.println("Create Message Done Auth !");
 		} catch (MessagingException e){
 			throw new RuntimeException();
 		}
@@ -242,10 +262,10 @@ public class MessageFactory extends ConfigParameters{
 	public void createMessageMutFiles(Properties config, List<String> anexos,   String ...args){
 		try{
 			String[] valores = args
-			addContext(sender, pwrsender, emaildestination, config );
+			addContextAuth(sender,user, pwrsender, emaildestination, config );
 			addMessagesMultFilesBody(anexos,valores);
 			transport();
-			System.err.println("Create Message Mut Files Done !");
+			System.err.println("[ Create Message Mut Files Auth Done! ]");
 		} catch (MessagingException e){
 			throw new RuntimeException();
 		}
@@ -464,7 +484,7 @@ public class MessageFactory extends ConfigParameters{
 	 */
 	public void createMessageFilesCartasAvisoSantander(Properties config, List<String> anexos ,String ramo, String assunto){
 		try{
-			addContext(sender, pwrsender, emaildestination, config );
+			addContextAuth(sender,user, pwrsender, emaildestination, config );
 			addMessagesMultFilesCartasAvisoSantander(ramo,anexos, assunto);
 			transport();
 			System.err.println("Create Message Files Done !");
@@ -509,10 +529,11 @@ public class MessageFactory extends ConfigParameters{
 	 */
 	public void createMessageFilesError(Properties config, List<String> anexos ,String ramo, String assunto){
 		try{
-			addContext(sender, pwrsender, emaildestination, config );
+			//	addContext(sender, pwrsender, emaildestination, config );
+			addContextAuth(sender,user, pwrsender, emaildestination, config );
 			addMessagesMultFilesError(ramo,anexos, assunto);
 			transport();
-			System.err.println("Create Message Files Done !");
+			System.err.println("Create Message Files Done Auth !");
 		} catch (MessagingException e){
 			throw new RuntimeException();
 		}

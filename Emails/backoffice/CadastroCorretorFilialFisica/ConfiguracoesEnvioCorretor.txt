@@ -2,4 +2,4 @@
 retornoprecadastro@allianz.com.br
 
 smtp.intrallianz.es
-25
+00

@@ -2,4 +2,4 @@ C:/Users/Public/RPA_ALLIANZ/Emails/SegundaViaCarterinha/SegundaViaCarterinha.txt
 SegundaViaCarterinha@allianz.com.br
 
 smtp.intrallianz.es
-25
+00

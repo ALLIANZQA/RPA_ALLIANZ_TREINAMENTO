@@ -10,6 +10,8 @@ import java.time.Duration
 import java.time.Instant
 import java.util.List
 
+import org.openqa.selenium.WebElement
+
 import com.kms.katalon.core.annotation.Keyword
 import com.kms.katalon.core.checkpoint.Checkpoint
 import com.kms.katalon.core.cucumber.keyword.CucumberBuiltinKeywords as CucumberKW
@@ -38,21 +40,23 @@ public class CotacaoRenovacaoInternaFuncionalidades extends rpaCommands{
 	
 	
 	private static TestData data
+	private static TestData dataOperacao
 	private static String testDataPath = 'Data Files/AutoFrota/CotacaoRenovacaoInternaData'
 	private static String path
 	private static String alerta
-	private static int cellCheck = 38;
+	private static String alertaItem
+	private static int cellCheck = 37;
 	private static Instant start;
 	private static Instant end;
 	private static Duration timeLapnse;
 	private static String docName = "CotacaoRenovacaoInterna.xlsx"
-	private static int cellCheckAlert = 40;
+	private static int cellCheckAlert = 39;
 	private static boolean enviado = true;
 	private static String xpath;
 	private static String tela;
 	private static String operacao;
 	private static tipoSeguro="Renovação Interna com sinistro";
-	
+	private static boolean erroTela = false;
 		
 	/**
 	 * @author be54955
@@ -104,12 +108,15 @@ public class CotacaoRenovacaoInternaFuncionalidades extends rpaCommands{
 					enviado = true;
 					if (data.getValue(cellCheck, i).equals('Processar')) {
 						List<String> registros = new ArrayList<>();
-						Map<String, String> dadosCapturados = new HashMap<String, String>()
 						lista( registros , i)
-						if(renovacaointerna(registros,aba)) {
-						   salvarEvidencias(aba, registros[1])
+						if(renovacaointerna(registros,aba,a)) {
+							if(!erroTela){
+						 //     salvarEvidencias(aba, registros[1])
+							}
 						} else {
-						   salvarEvidenciasErro(aba, registros[1])
+						   if(!erroTela){
+							   salvarEvidenciasErro(aba, registros[1])
+						   }
 						}
 						initDataFiles()
 					}
@@ -121,49 +128,420 @@ public class CotacaoRenovacaoInternaFuncionalidades extends rpaCommands{
 		WebUI.closeBrowser();
 	}
 	
-	
+	/**
+	 * @author Alz_sup54955
+	 * @param aba
+	 * @param apolice
+	 * @return
+	 */
 	public static salvarEvidencias(String aba, String apolice){
 		try{
 			for(int i = 1; i <= data.getRowNumbers(); i++) {
 				int j =  i - 1
-				if (data.getValue(2, i).equals(apolice)) {
-			        auxiliares.WriteExcelFactory.updateSheetLine("", j, path, "Processado", 37, aba);
-					auxiliares.WriteExcelFactory.updateSheetLine("", j, path, operacao, 38, aba);
-		            auxiliares.WriteExcelFactory.updateSheetLine("", j, path, alerta, 39, aba);
+				if (data.getValue(2, i).trim().equals(apolice)) {
+					auxiliares.WriteExcelFactory.updateSheetLine("", j, path, "Processado", 36, aba);
 				}
 			}
 			
 		} catch (Exception e){}
 	}
 	
+	/**
+	 * @author Alz_sup54955
+	 * @param aba
+	 * @param apolice
+	 * @param item
+	 * @return
+	 */
+	public static salvarEvidenciasApoliceItem(String aba, String apolice, String item ){
+		System.out.println()
+		try{
+			initDataFiles()
+			for(int i = 1; i <= data.getRowNumbers(); i++) {
+				int j =  i - 1
+				 System.out.println("ITEM TO SAVE ["+j+"] ["+data.getValue(2, i).trim()+"] ["+apolice+"] ["+data.getValue(3, i)+"] ["+item+"]" )
+				if (data.getValue(2, i).trim().equals(apolice) && data.getValue(3, i).equals(item)) {
+					System.err.println("FOUND ["+j+"] ["+data.getValue(2, i)+"] ["+apolice+"] ["+data.getValue(3, i)+"] ["+item+"]" )
+					auxiliares.WriteExcelFactory.updateSheetLine("", j, path, alerta, 38, aba);
+					auxiliares.WriteExcelFactory.updateSheetLine("", j, path, operacao, 37, aba);
+					auxiliares.WriteExcelFactory.updateSheetLine("", j, path, "Processado", 36, aba);
+					break;
+				}
+			}
+		} catch (Exception e){}
+	}
+	
+	/**
+	 * @author Alz_sup54955
+	 * @param aba
+	 * @param apolice
+	 * @return
+	 */
 	public static salvarEvidenciasErro(String aba, String apolice){
 		try{
 			for(int i = 1; i <= data.getRowNumbers(); i++) {
 				int j =  i - 1
-				if (data.getValue(2, i).equals(apolice)) {
-					auxiliares.WriteExcelFactory.updateSheetLine("", j, path, "Processado", 37, aba);
-					auxiliares.WriteExcelFactory.updateSheetLine("", j, path, "Alerta: "+alerta, 39, aba);
+				if (data.getValue(2, i).trim().equals(apolice)) {
+					auxiliares.WriteExcelFactory.updateSheetLine("", j, path, "Processado", 36, aba);
+					  auxiliares.WriteExcelFactory.updateSheetLine("", j, path, "Alerta: "+alerta, 38, aba);
 				}
 			}
 			
 		} catch (Exception e){}
 	}
 	
-	public static boolean renovacaointerna(List<String> registros, String aba){
+	/**
+	 * @author Alz_sup54955
+	 * @param registros
+	 * @param aba
+	 * @param a
+	 * @return
+	 */
+	public static boolean renovacaointerna(List<String> registros, String aba, String a){
+	 System.out.println()
+	 if(retornaExistenciaDeItem(registros[1])){
+		WebUI.delay(5);
 		System.out.println()
 		MenuMatriz.producaoSinistro()
-		MenuMatriz.subMenu('/*/body/div/div/app-root/app-private/app-displayed-menu/div/app-teaser/div/div[1]/div/div[2]/ul', 'a','Produção')
-		System.out.println()
+		MenuMatriz.subMenuNome('a','Produção')
 		menuProducao(registros)
 		dadosBasicos(registros)
 		applicationPageDadosApolFrota(registros)
 		itensDelFrota(registros,aba)
+		if(!erroTela){
+		  fluxoCompletoCotacaoRenovacaoInternaOperacaoRecursivo(aba,a,registros[1])
+		try{
+			 ajusteAlerta(registros[1])
+		 }catch (Exception e){}
+		 
+		 try{
+			alerta = recuperaValor('//*[@id="dataErrorSection"]/table/tbody/tr/td[2]', 'innerText', 0)
+			System.out.println("Alerta ["+alerta+"]")
+			if(alertListContinueList(alerta)){
+				String telaEsperada="COBERTURAS";
+				tela = StringFormatter.stopString(recuperaValor( '//*[@id="cellAppPromptHeaderArea"]', 'innerText', 0),":");
+				identificaTela(tela, telaEsperada)
+			} else {
+			//Avançar
+			clicarEmElementoDaTela('//*[@id="o_6"]', 3);
+			}
+		} catch (Exception e){}
+		}
+		verificaItens(aba, a, registros[2])
+		
+	 } else {
+		System.out.println()
+		fluxoCompletoCotacaoRenovacaoInternaOperacaoRecursivo(aba,a,registros[1])
+	 }
+		System.out.println()
 		tabelaDePrecos(registros);
 		System.out.println(processado())
 		return processado()
 	}
 	
+	/**
+	 * @author Alz_sup54955
+	 * @param aba
+	 * @param a
+	 * @param apolice
+	 */
+	public static void verificaItens(String aba, String a, String apolice){
+		//	init(aba,a);
+		fecharJanelaAtual(1)
+		alteraJanejaGenerica(0, 0)
+		fluxoCompletoCotacaoRenovacaoInternaOperacaoRecursivo(aba,a,)
+	}
 	
+	/**
+	 * @author be54955
+	 * @param aba
+	 * @return
+	 */
+	public static fluxoCompletoCotacaoRenovacaoInternaOperacaoRecursivo(String aba,String a, String apolice){
+		fluxoCompletoCotacaoRenovacaoInternaOperacao(aba,a, apolice)
+	}
+	
+	
+	/**
+	 * @author be54955
+	 * @param aba
+	 * @return
+	 */
+	public static fluxoCompletoCotacaoRenovacaoInternaOperacao(String aba,String a, String apolice){
+		System.out.println()
+		try{
+			initDataFilesOperacao()
+			if(!retornaExistenciaDeItemProposta(apolice)){
+				String proposta = retornaProposta(apolice)
+				System.out.println("Proposta: "+proposta)
+				for(int i = 1; i <= dataOperacao.getRowNumbers(); i++) {
+					int j =  i - 1
+					enviado = true;
+					if ( dataOperacao.getValue(2, i).equals(apolice) && dataOperacao.getValue(37, i).equals("Processar")) {
+						System.out.println("\nApólice: "+dataOperacao.getValue(2, i)+"\nItem: "+dataOperacao.getValue(3, i)+"\nStatus: "+dataOperacao.getValue(37, i))
+						List<String> registros = new ArrayList<>();
+						listaOperacao( registros , i)
+						inclusaoIens(registros,a,aba, proposta)
+						break;
+					}
+				}
+				fluxoCompletoCotacaoRenovacaoInternaOperacao( aba,a, apolice)
+			}
+		} catch (Exception e){}
+	}
+	
+	/**
+	 * @author Alz_sup54955
+	 * @return
+	 */
+	public static  boolean retornaExistenciaDeItemProposta(String apolice){
+		boolean b=false;
+		try{
+			int numProcessados;
+			int numItens;
+			for(int i = 1; i <= dataOperacao.getRowNumbers(); i++) {
+					int j =  i - 1
+					if (dataOperacao.getValue(37, i).equals("Processado") && dataOperacao.getValue(2, i).equals(apolice)) {
+						numProcessados = numProcessados + 1;
+					}
+			}
+			
+			for(int i = 1; i <= dataOperacao.getRowNumbers(); i++) {
+				int j =  i - 1
+				if (dataOperacao.getValue(2, i).equals(apolice)) {
+					numItens = numItens + 1;
+				}
+		}
+		System.out.println("OP - Apólice: ["+apolice+"]  Processados: ["+ numProcessados+"] Itens: ["+numItens+"]")
+		if(numProcessados==numItens){
+			b=true;
+		}
+		
+		if(numProcessados==0){
+			b=true;
+		}
+		
+		} catch (Exception e){}
+		return b;
+	}
+	
+	/**
+	 * @author Alz_sup54955
+	 * @return
+	 */
+	public static  boolean retornaExistenciaDeItem(String apolice){
+		boolean b=false;
+		try{
+			int numProcessados;
+			int numItens;
+			for(int i = 1; i <= data.getRowNumbers(); i++) {
+					int j =  i - 1
+					if (data.getValue(37, i).equals("Processado") && data.getValue(2, i).equals(apolice)) {
+						numProcessados = numProcessados + 1;
+					}
+			}
+			
+			for(int i = 1; i <= data.getRowNumbers(); i++) {
+				int j =  i - 1
+				if (data.getValue(2, i).equals(apolice)) {
+					numItens = numItens + 1;
+				}
+		}
+		System.out.println("Apólice: ["+apolice+"]  Processados: ["+ numProcessados+"] Itens: ["+numItens+"]")
+		if(numProcessados==numItens){
+			b=true;
+		}
+		
+		if(numProcessados==0){
+			b=true;
+		}
+		
+		} catch (Exception e){}
+		return b;
+	}
+	
+	/**
+	 * @author Alz_sup54955
+	 * @return
+	 */
+	public static  String retornaProposta(String apolice){
+		String p;
+		try{
+			List<String> listaProposta = new ArrayList<>();
+			for(int i = 1; i <= dataOperacao.getRowNumbers(); i++) {
+					int j =  i - 1
+		//			System.out.println("Proposta: "+ dataOperacao.getValue(38, i) +" Apólice "+dataOperacao.getValue(2, i))
+					if (dataOperacao.getValue(2, i).equals(apolice)) {
+						listaProposta.add(dataOperacao.getValue(38, i));
+					}
+				}
+			p = listaProposta.get(1);
+			
+			return p;
+		} catch (Exception e){}
+	}
+	
+	/**
+	 * @author Alz_sup54955
+	 * @param registros
+	 * @param a
+	 * @param aba
+	 * @param proposta
+	 * @return
+	 */
+	public static boolean inclusaoIens( List<String> registros,String a, String aba , String proposta ){
+		WebUI.delay(5);
+		System.out.println()
+		MenuMatriz.producaoSinistro()
+		MenuMatriz.subMenuNome('a','Produção')
+		System.out.println()
+		menuProducaoReprocessa()
+		operacoesPendentes(proposta)
+		operacoesDadosBasicos(registros)
+		applicationPageDadosApolFrota(registros)
+		itensDelFrotaOperacao(registros,aba)
+		System.out.println(processado())
+		return processado()
+	}
+	
+	/**
+	 * @author Alz_sup54955
+	 * @return
+	 */
+	public static boolean menuProducaoReprocessa(){
+		try{
+			if(enviado){
+				WebUI.delay(15);
+				alerta = recuperaValor('//*[@id="dataErrorSection"]/table/tbody/tr/td[2]', 'innerText', 0)
+				System.out.println("Alerta ["+alerta+"]")
+				if(!alertListBlocList(alerta)){
+					alteraJanejaGenerica(1, 5)
+					tela = recuperaValor( '//*[@id="cellAppPromptHeaderArea"]', 'innerText', 0)
+					if(listaDeTelas(tela)){
+						 //Operatuva
+						 selecionaItemLista("Operações Pendentes", '//*[@id="divAppContent"]/table/tbody/tr[1]/td/table/tbody/tr[2]/td', 'div');
+					} else {
+					  fecharJanelaAtual(1)
+					  alteraJanejaGenerica(0, 0)
+					  alerta = "Falha: Tela - Menu Produção - Não apresentada";
+					  enviado = false;
+					}
+				}else {
+				  fecharJanelaAtual(1)
+				  alteraJanejaGenerica(0, 0)
+				  enviado = false;
+				}
+			}
+			} catch (Exception e){
+			 fecharJanelaAtual(1)
+			 alteraJanejaGenerica(0, 0)
+			 alerta = "Falha ao carregar a tela - Menu Produção";
+			 enviado = false;
+		   }
+	}
+	
+	/**
+	 * @author Alz_sup54955
+	 * @param proposta
+	 * @return
+	 */
+	public static boolean operacoesPendentes(String proposta){
+		System.out.println()
+		try{
+			if(enviado){
+				WebUI.delay(5);
+				alerta = recuperaValor('//*[@id="dataErrorSection"]/table/tbody/tr/td[2]', 'innerText', 0)
+				System.out.println("Alerta ["+alerta+"]")
+				if(!alertListBlocList(alerta)){
+					alteraJanejaGenerica(1, 5)
+					tela = recuperaValor( '//*[@id="cellAppPromptHeaderArea"]', 'innerText', 0)
+					if(listaDeTelas(tela)){
+						//Nº Operação
+						preencheXpath('//*[@id="numOperacion"]', proposta, 0);
+						//Operatuva
+						selecionaItemLista("Pesquisar", '//*[@id="filtroSectionBar"]/table/tbody/tr/td/table', 'div');
+						WebUI.delay(2);
+						if(!identificaOperacao()){
+							//Pesquisar
+							clicarEmElementoDaTela('//*[@alt="Editar"]', 0);
+						}
+					} else {
+					  fecharJanelaAtual(1)
+					  alteraJanejaGenerica(0, 0)
+					  alerta = "Falha: Tela - Operações Pendentes - Não apresentada";
+					  enviado = false;
+					}
+				}else {
+				  fecharJanelaAtual(1)
+				  alteraJanejaGenerica(0, 0)
+				  enviado = false;
+				}
+			}
+			} catch (Exception e){
+			 fecharJanelaAtual(1)
+			 alteraJanejaGenerica(0, 0)
+			 alerta = "Falha ao carregar a tela - Operações Pendentes";
+			 enviado = false;
+		   }
+	}
+	
+	/**
+	 * @author Alz_sup54955
+	 * @param registros
+	 * @return
+	 */
+	public static boolean operacoesDadosBasicos(List<String> registros){
+		try{
+			if(enviado){
+				WebUI.delay(10);
+				alerta = recuperaValor('//*[@id="dataErrorSection"]/table/tbody/tr/td[2]', 'innerText', 0)
+				System.out.println("Alerta ["+alerta+"]")
+				if(!alertListBlocList(alerta)){
+					System.out.println()
+					tela = recuperaValor( '//*[@id="cellAppPromptHeaderArea"]', 'innerText', 0)
+					 if(tela.contains("D. BÁSICOS")){ // TELA DADOS BASICOS
+						 //Avançar
+						 clicarEmElementoDaTela('//*[@id="btnAceptar"]', 0);
+					 } else {
+					   fecharJanelaAtual(1)
+					   alteraJanejaGenerica(0, 0)
+					   alerta = "Falha: Tela - D. BÁSICOS  - Não apresentada";
+					   enviado = false;
+					}
+				} else {
+				  fecharJanelaAtual(1)
+				  alteraJanejaGenerica(0, 0)
+				  enviado = false;
+				}
+			}
+		} catch (Exception e){
+		  fecharJanelaAtual(1)
+		  alteraJanejaGenerica(0, 0)
+		  alerta = "Falha ao carregar a tela - D. BÁSICOS";
+		  enviado = false;
+	  }
+	}
+
+	/**
+	 * @author Alz_sup54955
+	 * @return
+	 */
+	public static boolean identificaOperacao(){
+		boolean b = false;
+		WebUI.delay(2);
+		alerta = recuperaValor('//*[@id="dataErrorSection"]/table/tbody/tr/td[2]', 'innerText', 0)
+		System.out.println("Alerta ["+alerta+"]")
+		if(alertListBlocList(alerta)){
+			b=true;
+		}
+		return b;
+	}
+		
+	/**
+	 * @author Alz_sup54955
+	 * @param registros
+	 * @return
+	 */
 	public static boolean menuProducao(List<String> registros){
 		try{
 			if(enviado){
@@ -171,7 +549,6 @@ public class CotacaoRenovacaoInternaFuncionalidades extends rpaCommands{
 				alerta = recuperaValor('//*[@id="dataErrorSection"]/table/tbody/tr/td[2]', 'innerText', 0)
 				System.out.println("Alerta ["+alerta+"]")
 				if(!alertListBlocList(alerta)){
-					
 					alteraJanejaGenerica(1, 5)
 					tela = recuperaValor( '//*[@id="cellAppPromptHeaderArea"]', 'innerText', 0)
 					if(listaDeTelas(tela)){
@@ -185,6 +562,7 @@ public class CotacaoRenovacaoInternaFuncionalidades extends rpaCommands{
 						 xpath = '//*[@id="mediador"]';
 						 limpaCampo(xpath, 5)
 						 preencheXpath(xpath, registros[3], 0);
+						 commandTAB(xpath)
 						 //Selecionar
 						 clicarEmElementoDaTela('//*[@id="btnSeleccionar"]', 2);
 						 //Operatuva
@@ -198,10 +576,10 @@ public class CotacaoRenovacaoInternaFuncionalidades extends rpaCommands{
 					  enviado = false;
 					}
 				}else {
-			      fecharJanelaAtual(1)
-			      alteraJanejaGenerica(0, 0)
-			      enviado = false;
-		        }
+				  fecharJanelaAtual(1)
+				  alteraJanejaGenerica(0, 0)
+				  enviado = false;
+				}
 			}
 			} catch (Exception e){
 			 fecharJanelaAtual(1)
@@ -245,6 +623,7 @@ public class CotacaoRenovacaoInternaFuncionalidades extends rpaCommands{
 						 xpath = '//*[@id="IntervinientesBean$nomFigTomadorValue"]';
 						 limpaCampo(xpath, 0)
 						 preencheXpath(xpath, registros[7], 0);
+						 WebUI.delay(5);
 						 //Avançar
 						 clicarEmElementoDaTela('//*[@id="btnAceptar"]', 0);
 						 WebUI.delay(5);
@@ -262,20 +641,24 @@ public class CotacaoRenovacaoInternaFuncionalidades extends rpaCommands{
 					   enviado = false;
 					}
 				} else {
-			      fecharJanelaAtual(1)
-			      alteraJanejaGenerica(0, 0)
-			      enviado = false;
-		        }
-			}	
+				  fecharJanelaAtual(1)
+				  alteraJanejaGenerica(0, 0)
+				  enviado = false;
+				}
+			}
 		} catch (Exception e){
-		fecharJanelaAtual(1)
-		alteraJanejaGenerica(0, 0)
-		alerta = "Falha ao carregar a tela - D. BÁSICOS";
-		enviado = false;
+		  fecharJanelaAtual(1)
+		  alteraJanejaGenerica(0, 0)
+		  alerta = "Falha ao carregar a tela - D. BÁSICOS";
+		  enviado = false;
 	  }
 	}
 	
-	
+	/**
+	 * @author Alz_sup54955
+	 * @param registros
+	 * @return
+	 */
 	public static boolean applicationPageDadosApolFrota(List<String> registros){
 		try{
 			if(enviado){
@@ -283,16 +666,16 @@ public class CotacaoRenovacaoInternaFuncionalidades extends rpaCommands{
 				alerta = recuperaValor('//*[@id="dataErrorSection"]/table/tbody/tr/td[2]', 'innerText', 0)
 				System.out.println("Alerta ["+alerta+"]")
 				if(!alertListBlocList(alerta)){
-			      System.out.println()
-			      tela = StringFormatter.pointStop(recuperaValor( '//*[@id="cellAppPromptHeaderArea"]', 'innerText', 0),"APPLICATION.PAGE.PDADOSAPOLFROTA");
-			      if(listaDeTelas(tela)){
-				    //Tipo de Seguro
-				    selecionaItemLista("Renovação Interna sem sinistro", '//*[@id="DadosApolFrotaBean$tipoSeguro"]', 'option');
-				    try{
-				      // No. da apólice
-				      xpath = '//*[@id="DadosApolFrotaBean$nmrApolice"]';
-				      limpaCampo(xpath, 2)
-				      preencheXpath(xpath, registros[1], 2);
+				  System.out.println()
+				  tela = StringFormatter.pointStop(recuperaValor( '//*[@id="cellAppPromptHeaderArea"]', 'innerText', 0),"APPLICATION.PAGE.PDADOSAPOLFROTA");
+				  if(listaDeTelas(tela)){
+					//Tipo de Seguro
+					selecionaItemLista("Renovação Interna sem sinistro", '//*[@id="DadosApolFrotaBean$tipoSeguro"]', 'option');
+					try{
+					  // No. da apólice
+					  xpath = '//*[@id="DadosApolFrotaBean$nmrApolice"]';
+					  limpaCampo(xpath, 2)
+					  preencheXpath(xpath, registros[1], 2);
 				   } catch (Exception e){}
 				  //Tipo de Transporte
 				  selecionaItemLista("Não se Aplica", '//*[@id="QuestionarioAvaliacaoRiscoFrotaBean$tipoDeTransporte"]', 'option');
@@ -335,27 +718,32 @@ public class CotacaoRenovacaoInternaFuncionalidades extends rpaCommands{
 					  }
 				  } catch (Exception e){}
 				  
-			      } else {
-			        fecharJanelaAtual(1)
-			        alteraJanejaGenerica(0, 0)
-			        alerta = "Falha: Tela - Application Page Dados Apol Frota - Não apresentada";
-			        enviado = false;
-			      }
-			    } else {
-			      fecharJanelaAtual(1)
-			      alteraJanejaGenerica(0, 0)
-			      enviado = false;
-		        }
+				  } else {
+					fecharJanelaAtual(1)
+					alteraJanejaGenerica(0, 0)
+					alerta = "Falha: Tela - Application Page Dados Apol Frota - Não apresentada";
+					enviado = false;
+				  }
+				} else {
+				  fecharJanelaAtual(1)
+				  alteraJanejaGenerica(0, 0)
+				  enviado = false;
+				}
 			  }
 			} catch (Exception e){
-			 fecharJanelaAtual(1)
-			 alteraJanejaGenerica(0, 0)
-			 alerta = "Falha ao carregar a tela - Application Page Dados Apol Frota";
-			 enviado = false;
+			  fecharJanelaAtual(1)
+			  alteraJanejaGenerica(0, 0)
+			  alerta = "Falha ao carregar a tela - Application Page Dados Apol Frota";
+			  enviado = false;
 		   }
 	}
 	
-	
+	/**
+	 * @author Alz_sup54955
+	 * @param registros
+	 * @param aba
+	 * @return
+	 */
 	public static boolean itensDelFrota(List<String> registros, String aba){
 		try{
 			if(enviado){
@@ -366,41 +754,151 @@ public class CotacaoRenovacaoInternaFuncionalidades extends rpaCommands{
 				  tela = StringFormatter.stopString(recuperaValor( '//*[@id="cellAppPromptHeaderArea"]', 'innerText', 0),":");
 				  if(listaDeTelas(tela)){
 					  System.out.println()
+					  operacao = StringFormatter.nextStop(recuperaValor('//*[@id="cellAppPromptHeaderArea"]','innerText', 0 ).replaceAll("[\\[\\]]", ""), "AUTOMOVEL",0);
+					  System.out.println("Operação: "+operacao)
+					  int k=1;
 					  for(int i = 1; i <= data.getRowNumbers(); i++) {
 						  int j =  i - 1
 						  enviado = true;
-						  if(data.getValue(cellCheck, i).equals('Processar')) {
-						     List<String> item = new ArrayList<>();
-						     lista( item , i)
-							 item[38]="Não";
-							 item[39]="1 - Próprios (PJ)";
-							 item[40]="por Itens"
-						     //Apolice
-						     if(data.getValue(2, i).equals(registros[1])){
-					            if(gravarItem(item)) {
-								//   salvarEvidenciaItem(item[1], item[2], aba)
-						        } else {
-								//   salvarEvidenciaItem(item[1], item[2], aba)
-						        }
-						     }
+					      System.out.println("["+data.getValue(cellCheck, i)+"] ["+ data.getValue(2, i).trim()+"] ["+registros[1].trim()+"]")
+						  if(  data.getValue(cellCheck, i).equals('Processar') && data.getValue(2, i).trim().equals(registros[1].trim()) ) {
+							 List<String> item = new ArrayList<>();
+							 lista( item , i)
+							 item[37]="Não";
+							 item[38]="1 - Próprios (PJ)";
+							 item[39]="por Itens"
+							 item[40]="N"
+							 System.out.println("INDEX ["+i+"] ITEM ["+k+"] SITUAÇÃO ["+item[11]+"]")
+							 String it = item[2]
+							 String ap = item[1]
+							 //Apolice
+							 if(situacao(item[11])){
+								item[2]=k;
+								System.out.println("ITEM ["+item[2]+"] ITEM ["+it+"] APOLICE ["+ap+"]")
+								if(!erroTelaPantallaEspecificaPorDefinir()){
+								   if(gravarItem(item)) {
+									 salvarEvidenciasApoliceItem(aba ,ap,it )
+								   } else {
+									 alerta = "Alerta: "+item[11]
+									 salvarEvidenciasApoliceItem(aba ,ap,it)
+								   }
+								   k = k+1;
+								} else {
+								  break;
+								}
+								 
+								} else {
+								  alerta = "Alerta: "+item[11]
+								  salvarEvidenciasApoliceItem(aba ,ap,it )
+							 }
 						  }
-				     }
-					 System.out.println()
+					}
+					System.out.println(erroTela)
+					if(!erroTela){
 					//Avançar
-					 clicarEmElementoDaTela('//*[@id="o_4"]', 10);
+					 clicarEmElementoDaTela('//*[@id="o_4"]', 3);
+					}
+					System.out.println()
+				  } else {
+					fecharJanelaAtual(1)
+					alteraJanejaGenerica(0, 0)
+					alerta = "Falha: Tela - Itens de Frota - Não apresentada";
+					enviado = false;
+				  }
+				} else {
+				  fecharJanelaAtual(1)
+				  alteraJanejaGenerica(0, 0)
+				  enviado = false;
+				}
+			  }
+			} catch (Exception e){
+			  fecharJanelaAtual(1)
+			  alteraJanejaGenerica(0, 0)
+			  enviado = false;
+		   }
+	}
+	
+	/**
+	 * @author Alz_sup54955
+	 * @param registros
+	 * @param aba
+	 * @return
+	 */
+	public static boolean itensDelFrotaOperacao(List<String> registros, String aba){
+		try{
+			if(enviado){
+				WebUI.delay(10);
+				alerta = recuperaValor('//*[@id="dataErrorSection"]/table/tbody/tr/td[2]', 'innerText', 0)
+				System.out.println("Alerta ["+alerta+"]")
+				if(!alertListBlocList(alerta)){
+				  tela = StringFormatter.stopString(recuperaValor( '//*[@id="cellAppPromptHeaderArea"]', 'innerText', 0),":");
+				  if(listaDeTelas(tela)){
+					  System.out.println()
+					  operacao = StringFormatter.nextStop(recuperaValor('//*[@id="cellAppPromptHeaderArea"]','innerText', 0 ).replaceAll("[\\[\\]]", ""), "AUTOMOVEL",0);
+					  System.out.println("Operação: "+operacao)
+					  System.out.println("Itens: "+dataOperacao.getRowNumbers())
+					  int k;
+					  for(int i = 1; i <= dataOperacao.getRowNumbers(); i++) {
+						  int j =  i - 1
+						  enviado = true;
+						  if(  dataOperacao.getValue(cellCheck, i).equals('Processar') && dataOperacao.getValue(2, i).equals(registros[1]) ) {
+							 List<String> item = new ArrayList<>();
+							 listaOperacao( item , i)
+							 item[37]="Não";
+							 item[38]="1 - Próprios (PJ)";
+							 item[39]="por Itens"
+							 item[40]="N"
+							 System.out.println("INDEX ["+i+"] ITEM ["+k+"] SITUAÇÃO ["+item[11]+"] ITEM ["+item[2]+"]")
+							 String it = item[2]
+							 String ap = item[1]
+							 //Apolice
+							 if(situacao(item[11])){
+								selecionaListaDeElementos('//*[@id="itensBody-scroll"]','tr')
+								int itens = listOfElements.size()
+								System.out.println("ITENS ["+itens+"]")
+								//k = item[2];
+								item[2]=itens+1;
+								System.out.println("ITEM ["+item[2]+"] ITEM ["+it+"] APOLICE ["+ap+"]")
+								if(!erroTelaPantallaEspecificaPorDefinir()){
+								   if(gravarItem(item)) {
+									 salvarEvidenciasApoliceItem(aba ,ap,it )
+								   } else {
+									 alerta = "Alerta: "+item[11]
+									 salvarEvidenciasApoliceItem(aba ,ap,it)
+								   }
+								   System.out.println("PROXIMO ITEM ["+item[2]+"] ITEM ["+it+"] APOLICE ["+ap+"]")
+								} else {
+								  break;
+								}
+								 
+								} else {
+								  alerta = "Alerta: "+item[11]
+								  salvarEvidenciasApoliceItem(aba ,ap,it )
+							 }
+						  }
+					 }
+					 System.out.println(erroTela)
+					 
+					if(!erroTela){
+					//Avançar
+					 clicarEmElementoDaTela('//*[@id="o_4"]', 3);
+					 try{
+						 ajusteAlerta(registros[1])
+					 }catch (Exception e){}
+					 
 					 try{
 						alerta = recuperaValor('//*[@id="dataErrorSection"]/table/tbody/tr/td[2]', 'innerText', 0)
 						System.out.println("Alerta ["+alerta+"]")
 						if(alertListContinueList(alerta)){
-						//	identificaAlertaItem()
 							String telaEsperada="COBERTURAS";
 							tela = StringFormatter.stopString(recuperaValor( '//*[@id="cellAppPromptHeaderArea"]', 'innerText', 0),":");
 							identificaTela(tela, telaEsperada)
+						} else {
+						//Avançar
+						clicarEmElementoDaTela('//*[@id="o_6"]', 3);
 						}
 					} catch (Exception e){}
-					
-					
-					
+					}
 					
 					System.out.println()
 				  } else {
@@ -416,14 +914,168 @@ public class CotacaoRenovacaoInternaFuncionalidades extends rpaCommands{
 				}
 			  }
 			} catch (Exception e){
-			 fecharJanelaAtual(1)
-			 alteraJanejaGenerica(0, 0)
-			 alerta = "Falha ao carregar a tela - Itens de Frota ";
-			 enviado = false;
+			  fecharJanelaAtual(1)
+			  alteraJanejaGenerica(0, 0)
+			  enviado = false;
 		   }
 	}
 	
+	/**
+	 * @author Alz_sup54955
+	 * @param apolice
+	 */
+	public static void identificaAlerta(String apolice){
+		System.out.println("RECURSIVO...")
+		alerta = recuperaValor('//*[@id="dataErrorSection"]/table/tbody/tr/td[2]', 'innerText', 0)
+		System.out.println("Alerta ["+alerta+"]")
+		while(alertListContinueList(alerta)){
+			  ajusteAlerta(apolice)
+			  identificaAlerta(apolice)
+		}
+		System.out.println("SAINDO DO RECURSIVO...")
+	}
 	
+	/**
+	 * @author Alz_sup54955
+	 * @param apolice
+	 */
+	public static void ajusteAlerta(String apolice){
+		System.err.println()
+		ArrayList<String> itensList = new ArrayList<String>()
+		String attrib = "style";
+		String tag ="tr";
+		String xpath='//*[@id="x_itensGrid"]'
+		selecionaListaDeElementos(xpath,tag)
+		System.out.println("NUNBER OF TAGS ["+listOfElements.size()+"]")
+		for(int i = 0; i < listOfElements.size(); i++){
+			int j = i+1
+			// ITEM
+			String item = recuperaValor('//*[@id="td_1_'+j+'"]', 'textContent', 0)
+			System.out.println("ITEM ["+i+"] ["+listOfElements[i].getText()+"] ["+item+"]")
+			List<WebElement> listOfElementstags = listaDeElementos('//*[@id="tr_'+j+'"]', "img")
+			for(int k = 0; k < listOfElementstags.size(); k++){
+				System.out.println("IMG ["+k+"] ["+listOfElementstags.get(k).getTagName()+"]  ["+listOfElementstags[k].getAttribute("style")+"]" )
+				if(listOfElementstags[k].getAttribute(attrib).equals("background-color: transparent;".toString())){
+					System.out.println("FOUND IMG ["+k+"] ["+listOfElementstags[k].getAttribute("style")+"]" )
+					itensList.add(item);
+				}
+			}
+		}
+		System.out.println("ITENS ["+itensList.size()+"]")
+		for(int n = 0; n < itensList.size(); n++){
+			System.out.println("ITEM ["+itensList.get(n)+"]")
+			ajustaItem(itensList.get(n), apolice)
+		}
+	}
+	
+	/**
+	 * @author Alz_sup54955
+	 * @param numeroItem
+	 * @param numeroApolice
+	 * @return
+	 */
+	public static ajustaItem(String numeroItem, String numeroApolice){
+		System.out.println()
+		for(int i = 1; i <= data.getRowNumbers(); i++) {
+			int j =  i - 1
+			enviado = true;
+			if(  data.getValue(2, i).equals(numeroApolice) && data.getValue(3, i).equals(numeroItem) ) {
+			   List<String> item = new ArrayList<>();
+			   lista( item , i)
+			   item[37]="Não";
+			   item[38]="1 - Próprios (PJ)";
+			   item[39]="por Itens"
+			   item[40]="N"
+			   System.out.println("INDEX ["+i+"] ITEM ["+item[2]+"] APOLICE ["+item[1]+"] CHASSI ["+item[13]+"]")
+			   WebUI.delay(5);
+			   //Valor de referência
+			   int v = Integer.parseInt(item[17])
+			   System.out.println("Valor de referência ["+v+"]")
+			   //Filtro
+			   selecionaItemLista(item[39], '//*[@id="x_filtro"]', 'option');
+			   //Seleciona item
+			   selecionaItemLista(item[2].toString(), '//*[@id="coberturasSectionContent"]/table/tbody/tr/td[1]/table/tbody/tr[3]/td/table/tbody/tr[1]/td/table/tbody/tr/td[2]/table', 'option');
+			   //TIPO COBERTURA CASCO
+			   int t = Integer.parseInt(item[23])
+			   System.out.println(t)
+			   if(t==0){
+				   //Contrata Casco e(ou) Val. Determinado
+				   selecionaItemLista("Não", '//*[@id="x_val_det"]', 'option');
+				   //FIPE
+				   selecionaItemLista("0", '//*[@id="x_perc_fipe"]', 'option');
+				   //selecionaItemListaAtributo("O",'//*[@id="x_perc_fipe"]' , 'option', 'value' )
+			   } else {
+			   
+			   //FIPE
+			   regraFipe(item, v)
+			   //FRANQUIA
+			   selecionaItemLista(tipoFranquia(item[25]), '//*[@id="x_tipo_franquia"]', 'option');
+			   }
+			   
+			   //RCF - Danos Materiais
+			   selecionaItemLista(CurrencyMonetary.formataValorMonetario(item[26]).trim(), '//*[@id="x_danos_materiais"]', 'option');
+			   //RCF - Danos Corporais
+			   selecionaItemLista(CurrencyMonetary.formataValorMonetario(item[27]).trim(), '//*[@id="x_danos_corporais"]', 'option');
+			   //RCF - Danos Morais e Estéticos
+			   selecionaItemLista(CurrencyMonetary.formataValorMonetario(item[28]).trim(), '//*[@id="x_danos_morais"]', 'option');
+			   
+			   t = Integer.parseInt(item[29])
+			   System.out.println("APP - Morte ["+t+"]")
+			   if(t>0){
+			   //APP - Morte
+			   xpath = '//*[@id="x_app_morte"]';
+			   preencheXpath(xpath,item[29].trim(), 0);
+			   commandTAB(xpath)
+			   }
+			   
+			   t = Integer.parseInt(item[30].replace("{", ""))
+			   System.out.println("APP - Invalidez ["+t+"]")
+			   if(t>0){
+			   //APP - Invalidez
+			   xpath = '//*[@id="x_app_invalidez"]';
+			   preencheXpath(xpath,item[30].trim(), 0);
+			   commandTAB(xpath)
+			   }
+			   
+			   //Vidros, Lant., Faróis e Retr.
+			   selecionaItemLista(validaValorVidroContratado(item[31]), '//*[@id="x_vidros"]', 'option');
+			   //Acessórios gerais
+			   xpath = '//*[@id="x_aces_gerais"]';
+			   t = Integer.parseInt(item[32])
+			   System.out.println(t)
+			   if(t>0){ preencheXpath(xpath ,item[32], 0);
+			   commandTAB(xpath)}
+			   //Blindagem
+			   xpath = '//*[@id="x_blindagem"]';
+			   t = item[33].length()
+			   System.out.println(t)
+			   if(t>0){preencheXpath(xpath , item[33], 0);
+			   commandTAB(xpath)}
+			   //Assistência 24 horas
+			   selecionaItemLista(validaValorContratadoAss24hs(item[34]), '//*[@id="x_assist24h"]', 'option');
+			   //Carro Reserva
+			   selecionaItemLista(validaValorContratadoCarroReserva(item[35]), '//*[@id="x_carro_reserva"]', 'option');
+			   //Aplicar Configuração
+			   clicarEmElementoDaTela('//*[@id="o_3"]', 0);
+			   WebUI.delay(10);
+			   String msg = pegaMSGAlerta();
+			   System.out.println("["+msg+"]")
+			   System.out.println()
+			   okAlerta();
+			   WebUI.delay(10);
+			   //Avançar
+			   clicarEmElementoDaTela('//*[@id="o_6"]', 3);
+			   WebUI.delay(10);
+			   System.out.println()
+			   
+			   erroTelaPantallaEspecificaPorDefinir()
+			}
+	   }
+	}
+	
+	/**
+	 * @author Alz_sup54955
+	 */
 	public static void identificaAlertaItem(){
 		String attrib = "style";
 		String tag ="img";
@@ -439,12 +1091,21 @@ public class CotacaoRenovacaoInternaFuncionalidades extends rpaCommands{
 		}
 	}
 	
+	/**
+	 * @author Alz_sup54955
+	 * @param item
+	 * @return
+	 */
 	public static boolean gravarItem(List<String> item){
+		System.out.println("ITEM ["+item[2]+"]")
+		boolean itemUmSelecionado = false;
+		String modelo
 		try{
-			//
+			int w
+			int v
+			alertaItem="";
 			String vrVeiculosEspeciais = "1000";
-			
-			WebUI.delay(10);
+			WebUI.delay(15);
 			System.out.println()
 			//Incluir item
 			clicarEmElementoDaTela('//*[@id="incluirItem"]/table/tbody/tr[1]/td/table/tbody/tr/td[2]', 0);
@@ -457,130 +1118,199 @@ public class CotacaoRenovacaoInternaFuncionalidades extends rpaCommands{
 			//Lupa
 			clicarEmElementoDaTela('//*[@id="consultarChassi"]', 0);
 			System.out.println()
-			//Clique na linha para escolher o veículo desejado...		
-			listaDeModelos(item)
+			
+			
+			//Clique na linha para escolher o veículo desejado...
+			if(!listaDeModelos(item)){
 			//Valor de referência
-			int v = Integer.parseInt(item[17])
+			v = Integer.parseInt(item[17])
 			System.out.println("Valor de referência ["+v+"]")
 			
-			int w = Integer.parseInt(item[22])
-			System.out.println("Valor de referência COB Casco  VD ["+w+"]")
+			} else {
+			  System.out.println()
+			  modelo = selecionaPrimeiroItemListaDuploClick('//*[@id="tbodylistaVeiculos"]', 'tr')
+			  alerta = "Versão do veículo não localizada. Foi selecionada a primeira opção da lista.: "+modelo;
+			  itemUmSelecionado = true
+			  enviado = true;
+			}
+			
+			
+			String VDX
+			if (!item[22].toString().contains(",")) {
+				w = Integer.parseInt(item[22])
+			} else {
+			  VDX = item[22]
+			}
+			
+			System.out.println("Valor de referência COB Casco  VD ["+w+" "+VDX+"]")
 			if(v==9995200){
 			   xpath = '//*[@id="x_valorReferencia"]';
 			   if(w==0){
-			      preencheXpath(xpath, "1000", 0);
-			      commandTAB(xpath)
+				  preencheXpath(xpath, "1000", 0);
+				  commandTAB(xpath)
 			   } else if(w>0){
-			      String VD = Integer.toString(w)
-			      preencheXpath(xpath, ajusteRefCobCascoVD(VD), 0);
-			      commandTAB(xpath)
+				  if(VDX.toString().equals("null")){
+					 String VD = Integer.toString(w)
+					 preencheXpath(xpath, ajusteRefCobCascoVD(VD), 0);
+					 commandTAB(xpath)
+				  } else {
+					preencheXpath(xpath, VDX, 0);
+					commandTAB(xpath)
+				  }
 			  }
 			}
+			
 			//Zero km
-			selecionaItemLista(zeroKM(item[23]), '//*[@id="x_zeroKMFrota"]', 'option');
-			//Estado 
+			selecionaItemLista(zeroKM(item[40]), '//*[@id="x_zeroKMFrota"]', 'option');
+			//Estado
 			selecionaItemLista(item[15], '//*[@id="x_estado"]', 'option');
 			//Municipio
 			selecionaItemLista(item[16], '//*[@id="x_municipio"]', 'option');
 			//Propriedade
 			String s = retornaItemSelecionadoLista('//*[@id="x_propriedadeVeiculo"]', 'option', "selected" )
 			if(s.contains("[SELECIONE...]")){
-				selecionaItemLista(item[39], '//*[@id="x_propriedadeVeiculo"]', 'option');
+				selecionaItemLista(item[38], '//*[@id="x_propriedadeVeiculo"]', 'option');
 			}
 			//Gravar
 			clicarEmElementoDaTela('//*[@id="x_btngravar"]', 0);
-			alerta = "Intem gravado";
+			WebUI.delay(20);
+			//alerta = "Intem gravado";
 			//Avançar
 			clicarEmElementoDaTela('//*[@id="o_4"]', 0);
-			WebUI.delay(5);
+			WebUI.delay(15);
+			try{
+				alerta = recuperaValor('//*[@id="dataErrorSection"]/table/tbody/tr/td[2]', 'innerText', 0)
+				System.out.println("Alerta ["+alerta+"]")
+				if(alerta.contains(" Tipo de Seguro alterado para Renovação Interna Com Sinistro.")){
+					//Avançar
+					clicarEmElementoDaTela('//*[@id="o_4"]', 0);
+				}
+			} catch (Exception e){}
+			
+			WebUI.delay(15);
+			System.out.println(item[2])
 			//Filtro
-			selecionaItemLista(item[40], '//*[@id="x_filtro"]', 'option');
+			selecionaItemLista(item[39], '//*[@id="x_filtro"]', 'option');
 			//Seleciona item
-			selecionaItemLista(item[2], '//*[@id="x_list_itens"]', 'option');
+			selecionaItemLista(item[2].toString(), '//*[@id="coberturasSectionContent"]/table/tbody/tr/td[1]/table/tbody/tr[3]/td/table/tbody/tr[1]/td/table/tbody/tr/td[2]/table', 'option');
 			
-			
-			//TIPO COBERTURA CASCO 
-			int t = Integer.parseInt(item[24])
+			//TIPO COBERTURA CASCO
+			int t = Integer.parseInt(item[23])
 		
 			System.out.println(t)
-			if(t==0){ 
+			if(t==0){
 				//Contrata Casco e(ou) Val. Determinado
 				selecionaItemLista("Não", '//*[@id="x_val_det"]', 'option');
 				//FIPE
 				selecionaItemLista("0", '//*[@id="x_perc_fipe"]', 'option');
 				//selecionaItemListaAtributo("O",'//*[@id="x_perc_fipe"]' , 'option', 'value' )
-			} else { 
+			} else {
 			//FIPE
 			regraFipe(item, v)
 			//FRANQUIA
-			selecionaItemLista(tipoFranquia(item[26]), '//*[@id="x_tipo_franquia"]', 'option');
+			selecionaItemLista(tipoFranquia(item[25]), '//*[@id="x_tipo_franquia"]', 'option');
 			}
 			
 			//RCF - Danos Materiais
-			selecionaItemLista(CurrencyMonetary.formataValorMonetario(item[27]).trim(), '//*[@id="x_danos_materiais"]', 'option');
+			selecionaItemLista(CurrencyMonetary.formataValorMonetario(item[26]).trim(), '//*[@id="x_danos_materiais"]', 'option');
 			//RCF - Danos Corporais
-			selecionaItemLista(CurrencyMonetary.formataValorMonetario(item[28]).trim(), '//*[@id="x_danos_corporais"]', 'option');
-			//RCF - Danos Morais e Estéticos 
-			selecionaItemLista(CurrencyMonetary.formataValorMonetario(item[29]).trim(), '//*[@id="x_danos_morais"]', 'option');
+			selecionaItemLista(CurrencyMonetary.formataValorMonetario(item[27]).trim(), '//*[@id="x_danos_corporais"]', 'option');
+			//RCF - Danos Morais e Estéticos
+			selecionaItemLista(CurrencyMonetary.formataValorMonetario(item[28]).trim(), '//*[@id="x_danos_morais"]', 'option');
 			
-			t = Integer.parseInt(item[30])
+			t = Integer.parseInt(item[29])
 			System.out.println("APP - Morte ["+t+"]")
 			if(t>0){
 			//APP - Morte
 			xpath = '//*[@id="x_app_morte"]';
-			preencheXpath(xpath,item[30].trim(), 0);
+			preencheXpath(xpath,item[29].trim(), 0);
 			commandTAB(xpath)
 			}
 			
-			t = Integer.parseInt(item[31].replace("{", ""))
+			t = Integer.parseInt(item[30].replace("{", ""))
 			System.out.println("APP - Invalidez ["+t+"]")
 			if(t>0){
 			//APP - Invalidez
 			xpath = '//*[@id="x_app_invalidez"]';
-			preencheXpath(xpath,item[31].trim(), 0);
+			preencheXpath(xpath,item[30].trim(), 0);
 			commandTAB(xpath)
 			}
 			
 			//Vidros, Lant., Faróis e Retr.
-			selecionaItemLista(validaValorVidroContratado(item[32]), '//*[@id="x_vidros"]', 'option');
+			selecionaItemLista(validaValorVidroContratado(item[31]), '//*[@id="x_vidros"]', 'option');
 			//Acessórios gerais
 			xpath = '//*[@id="x_aces_gerais"]';
-			t = Integer.parseInt(item[33].replace("{", ""))
+			t = Integer.parseInt(item[32])
 			System.out.println(t)
-			if(t>0){ preencheXpath(CurrencyMonetary.formataValorMonetario(item[33]).trim(), 0);
+			if(t>0){ preencheXpath(xpath, item[32], 0);
 			commandTAB(xpath)}
 			//Blindagem
 			xpath = '//*[@id="x_blindagem"]';
-			t = Integer.parseInt(item[34])
+			t = item[33].length()
 			System.out.println(t)
-			if(t>0){preencheXpath(CurrencyMonetary.formataValorMonetario(item[34]).trim(), 0);
+			if(t>0){preencheXpath(xpath, item[33], 0);
 			commandTAB(xpath)}
 			//Assistência 24 horas
-			selecionaItemLista(validaValorContratadoAss24hs(item[35]), '//*[@id="x_assist24h"]', 'option');
+			selecionaItemLista(validaValorContratadoAss24hs(item[34]), '//*[@id="x_assist24h"]', 'option');
 			//Carro Reserva
-			selecionaItemLista(validaValorContratadoCarroReserva(item[36]), '//*[@id="x_carro_reserva"]', 'option');
-			//Aplicar Configuração 
+			selecionaItemLista(validaValorContratadoCarroReserva(item[35]), '//*[@id="x_carro_reserva"]', 'option');
+			//Aplicar Configuração
 			clicarEmElementoDaTela('//*[@id="o_3"]', 0);
-			WebUI.delay(3);
+			WebUI.delay(15);
 			String msg = pegaMSGAlerta();
 			System.out.println("["+msg+"]")
 			System.out.println()
 			okAlerta();
-			WebUI.delay(3);
+			WebUI.delay(25)
 			//Voltar
 			clicarEmElementoDaTela('//*[@id="o_5"]', 0);
 			System.out.println()
+			if(itemUmSelecionado){
+			  alerta = "Versão do veículo não localizada. Foi selecionada a primeira opção da lista.: "+modelo;
+			} else {
+			  alerta = "Cobertura gravada conforme escolhido"
+			}
 			enviado = true;
+		//	} else {
+		//	  System.out.println()
+		//	  String modelo = selecionaPrimeiroItemListaDuploClick('//*[@id="tbodylistaVeiculos"]', 'tr')
+		//	  alerta = "Versão do veículo não localizada. Foi selecionada a primeira opção da lista.: "+modelo;
+		//	  enviado = true;
+		//	}
 		} catch (Exception e){}
 		return enviado;
 	}
 	
+	/**
+	 * @author Alz_sup54955
+	 * @return
+	 */
+	public static boolean  erroTelaPantallaEspecificaPorDefinir(){
+		boolean b = false;
+		try{
+			WebUI.delay(10);
+		   tela = recuperaValor( '//*[@id="cellAppPromptHeaderArea"]', 'innerText', 0);
+		   if(tela.contains("PANTALLA ESPECIFICA POR DEFINIR")){
+			  fecharJanelaAtual(1)
+			  alteraJanejaGenerica(0, 0)
+			  erroTela = true;
+			  b = true;
+		   }
+		} catch (Exception e){}
+		return b;
+	}
+	
+	/**
+	 *
+	 * @param item
+	 * @param v
+	 */
 	public static void regraFipe(List<String> item, int v){
 		System.out.println("Regra FIPE ["+v+"] ["+item[24]+"]")
-		if( v==9995200 && item[24].equals("1")){
+		if( v==9995200 && item[23].equals("1")){
 			selecionaItemLista("100", '//*[@id="x_perc_fipe"]', 'option');
 		} else {
-		  selecionaItemLista(formataFIPE(item[25]), '//*[@id="x_perc_fipe"]', 'option');
+		  selecionaItemLista(formataFIPE(item[24]), '//*[@id="x_perc_fipe"]', 'option');
 		}
 	}
 	
@@ -591,6 +1321,7 @@ public class CotacaoRenovacaoInternaFuncionalidades extends rpaCommands{
 	 */
 	public static tabelaDePrecos(List<String> registros){
 		try{
+		System.out.println()
 		if(enviado){
 			WebUI.delay(10);
 			alerta = recuperaValor('//*[@id="dataErrorSection"]/table/tbody/tr/td[2]', 'innerText', 0)
@@ -601,7 +1332,7 @@ public class CotacaoRenovacaoInternaFuncionalidades extends rpaCommands{
 					//COMISSÃO
 					String c = recuperaValor( '//*[@id="ComisionamientoBean$porcComision"]', 'value', 0).replaceAll(",00", "")
 					int comRec = Integer.parseInt(c);
-					int comBas = Integer.parseInt(registros[12]);
+					int comBas = Integer.parseInt(registros[12].toString().replaceAll(",00", ""));
 					System.out.println("comRec ["+comRec+"] comBas ["+comBas+"]")
 					if(comRec!=comBas){
 					   xpath = '//*[@id="ComisionamientoBean$porcComision"]'
@@ -616,13 +1347,17 @@ public class CotacaoRenovacaoInternaFuncionalidades extends rpaCommands{
 					System.out.println("["+alerta+"] ["+operacao+"]")
 					//MENU
 					selecionaItemLista("Menu", '//*[@id="tableOptMenu_"]', 'td');
+					fecharJanelaAtual(1)
+					alteraJanejaGenerica(0, 0)
+					enviado = true;
 				}
-		    } else {
-		    fecharJanelaAtual(1)
-		    alteraJanejaGenerica(0, 0)
-		    enviado = false;
-		    }
+			} else {
+			fecharJanelaAtual(1)
+			alteraJanejaGenerica(0, 0)
+			enviado = false;
+			}
 		}
+		  System.out.println("Erro Tabela de preços ["+alerta+"] ["+enviado+"]")
 		} catch (Exception e){
 		  fecharJanelaAtual(1)
 		  alteraJanejaGenerica(0, 0)
@@ -630,6 +1365,11 @@ public class CotacaoRenovacaoInternaFuncionalidades extends rpaCommands{
 		}
 	}
 	
+	/**
+	 * @author Alz_sup54955
+	 * @param telaAtual
+	 * @param telaEsperada
+	 */
 	public static void identificaTela(String telaAtual, String telaEsperada){
 		System.out.println("RECURSIVO...")
 		System.out.println("["+telaAtual+"] ["+ telaEsperada+"]")
@@ -642,6 +1382,11 @@ public class CotacaoRenovacaoInternaFuncionalidades extends rpaCommands{
 		System.out.println("SAINDO DO RECURSIVO...")
 	}
 	
+	/**
+	 * @author Alz_sup54955
+	 * @param f
+	 * @return
+	 */
 	public static String validaValorVidroContratado(String f){
 	Map<String, String> seguro = new HashMap<String, String>();
 		seguro.put("00",'Não Contratado');
@@ -651,8 +1396,13 @@ public class CotacaoRenovacaoInternaFuncionalidades extends rpaCommands{
 		return seguro.get(f).toString();
 	}
 	
+	/**
+	 * @author Alz_sup54955
+	 * @param f
+	 * @return
+	 */
 	public static String validaValorContratadoCarroReserva(String f){
-	    Map<String, String> seguro = new HashMap<String, String>();
+		Map<String, String> seguro = new HashMap<String, String>();
 		seguro.put("00",'Não contratado');
 		seguro.put("07",'7 dias');
 		seguro.put("15",'15 dias');
@@ -660,8 +1410,13 @@ public class CotacaoRenovacaoInternaFuncionalidades extends rpaCommands{
 		return seguro.get(f).toString();
 	}
 	
+	/**
+	 * @author Alz_sup54955
+	 * @param f
+	 * @return
+	 */
 	public static String validaValorContratadoAss24hs(String f){
-	    Map<String, String> seguro = new HashMap<String, String>();
+		Map<String, String> seguro = new HashMap<String, String>();
 		seguro.put("00",'Não contratada');
 		seguro.put("01",'Plano 1');
 		seguro.put("02",'Plano 2');
@@ -669,7 +1424,12 @@ public class CotacaoRenovacaoInternaFuncionalidades extends rpaCommands{
 		return seguro.get(f).toString();
 	}
 	
-    public static String tipoFranquia(String f){
+	/**
+	 * @author Alz_sup54955
+	 * @param f
+	 * @return
+	 */
+	public static String tipoFranquia(String f){
 		Map<String, String> seguro = new HashMap<String, String>();
 		seguro.put("0",'Sem Franquia');
 		seguro.put("1",'Normal');
@@ -678,40 +1438,86 @@ public class CotacaoRenovacaoInternaFuncionalidades extends rpaCommands{
 		return seguro.get(f).toString();
 	}
 	
-	public static void listaDeModelos(List<String> item){
+	/**
+	 * @author Alz_sup54955
+	 * @param item
+	 * @return
+	 */
+	public static boolean listaDeModelos(List<String> item){
 		WebUI.delay(5);
 		System.out.println()
+		boolean b = false;
 		try{
 			tela = recuperaValor( '//*[@id="myModal"]/div/h3', 'innerText', 0);
-		    if(listaDeTelas(tela)){
+			if(listaDeTelas(tela)){
+				System.out.println()
 			  //Versão
-			  selecionaItemListaDuploClick(item[20], '//*[@id="tbodylistaVeiculos"]', 'tr');
-			  WebUI.delay(2);
-			  fechaAlerta();
+			  if(selecionaItemListaDuploClick(item[20], '//*[@id="tbodylistaVeiculos"]', 'tr')){
+				WebUI.delay(2);
+				fechaAlerta();
+				b = true
+			  }
 			}
-		}catch (Exception e){}	
+		}catch (Exception e){}
+		return b;
 	}
 	
 	/**
 	 * @author T_DCDias
 	 * @return
 	 */
-	public static selecionaItemListaDuploClick(String tipo,String xpath , String tag ){
+	public static boolean selecionaItemListaDuploClick(String tipo,String xpath , String tag ){
+		boolean b = false;
 		selecionaListaDeElementos(xpath,tag)
+		System.out.println()
+		System.out.println("LIST SIZE "+listOfElements.size())
 		for(int i = 0; i < listOfElements.size(); i++){
-			System.err.println("["+i+"]  ["+listOfElements[i].getAttribute('value')+"] ["+listOfElements[i].getText()+"]")
+			System.err.println("["+i+"]  ["+listOfElements[i].getAttribute('value')+"] ["+listOfElements[i].getText()+"] ["+tipo+"]")
 			if(listOfElements[i].getText().contains(tipo.toString().replaceAll("  ", " "))){
-				//System.err.println("FOUND ["+i+"] ["+listOfElements[i].getText()+"]")  //*[@id="dlv1linha1"]
+				System.err.println("FOUND ["+i+"] ["+listOfElements[i].getText()+"]")  //*[@id="dlv1linha1"]
 				String dlv1linha = "dlv1linha"
 				String num = Integer.toString(i)+'"';
 				String xpth = '//*[@id="'+dlv1linha+num+"]"
 				System.out.println(xpth)
 				duploClickEmElementoDaTela(xpth, 0)
+				b = false;
 				break
-			} 
+			} else {
+			  b = true;
+			}
 		}
+		return b;
 	}
 	
+	/**
+	 * @author T_DCDias
+	 * @return
+	 */
+	public static String selecionaPrimeiroItemListaDuploClick(String xpath , String tag ){
+		selecionaListaDeElementos(xpath,tag)
+		System.out.println()
+		System.out.println("LIST SIZE "+listOfElements.size())
+		String str;
+		for(int i = 0; i < listOfElements.size(); i++){
+			System.err.println("["+i+"]  ["+listOfElements[i].getAttribute('value')+"] ["+listOfElements[i].getText()+"]")
+			String dlv1linha = "dlv1linha"
+			String num = Integer.toString(i)+'"';
+			String xpth = '//*[@id="'+dlv1linha+num+"]"
+			System.out.println(xpth)
+			str = listOfElements[i].getText()
+			duploClickEmElementoDaTela(xpth, 0)
+			break
+		}
+		return str;
+	}
+
+	/**
+	 * @author Alz_sup54955
+	 * @param apolice
+	 * @param item
+	 * @param aba
+	 * @return
+	 */
 	public static boolean salvarEvidenciaItem(String apolice, String item, String aba){
 		try{
 			System.out.println();
@@ -721,7 +1527,7 @@ public class CotacaoRenovacaoInternaFuncionalidades extends rpaCommands{
 				System.out.println(data.getValue(cellCheck, i))
 				if(data.getValue(cellCheck, i).equals('Processar')) {
 					System.out.println()
-					if (data.getValue(2, i).equals(apolice) && data.getValue(3, i).equals(item)) {
+					if (data.getValue(2, i).trim().equals(apolice) && data.getValue(3, i).equals(item)) {
 						auxiliares.WriteExcelFactory.updateSheetLine("", j, path, "Processado", 35, aba);
 						auxiliares.WriteExcelFactory.updateSheetLine("", j, path, alerta, 37, aba);
 						break
@@ -797,12 +1603,40 @@ public class CotacaoRenovacaoInternaFuncionalidades extends rpaCommands{
 	}
 	
 	/**
+	 * @author ALZ_ServiceQA
+	 * @param sinistro
+	 * @param v
+	 * @return
+	 */
+	public static List<String> listaOperacao( List<String> registros , int v){
+		for (int i = 1; i <= dataOperacao.getColumnNumbers(); i++) {
+			int d = i -1
+			registros[d] = dataOperacao.getValue(i, v).trim()
+		}
+
+		for (int j = 0; j < registros.size();j++ ){
+			System.err.println("["+j+"] ["+registros[j]+"]")
+		}
+
+		return registros
+	}
+	
+	/**
 	 * @author T_DCDias
 	 * @return
 	 */
 	public static initDataFiles(){
 		data = findTestData(testDataPath)
 		path = data.sourceUrl
+	}
+	
+	/**
+	 * @author T_DCDias
+	 * @return
+	 */
+	public static initDataFilesOperacao(){
+		dataOperacao = findTestData(testDataPath)
+		path = dataOperacao.sourceUrl
 	}
 	
 	/**
@@ -824,6 +1658,11 @@ public class CotacaoRenovacaoInternaFuncionalidades extends rpaCommands{
 		return value
 	}
 	
+	/**
+	 * @author Alz_sup54955
+	 * @param tipo
+	 * @return
+	 */
 	public static String tipoEmissao(String tipo){
 		String xpath;
 		Map<String, String> process = new HashMap<String, String>()
@@ -832,6 +1671,10 @@ public class CotacaoRenovacaoInternaFuncionalidades extends rpaCommands{
 		return process.get(tipo.toString());
 	}
 	
+	/**
+	 * @author Alz_sup54955
+	 * @return
+	 */
 	public static boolean processado(){
 		boolean b = false;
 		if(enviado){
@@ -840,6 +1683,11 @@ public class CotacaoRenovacaoInternaFuncionalidades extends rpaCommands{
 		return b;
 	}
 	
+	/**
+	 * @author Alz_sup54955
+	 * @param tipo
+	 * @return
+	 */
 	public static String zeroKM(String tipo){
 		String xpath;
 		Map<String, String> process = new HashMap<String, String>()
@@ -848,6 +1696,11 @@ public class CotacaoRenovacaoInternaFuncionalidades extends rpaCommands{
 		return process.get(tipo.toString());
 	}
 	
+	/**
+	 * @author Alz_sup54955
+	 * @param tipo
+	 * @return
+	 */
 	public static String formataFIPE(String tipo){
 		String xpath;
 		Map<String, String> process = new HashMap<String, String>()
@@ -859,15 +1712,18 @@ public class CotacaoRenovacaoInternaFuncionalidades extends rpaCommands{
 		return process.get(tipo.toString());
 	}
 	
+	/**
+	 * @author Alz_sup54955
+	 * @param v
+	 * @return
+	 */
 	public static String ajusteRefCobCascoVD(String v){
-		
 		StringBuilder strb = new StringBuilder();
 		String s;
 		String[] l = v.split("")
 		System.out.println("INVERT LIST\n")
 		for(int i = l.size(); i--;  i<0   ){
 			System.out.println("["+i+"] ["+l[i]+"]")
-			
 			if(i==5){
 				strb.append(",")
 			}
@@ -887,4 +1743,30 @@ public class CotacaoRenovacaoInternaFuncionalidades extends rpaCommands{
 		System.out.println(s)
 		return s;
 	}
+	
+	/**
+	 * @author Alz_sup54955
+	 * @param alert
+	 * @return
+	 */
+	public static boolean situacao(String alert){
+		System.err.println("\nSITUAÇÃO ["+alert+"]")
+		boolean r = false
+		if(alert.length()>4){
+			List<String> listOfAlerts = new ArrayList<String>()
+			listOfAlerts.add("Emitida")
+			listOfAlerts.add("REATIVAÇÃO")
+			for(int i = 0; i < listOfAlerts.size(); i++){
+				System.err.println("["+i+"] ["+listOfAlerts[i]+"]")
+				if(alert.contains(listOfAlerts[i])){
+					System.err.println("FOUND SITUATION ["+i+"] ["+listOfAlerts[i]+"]")
+					r = true
+					break
+				}
+			}
+		}
+		System.out.println("\nAlert ["+r+"]")
+		return  r
+	}
+	
 }
