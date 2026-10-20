@@ -851,7 +851,7 @@ public class htmlCadastroCorretor {
 				"		<table bgcolor='#dfeff2' border='0' cellpadding='0' cellspacing='0' align='center'>"+
 				"			<tbody><tr>"+
 				"				<td>"+
-				"					<a href='https://allianznet.com.br/'>"+
+				"					<a href='https://www.allianznet.com.br/ngx-epac/public/home'>"+
 				"						<img style='line-height: 0px; display: block;' src='cid:image_id4'>"+
 				"					</a>"+
 				"				</td>"+

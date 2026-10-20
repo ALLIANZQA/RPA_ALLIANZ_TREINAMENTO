@@ -1,0 +1,5 @@
+C:/Users/Public/RPA_ALLIANZ/Emails/backoffice/GestaoVerificacoesCancelamentoAtribuicao/GestaoVerificacoesCancelamentoAtribuicao.txt
+rpa@allianz.com.br
+
+smtp.intrallianz.es
+00

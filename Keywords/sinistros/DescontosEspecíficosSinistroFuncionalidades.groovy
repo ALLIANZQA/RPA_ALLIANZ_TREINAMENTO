@@ -32,7 +32,6 @@ import auxiliares.ExtractDates
 
 
 import auxiliares.timer;
-import auxiliares.ExtractDates
 import sendEmail.emailDinamico;
 import auxiliares.GetHost;
 
@@ -118,13 +117,18 @@ public class DescontosEspecíficosSinistroFuncionalidades extends rpaCommands{
 	 * @return
 	 */
 	public static fluxoDescontosEspecíficosSinistros(String tipoAba){
-		String dataInicio = ExtractDates.dataAtual();
-		String horaInicial =  ExtractDates.horaAtualizada();
-		start = Instant.now();
+		if(FileInput.validaExistenciaDeArquivo(pathFile)){
+			FileInput.criaLog( ExtractDates.dataAtual() , pathFile);
+			FileInput.atualizaLog( ExtractDates.horaAtualizada() , pathFile);
+			FileInput.atualizaLog( Instant.now().toString(), pathFile)
+		}
 		fluxoCompletoDescontosEspecíficosSinistro(tipoAba)
 		reprocessaDescontosEspecíficosSinistro(tipoAba)
-		end =  Instant.now();
-		timeLapnse = Duration.between(start, end);
+		FileInput.atualizaLog(Instant.now().toString(), pathFile)
+		List<String> times = rpaCommands.convertToInstant(pathFile);
+		String dataInicio = times[0];
+		String horaInicial =  times[1];
+		timeLapnse = Duration.between( Instant.parse(times[2]), Instant.parse(times[3]));
 		String dataFinal = ExtractDates.dataAtual();
 		String horaFinal =  ExtractDates.horaAtualizada();
 		
@@ -156,6 +160,7 @@ public class DescontosEspecíficosSinistroFuncionalidades extends rpaCommands{
 				 */
 				alteraJanejaGenerica(1,2);
 				WebUI.maximizeWindow()
+				System.out.println("Row Numbers ["+data.getRowNumbers()+"]")
 
 				for (int i = 1; i <= data.getRowNumbers(); i++) {
 					if(data.getValue(cell, i).equals("Processar")){
@@ -552,7 +557,8 @@ public class DescontosEspecíficosSinistroFuncionalidades extends rpaCommands{
 		  anexos[0] = "C:\\Users\\Public\\RPA_ALLIANZ\\Data Files\\Sinistro\\DescontosEspecíficosSinistro.xlsx"
 		  anexos[1] = "DescontosEspecíficosSinistro.xlsx"
 		  emailDinamico.enviaEmailDinamico(sender, emaildestination, tipoAba, anexos[0], anexos[1], emailDinamico.listaDeAlertas(data, cellCheckAlert)  , hours, horaInicial, horaFinal,  GetHost.getHostname() , dataInicio, dataFinal, assunto);
-	  }
+		  FileInput.deletaArquivoPdf(pathFile);
+		}
 	}
 
 

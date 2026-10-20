@@ -21,9 +21,10 @@ import internal.GlobalVariable as GlobalVariable
 import auto.ReentradaPropostaAutoFuncionalidades;
 import auxiliares.leitorPdf;
 String filepath = "C:\\Users\\Public\\RPA_ALLIANZ\\Data Files\\Auto\\ReentradaPropostaAuto\\Arquivos\\"
-String arquivo = "389216282 Cotação Fabio Goes"
+//String arquivo = "389216282 Cotação Fabio Goes"
 
-
+//String filepath = "\\Ntxnas1.intrallianz.es\\brasil\\DIRETORIAS\\DIR EXE OPERACOES\\DIR TI\\SUPERINT DESENV PRODUTOS\\RPA\\Denilson\\"
+String arquivo = "PDF da cotação-Modelo1 1 Sergio"
 
 
 String texto1 = "[13] [Vigência: das 24H de 25/03/2025 às 24H de 25/03/2026 Nº da Apólice: ]"

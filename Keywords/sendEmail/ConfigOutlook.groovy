@@ -22,6 +22,7 @@ import java.security.Security;
 public class ConfigOutlook {
 
 
+
 	/**
 	 * @author ALZ_ServiceQA
 	 * @return
@@ -37,7 +38,7 @@ public class ConfigOutlook {
 		System.out.println("configureOutLook done")
 		return props;
 	}
-	
+
 	/**
 	 * @author ALZ_ServiceQA
 	 * @return
@@ -52,5 +53,4 @@ public class ConfigOutlook {
 		props.put("mail.smtp.ssl.trust", "*");
 		return props;
 	}
-	
 }

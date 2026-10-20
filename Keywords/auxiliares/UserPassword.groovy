@@ -19,6 +19,7 @@ import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI
 
 import internal.GlobalVariable
 
+//Atualização 27/04/26
 //public class UserPassword extends backofficeFuncionalidades{
 public class UserPassword{
 
@@ -27,6 +28,8 @@ public class UserPassword{
 	private static dominio;
 	private static email;
 
+	public static String pathpropertiesUser = "C:\\Users\\Public\\RPA_ALLIANZ\\ConfiUserPwr\\user.properties";
+	public static String pathpropertiesPwd = "C:\\Users\\Public\\RPA_ALLIANZ\\ConfiUserPwr\\pwd.properties";
 
 	/**Recebe por parametro nome do RPA e imputa valores de usuario e senha equivalente;
 	 * @param nomeRpa
@@ -493,6 +496,15 @@ public class UserPassword{
 				senha = returnPwrd(3)
 				break;
 
+			case 'GestaoReclamacaoAutomaticoPRD':
+				user = returnUser(3)
+				senha = returnPwrd(3)
+				break;
+			case 'GestaoReclamacaoAutomaticoINT':
+				user = returnUser(3)
+				senha = returnPwrd(3)
+				break;
+
 			case 'GestaoVerificacoesAtribuicaoManPRD':
 				user = returnUser(4)
 				senha = returnPwrd(4)
@@ -510,7 +522,7 @@ public class UserPassword{
 				user = returnUser(3)
 				senha = returnPwrd(3)
 				break;
-				
+
 			case 'RessarcimentoPRD':
 				user = returnUser(4)
 				senha = returnPwrd(4)
@@ -519,8 +531,47 @@ public class UserPassword{
 				user = returnUser(4)
 				senha = returnPwrd(4)
 				break;
+			case 'ParceriasPRD':
+				user = returnUser(3)
+				senha = returnPwrd(3)
+				break;
+			case 'ParceriasINT':
+				user = returnUser(3)
+				senha = returnPwrd(3)
+				break;
+			case 'GestaoVerificacoesCancelamentoPRD':
+				user = returnUser(4)
+				senha = returnPwrd(4)
+				break;
+			case 'GestaoVerificacoesCancelamentoINT':
+				user = returnUser(4)
+				senha = returnPwrd(4)
+				break;
+			case 'CancelamentoApolicesSicoobPRD':
+				user = returnUser(3)
+				senha = returnPwrd(3)
+				break;
+			case 'CancelamentoApolicesSicoobINT':
+				user = returnUser(3)
+				senha = returnPwrd(3)
+				break;
+			case 'DigitacaoSeguroNovoFrotaPRD':
+				user = returnUser(3)
+				senha = returnPwrd(3)
+				break;
+			case 'DigitacaoSeguroNovoFrotaINT':
+				user = returnUser(3)
+				senha = returnPwrd(3)
+				break;
 
-
+			case 'ConfereEmpenhoRamosPRD':
+				user = returnUser(3)
+				senha = returnPwrd(3)
+				break;
+			case 'ConfereEmpenhoRamosINT':
+				user = returnUser(3)
+				senha = returnPwrd(3)
+				break;
 		}
 	}
 
@@ -530,19 +581,22 @@ public class UserPassword{
 	 * @return
 	 */
 	public static returnUser(int id){
-		Map<Integer, String> user = new HashMap<Integer, String>()
-		user.put(1, 'be53298')
-		user.put(2, 'ba811500')
-		user.put(3, 'BE53725')
-		user.put(4, 'BE54097')
-		user.put(5, 'be01624')
-		user.put(6, 'be01637')
-		user.put(7, 'RelatorioSinistro')
-		user.put(8, 'BE01448')
-		user.put(9, 'BA450306')
-		user.put(10, 'Be00151')
+		String [] list = new String[11];
+		Properties props = new Properties();
+		FileInputStream fis = new FileInputStream(pathpropertiesUser);
+		props.load(fis);
+		list[1]=props.getProperty("1")
+		list[2]=props.getProperty("2")
+		list[3]=props.getProperty("3")
+		list[4]=props.getProperty("4")
+		list[5]=props.getProperty("5")
+		list[6]=props.getProperty("6")
+		list[7]=props.getProperty("7")
+		list[8]=props.getProperty("8")
+		list[9]=props.getProperty("9")
+		list[10]=props.getProperty("10")
 
-		return user.get(id);
+		return list[id].toString();
 	}
 
 	/**
@@ -551,43 +605,25 @@ public class UserPassword{
 	 * @return
 	 */
 	public static returnPwrd(int id){
-		Map<Integer, String> pwrd = new HashMap<Integer, String>()
-		pwrd.put(1, 'Allz202601' )
-		pwrd.put(2, 'Allz202306' )
-		pwrd.put(3, 'Allz202603' )
-		pwrd.put(4, 'Allz202601' )
-		pwrd.put(5, 'Am@nda36' )
-		pwrd.put(6, 'Mari2005' )
-		pwrd.put(7, 'sinistro' )
-		pwrd.put(8, 'Caren045' )
-		pwrd.put(9, 'teste123' )
-		pwrd.put(10,'Brsp202305')
-		pwrd.put(11,'Allianz2025@')
+		String [] list = new String[11];
+		Properties props = new Properties();
+		FileInputStream fis = new FileInputStream(pathpropertiesPwd);
+		props.load(fis);
+		list[1]=props.getProperty("1")
+		list[2]=props.getProperty("2")
+		list[3]=props.getProperty("3")
+		list[4]=props.getProperty("4")
+		list[5]=props.getProperty("5")
+		list[6]=props.getProperty("6")
+		list[7]=props.getProperty("7")
+		list[8]=props.getProperty("8")
+		list[9]=props.getProperty("9")
+		list[10]=props.getProperty("10")
 
-		return pwrd.get(id);
+		return list[id].toString();
 	}
 
-	/**
-	 * @author T_DCDias
-	 * @param id
-	 * @return
-	 */
-	public static returnEML(int id){
-		Map<Integer, String> pwrd = new HashMap<Integer, String>()
-		pwrd.put(1, 'andre.antunes@allianz.com.br' )
-		return pwrd.get(id);
-	}
 
-	/**
-	 * @author T_DCDias
-	 * @param id
-	 * @return
-	 */
-	public static returnDom(int id){
-		Map<Integer, String> pwrd = new HashMap<Integer, String>()
-		pwrd.put(1, 'Allianzflow' )
-		return pwrd.get(id);
-	}
 
 
 	public static java.lang.Object getUser() {

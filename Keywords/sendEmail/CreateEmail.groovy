@@ -3,7 +3,9 @@ package sendEmail;
 import rpacommands.rpaCommands
 
 public class CreateEmail  extends rpaCommands{
-	
+
+
+	private static String authPathConfigEmailProp = "C:\\Users\\Public\\RPA_ALLIANZ\\Emails\\Credenciais\\ConfigAuthEmailProp.properties"
 	private static String authPathConfigEmail = "C:\\Users\\Public\\RPA_ALLIANZ\\Emails\\Credenciais\\ConfigAuthEmail.txt"
 	private static String authPathConfigEmailCadCorretor = "C:\\Users\\Public\\RPA_ALLIANZ\\Emails\\Credenciais\\ConfigAuthEmailCadastroCorretor.txt"
 
@@ -46,7 +48,8 @@ public class CreateEmail  extends rpaCommands{
 			String assunto
 	){
 		try{
-			lerConfiguraçõesAuth(authPathConfigEmail)
+			//	lerConfiguraçõesAuth(authPathConfigEmail)
+			//	lerConfiguraçõesAuthProp(authPathConfigEmailProp)
 			System.out.println(user+" "+pwdsender+" "+host+" "+porta)
 			ConfigOutlook configEmail = new ConfigOutlook();
 			MessageFactory messageFactory = new MessageFactory(sender,user,pwdsender,emaildestination );
@@ -73,7 +76,8 @@ public class CreateEmail  extends rpaCommands{
 	 * @return
 	 */
 	public static createEmailSendMultipleFiles(String sender, String emaildestination, List<String> anexos ,String ramo ){
-		lerConfiguraçõesAuth(authPathConfigEmail)
+		//lerConfiguraçõesAuth(authPathConfigEmail)
+		lerConfiguraçõesAuthProp(authPathConfigEmailProp)
 		try{
 			ConfigOutlook configEmail = new ConfigOutlook();
 			MessageFactory messageFactory = new MessageFactory(sender,user,pwdsender,emaildestination );
@@ -97,7 +101,8 @@ public class CreateEmail  extends rpaCommands{
 	 * @return
 	 */
 	public static boolean createEmailSendMultipleFilesCorretor(String sender, String emaildestination, List<String> anexos , String ramo, String tomador, String apolice ){
-		lerConfiguraçõesAuth(authPathConfigEmail)
+		//	lerConfiguraçõesAuth(authPathConfigEmail)
+		lerConfiguraçõesAuthProp(authPathConfigEmailProp)
 		boolean envio
 		System.err.println(ramo+" "+tomador+" "+apolice);
 		try{
@@ -111,6 +116,40 @@ public class CreateEmail  extends rpaCommands{
 		}
 		return envio
 	}
+
+
+	/**
+	 * @author ALZ_ServiceQA
+	 * @param sender
+	 * @param emaildestination
+	 * @param pwdsender
+	 * @param anexos
+	 * @param host
+	 * @param porta
+	 * @param ramo
+	 * @param tomador
+	 * @param apolice
+	 * @return
+	 */
+	public static boolean createEmailSendMultipleFilesParcerias(String sender, String emaildestination, List<String> anexos , String ramo, String tomador, String apolice, String corpoEmail, String assunto, String ccemaildestination ){
+		//	lerConfiguraçõesAuth(authPathConfigEmail)
+		lerConfiguraçõesAuthProp(authPathConfigEmailProp)
+		boolean envio
+		System.err.println(ramo+" "+tomador+" "+apolice);
+		try{
+			ConfigOutlook configEmail = new ConfigOutlook();
+			MessageFactory messageFactory = new MessageFactory(sender,user,pwdsender,emaildestination, ccemaildestination );
+			messageFactory.createMessageFilesParcerias(configEmail.configureOutLookAuth(host, porta), anexos, ramo, tomador,apolice,corpoEmail,assunto);
+			envio = true
+		} catch(Exception e){
+			System.err.println("FAIL\n"+e);
+			envio false
+		}
+		return envio
+	}
+
+
+
 
 
 	/**
@@ -130,7 +169,8 @@ public class CreateEmail  extends rpaCommands{
 	 * Envio de e-mail sem anexo
 	 */
 	public static createEmailSend(String sender, String emaildestination, String ramo ){
-		lerConfiguraçõesAuth(authPathConfigEmail)
+		//	lerConfiguraçõesAuth(authPathConfigEmail)
+		lerConfiguraçõesAuthProp(authPathConfigEmailProp)
 		try{
 			ConfigOutlook configEmail = new ConfigOutlook();
 			MessageFactory messageFactory = new MessageFactory(sender,user,pwdsender,emaildestination );
@@ -139,7 +179,7 @@ public class CreateEmail  extends rpaCommands{
 			System.err.println("FAIL\n"+e);
 		}
 	}
-	
+
 	/**
 	 * Novas configuirações
 	 */
@@ -156,8 +196,9 @@ public class CreateEmail  extends rpaCommands{
 	 * @return
 	 * Envio de e-mail sem anexo
 	 */
-     public static createEmailSend(String sender, String emaildestination, List<String> anexos , String ramo, String assunto ){
-		lerConfiguraçõesAuth(authPathConfigEmail)
+	public static createEmailSend(String sender, String emaildestination, List<String> anexos , String ramo, String assunto ){
+		//	lerConfiguraçõesAuth(authPathConfigEmail)
+		lerConfiguraçõesAuthProp(authPathConfigEmailProp)
 		try{
 			ConfigOutlook configEmail = new ConfigOutlook();
 			MessageFactory messageFactory = new MessageFactory(sender,user,pwdsender,emaildestination );
@@ -166,30 +207,31 @@ public class CreateEmail  extends rpaCommands{
 			System.err.println("Create Email Send Multiple Files FAIL\n"+e);
 		}
 	}
-	 
-	 /**
-	  * @author T_DCDias
-	  * @param sender
-	  * @param emaildestination
-	  * @param pwdsender
-	  * @param texto
-	  * @param subject
-	  * @param host
-	  * @param porta
-	  * @return
-	  * Envio de e-mail sem anexo
-	  */
-	  public static createEmailSendEmissaoSantander(String sender, String emaildestination, List<String> anexos , String ramo, String assunto ){
-		 lerConfiguraçõesAuth(authPathConfigEmail)
-		 System.out.println()
-		 try{
-			 ConfigOutlook configEmail = new ConfigOutlook();
-			 MessageFactory messageFactory = new MessageFactory(sender,user,pwdsender,emaildestination );
-			 messageFactory.createMessageMutFiles(configEmail.configureOutLookAuth(host, porta),anexos ,ramo, assunto);
-		 } catch(Exception e){
-			 System.err.println("Create Email Send Multiple Files FAIL\n"+e);
-		 }
-	 }
+
+	/**
+	 * @author T_DCDias
+	 * @param sender
+	 * @param emaildestination
+	 * @param pwdsender
+	 * @param texto
+	 * @param subject
+	 * @param host
+	 * @param porta
+	 * @return
+	 * Envio de e-mail sem anexo
+	 */
+	public static createEmailSendEmissaoSantander(String sender, String emaildestination, List<String> anexos , String ramo, String assunto ){
+		//	lerConfiguraçõesAuth(authPathConfigEmail)
+		lerConfiguraçõesAuthProp(authPathConfigEmailProp)
+		System.out.println()
+		try{
+			ConfigOutlook configEmail = new ConfigOutlook();
+			MessageFactory messageFactory = new MessageFactory(sender,user,pwdsender,emaildestination );
+			messageFactory.createMessageMutFiles(configEmail.configureOutLookAuth(host, porta),anexos ,ramo, assunto);
+		} catch(Exception e){
+			System.err.println("Create Email Send Multiple Files FAIL\n"+e);
+		}
+	}
 
 	/**
 	 * @author ALZ_ServiceQA
@@ -205,7 +247,8 @@ public class CreateEmail  extends rpaCommands{
 	 */
 	public static boolean createEmailSendMultipleFilesSeguroFuncionario(String sender, String emaildestination,List<String> anexos , String ramo, String assunto){
 		boolean enviado
-		lerConfiguraçõesAuth(authPathConfigEmail)
+		//	lerConfiguraçõesAuth(authPathConfigEmail)
+		lerConfiguraçõesAuthProp(authPathConfigEmailProp)
 		try{
 			ConfigOutlook configEmail = new ConfigOutlook();
 			MessageFactory messageFactory = new MessageFactory(sender,user,pwdsender,emaildestination );
@@ -231,7 +274,8 @@ public class CreateEmail  extends rpaCommands{
 	 * @return
 	 */
 	public static createEmailSendMultipleFilesReprocessaEmissaoApolice(String sender, String emaildestination, List<String> anexos , String host, String  porta, String ramo, String dataAnterior){
-		lerConfiguraçõesAuth(authPathConfigEmail)
+		//	lerConfiguraçõesAuth(authPathConfigEmail)
+		lerConfiguraçõesAuthProp(authPathConfigEmailProp)
 		try{
 			ConfigOutlook configEmail = new ConfigOutlook();
 			MessageFactory messageFactory = new MessageFactory(sender,user,pwdsender,emaildestination );
@@ -254,7 +298,8 @@ public class CreateEmail  extends rpaCommands{
 	 * @return
 	 */
 	public static createEmailSendMultipleFilesMigracaoDeDados(String sender, String emaildestination, List<String> anexos , String ramo, String msg){
-		lerConfiguraçõesAuth(authPathConfigEmail)
+		//	lerConfiguraçõesAuth(authPathConfigEmail)
+		lerConfiguraçõesAuthProp(authPathConfigEmailProp)
 		try{
 			ConfigOutlook configEmail = new ConfigOutlook();
 			MessageFactory messageFactory = new MessageFactory(sender,user,pwdsender,emaildestination );
@@ -279,7 +324,8 @@ public class CreateEmail  extends rpaCommands{
 	 */
 	public static boolean createEmailSendSantander(String sender, String emaildestination, String host, String  porta, String ramo, String segurado, String apolice,String FINAL_VIG, String dataAtual, String tapCap ){
 		boolean send
-		lerConfiguraçõesAuth(authPathConfigEmail)
+		//	lerConfiguraçõesAuth(authPathConfigEmail)
+		lerConfiguraçõesAuthProp(authPathConfigEmailProp)
 		try{
 			ConfigOutlook configEmail = new ConfigOutlook();
 			MessageFactory messageFactory = new MessageFactory(sender,user,pwdsender,emaildestination );
@@ -304,14 +350,15 @@ public class CreateEmail  extends rpaCommands{
 	 * @return
 	 * Envio de e-mail sem anexo
 	 */
-	public static boolean createEmailSendSantanderAnexos(String sender, String emaildestination, String ramo, String segurado, String apolice,String FINAL_VIG, String dataAtual, String tapCap,String placa, String COD_MARCA_MODELO, String DS_MODELO, String versao, List<String> anexos ){
+	public static boolean createEmailSendSantanderAnexos(String sender, String emaildestination, String ramo, String segurado, String apolice,String FINAL_VIG, String dataAtual, String tapCap,String placa, String COD_MARCA_MODELO, String DS_MODELO, String versao, String propostaAnterior, List<String> anexos ){
 		boolean send
-		lerConfiguraçõesAuth(authPathConfigEmail)
+		//	lerConfiguraçõesAuth(authPathConfigEmail)
+		lerConfiguraçõesAuthProp(authPathConfigEmailProp)
 		System.err.println('Sender ['+sender+'] Ramo ['+ramo+"] host ["+host+"] port ["+porta+"]")
 		try{
 			ConfigOutlook configEmail = new ConfigOutlook();
 			MessageFactory messageFactory = new MessageFactory(sender,user,pwdsender,emaildestination );
-			messageFactory.createMessageMutFiles(configEmail.configureOutLookAuth(host, porta), anexos,  ramo, segurado, apolice, FINAL_VIG, placa, COD_MARCA_MODELO, DS_MODELO, versao);
+			messageFactory.createMessageMutFiles(configEmail.configureOutLookAuth(host, porta), anexos,  ramo, segurado, apolice, FINAL_VIG, placa, COD_MARCA_MODELO, DS_MODELO, versao, propostaAnterior);
 			send = true
 		} catch(Exception e){
 			System.err.println("FAIL\n"+e);
@@ -319,8 +366,8 @@ public class CreateEmail  extends rpaCommands{
 		}
 		return send
 	}
-	
-	
+
+
 	/**
 	 * @author T_DCDias
 	 * @param sender
@@ -335,7 +382,8 @@ public class CreateEmail  extends rpaCommands{
 	 */
 	public static boolean createEmailSendSantanderSemAnexos(String sender, String emaildestination, String ramo, String segurado, String apolice,String FINAL_VIG, String dataAtual, String tapCap,String placa, String COD_MARCA_MODELO, String DS_MODELO, String versao){
 		boolean send
-		lerConfiguraçõesAuth(authPathConfigEmail)
+		//	lerConfiguraçõesAuth(authPathConfigEmail)
+		lerConfiguraçõesAuthProp(authPathConfigEmailProp)
 		System.err.println('Sender ['+sender+'] Ramo ['+ramo+"] host ["+host+"] port ["+porta+"]")
 		try{
 			ConfigOutlook configEmail = new ConfigOutlook();
@@ -348,7 +396,7 @@ public class CreateEmail  extends rpaCommands{
 		}
 		return send
 	}
-	
+
 	/**
 	 * @author ALZ_SUP54955
 	 * @param sender
@@ -378,19 +426,19 @@ public class CreateEmail  extends rpaCommands{
 		}
 		return send
 	}
-	
-    /**
-     * @author ALZ_SUP54955
-     * @param sender
-     * @param emaildestination
-     * @param pwdsender
-     * @param host
-     * @param porta
-     * @param ramo
-     * @param anexos
-     * @param assunto
-     * @return
-     */
+
+	/**
+	 * @author ALZ_SUP54955
+	 * @param sender
+	 * @param emaildestination
+	 * @param pwdsender
+	 * @param host
+	 * @param porta
+	 * @param ramo
+	 * @param anexos
+	 * @param assunto
+	 * @return
+	 */
 	public static boolean createEmailSendVoucherAnexo(String sender, String emaildestination,String pwdsender, String host, String  porta, String ramo, List<String> anexos, String assunto ){
 		boolean send
 		try{
@@ -418,7 +466,8 @@ public class CreateEmail  extends rpaCommands{
 	 * Envio de e-mail sem anexo
 	 */
 	public static boolean createEmailCadastroCorretorFilialFisica(String sender, String emaildestination, String ramo, String corretor,String intermediario, String cpfcnpj, String newUser, String pwr,String NOMEACCOUNT, String EMAILACCOUNT,String ddd, String telefone, ddd_account, telefone_account ){
-		lerConfiguraçõesAuth(authPathConfigEmail)
+		//	lerConfiguraçõesAuth(authPathConfigEmail)
+		lerConfiguraçõesAuthProp(authPathConfigEmailProp)
 		boolean send
 		try{
 			ConfigOutlook configEmail = new ConfigOutlook();
@@ -445,7 +494,8 @@ public class CreateEmail  extends rpaCommands{
 	 */
 	public static boolean createEmailSendSantanderPendencia(String sender, String emaildestination, String ramo, String texto, String assunto){
 		boolean send
-		lerConfiguraçõesAuth(authPathConfigEmail)
+		//	lerConfiguraçõesAuth(authPathConfigEmail)
+		lerConfiguraçõesAuthProp(authPathConfigEmailProp)
 		try{
 			ConfigOutlook configEmail = new ConfigOutlook();
 			MessageFactory messageFactory = new MessageFactory(sender,user,pwdsender,emaildestination);
@@ -472,7 +522,8 @@ public class CreateEmail  extends rpaCommands{
 	 */
 	public static boolean createEmailSendEnvioEnvioRetornoGo(String sender, String emaildestination, String ramo, String texto, String assunto){
 		boolean send
-		lerConfiguraçõesAuth(authPathConfigEmail)
+		//	lerConfiguraçõesAuth(authPathConfigEmail)
+		lerConfiguraçõesAuthProp(authPathConfigEmailProp)
 		System.out.println(user+" "+pwdsender+" "+host+" "+porta)
 		try{
 			ConfigOutlook configEmail = new ConfigOutlook();
@@ -504,8 +555,9 @@ public class CreateEmail  extends rpaCommands{
 	 * @param porta
 	 * @return
 	 */
-	public static createEmailSendMultipleFilesCartasAvisoSantander(String sender, String emaildestination, List<String> anexos , String host, String  porta, String ramo, String assunto ){
-		lerConfiguraçõesAuth(authPathConfigEmail)
+	public static createEmailSendMultipleFilesCartasAvisoSantander(String sender, String emaildestination, List<String> anexos , String ramo, String assunto ){
+		//	lerConfiguraçõesAuth(authPathConfigEmail)
+		lerConfiguraçõesAuthProp(authPathConfigEmailProp)
 		try{
 			ConfigOutlook configEmail = new ConfigOutlook();
 			MessageFactory messageFactory = new MessageFactory(sender,user,pwdsender,emaildestination );
@@ -517,7 +569,8 @@ public class CreateEmail  extends rpaCommands{
 
 
 	public static createEmailSendError(String sender, String emaildestination, List<String> anexos , String host, String  porta, String ramo, String assunto ){
-		lerConfiguraçõesAuth(authPathConfigEmail)
+		//	lerConfiguraçõesAuth(authPathConfigEmail)
+		lerConfiguraçõesAuthProp(authPathConfigEmailProp)
 		try{
 			ConfigOutlook configEmail = new ConfigOutlook();
 			MessageFactory messageFactory = new MessageFactory(sender,user,pwdsender,emaildestination );
@@ -528,7 +581,8 @@ public class CreateEmail  extends rpaCommands{
 	}
 
 	public static createEmailSend(String sender, String emaildestination, List<String> anexos , String host, String  porta, String ramo, String assunto ){
-		lerConfiguraçõesAuth(authPathConfigEmail)
+		//	lerConfiguraçõesAuth(authPathConfigEmail)
+		lerConfiguraçõesAuthProp(authPathConfigEmailProp)
 		try{
 			ConfigOutlook configEmail = new ConfigOutlook();
 			MessageFactory messageFactory = new MessageFactory(sender,user,pwdsender,emaildestination );
@@ -537,12 +591,7 @@ public class CreateEmail  extends rpaCommands{
 			System.err.println("Create Email Send Multiple Files FAIL\n"+e);
 		}
 	}
-	
-	
-	
-	
-	
-	
+
 	/**
 	 * @author T_DCDias
 	 * @param sender
@@ -567,7 +616,7 @@ public class CreateEmail  extends rpaCommands{
 			System.err.println("Create Email Send Multiple Files FAIL\n"+e);
 		}
 	}
-	
+
 	/**
 	 * @author T_DCDias
 	 * @param sender
@@ -582,7 +631,8 @@ public class CreateEmail  extends rpaCommands{
 	 */
 	public static boolean createEmailBanrisul(String ramo, String sender, String emaildestination,String corretor, String email, String telefone, String susep, String proponente, String cpfcnpj, String apolice, String finalVigencia, String nome ){
 		boolean send
-		lerConfiguraçõesAuth(authPathConfigEmail)
+		//	lerConfiguraçõesAuth(authPathConfigEmail)
+		lerConfiguraçõesAuthProp(authPathConfigEmailProp)
 		System.out.println('Sender ['+sender+'] Ramo ['+ramo+"] host ["+host+"] port ["+porta+"]")
 		try{
 			ConfigOutlook configEmail = new ConfigOutlook();
@@ -595,24 +645,4 @@ public class CreateEmail  extends rpaCommands{
 		}
 		return send
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }

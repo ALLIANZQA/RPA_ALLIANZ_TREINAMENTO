@@ -1,0 +1,5 @@
+C:/Users/Public/RPA_ALLIANZ/Emails/AutoFrota/DigitacaoSeguroNovoFrota/DigitacaoSeguroNovoFrota.txt
+rpa@allianz.com.br
+
+smtp.intrallianz.es
+00

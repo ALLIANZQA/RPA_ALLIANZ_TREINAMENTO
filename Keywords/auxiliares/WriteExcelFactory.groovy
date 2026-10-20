@@ -163,13 +163,56 @@ public class WriteExcelFactory extends FileInput{
 					massa = XLSXSelection.switchCellRules(cell,massa,aba);
 				}
 				listCasoDeTeste.add(massa);
+				
 			}
+			
 			file.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
+	
+		
 		return listCasoDeTeste;
 	}
 
+	/**
+	 * @author ALZ_SUP54955
+	 * @param caminho_arquivo_xlsx
+	 * @return
+	 */
+	public static Map<String, Integer> readExcelAllFileOfColunm(String caminho_arquivo_xlsx){
+		Map<String, Integer> cellNames;
+		try{
+			cellNames = new HashMap<String, Integer>();
+		    FileInputStream file = new FileInputStream(new File(caminho_arquivo_xlsx));
+			XSSFWorkbook workbook = new XSSFWorkbook(file);
+			XSSFSheet sheet = workbook.getSheetAt(0);
+			Iterator<?> rowIterator = sheet.rowIterator();
+			System.out.println("\nOpen read Excel All File Of Colunm...\n");
+			while (rowIterator.hasNext()) {
+				Row row = (Row) rowIterator.next();
+				Iterator<?> cellIterator = row.cellIterator();
+					while (cellIterator.hasNext()) {
+					if (row.getRowNum() == 0) {
+					    Cell cell = (Cell) cellIterator.next();
+						if(cell.getStringCellValue().length()>0){
+					       cell.setCellType(cell.CELL_TYPE_STRING);
+					       cell.getStringCellValue();
+					       System.out.println("\n ["+cell.getColumnIndex()+"] ["+cell.getStringCellValue().trim()+"]");
+						   cellNames.put(cell.getStringCellValue().toString().trim(), cell.getColumnIndex() );
+						}
+					}
+					if (row.getRowNum() > 0) {
+						break;
+					}
+				}
+			}
+			file.close();
+			System.out.println("\nClosed read Excel All File Of Colunm...\n");
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+	 return cellNames;
+	}
 
 }

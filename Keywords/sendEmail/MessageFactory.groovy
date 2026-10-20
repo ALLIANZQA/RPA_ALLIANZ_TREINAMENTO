@@ -80,6 +80,22 @@ public class MessageFactory extends ConfigParameters{
 		this.user = user;
 	}
 
+	/**
+	 * @author ALZ_ServiceQA
+	 * @param sender
+	 * @param pwrsender
+	 * @param emaildestination
+	 * @param subject
+	 * @param messagebory
+	 */
+	public MessageFactory(String sender, String user, String pwrsender, String emaildestination, String ccemaildestination){
+		this.sender = sender;
+		this.pwrsender = pwrsender;
+		this.emaildestination = emaildestination;
+		this.user = user;
+		this.ccemaildestination = ccemaildestination;
+	}
+
 
 	/**
 	 * @author ALZ_ServiceQA
@@ -113,6 +129,30 @@ public class MessageFactory extends ConfigParameters{
 			message.setFrom(new InternetAddress(sender));
 			Address[] toUser = InternetAddress.parse(emaildestination);
 			message.setRecipients(Message.RecipientType.TO, toUser);
+		} catch (MessagingException e){
+			throw new RuntimeException();
+		}
+	}
+
+	/**
+	 * @author ALZ_ServiceQA
+	 * @param sender
+	 * @param pwrsender
+	 * @param emaildestination
+	 * @param subject
+	 * @param messagebory
+	 * @param config
+	 * @return
+	 */
+	public static addContextAuthCC(String sender, String user, String pwrsender, String emaildestination, String ccemaildestination, Properties config  ){
+		try{
+			Sessions sessions = new Sessions();
+			message = new MimeMessage(sessions.creatAuth(user, pwrsender, config));
+			message.setFrom(new InternetAddress(sender));
+			Address[] toUser = InternetAddress.parse(emaildestination);
+			Address[] toUserCC = InternetAddress.parse(ccemaildestination);
+			message.setRecipients(Message.RecipientType.TO, toUser);
+			message.setRecipients(Message.RecipientType.CC, toUserCC);
 		} catch (MessagingException e){
 			throw new RuntimeException();
 		}
@@ -166,6 +206,24 @@ public class MessageFactory extends ConfigParameters{
 			System.err.println()
 			addContextAuth(sender,user, pwrsender, emaildestination, config );
 			addMessagesMultFilesCorretor(anexos,ramo ,tomador,apolice);
+			transport();
+			System.err.println("Create Message Files Done Auth !");
+		} catch (MessagingException e){
+			throw new RuntimeException();
+		}
+	}
+
+	/**
+	 * @author ALZ_ServiceQA
+	 * @param config
+	 */
+	public void createMessageFilesParcerias(Properties config, List<String> anexos ,String ramo ,String tomador, String apolice, String corpoEmail, String assunto){
+		try{
+			//	addContext(sender, pwrsender, emaildestination, config );
+			System.err.println()
+			//	addContextAuth(sender,user, pwrsender, emaildestination, config );
+			addContextAuthCC(sender, user, pwrsender, emaildestination,ccemaildestination, config  )
+			addMessagesMultFilesCorretor(anexos,ramo ,tomador,apolice,corpoEmail,assunto);
 			transport();
 			System.err.println("Create Message Files Done Auth !");
 		} catch (MessagingException e){

@@ -41,16 +41,18 @@ public class CotacaoRenovacaoInternaFuncionalidades extends rpaCommands{
 	
 	private static TestData data
 	private static TestData dataOperacao
+	private static TestData dataOperacaoSinistros
 	private static String testDataPath = 'Data Files/AutoFrota/CotacaoRenovacaoInternaData'
+	private static String testDataSinistroPath = 'Data Files/AutoFrota/CotacaoRenovacaoInternaListaSinistrosData'
 	private static String path
 	private static String alerta
 	private static String alertaItem
-	private static int cellCheck = 37;
+	private static int cellCheck = 40;
 	private static Instant start;
 	private static Instant end;
 	private static Duration timeLapnse;
 	private static String docName = "CotacaoRenovacaoInterna.xlsx"
-	private static int cellCheckAlert = 39;
+	private static int cellCheckAlert = 42;
 	private static boolean enviado = true;
 	private static String xpath;
 	private static String tela;
@@ -64,14 +66,21 @@ public class CotacaoRenovacaoInternaFuncionalidades extends rpaCommands{
 	 * @return
 	 */
 	public static fluxoCotacaoRenovacaoInterna(String aba, String a){
-		String dataInicio = ExtractDates.dataAtual();
-		String horaInicial =  ExtractDates.horaAtualizada();
-		start = Instant.now();
-		initDataFiles()
-		fluxoCompletoCotacaoRenovacaoInterna(aba,a)
-		reprocessaFalhas(aba,a)
-		end =  Instant.now();
-		timeLapnse = Duration.between(start, end);
+		if(FileInput.validaExistenciaDeArquivo(pathFile)){
+			FileInput.criaLog( ExtractDates.dataAtual() , pathFile);
+			FileInput.atualizaLog( ExtractDates.horaAtualizada() , pathFile);
+			FileInput.atualizaLog( Instant.now().toString(), pathFile)
+		}
+		initDataFiles();
+		initDataFilesListaSinistros();
+		fluxoCompletoCotacaoRenovacaoInterna(aba,a);
+		reprocessaFalhas(aba,a);
+		
+		FileInput.atualizaLog(Instant.now().toString(), pathFile)
+		List<String> times = rpaCommands.convertToInstant(pathFile);
+		String dataInicio = times[0];
+		String horaInicial =  times[1];
+		timeLapnse = Duration.between( Instant.parse(times[2]), Instant.parse(times[3]));
 		String dataFinal = ExtractDates.dataAtual();
 		String horaFinal =  ExtractDates.horaAtualizada();
 		try{
@@ -99,16 +108,22 @@ public class CotacaoRenovacaoInternaFuncionalidades extends rpaCommands{
 	 * @param aba
 	 * @return
 	 */
-	public static fluxoCompletoCotacaoRenovacaoInterna(aba,a){
+	public static fluxoCompletoCotacaoRenovacaoInterna(String aba,String a){
+		
+		System.out.println();
 		try{
 			if(validaDados(cellCheck)){
-				init(aba,a);
+			init(aba,a);
 				for(int i = 1; i <= data.getRowNumbers(); i++) {
 					int j =  i - 1
 					enviado = true;
 					if (data.getValue(cellCheck, i).equals('Processar')) {
 						List<String> registros = new ArrayList<>();
 						lista( registros , i)
+						System.out.println();
+						regrasDeSinistros(registros[0], registros[2], registros[15], registros[5], registros[6]);
+						System.out.println(regrasDeCoberturasDeGastosDefesa(registros[37], registros[27], registros[28]));
+						
 						if(renovacaointerna(registros,aba,a)) {
 							if(!erroTela){
 						 //     salvarEvidencias(aba, registros[1])
@@ -129,6 +144,113 @@ public class CotacaoRenovacaoInternaFuncionalidades extends rpaCommands{
 	}
 	
 	/**
+	 * @author ALZ_SUP54955
+	 * @param apolice
+	 * @param item
+	 * @param bonus
+	 * @param dtInicio
+	 * @param dtFim
+	 * @return
+	 */
+	public static String regrasDeSinistros(String apolice, String item, String bonus, String dtInicio, String dtFim ){
+		System.out.println("["+apolice+"] ["+item+"] ["+bonus+"] ["+dtInicio+"] ["+dtFim+"]" );
+		String valorFinalBonus;
+		//boolean b = existeSinistros(apolice,item);
+		//System.out.println("Existe sinistro ["+b+"]")
+		if(existeSinistros(apolice,item)){
+			if(Integer.valueOf(bonus)>0){
+		       int s = 0
+		       for(int i = 1; i <= dataOperacaoSinistros.getRowNumbers(); i++) {
+				   List<String>sinistros = new ArrayList<>();
+				   listaSinistros(sinistros , i)
+				   if(sinistros[1].toString().equals(apolice) && sinistros[2].toString().equals(item) && listaSinistros(sinistros[13].toString().trim()).equals(true) ){
+				     s++;  
+			       }
+		       }
+		       System.out.println("\nSINISTROS ["+s+"]");
+			   System.out.println("\nBONUS ["+bonus+"]");
+		       int novoBonus = Integer.valueOf(bonus) - s;
+		       valorFinalBonus = Integer.toString(novoBonus);
+		    } else {
+		      valorFinalBonus = bonus;
+		    }
+		    System.out.println("\nLISTA DE SINISTROS - VALOR DE BONUS ATUALIZADO DE ["+bonus+"] PARA ["+valorFinalBonus+"]");
+		} else {
+		
+		  if( ExtractDates.difDiasDatas(dtInicio, dtFim) > 334 ){
+			  int valorBonus = Integer.parseInt(bonus);
+			  System.out.println("Classe de bonus: ["+valorBonus+"]");
+			  if(valorBonus==10){
+				valorFinalBonus = bonus;
+			  } else {
+			    int novoBonus = valorBonus+1;
+			    valorFinalBonus = String.valueOf(novoBonus);
+			  }
+		  } else {
+		  valorFinalBonus = bonus;
+		}
+		  System.out.println("\nPRAZO MINIMO DE VIGÊNCIA - VALOR DE BONUS ATUALIZADO DE ["+bonus+"] PARA ["+valorFinalBonus+"]");
+		}
+		System.out.println("["+valorFinalBonus+"]")
+		return  valorFinalBonus; 
+	}
+
+	
+	public static String regrasDeCoberturasDeGastosDefesa(String c, String rcfdm, String rcfdc){
+		String valor;
+		int n = Integer.parseInt(c);
+		int dm = Integer.parseInt(rcfdm);
+		int dc = Integer.parseInt(rcfdc);
+		if(n==0 && dm>0 && dc>0 ){
+			valor = "10000";
+		} else {
+		  valor = c;
+		}
+		return valor;
+	}
+	/**
+	 * @author ALZ_SUP54955
+	 * @param sinistro
+	 * @return
+	 */
+	public static boolean listaSinistros(String sinistro){
+		boolean r = false
+		List<String> listOfAlerts = new ArrayList<String>()
+		listOfAlerts.add("Assistência")
+		listOfAlerts.add("Vidros")
+		System.out.println("Alert -["+sinistro+"]-")
+		for(int i = 0; i < listOfAlerts.size(); i++){
+			System.err.println("["+i+"] ["+listOfAlerts[i]+"]")
+			if(listOfAlerts[i].contains(sinistro.toString())){
+				r = true
+				break
+			}
+		}
+		System.out.println("\nAlert ["+r+"]")
+		return  r
+	}	
+	
+	/**
+	 * @author ALZ_SUP54955
+	 * @param apolice
+	 * @param item
+	 * @return
+	 */
+	public static boolean existeSinistros(String apolice, String item){
+		boolean  s = false;
+		for(int i = 1; i <= dataOperacaoSinistros.getRowNumbers(); i++) {
+				List<String>sinistros = new ArrayList<>();
+				listaSinistros(sinistros , i)
+				if(sinistros[1].toString().equals(apolice) && sinistros[2].toString().equals(item)){
+					s = true;
+					break;
+				}
+		}
+		System.out.println("Existe sinistro ["+s+"]")
+		return s;
+	}
+	
+	/**
 	 * @author Alz_sup54955
 	 * @param aba
 	 * @param apolice
@@ -139,7 +261,7 @@ public class CotacaoRenovacaoInternaFuncionalidades extends rpaCommands{
 			for(int i = 1; i <= data.getRowNumbers(); i++) {
 				int j =  i - 1
 				if (data.getValue(2, i).trim().equals(apolice)) {
-					auxiliares.WriteExcelFactory.updateSheetLine("", j, path, "Processado", 36, aba);
+					auxiliares.WriteExcelFactory.updateSheetLine("", j, path, "Processado", 39, aba);
 				}
 			}
 			
@@ -159,12 +281,13 @@ public class CotacaoRenovacaoInternaFuncionalidades extends rpaCommands{
 			initDataFiles()
 			for(int i = 1; i <= data.getRowNumbers(); i++) {
 				int j =  i - 1
-				 System.out.println("ITEM TO SAVE ["+j+"] ["+data.getValue(2, i).trim()+"] ["+apolice+"] ["+data.getValue(3, i)+"] ["+item+"]" )
+				System.out.println("ITEM TO SAVE ["+j+"] ["+data.getValue(2, i).trim()+"] ["+apolice+"] ["+data.getValue(3, i)+"] ["+item+"]" )
 				if (data.getValue(2, i).trim().equals(apolice) && data.getValue(3, i).equals(item)) {
 					System.err.println("FOUND ["+j+"] ["+data.getValue(2, i)+"] ["+apolice+"] ["+data.getValue(3, i)+"] ["+item+"]" )
-					auxiliares.WriteExcelFactory.updateSheetLine("", j, path, alerta, 38, aba);
-					auxiliares.WriteExcelFactory.updateSheetLine("", j, path, operacao, 37, aba);
-					auxiliares.WriteExcelFactory.updateSheetLine("", j, path, "Processado", 36, aba);
+					auxiliares.WriteExcelFactory.updateSheetLine("", j, path, alerta, 41, aba);
+					auxiliares.WriteExcelFactory.updateSheetLine("", j, path, operacao, 40, aba);
+					auxiliares.WriteExcelFactory.updateSheetLine("", j, path, "Processado", 39, aba);
+		//			auxiliares.WriteExcelFactory.updateSheetLine("", j, path, bonus, 38, aba);
 					break;
 				}
 			}
@@ -175,15 +298,31 @@ public class CotacaoRenovacaoInternaFuncionalidades extends rpaCommands{
 	 * @author Alz_sup54955
 	 * @param aba
 	 * @param apolice
+	 * @param item
+	 * @return
+	 */
+	public static salvarEvidenciasClasseDeBonus(int j, String aba, String  bonus ){
+		System.out.println()
+		try{
+			auxiliares.WriteExcelFactory.updateSheetLine("", j, path, bonus, 38, aba);
+		} catch (Exception e){}
+	}
+	
+	/**
+	 * @author Alz_sup54955
+	 * @param aba
+	 * @param apolice
 	 * @return
 	 */
 	public static salvarEvidenciasErro(String aba, String apolice){
+		System.out.println(data.getRowNumbers())
 		try{
 			for(int i = 1; i <= data.getRowNumbers(); i++) {
 				int j =  i - 1
+				System.out.println("["+data.getValue(2, i).trim()+"] ["+apolice+"]")
 				if (data.getValue(2, i).trim().equals(apolice)) {
-					auxiliares.WriteExcelFactory.updateSheetLine("", j, path, "Processado", 36, aba);
-					  auxiliares.WriteExcelFactory.updateSheetLine("", j, path, "Alerta: "+alerta, 38, aba);
+					auxiliares.WriteExcelFactory.updateSheetLine("", j, path, "Processado", 39, aba);
+					auxiliares.WriteExcelFactory.updateSheetLine("", j, path, "Alerta: "+alerta, 41, aba);
 				}
 			}
 			
@@ -199,45 +338,82 @@ public class CotacaoRenovacaoInternaFuncionalidades extends rpaCommands{
 	 */
 	public static boolean renovacaointerna(List<String> registros, String aba, String a){
 	 System.out.println()
+	 boolean b = false;
 	 if(retornaExistenciaDeItem(registros[1])){
 		WebUI.delay(5);
 		System.out.println()
 		MenuMatriz.producaoSinistro()
 		MenuMatriz.subMenuNome('a','Produção')
+		System.out.println()
 		menuProducao(registros)
 		dadosBasicos(registros)
 		applicationPageDadosApolFrota(registros)
-		itensDelFrota(registros,aba)
-		if(!erroTela){
-		  fluxoCompletoCotacaoRenovacaoInternaOperacaoRecursivo(aba,a,registros[1])
-		try{
-			 ajusteAlerta(registros[1])
-		 }catch (Exception e){}
+		enviado = itensDelFrota(registros,aba)
+		System.out.println()
+		if(enviado){
+		   if(!erroTela){
+		      fluxoCompletoCotacaoRenovacaoInternaOperacaoRecursivo(aba,a,registros[1])
+		      try{
+			      ajusteAlerta(registros[1])
+		      }catch (Exception e){}
 		 
-		 try{
-			alerta = recuperaValor('//*[@id="dataErrorSection"]/table/tbody/tr/td[2]', 'innerText', 0)
-			System.out.println("Alerta ["+alerta+"]")
-			if(alertListContinueList(alerta)){
-				String telaEsperada="COBERTURAS";
-				tela = StringFormatter.stopString(recuperaValor( '//*[@id="cellAppPromptHeaderArea"]', 'innerText', 0),":");
-				identificaTela(tela, telaEsperada)
-			} else {
-			//Avançar
-			clicarEmElementoDaTela('//*[@id="o_6"]', 3);
-			}
-		} catch (Exception e){}
+		      try{
+			     alerta = recuperaValor('//*[@id="dataErrorSection"]/table/tbody/tr/td[2]', 'innerText', 0)
+			     System.out.println("Alerta ["+alerta+"]")
+			     if(alertListContinueList(alerta)){
+				    String telaEsperada="COBERTURAS";
+				    tela = StringFormatter.stopString(recuperaValor( '//*[@id="cellAppPromptHeaderArea"]', 'innerText', 0),":");
+				    identificaTela(tela, telaEsperada)
+			     } else {
+			       //Avançar
+			        clicarEmElementoDaTela('//*[@id="o_6"]', 3);
+			     }
+		      } catch (Exception e){}
+		   }
 		}
-		verificaItens(aba, a, registros[2])
+		
+		if(enviado){
+		   System.out.println()
+		   verificaItens(aba, a, registros[2])
+		}
 		
 	 } else {
 		System.out.println()
 		fluxoCompletoCotacaoRenovacaoInternaOperacaoRecursivo(aba,a,registros[1])
 	 }
-		System.out.println()
-		tabelaDePrecos(registros);
-		System.out.println(processado())
-		return processado()
+	 
+	 System.out.println(enviado)
+	
+	 alerta = recuperaValor('//*[@id="dataErrorSection"]/table/tbody/tr/td[1]', 'innerText', 0)
+	 System.out.println("Alerta ["+alerta+"]")
+	 if(alerta.equals(" 01 Alerta")){ 
+	   if(!enviado){
+	      avancarTelaItens()
+		  System.out.println()
+		  tabelaDePrecos(registros);
+		  System.out.println(processado())
+		  b = processado()
+		  return b
+	   }
+	 }
+     return b;
 	}
+	
+	/**
+	 * @author ALZ_SUP54955
+	 */
+	public static void avancarTelaItens(){
+		WebUI.delay(5)
+		alerta = recuperaValor('//*[@id="dataErrorSection"]/table/tbody/tr/td[2]', 'innerText', 0)
+		System.out.println("Alerta ["+alerta+"]")
+		if(alertListContinueList(alerta)){
+			//Avançar
+			clicarEmElementoDaTela('//*[@id="o_6"]', 0);
+			avancarTelaItens()
+		}
+	}
+	
+	
 	
 	/**
 	 * @author Alz_sup54955
@@ -249,7 +425,7 @@ public class CotacaoRenovacaoInternaFuncionalidades extends rpaCommands{
 		//	init(aba,a);
 		fecharJanelaAtual(1)
 		alteraJanejaGenerica(0, 0)
-		fluxoCompletoCotacaoRenovacaoInternaOperacaoRecursivo(aba,a,)
+		fluxoCompletoCotacaoRenovacaoInternaOperacaoRecursivo(aba,a,apolice)
 	}
 	
 	/**
@@ -277,7 +453,7 @@ public class CotacaoRenovacaoInternaFuncionalidades extends rpaCommands{
 				for(int i = 1; i <= dataOperacao.getRowNumbers(); i++) {
 					int j =  i - 1
 					enviado = true;
-					if ( dataOperacao.getValue(2, i).equals(apolice) && dataOperacao.getValue(37, i).equals("Processar")) {
+					if ( dataOperacao.getValue(2, i).equals(apolice) && dataOperacao.getValue(40, i).equals("Processar")) {
 						System.out.println("\nApólice: "+dataOperacao.getValue(2, i)+"\nItem: "+dataOperacao.getValue(3, i)+"\nStatus: "+dataOperacao.getValue(37, i))
 						List<String> registros = new ArrayList<>();
 						listaOperacao( registros , i)
@@ -301,6 +477,7 @@ public class CotacaoRenovacaoInternaFuncionalidades extends rpaCommands{
 			int numItens;
 			for(int i = 1; i <= dataOperacao.getRowNumbers(); i++) {
 					int j =  i - 1
+					System.out.println(dataOperacao.getValue(37, i))
 					if (dataOperacao.getValue(37, i).equals("Processado") && dataOperacao.getValue(2, i).equals(apolice)) {
 						numProcessados = numProcessados + 1;
 					}
@@ -336,7 +513,7 @@ public class CotacaoRenovacaoInternaFuncionalidades extends rpaCommands{
 			int numItens;
 			for(int i = 1; i <= data.getRowNumbers(); i++) {
 					int j =  i - 1
-					if (data.getValue(37, i).equals("Processado") && data.getValue(2, i).equals(apolice)) {
+					if (data.getValue(40, i).equals("Processado") && data.getValue(2, i).equals(apolice)) {
 						numProcessados = numProcessados + 1;
 					}
 			}
@@ -423,7 +600,7 @@ public class CotacaoRenovacaoInternaFuncionalidades extends rpaCommands{
 					} else {
 					  fecharJanelaAtual(1)
 					  alteraJanejaGenerica(0, 0)
-					  alerta = "Falha: Tela - Menu Produção - Não apresentada";
+					  alerta = "Alerta: Falha Tela - Menu Produção - Não apresentada";
 					  enviado = false;
 					}
 				}else {
@@ -468,7 +645,7 @@ public class CotacaoRenovacaoInternaFuncionalidades extends rpaCommands{
 					} else {
 					  fecharJanelaAtual(1)
 					  alteraJanejaGenerica(0, 0)
-					  alerta = "Falha: Tela - Operações Pendentes - Não apresentada";
+					  alerta = "Alerta: Falha Tela - Operações Pendentes - Não apresentada";
 					  enviado = false;
 					}
 				}else {
@@ -480,7 +657,7 @@ public class CotacaoRenovacaoInternaFuncionalidades extends rpaCommands{
 			} catch (Exception e){
 			 fecharJanelaAtual(1)
 			 alteraJanejaGenerica(0, 0)
-			 alerta = "Falha ao carregar a tela - Operações Pendentes";
+			 alerta = "Alerta: Falha ao carregar a tela - Operações Pendentes";
 			 enviado = false;
 		   }
 	}
@@ -505,7 +682,7 @@ public class CotacaoRenovacaoInternaFuncionalidades extends rpaCommands{
 					 } else {
 					   fecharJanelaAtual(1)
 					   alteraJanejaGenerica(0, 0)
-					   alerta = "Falha: Tela - D. BÁSICOS  - Não apresentada";
+					   alerta = "Alerta: Falha Tela - D. BÁSICOS  - Não apresentada";
 					   enviado = false;
 					}
 				} else {
@@ -517,7 +694,7 @@ public class CotacaoRenovacaoInternaFuncionalidades extends rpaCommands{
 		} catch (Exception e){
 		  fecharJanelaAtual(1)
 		  alteraJanejaGenerica(0, 0)
-		  alerta = "Falha ao carregar a tela - D. BÁSICOS";
+		  alerta = "Alerta: Falha ao carregar a tela - D. BÁSICOS";
 		  enviado = false;
 	  }
 	}
@@ -572,7 +749,7 @@ public class CotacaoRenovacaoInternaFuncionalidades extends rpaCommands{
 					} else {
 					  fecharJanelaAtual(1)
 					  alteraJanejaGenerica(0, 0)
-					  alerta = "Falha: Tela - Menu Produção - Não apresentada";
+					  alerta = "Alerta: Falha Tela - Menu Produção - Não apresentada";
 					  enviado = false;
 					}
 				}else {
@@ -584,7 +761,7 @@ public class CotacaoRenovacaoInternaFuncionalidades extends rpaCommands{
 			} catch (Exception e){
 			 fecharJanelaAtual(1)
 			 alteraJanejaGenerica(0, 0)
-			 alerta = "Falha ao carregar a tela - Menu Produção";
+			 alerta = "Alerta: Falha ao carregar a tela - Menu Produção";
 			 enviado = false;
 		   }
 	}
@@ -608,7 +785,7 @@ public class CotacaoRenovacaoInternaFuncionalidades extends rpaCommands{
 						 // INICIO VIGENCIA
 						 xpath = '//*[@id="DatosGeneralesBean$fechaEfecto"]';
 						 limpaCampo(xpath, 0)
-						 preencheXpath(xpath,  ExtractDates.formatDateToBR(registros[5]), 0);
+						 preencheXpath(xpath,  ExtractDates.formatDateToBR(registros[6]), 0);
 						 //Forma de pagamento
 						 selecionaItemLista("Boleto Bancário", '//*[@id="DatosGeneralesBean$primRecibo"]', 'option');
 						 // Dia do Pagamento
@@ -618,11 +795,11 @@ public class CotacaoRenovacaoInternaFuncionalidades extends rpaCommands{
 						 // CPF/CNPJ Tomador
 						 xpath = '//*[@id="IntervinientesBean$nifTomador_doc"]';
 						 limpaCampo(xpath, 0)
-						 preencheXpath(xpath, registros[8], 0);
+						 preencheXpath(xpath, registros[9], 0);
 						 //Nome do Tomador
 						 xpath = '//*[@id="IntervinientesBean$nomFigTomadorValue"]';
 						 limpaCampo(xpath, 0)
-						 preencheXpath(xpath, registros[7], 0);
+						 preencheXpath(xpath, registros[8], 0);
 						 WebUI.delay(5);
 						 //Avançar
 						 clicarEmElementoDaTela('//*[@id="btnAceptar"]', 0);
@@ -637,7 +814,7 @@ public class CotacaoRenovacaoInternaFuncionalidades extends rpaCommands{
 					 } else {
 					   fecharJanelaAtual(1)
 					   alteraJanejaGenerica(0, 0)
-					   alerta = "Falha: Tela - D. BÁSICOS  - Não apresentada";
+					   alerta = "Alerta: Falha Tela - D. BÁSICOS  - Não apresentada";
 					   enviado = false;
 					}
 				} else {
@@ -649,7 +826,7 @@ public class CotacaoRenovacaoInternaFuncionalidades extends rpaCommands{
 		} catch (Exception e){
 		  fecharJanelaAtual(1)
 		  alteraJanejaGenerica(0, 0)
-		  alerta = "Falha ao carregar a tela - D. BÁSICOS";
+		  alerta = "Alerta: Falha ao carregar a tela - D. BÁSICOS";
 		  enviado = false;
 	  }
 	}
@@ -691,13 +868,18 @@ public class CotacaoRenovacaoInternaFuncionalidades extends rpaCommands{
 				  selecionaItemLista("Território nacional, com circulação na região de São Paulo e/ou Rio de Janeiro", '//*[@id="QuestionarioAvaliacaoRiscoFrotaBean$regiaoCirculacaoMaisFrequente"]', 'option');
 				  //Gerenciamento de Riscos
 				  xpath = '//*[@id="x_gerenciamentosDeRiscos"]';
+				  try{
 				  limpaCampo(xpath, 0)
+				  } catch (Exception e){}
+				  
 				  preencheXpath(xpath, "Não Possui", 0);
 				  //Declaração de aceite
 				  clicarEmElementoDaTela('//*[@id="x_declaradoAceite"]', 0);
+				  WebUI.delay(5);
 				  //Avançar
 				  clicarEmElementoDaTela('//*[@id="o_4"]', 0);
-				  WebUI.delay(5);
+				  WebUI.delay(15);
+				  System.out.println();
 				  try{
 					  alerta = recuperaValor('//*[@id="dataErrorSection"]/table/tbody/tr/td[2]', 'innerText', 0)
 					  System.out.println("Alerta ["+alerta+"]")
@@ -721,7 +903,7 @@ public class CotacaoRenovacaoInternaFuncionalidades extends rpaCommands{
 				  } else {
 					fecharJanelaAtual(1)
 					alteraJanejaGenerica(0, 0)
-					alerta = "Falha: Tela - Application Page Dados Apol Frota - Não apresentada";
+					alerta = "Alerta: Falha Tela - Application Page Dados Apol Frota - Não apresentada";
 					enviado = false;
 				  }
 				} else {
@@ -733,7 +915,7 @@ public class CotacaoRenovacaoInternaFuncionalidades extends rpaCommands{
 			} catch (Exception e){
 			  fecharJanelaAtual(1)
 			  alteraJanejaGenerica(0, 0)
-			  alerta = "Falha ao carregar a tela - Application Page Dados Apol Frota";
+			  alerta = "Alerta: Falha ao carregar a tela - Application Page Dados Apol Frota";
 			  enviado = false;
 		   }
 	}
@@ -764,22 +946,33 @@ public class CotacaoRenovacaoInternaFuncionalidades extends rpaCommands{
 						  if(  data.getValue(cellCheck, i).equals('Processar') && data.getValue(2, i).trim().equals(registros[1].trim()) ) {
 							 List<String> item = new ArrayList<>();
 							 lista( item , i)
-							 item[37]="Não";
-							 item[38]="1 - Próprios (PJ)";
-							 item[39]="por Itens"
-							 item[40]="N"
-							 System.out.println("INDEX ["+i+"] ITEM ["+k+"] SITUAÇÃO ["+item[11]+"]")
+							 item[15]=regrasDeSinistros(item[0], item[2], item[15], item[5], item[6]);
+							 item[42]="Não";
+							 item[43]="1 - Próprios (PJ)";
+							 item[44]="por Itens"
+							 item[45]="N"
+							 item[46]= regrasDeCoberturasDeGastosDefesa(item[37], item[27], item[28]);
+							 System.out.println("INDEX ["+i+"] ITEM ["+k+"] SITUAÇÃO ["+item[11]+"] NOVA CLASSE DE BÔNUS ["+item[15]+"] COB GASTO DEFESA ["+item[46]+"]")
 							 String it = item[2]
 							 String ap = item[1]
+							 salvarEvidenciasClasseDeBonus(j, aba,  item[15] );
 							 //Apolice
-							 if(situacao(item[11])){
+							 if(situacao(item[12])){
 								item[2]=k;
-								System.out.println("ITEM ["+item[2]+"] ITEM ["+it+"] APOLICE ["+ap+"]")
+								System.out.println("ITEM ["+item[2]+"] ITEM ["+it+"] APOLICE ["+ap+"] ["+item[15]+"]")
 								if(!erroTelaPantallaEspecificaPorDefinir()){
 								   if(gravarItem(item)) {
-									 salvarEvidenciasApoliceItem(aba ,ap,it )
+								//	  alerta = recuperaValor('//*[@id="dataErrorSection"]/table/tbody/tr/td[2]', 'innerText', 0)
+									  System.out.println("Alerta ["+alerta+"]")
+									  if(!alertListBlocList(alerta)){
+									    salvarEvidenciasApoliceItem(aba ,ap,it )
+									  } else {
+									    fecharJanelaAtual(1)
+									    alteraJanejaGenerica(0, 0)
+									    enviado = false;
+									  }
 								   } else {
-									 alerta = "Alerta: "+item[11]
+									 alerta = "Alerta: "+item[12]
 									 salvarEvidenciasApoliceItem(aba ,ap,it)
 								   }
 								   k = k+1;
@@ -788,24 +981,26 @@ public class CotacaoRenovacaoInternaFuncionalidades extends rpaCommands{
 								}
 								 
 								} else {
-								  alerta = "Alerta: "+item[11]
+								  alerta = "Alerta: "+item[12]
 								  salvarEvidenciasApoliceItem(aba ,ap,it )
 							 }
 						  }
 					}
-					System.out.println(erroTela)
+					System.out.println("erroTela ["+erroTela+"]")
 					if(!erroTela){
 					//Avançar
 					 clicarEmElementoDaTela('//*[@id="o_4"]', 3);
 					}
+					
 					System.out.println()
 				  } else {
 					fecharJanelaAtual(1)
 					alteraJanejaGenerica(0, 0)
-					alerta = "Falha: Tela - Itens de Frota - Não apresentada";
+					alerta = "Alerta: Falha Tela - Itens de Frota - Não apresentada";
 					enviado = false;
 				  }
 				} else {
+				  System.out.println("alerta ["+alerta+"]\n")
 				  fecharJanelaAtual(1)
 				  alteraJanejaGenerica(0, 0)
 				  enviado = false;
@@ -844,10 +1039,12 @@ public class CotacaoRenovacaoInternaFuncionalidades extends rpaCommands{
 						  if(  dataOperacao.getValue(cellCheck, i).equals('Processar') && dataOperacao.getValue(2, i).equals(registros[1]) ) {
 							 List<String> item = new ArrayList<>();
 							 listaOperacao( item , i)
-							 item[37]="Não";
-							 item[38]="1 - Próprios (PJ)";
-							 item[39]="por Itens"
-							 item[40]="N"
+							 item[15]=regrasDeSinistros(item[0], item[2], item[15], item[5], item[6]);
+							 item[42]="Não";
+							 item[43]="1 - Próprios (PJ)";
+							 item[44]="por Itens"
+							 item[45]="N"
+							 item[46]= regrasDeCoberturasDeGastosDefesa(item[37], item[27], item[28]);
 							 System.out.println("INDEX ["+i+"] ITEM ["+k+"] SITUAÇÃO ["+item[11]+"] ITEM ["+item[2]+"]")
 							 String it = item[2]
 							 String ap = item[1]
@@ -872,7 +1069,7 @@ public class CotacaoRenovacaoInternaFuncionalidades extends rpaCommands{
 								}
 								 
 								} else {
-								  alerta = "Alerta: "+item[11]
+								  alerta = "Alerta: "+item[12]
 								  salvarEvidenciasApoliceItem(aba ,ap,it )
 							 }
 						  }
@@ -904,7 +1101,7 @@ public class CotacaoRenovacaoInternaFuncionalidades extends rpaCommands{
 				  } else {
 					fecharJanelaAtual(1)
 					alteraJanejaGenerica(0, 0)
-					alerta = "Falha: Tela - Itens de Frota - Não apresentada";
+					alerta = "Alerta: Falha Tela - Itens de Frota - Não apresentada";
 					enviado = false;
 				  }
 				} else {
@@ -924,13 +1121,13 @@ public class CotacaoRenovacaoInternaFuncionalidades extends rpaCommands{
 	 * @author Alz_sup54955
 	 * @param apolice
 	 */
-	public static void identificaAlerta(String apolice){
+	public static void identificaAlerta(List<String> registros, String apolice){
 		System.out.println("RECURSIVO...")
 		alerta = recuperaValor('//*[@id="dataErrorSection"]/table/tbody/tr/td[2]', 'innerText', 0)
 		System.out.println("Alerta ["+alerta+"]")
 		while(alertListContinueList(alerta)){
-			  ajusteAlerta(apolice)
-			  identificaAlerta(apolice)
+			  ajusteAlerta(registros, apolice)
+			  identificaAlerta( registros , apolice)
 		}
 		System.out.println("SAINDO DO RECURSIVO...")
 	}
@@ -939,7 +1136,7 @@ public class CotacaoRenovacaoInternaFuncionalidades extends rpaCommands{
 	 * @author Alz_sup54955
 	 * @param apolice
 	 */
-	public static void ajusteAlerta(String apolice){
+	public static void ajusteAlerta(List<String> registros, String apolice){
 		System.err.println()
 		ArrayList<String> itensList = new ArrayList<String>()
 		String attrib = "style";
@@ -964,7 +1161,7 @@ public class CotacaoRenovacaoInternaFuncionalidades extends rpaCommands{
 		System.out.println("ITENS ["+itensList.size()+"]")
 		for(int n = 0; n < itensList.size(); n++){
 			System.out.println("ITEM ["+itensList.get(n)+"]")
-			ajustaItem(itensList.get(n), apolice)
+			ajustaItem(registros, itensList.get(n), apolice)
 		}
 	}
 	
@@ -974,7 +1171,7 @@ public class CotacaoRenovacaoInternaFuncionalidades extends rpaCommands{
 	 * @param numeroApolice
 	 * @return
 	 */
-	public static ajustaItem(String numeroItem, String numeroApolice){
+	public static ajustaItem(List<String> registros, String numeroItem, String numeroApolice){
 		System.out.println()
 		for(int i = 1; i <= data.getRowNumbers(); i++) {
 			int j =  i - 1
@@ -982,10 +1179,12 @@ public class CotacaoRenovacaoInternaFuncionalidades extends rpaCommands{
 			if(  data.getValue(2, i).equals(numeroApolice) && data.getValue(3, i).equals(numeroItem) ) {
 			   List<String> item = new ArrayList<>();
 			   lista( item , i)
-			   item[37]="Não";
-			   item[38]="1 - Próprios (PJ)";
-			   item[39]="por Itens"
-			   item[40]="N"
+			   item[15]=regrasDeSinistros(item[0], item[2], item[15], item[5], item[6]);
+			   item[42]="Não";
+			   item[43]="1 - Próprios (PJ)";
+			   item[44]="por Itens"
+			   item[45]="N"
+			   item[46]= regrasDeCoberturasDeGastosDefesa(item[37], item[27], item[28]);
 			   System.out.println("INDEX ["+i+"] ITEM ["+item[2]+"] APOLICE ["+item[1]+"] CHASSI ["+item[13]+"]")
 			   WebUI.delay(5);
 			   //Valor de referência
@@ -1109,12 +1308,13 @@ public class CotacaoRenovacaoInternaFuncionalidades extends rpaCommands{
 			System.out.println()
 			//Incluir item
 			clicarEmElementoDaTela('//*[@id="incluirItem"]/table/tbody/tr[1]/td/table/tbody/tr/td[2]', 0);
-			//Classe de bonus
-			selecionaItemLista(StringFormatter.removeZeroDoInicioDeNumeroString(item[14]), '//*[@id="x_classeBonus"]', 'option');
+			//Classe de Bonus 
+			//regrasClasseBonus(item);
+			selecionaItemLista(StringFormatter.removeZeroDoInicioDeNumeroString(item[15]), '//*[@id="x_classeBonus"]', 'option');
 			//Chasse
 			xpath = '//*[@id="chassi"]';
 			limpaCampo(xpath, 0)
-			preencheXpath(xpath, item[13], 0);
+			preencheXpath(xpath, item[14], 0);
 			//Lupa
 			clicarEmElementoDaTela('//*[@id="consultarChassi"]', 0);
 			System.out.println()
@@ -1123,7 +1323,7 @@ public class CotacaoRenovacaoInternaFuncionalidades extends rpaCommands{
 			//Clique na linha para escolher o veículo desejado...
 			if(!listaDeModelos(item)){
 			//Valor de referência
-			v = Integer.parseInt(item[17])
+			v = Integer.parseInt(item[19])
 			System.out.println("Valor de referência ["+v+"]")
 			
 			} else {
@@ -1136,14 +1336,14 @@ public class CotacaoRenovacaoInternaFuncionalidades extends rpaCommands{
 			
 			
 			String VDX
-			if (!item[22].toString().contains(",")) {
-				w = Integer.parseInt(item[22])
+			if (!item[23].toString().contains(",")) {
+				w = Integer.parseInt(item[23])
 			} else {
-			  VDX = item[22]
+			  VDX = item[23]
 			}
 			
 			System.out.println("Valor de referência COB Casco  VD ["+w+" "+VDX+"]")
-			if(v==9995200){
+			if(v==9995200 || v==999005200){
 			   xpath = '//*[@id="x_valorReferencia"]';
 			   if(w==0){
 				  preencheXpath(xpath, "1000", 0);
@@ -1161,15 +1361,16 @@ public class CotacaoRenovacaoInternaFuncionalidades extends rpaCommands{
 			}
 			
 			//Zero km
-			selecionaItemLista(zeroKM(item[40]), '//*[@id="x_zeroKMFrota"]', 'option');
+			selecionaItemLista(zeroKM(item[45]), '//*[@id="x_zeroKMFrota"]', 'option');
 			//Estado
-			selecionaItemLista(item[15], '//*[@id="x_estado"]', 'option');
+			selecionaItemLista(item[16], '//*[@id="x_estado"]', 'option');
 			//Municipio
-			selecionaItemLista(item[16], '//*[@id="x_municipio"]', 'option');
+			selecionaItemLista(item[17], '//*[@id="x_municipio"]', 'option');
 			//Propriedade
 			String s = retornaItemSelecionadoLista('//*[@id="x_propriedadeVeiculo"]', 'option', "selected" )
+			System.out.println("["+s+"] ["+item[43]+"]")
 			if(s.contains("[SELECIONE...]")){
-				selecionaItemLista(item[38], '//*[@id="x_propriedadeVeiculo"]', 'option');
+				selecionaItemLista(item[43], '//*[@id="x_propriedadeVeiculo"]', 'option');
 			}
 			//Gravar
 			clicarEmElementoDaTela('//*[@id="x_btngravar"]', 0);
@@ -1178,6 +1379,7 @@ public class CotacaoRenovacaoInternaFuncionalidades extends rpaCommands{
 			//Avançar
 			clicarEmElementoDaTela('//*[@id="o_4"]', 0);
 			WebUI.delay(15);
+			System.out.println()
 			try{
 				alerta = recuperaValor('//*[@id="dataErrorSection"]/table/tbody/tr/td[2]', 'innerText', 0)
 				System.out.println("Alerta ["+alerta+"]")
@@ -1185,98 +1387,105 @@ public class CotacaoRenovacaoInternaFuncionalidades extends rpaCommands{
 					//Avançar
 					clicarEmElementoDaTela('//*[@id="o_4"]', 0);
 				}
+				
 			} catch (Exception e){}
+	
+			if(alerta.contains(" Houve um erro.")){
+				fecharJanelaAtual(1)
+				alteraJanejaGenerica(0, 0)
+				System.out.println()
+				fluxoCompletoCotacaoRenovacaoInternaOperacaoRecursivo('CotacaoRenovacaoInterna',"PRD",item[1])
+				
+			} else {
 			
-			WebUI.delay(15);
-			System.out.println(item[2])
-			//Filtro
-			selecionaItemLista(item[39], '//*[@id="x_filtro"]', 'option');
-			//Seleciona item
-			selecionaItemLista(item[2].toString(), '//*[@id="coberturasSectionContent"]/table/tbody/tr/td[1]/table/tbody/tr[3]/td/table/tbody/tr[1]/td/table/tbody/tr/td[2]/table', 'option');
+			  WebUI.delay(15);
+			  System.out.println(item[2])
+			  //Filtro
+			  selecionaItemLista(item[44], '//*[@id="x_filtro"]', 'option');
+			  //Seleciona item
+			  selecionaItemLista(item[2].toString(), '//*[@id="coberturasSectionContent"]/table/tbody/tr/td[1]/table/tbody/tr[3]/td/table/tbody/tr[1]/td/table/tbody/tr/td[2]/table', 'option');
 			
-			//TIPO COBERTURA CASCO
-			int t = Integer.parseInt(item[23])
+			  //TIPO COBERTURA CASCO
+			  int t = Integer.parseInt(item[24])
 		
-			System.out.println(t)
-			if(t==0){
+			  System.out.println(t)
+			  if(t==0){
 				//Contrata Casco e(ou) Val. Determinado
 				selecionaItemLista("Não", '//*[@id="x_val_det"]', 'option');
 				//FIPE
 				selecionaItemLista("0", '//*[@id="x_perc_fipe"]', 'option');
 				//selecionaItemListaAtributo("O",'//*[@id="x_perc_fipe"]' , 'option', 'value' )
-			} else {
-			//FIPE
-			regraFipe(item, v)
-			//FRANQUIA
-			selecionaItemLista(tipoFranquia(item[25]), '//*[@id="x_tipo_franquia"]', 'option');
-			}
+			  } else {
+			    //FIPE
+			    regraFipe(item, v)
+			    //FRANQUIA
+			    selecionaItemLista(tipoFranquia(item[26]), '//*[@id="x_tipo_franquia"]', 'option');
+			  }
 			
-			//RCF - Danos Materiais
-			selecionaItemLista(CurrencyMonetary.formataValorMonetario(item[26]).trim(), '//*[@id="x_danos_materiais"]', 'option');
-			//RCF - Danos Corporais
-			selecionaItemLista(CurrencyMonetary.formataValorMonetario(item[27]).trim(), '//*[@id="x_danos_corporais"]', 'option');
-			//RCF - Danos Morais e Estéticos
-			selecionaItemLista(CurrencyMonetary.formataValorMonetario(item[28]).trim(), '//*[@id="x_danos_morais"]', 'option');
+			  //RCF - Danos Materiais
+			  selecionaItemLista(CurrencyMonetary.formataValorMonetario(item[27]).trim(), '//*[@id="x_danos_materiais"]', 'option');
+			  //RCF - Danos Corporais
+			  selecionaItemLista(CurrencyMonetary.formataValorMonetario(item[28]).trim(), '//*[@id="x_danos_corporais"]', 'option');
+			  //Gastos com Defesa
+			  selecionaItemListaAtributo(item[46], '//*[@id="x_gastos_defesa"]', 'option', "value");
+			  //RCF - Danos Morais e Estéticos
+			  selecionaItemLista(CurrencyMonetary.formataValorMonetario(item[29]).trim(), '//*[@id="x_danos_morais"]', 'option');
 			
-			t = Integer.parseInt(item[29])
-			System.out.println("APP - Morte ["+t+"]")
-			if(t>0){
-			//APP - Morte
-			xpath = '//*[@id="x_app_morte"]';
-			preencheXpath(xpath,item[29].trim(), 0);
-			commandTAB(xpath)
-			}
+			  t = Integer.parseInt(item[30])
+			  System.out.println("APP - Morte ["+t+"]")
+			  if(t>0){
+			    //APP - Morte
+			    xpath = '//*[@id="x_app_morte"]';
+			    preencheXpath(xpath,item[30].trim(), 0);
+			    commandTAB(xpath)
+			  }
 			
-			t = Integer.parseInt(item[30].replace("{", ""))
-			System.out.println("APP - Invalidez ["+t+"]")
-			if(t>0){
-			//APP - Invalidez
-			xpath = '//*[@id="x_app_invalidez"]';
-			preencheXpath(xpath,item[30].trim(), 0);
-			commandTAB(xpath)
-			}
+			  t = Integer.parseInt(item[31].replace("{", ""))
+			  System.out.println("APP - Invalidez ["+t+"]")
+			  if(t>0){
+			    //APP - Invalidez
+			    xpath = '//*[@id="x_app_invalidez"]';
+			    preencheXpath(xpath,item[31].trim(), 0);
+			    commandTAB(xpath)
+			  }
 			
-			//Vidros, Lant., Faróis e Retr.
-			selecionaItemLista(validaValorVidroContratado(item[31]), '//*[@id="x_vidros"]', 'option');
-			//Acessórios gerais
-			xpath = '//*[@id="x_aces_gerais"]';
-			t = Integer.parseInt(item[32])
-			System.out.println(t)
-			if(t>0){ preencheXpath(xpath, item[32], 0);
-			commandTAB(xpath)}
-			//Blindagem
-			xpath = '//*[@id="x_blindagem"]';
-			t = item[33].length()
-			System.out.println(t)
-			if(t>0){preencheXpath(xpath, item[33], 0);
-			commandTAB(xpath)}
-			//Assistência 24 horas
-			selecionaItemLista(validaValorContratadoAss24hs(item[34]), '//*[@id="x_assist24h"]', 'option');
-			//Carro Reserva
-			selecionaItemLista(validaValorContratadoCarroReserva(item[35]), '//*[@id="x_carro_reserva"]', 'option');
-			//Aplicar Configuração
-			clicarEmElementoDaTela('//*[@id="o_3"]', 0);
-			WebUI.delay(15);
-			String msg = pegaMSGAlerta();
-			System.out.println("["+msg+"]")
-			System.out.println()
-			okAlerta();
-			WebUI.delay(25)
-			//Voltar
-			clicarEmElementoDaTela('//*[@id="o_5"]', 0);
-			System.out.println()
-			if(itemUmSelecionado){
-			  alerta = "Versão do veículo não localizada. Foi selecionada a primeira opção da lista.: "+modelo;
-			} else {
-			  alerta = "Cobertura gravada conforme escolhido"
+			  //Vidros, Lant., Faróis e Retr.
+			  selecionaItemLista(validaValorVidroContratado(item[32]), '//*[@id="x_vidros"]', 'option');
+			  //Acessórios gerais
+			  xpath = '//*[@id="x_aces_gerais"]';
+			  t = Integer.parseInt(item[33])
+			  System.out.println(t)
+			  if(t>0){ preencheXpath(xpath, item[33], 0);
+			    commandTAB(xpath)}
+			  //Blindagem
+			  xpath = '//*[@id="x_blindagem"]';
+			  t = item[34].length()
+			  System.out.println(t)
+			  if(t>0){preencheXpath(xpath, item[34], 0);
+			  commandTAB(xpath)}
+			  //Assistência 24 horas
+			  selecionaItemLista(validaValorContratadoAss24hs(item[35]), '//*[@id="x_assist24h"]', 'option');
+			  //Carro Reserva
+			  selecionaItemLista(validaValorContratadoCarroReserva(item[36]), '//*[@id="x_carro_reserva"]', 'option');
+			  //Aplicar Configuração
+			  clicarEmElementoDaTela('//*[@id="o_3"]', 0);
+			  WebUI.delay(15);
+			  String msg = pegaMSGAlerta();
+			  System.out.println("["+msg+"]")
+			  System.out.println()
+			  okAlerta();
+			  WebUI.delay(25)
+			  //Voltar
+			  clicarEmElementoDaTela('//*[@id="o_5"]', 0);
+			  System.out.println()
+			  if(itemUmSelecionado){
+			     alerta = "Versão do veículo não localizada. Foi selecionada a primeira opção da lista.: "+modelo;
+			  } else {
+			     alerta = "Cobertura gravada conforme escolhido"
+				 enviado = true;
+			  }
+			  enviado = true;
 			}
-			enviado = true;
-		//	} else {
-		//	  System.out.println()
-		//	  String modelo = selecionaPrimeiroItemListaDuploClick('//*[@id="tbodylistaVeiculos"]', 'tr')
-		//	  alerta = "Versão do veículo não localizada. Foi selecionada a primeira opção da lista.: "+modelo;
-		//	  enviado = true;
-		//	}
 		} catch (Exception e){}
 		return enviado;
 	}
@@ -1306,11 +1515,11 @@ public class CotacaoRenovacaoInternaFuncionalidades extends rpaCommands{
 	 * @param v
 	 */
 	public static void regraFipe(List<String> item, int v){
-		System.out.println("Regra FIPE ["+v+"] ["+item[24]+"]")
-		if( v==9995200 && item[23].equals("1")){
+		System.out.println("Regra FIPE ["+v+"] ["+item[24]+"] ["+item[25]+"]")
+		if( v==9995200 && item[24].equals("1")){
 			selecionaItemLista("100", '//*[@id="x_perc_fipe"]', 'option');
 		} else {
-		  selecionaItemLista(formataFIPE(item[24]), '//*[@id="x_perc_fipe"]', 'option');
+		  selecionaItemLista(formataFIPE(item[25]), '//*[@id="x_perc_fipe"]', 'option');
 		}
 	}
 	
@@ -1322,22 +1531,23 @@ public class CotacaoRenovacaoInternaFuncionalidades extends rpaCommands{
 	public static tabelaDePrecos(List<String> registros){
 		try{
 		System.out.println()
-		if(enviado){
+		if(!enviado){
 			WebUI.delay(10);
 			alerta = recuperaValor('//*[@id="dataErrorSection"]/table/tbody/tr/td[2]', 'innerText', 0)
 			if(!alertListBlocList(alerta)){
 				tela = recuperaValor( '//*[@id="cellAppPromptHeaderArea"]', 'innerText', 0)
+				System.out.println()
 				if(tela.contains("TABELA DE PREÇOS")){
 					System.out.println()
 					//COMISSÃO
 					String c = recuperaValor( '//*[@id="ComisionamientoBean$porcComision"]', 'value', 0).replaceAll(",00", "")
 					int comRec = Integer.parseInt(c);
-					int comBas = Integer.parseInt(registros[12].toString().replaceAll(",00", ""));
+					int comBas = Integer.parseInt(registros[13].toString().replaceAll(",00", ""));
 					System.out.println("comRec ["+comRec+"] comBas ["+comBas+"]")
 					if(comRec!=comBas){
 					   xpath = '//*[@id="ComisionamientoBean$porcComision"]'
 					   limpaCampo(xpath, 0)
-					   preencheXpath(xpath,registros[12].trim(), 0);
+					   preencheXpath(xpath,registros[13].trim(), 0);
 					   //CALCULAR
 					   clicarEmElementoDaTela('//*[@id="btnCalcular"]', 0);
 					}
@@ -1452,7 +1662,7 @@ public class CotacaoRenovacaoInternaFuncionalidades extends rpaCommands{
 			if(listaDeTelas(tela)){
 				System.out.println()
 			  //Versão
-			  if(selecionaItemListaDuploClick(item[20], '//*[@id="tbodylistaVeiculos"]', 'tr')){
+			  if(selecionaItemListaDuploClick(item[21], '//*[@id="tbodylistaVeiculos"]', 'tr')){
 				WebUI.delay(2);
 				fechaAlerta();
 				b = true
@@ -1528,8 +1738,8 @@ public class CotacaoRenovacaoInternaFuncionalidades extends rpaCommands{
 				if(data.getValue(cellCheck, i).equals('Processar')) {
 					System.out.println()
 					if (data.getValue(2, i).trim().equals(apolice) && data.getValue(3, i).equals(item)) {
-						auxiliares.WriteExcelFactory.updateSheetLine("", j, path, "Processado", 35, aba);
-						auxiliares.WriteExcelFactory.updateSheetLine("", j, path, alerta, 37, aba);
+						auxiliares.WriteExcelFactory.updateSheetLine("", j, path, "Processado", 38, aba);
+						auxiliares.WriteExcelFactory.updateSheetLine("", j, path, alerta, 40, aba);
 						break
 					}
 				}
@@ -1565,6 +1775,7 @@ public class CotacaoRenovacaoInternaFuncionalidades extends rpaCommands{
 			initDataFiles();
 			// ENVIA E-MAIL DINAMICO
 			emailDinamico.enviaEmailDinamico(sender, emaildestination, tipoAba, path, docName, emailDinamico.listaDeAlertas(data, cellCheckAlert)  , hours, horaInicial, horaFinal,  GetHost.getHostname() , dataInicio, dataFinal, "" );
+			FileInput.deletaArquivoPdf(pathFile);
 		 }
 	  } catch (Exception e){}
 	}
@@ -1608,6 +1819,25 @@ public class CotacaoRenovacaoInternaFuncionalidades extends rpaCommands{
 	 * @param v
 	 * @return
 	 */
+	public static List<String> listaSinistros( List<String> registros , int v){
+		for (int i = 1; i <= dataOperacaoSinistros.getColumnNumbers(); i++) {
+			int d = i -1
+			registros[d] = dataOperacaoSinistros.getValue(i, v).trim()
+		}
+
+		for (int j = 0; j < registros.size();j++ ){
+			System.err.println("["+j+"] ["+registros[j]+"]")
+		}
+		return registros
+	}
+	
+	
+	/**
+	 * @author ALZ_ServiceQA
+	 * @param sinistro
+	 * @param v
+	 * @return
+	 */
 	public static List<String> listaOperacao( List<String> registros , int v){
 		for (int i = 1; i <= dataOperacao.getColumnNumbers(); i++) {
 			int d = i -1
@@ -1638,6 +1868,16 @@ public class CotacaoRenovacaoInternaFuncionalidades extends rpaCommands{
 		dataOperacao = findTestData(testDataPath)
 		path = dataOperacao.sourceUrl
 	}
+	
+	/**
+	 * @author T_DCDias
+	 * @return
+	 */
+	public static initDataFilesListaSinistros(){
+		dataOperacaoSinistros = findTestData(testDataSinistroPath)
+	}
+	
+	
 	
 	/**
 	 * @author T_DCDias
@@ -1677,7 +1917,7 @@ public class CotacaoRenovacaoInternaFuncionalidades extends rpaCommands{
 	 */
 	public static boolean processado(){
 		boolean b = false;
-		if(enviado){
+		if(!enviado){
 			b = true;
 		}
 		return b;
@@ -1768,5 +2008,25 @@ public class CotacaoRenovacaoInternaFuncionalidades extends rpaCommands{
 		System.out.println("\nAlert ["+r+"]")
 		return  r
 	}
+	
+	/**
+	 * @author ALZ_SUP54955
+	 * @param item
+	 */
+	public static void regrasClasseBonus(List<String> item){
+		if( ExtractDates.difDiasDatas(item[5], item[6]) > 334 ){
+			int bonus = Integer.parseInt(item[15]);
+			System.out.println("Classe de bonus: ["+bonus+"]");
+			if(bonus==10){
+				selecionaItemLista(StringFormatter.removeZeroDoInicioDeNumeroString(item[15]), '//*[@id="x_classeBonus"]', 'option');
+			} else {
+			  int novoBonus = bonus+1;
+			  selecionaItemLista(StringFormatter.removeZeroDoInicioDeNumeroString( String.valueOf(novoBonus) ), '//*[@id="x_classeBonus"]', 'option');
+			}
+		} else {
+		  selecionaItemLista(StringFormatter.removeZeroDoInicioDeNumeroString(item[15]), '//*[@id="x_classeBonus"]', 'option');
+		}
+	}
+	
 	
 }

@@ -59,7 +59,8 @@ public class SantanderEnvioDeMensagensSasam extends rpaCommands{
 						novaFichaGestaoPorAtributo(formataProposta(inativacao[51], ' / 0 / 0'),'')
 						WebUI.delay(10);
 					} catch (Exception e){}
-					selecionaItemNaTabelaFichaGestao("Publico", 'Proposta')
+				//	selecionaItemNaTabelaFichaGestao("Publico", 'Proposta')
+					selecionaItemNaTabelaFichaGestaoSTRArgs('Proposta',"Publico","No Privado" )
 					WebUI.delay(30);
 					renomearArquivo(fileToDell, inativacao[51].substring(0, 9), ".pdf")
 					fecharJanelaAtual(2)
@@ -76,7 +77,7 @@ public class SantanderEnvioDeMensagensSasam extends rpaCommands{
 				try{
 					//System.err.println("[PROPOSTA ["+inativacao[51].substring(0, 9)+"]")
 					//PROPOSTA
-					preencheXpath('//*[@id="apolice"]', inativacao[28].substring(0, 9) , 1)
+					preencheXpath('//*[@id="apolice"]', inativacao[29].substring(0, 9) , 1)
 					//PESQUISAR
 					selecionaItemLista('Pesquisar','//*[@id="divAppContent"]/table/tbody/tr[1]/td/table/tbody/tr[2]/td' , 'td' )
 					//BT FICHA GESTÃO
@@ -87,12 +88,13 @@ public class SantanderEnvioDeMensagensSasam extends rpaCommands{
 					deletaArquivoGenerico(fileToDell);
 					System.out.println()
 					try{
-						novaFichaGestaoPorAtributo(formataProposta(inativacao[28], ' / 0 / 0'),'')
+						novaFichaGestaoPorAtributo(formataProposta(inativacao[29], ' / 0 / 0'),'')
 						WebUI.delay(10);
 					} catch (Exception e){}
-					selecionaItemNaTabelaFichaGestao("Publico", 'Proposta')
+					//selecionaItemNaTabelaFichaGestao("Publico", 'Proposta')
+					selecionaItemNaTabelaFichaGestaoSTRArgs('Proposta',"Publico","No Privado")
 					WebUI.delay(30);
-					renomearArquivo(fileToDell, inativacao[28].substring(0, 9), ".pdf")
+					renomearArquivo(fileToDell, inativacao[29].substring(0, 9), ".pdf")
 					fecharJanelaAtual(2)
 					alteraJanejaGenerica(1, 5)
 					fecharJanelaAtual(1)
@@ -135,6 +137,39 @@ public class SantanderEnvioDeMensagensSasam extends rpaCommands{
 			System.err.println("Exception - selecionaItemNaTabela")
 		}
 	}
+	
+	
+	/**
+	 * @author T_DCDias
+	 * @return
+	 * Metodo de seleção de itens na tela de ficha e gestão
+	 */
+	public static selecionaItemNaTabelaFichaGestaoSTRArgs(String txnota, String ...args ){
+		String[] valores = args;
+		System.out.println(" ["+valores[0]+"] ["+valores[1]+"]")
+		selecionaListaDeElementos('//*[@id="tablaLista"]/app-list-file/div/div/div/table','tr')
+		int size = listOfElements.size()
+		System.out.println("SIZE ["+size+"]")
+		try{
+			for(int i=0; i<size; i++){
+				if(identificaDadosNaLinha(valores[0].toString() , txnota, retornaLinhaTabelaFichaGestao(i) )){
+					System.out.println()
+					painelDownload(i)
+					break
+				}
+				
+				if(identificaDadosNaLinha(valores[1].toString() , txnota, retornaLinhaTabelaFichaGestao(i) )){
+					System.out.println()
+					painelDownload(i)
+					break
+				}
+			}
+		} catch (Exception e){
+			System.err.println("Exception - selecionaItemNaTabela")
+		}
+	}
+	
+	
 
 	/**
 	 * @author be54955

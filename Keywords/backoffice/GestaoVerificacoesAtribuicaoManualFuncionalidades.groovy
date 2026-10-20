@@ -88,14 +88,19 @@ public class GestaoVerificacoesAtribuicaoManualFuncionalidades extends rpaComman
 	 */
 	public static fluxoGestaoVerificacoesAtribuicaoManual(String aba, String a){
 		System.out.println()
-		String dataInicio = ExtractDates.dataAtual();
-		String horaInicial =  ExtractDates.horaAtualizada();
-		start = Instant.now();
+		if(FileInput.validaExistenciaDeArquivo(pathFile)){
+			FileInput.criaLog( ExtractDates.dataAtual() , pathFile);
+			FileInput.atualizaLog( ExtractDates.horaAtualizada() , pathFile);
+			FileInput.atualizaLog( Instant.now().toString(), pathFile)
+		}
 		initDataFiles()
 		fluxoCompletoGestaoVerificacoesAtribuicaoManual(aba,a)
 		reprocessaFalhas(aba,a)
-		end =  Instant.now();
-		timeLapnse = Duration.between(start, end);
+		FileInput.atualizaLog(Instant.now().toString(), pathFile)
+		List<String> times = rpaCommands.convertToInstant(pathFile);
+		String dataInicio = times[0];
+		String horaInicial =  times[1];
+		timeLapnse = Duration.between( Instant.parse(times[2]), Instant.parse(times[3]));
 		String dataFinal = ExtractDates.dataAtual();
 		String horaFinal =  ExtractDates.horaAtualizada();
 		try{
@@ -175,6 +180,7 @@ public class GestaoVerificacoesAtribuicaoManualFuncionalidades extends rpaComman
 		String tela = true;
 		try{
 			informacoesAdicionaisDoRisco(registros)
+			WebUI.delay(10);
 			alerta = recuperaValor('//*[@id="dataErrorSection"]/table/tbody/tr/td[2]', 'innerText', 5)
 			System.out.println("Alerta ["+alerta+"]")
 			if(alertListBlocList(alerta)){
@@ -188,6 +194,7 @@ public class GestaoVerificacoesAtribuicaoManualFuncionalidades extends rpaComman
 			   if(!alerta.contains("Existe uma averiguação ativa para esta apólice")){
 			      novaAveriguacao(registros)
 			   }
+			   WebUI.delay(10);
 			   tratamentoDeAlertas()
 			   if(enviado){
 			      selecao(registros)
@@ -506,6 +513,7 @@ public class GestaoVerificacoesAtribuicaoManualFuncionalidades extends rpaComman
 			initDataFiles();
 			// ENVIA E-MAIL DINAMICO
 			emailDinamico.enviaEmailDinamico(sender, emaildestination, tipoAba, path, docName, emailDinamico.listaDeAlertas(data, cellCheckAlert)  , hours, horaInicial, horaFinal,  GetHost.getHostname() , dataInicio, dataFinal, "" );
+			FileInput.deletaArquivoPdf(pathFile);
 		 }
 	  } catch (Exception e){}
 	}

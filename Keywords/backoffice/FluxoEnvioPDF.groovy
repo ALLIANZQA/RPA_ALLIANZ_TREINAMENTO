@@ -61,18 +61,24 @@ public class FluxoEnvioPDF extends backofficeFuncionalidades{
 	 * @return
 	 */
 	public static fluxoEnvioDePDF(String aba){
+		System.out.println();
 		carregalistaExcel(aba)
 		if(carregaDados()){
-			String dataInicio = ExtractDates.dataAtual();
-			String horaInicial =  ExtractDates.horaAtualizada();
-			start = Instant.now();
+			if(FileInput.validaExistenciaDeArquivo(pathFile)){
+			FileInput.criaLog( ExtractDates.dataAtual() , pathFile);
+			FileInput.atualizaLog( ExtractDates.horaAtualizada() , pathFile);
+			FileInput.atualizaLog( Instant.now().toString(), pathFile)
+		    }
 			fluxoCompletoEnvioDePDF(aba)
 			//reprocessaFalhas(aba)
 			//enviarEmailPdf(aba)
-			end =  Instant.now();
-			timeLapnse = Duration.between(start, end);
-			String dataFinal = ExtractDates.dataAtual();
-			String horaFinal =  ExtractDates.horaAtualizada();
+			FileInput.atualizaLog(Instant.now().toString(), pathFile)
+		    List<String> times = convertToInstant(pathFile);
+		    String dataInicio = times[0];
+		    String horaInicial =  times[1];
+		    timeLapnse = Duration.between( Instant.parse(times[2]), Instant.parse(times[3]));
+		    String dataFinal = ExtractDates.dataAtual();
+		    String horaFinal =  ExtractDates.horaAtualizada();
 			try{
 			  enviarEmailPdfDinamico(aba, timeLapnse, dataInicio, dataFinal, horaInicial, horaFinal );
 			} catch (Exception e){
@@ -295,7 +301,7 @@ public class FluxoEnvioPDF extends backofficeFuncionalidades{
 	 * @return
 	 */
 	public static fichaGestao(String apolice, String aplica, String envio, String nota, String txnota){
-		System.out.println()
+		System.out.println("["+apolice+"] ["+aplica+"]")
 		try{
 			novaFichaGestaoPorAtributo(apolice,aplica)
 			WebUI.delay(10);
@@ -556,7 +562,7 @@ public class FluxoEnvioPDF extends backofficeFuncionalidades{
 	 * Metodo de seleção de itens na tela de ficha e gestão
 	 */
 	public static selecionaItemNaTabelaFichaGestao(String data, String txnota,int linhas){
-		System.err.println()
+		System.err.println("["+data+"] ["+txnota+"] ["+linhas+"]")
 		download = false
 		try{
 			for(int i=0; i<=linhas; i++){
@@ -650,7 +656,7 @@ public class FluxoEnvioPDF extends backofficeFuncionalidades{
 			initDataFiles();
 			// ENVIA E-MAIL DINAMICO
 			emailDinamico.enviaEmailDinamico(sender, emaildestination, tipoAba, path, docName, emailDinamico.listaDeAlertas(data, cellCheckAlert)  , hours, horaInicial, horaFinal,  GetHost.getHostname() , dataInicio, dataFinal, "" );
-	//	 }
+	        FileInput.deletaArquivoPdf(pathFile);
 	  } catch (Exception e){}
 	}
 

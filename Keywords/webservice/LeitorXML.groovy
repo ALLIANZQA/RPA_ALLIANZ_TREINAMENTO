@@ -57,13 +57,6 @@ public class LeitorXML {
 
 
 
-	public static List<CasoDeTeste> carrega(InputStream input) {
-		XStream xstream = new XStream(new DomDriver());
-		xstream.alias("pacote", CasoDeTeste.class);
-		xstream.addImplicitCollection(CasoDeTeste.class, "pacote")
-		return (List<CasoDeTeste>) xstream.fromXML(input);
-	}
-
 
 	public static carregaXmlTest(){
 

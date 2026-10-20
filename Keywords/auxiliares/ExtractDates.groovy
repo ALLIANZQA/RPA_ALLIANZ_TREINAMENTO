@@ -1,4 +1,6 @@
-﻿package auxiliares
+﻿
+
+package auxiliares
 
 import static com.kms.katalon.core.checkpoint.CheckpointFactory.findCheckpoint;
 import static com.kms.katalon.core.testcase.TestCaseFactory.findTestCase;
@@ -19,6 +21,8 @@ import com.kms.katalon.core.webui.keyword.WebUiBuiltInKeywords as WebUI;
 import internal.GlobalVariable;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 
 /**
  * @author T_DCDias
@@ -390,5 +394,40 @@ public class ExtractDates {
 		} catch (Exception e){
 		}
 		return strdt
+	}
+	
+	/**
+	 *
+	 * @param dt1
+	 * @param dt2
+	 * @return
+	 */
+	public static long difDiasDatas(String dt1, String dt2){
+		
+		int diaUm;
+		int mesUm;
+		int anoUm;
+		
+		int diaDois;
+		int mesDois;
+		int anoDois;
+		
+		DateTimeFormatter formatador = DateTimeFormatter.ofPattern("yyyyMMdd");
+		LocalDate data = LocalDate.parse(dt1, formatador);
+		diaUm = data.getDayOfMonth();
+		mesUm = data.getMonthValue();
+		anoUm = data.getYear();
+		
+		DateTimeFormatter formatadorDois = DateTimeFormatter.ofPattern("yyyyMMdd");
+		LocalDate dataDois = LocalDate.parse(dt2, formatadorDois);
+		diaDois = dataDois.getDayOfMonth();
+		mesDois = dataDois.getMonthValue();
+		anoDois = dataDois.getYear();
+		
+		LocalDate dataInicial = LocalDate.of(anoUm,mesUm,diaUm);
+		LocalDate dataFinal = LocalDate.of(anoDois,mesDois,diaDois);
+		long difDias = ChronoUnit.DAYS.between(dataInicial, dataFinal);
+		System.out.println("\nNúmeros de dias entre ["+diaUm+"-"+mesUm+"-"+anoUm+"] e ["+diaDois+"-"+mesDois+"-"+anoDois+"] é ["+difDias+"]\n");
+		return difDias;
 	}
 }

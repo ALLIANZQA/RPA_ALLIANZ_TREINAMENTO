@@ -22,6 +22,14 @@ import sendEmail.envioDeEmail;
 
 
 
+
+System.out.println()
+String str = "Assistência Não Danos".replace("Não","não")
+System.out.println("Alerta ["+str+"]")
+
+
+
+
 String s = "01 Data Averiguação *	 Data deve ser igual ou posterior ao dia de hoje 02 Telefone 1 *	 Campo necessário"
 campoObrigatorio(s)
 public static boolean campoObrigatorio(String alerta){

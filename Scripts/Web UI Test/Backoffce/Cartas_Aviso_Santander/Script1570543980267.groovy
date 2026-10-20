@@ -41,7 +41,7 @@ try{
      * Ajuste na comunicação HTML de renovação automática
      * 
 	 */
-	 backoffice.SantanderEnvioDeMensagens.enviaMensagem('PRD','RenovaSantander','NR',"02/01/2026")
+	 backoffice.SantanderEnvioDeMensagens.enviaMensagem('PRD','RenovaSantander','15',"01/11/2026")
 	 WebUI.closeBrowser()
    } catch (Exception e){
 	 System.err.println("Falha ao enviar cartas de aviso santander")

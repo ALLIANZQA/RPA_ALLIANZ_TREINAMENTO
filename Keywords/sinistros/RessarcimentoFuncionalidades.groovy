@@ -34,6 +34,7 @@ import sendEmail.emailDinamico;
 import auxiliares.timer;
 import auxiliares.GetHost;
 import auxiliares.CurrencyMonetary;
+import auxiliares.WriteExcelFactory;
 
 import static com.kms.katalon.core.checkpoint.CheckpointFactory.findCheckpoint
 import static com.kms.katalon.core.testcase.TestCaseFactory.findTestCase
@@ -42,7 +43,7 @@ import static com.kms.katalon.core.testobject.ObjectRepository.findTestObject
 import static com.kms.katalon.core.testobject.ObjectRepository.findWindowsObject
 
 public class RessarcimentoFuncionalidades extends rpaCommands{
-	
+
 	private static TestData data
 	private static TestData dataOperacao
 	private static String testDataPath = 'Data Files/Sinistro/Ressarcimento/RessarcimentoData'
@@ -61,7 +62,8 @@ public class RessarcimentoFuncionalidades extends rpaCommands{
 	private static boolean erroTela = false;
 	private static String msgAlerta
 	private static String status
-	
+	private static Map<String, Integer> cellNames;
+
 	/**
 	 * @author be54955
 	 * @param aba
@@ -69,14 +71,19 @@ public class RessarcimentoFuncionalidades extends rpaCommands{
 	 */
 	public static fluxoRessarcimento(String aba, String a){
 		System.out.println()
-		String dataInicio = ExtractDates.dataAtual();
-		String horaInicial =  ExtractDates.horaAtualizada();
-		start = Instant.now();
+		if(FileInput.validaExistenciaDeArquivo(pathFile)){
+			FileInput.criaLog( ExtractDates.dataAtual() , pathFile);
+			FileInput.atualizaLog( ExtractDates.horaAtualizada() , pathFile);
+			FileInput.atualizaLog( Instant.now().toString(), pathFile)
+		}
 		initDataFiles()
 		fluxoCompletoRessarcimento(aba,a)
 		reprocessaFalhas(aba,a)
-		end =  Instant.now();
-		timeLapnse = Duration.between(start, end);
+		FileInput.atualizaLog(Instant.now().toString(), pathFile)
+		List<String> times = rpaCommands.convertToInstant(pathFile);
+		String dataInicio = times[0];
+		String horaInicial =  times[1];
+		timeLapnse = Duration.between( Instant.parse(times[2]), Instant.parse(times[3]));
 		String dataFinal = ExtractDates.dataAtual();
 		String horaFinal =  ExtractDates.horaAtualizada();
 		try{
@@ -84,7 +91,7 @@ public class RessarcimentoFuncionalidades extends rpaCommands{
 		} catch (Exception e){
 		}
 	}
-	
+
 	/**
 	 * @author be54955
 	 * @param aba
@@ -93,6 +100,7 @@ public class RessarcimentoFuncionalidades extends rpaCommands{
 	public static fluxoCompletoRessarcimento(aba,a){
 		System.out.println()
 		try{
+			retornaHashDeColunasExcell(path);
 			if(validaDados(cellCheck)){
 				init(aba,a);
 				for(int i = 1; i <= data.getRowNumbers(); i++) {
@@ -114,14 +122,15 @@ public class RessarcimentoFuncionalidades extends rpaCommands{
 						}
 					}
 				}
+				WebUI.closeBrowser();
 			} else {
 				System.err.println('Não existem dados para processar')
 			}
 		} catch (Exception e){}
-		  WebUI.closeBrowser();
-		  init(aba,a);
+		WebUI.closeBrowser();
+		init(aba,a);
 	}
-	
+
 	/**
 	 * @author be54955
 	 * @return
@@ -132,11 +141,11 @@ public class RessarcimentoFuncionalidades extends rpaCommands{
 		String msgAlert;
 		String tela = true;
 		boolean situacao;
-		
+
 		try{
-	//		MenuMatriz.producaoSinistro();
-	//		MenuMatriz.subMenuNome("a","GIS")
-	//		alteraJanejaGenerica(1, 5)
+			//		MenuMatriz.producaoSinistro();
+			//		MenuMatriz.subMenuNome("a","GIS")
+			//		alteraJanejaGenerica(1, 5)
 			tela = recuperaValor('//*[@id="cellAppPromptHeaderArea"]', 'innerText', 1)
 			System.out.println(tela)
 			if(listaDeTelas(tela)){
@@ -144,46 +153,64 @@ public class RessarcimentoFuncionalidades extends rpaCommands{
 				//Referência
 				preencheXpath('//*[@id="refsiniestro"]', registros[1], 0)
 				//Pesquisar
-				clicarEmElementoDaTela('//*[@id="cellTarget_busqueda"]', 0);
+				clicarEmElementoDaTela('//*[@id="cellTarget_busqueda"]', 2);
 				WebUI.delay(10);
 				alerta = recuperaValor('//*[@id="dataErrorSection"]/table/tbody/tr/td[2]', 'innerText', 0)
 				System.out.println("Alerta ["+alerta+"]")
 				if(!alertListBlocList(alerta)){
-				  situacao = recuperaValorInput('//*[@id="divAppContent"]', "input", "Aberto")
-				  if(situacao){
-					System.out.println()
-				    //MENU
-				    selecionaItemLista("Prestadores",'//*[@id="tableOptMenu_"]' , "td" )
-					WebUI.delay(3);
-					//Emitir
-					selecionaItemLista("Emitir",'//*[@id="SectionDetectivesSectionBar"]/table/tbody/tr/td/table' , "div" )
-					alteraJanejaGenerica(2, 10)
-					//TIPO PRESTADOR
-					selecionaItemLista(registros[2],'//*[@id="supplierType"]' , "option" )
-					//RESSARCIMENTO
-					selecionaItemLista(registros[3],'//*[@id="orderType"]' , "option" )
-					//OBSERVAÇÕES
-					preencheXpath('//*[@id="observations"]', registros[4], 0)
-					//ALOCAÇÃO
-					selecionaItemLista("Alocação",'//*[@id="SectionASectionBar"]/table/tbody/tr/td/table' , "div" )
-					System.out.println()
-					//ACEITAR
-					selecionaItemLista("Aceitar",'//*[@id="SectionASectionBar"]/table/tbody/tr/td/table' , "div" )
-					System.out.println()
-					alteraJanejaGenerica(1, 5)
-					alerta = selecionaItemPendenteLista("Pendente",'//*[@id="tablaDetectives_tbody"]' , "tr" )
-					System.out.println(alerta)
-					enviado = true;
-					System.out.println()
-					
-				  } else {	
-				    enviado = false
-				    alerta="Sinistro Fechado";
-				    status = "Processado"
-				  }
+					situacao = recuperaValorInput('//*[@id="sectionDatosGenContent"]/table[1]/tbody/tr/td[2]/table', "input", "Aberto")
+					if(situacao){
+						System.out.println()
+						//MENU
+						selecionaItemLista("Prestadores",'//*[@id="tableOptMenu_"]' , "td" )
+						WebUI.delay(3);
+						//Emitir
+						selecionaItemLista("Emitir",'//*[@id="SectionDetectivesSectionBar"]/table/tbody/tr/td/table' , "div" )
+						alteraJanejaGenerica(2, 10)
+						//TIPO PRESTADOR
+						selecionaItemLista(registros[2],'//*[@id="supplierType"]' , "option" )
+						//TIPO DE SERVIÇO RESSARCIMENTO
+						if(registros[3].equals("Ressarcimento Amigável")){
+							selecionaItemLista("Ressarcimento amigável",'//*[@id="orderType"]' , "option" )
+						} else {
+						    selecionaItemLista(registros[3],'//*[@id="orderType"]' , "option" )
+						}
+						//OBSERVAÇÕES
+						preencheXpath('//*[@id="observations"]', registros[4], 0)
+						//ALOCAÇÃO
+						selecionaItemLista("Alocação",'//*[@id="SectionASectionBar"]/table/tbody/tr/td/table' , "div" )
+						System.out.println()
+						
+						alerta = recuperaValor('//*[@id="dataErrorSection"]/table/tbody/tr/td[2]', 'innerText', 0)
+						System.out.println("Alerta ["+alerta+"]")
+						if(!alertListBlocList(alerta)){
+						   //ACEITAR
+						   selecionaItemLista("Aceitar",'//*[@id="SectionASectionBar"]/table/tbody/tr/td/table' , "div" )
+						   System.out.println()
+						   alteraJanejaGenerica(1, 5)
+						   alerta = selecionaItemPendenteLista("Pendente",'//*[@id="tablaDetectives_tbody"]' , "tr" )
+						   System.out.println(alerta)
+						   enviado = true;
+						   System.out.println()
+						} else {
+						   enviado = false
+						   status = "Processado"
+						   try{fecharJanelaAtual(2) } catch (Exception e) {}
+						   try{alteraJanejaGenerica(1,0) } catch (Exception e) {}
+						   try{fecharJanelaAtual(1) } catch (Exception e) {}
+						   try{alteraJanejaGenerica(0,0) } catch (Exception e) {}
+						   MenuMatriz.producaoSinistro();
+						   MenuMatriz.subMenuNome("a","GIS")
+						   alteraJanejaGenerica(1, 5)
+					    }
+					} else {
+						enviado = false
+						alerta="Sinistro Encerrado";
+						status = "Processado"
+					}
 				} else {
-				  enviado = false
-				  status = "Processado"
+					enviado = false
+					status = "Processado"
 				}
 			} else {
 				enviado = false
@@ -198,7 +225,7 @@ public class RessarcimentoFuncionalidades extends rpaCommands{
 		System.out.println("\nenviado ["+ enviado+"] \nmsgAlerta ["+alerta+"]");
 		return enviado;
 	}
-	
+
 	/**
 	 * @author Alz_sup54955
 	 * @param tipoAba
@@ -227,10 +254,11 @@ public class RessarcimentoFuncionalidades extends rpaCommands{
 				initDataFiles();
 				// ENVIA E-MAIL DINAMICO
 				emailDinamico.enviaEmailDinamico(sender, emaildestination, tipoAba, path, docName, emailDinamico.listaDeAlertas(data, cellCheckAlert)  , hours, horaInicial, horaFinal,  GetHost.getHostname() , dataInicio, dataFinal, "" );
-			}
+				FileInput.deletaArquivoPdf(pathFile);
+			 }
 		} catch (Exception e){}
 	}
-	
+
 	/**
 	 * @author T_DCDias
 	 * @return
@@ -239,7 +267,7 @@ public class RessarcimentoFuncionalidades extends rpaCommands{
 		data = findTestData(testDataPath)
 		path = data.sourceUrl
 	}
-	
+
 	/**
 	 * @author be54955
 	 * @param aba
@@ -255,7 +283,7 @@ public class RessarcimentoFuncionalidades extends rpaCommands{
 			alteraJanejaGenerica(1, 5)
 		} catch (Exception e){}
 	}
-	
+
 	/**
 	 * @author ALZ_ServiceQA
 	 * @param sinistro
@@ -273,7 +301,22 @@ public class RessarcimentoFuncionalidades extends rpaCommands{
 		}
 		return registros
 	}
-	
+
+	/**
+	 * @author ALZ_SUP54955
+	 * @return
+	 */
+	public static colunas(){
+		System.out.println(path)
+		cellNames = WriteExcelFactory.readExcelAllFileOfColunm(path);
+		System.out.println("Value: ["+cellNames.get("Data base")+"]");
+		System.out.println("Value: ["+cellNames.get("Tipo Serviço")+"]");
+		System.out.println("Value: ["+cellNames.get("Status")+"]");
+		System.out.println("Value: ["+cellNames.get("Mensagem")+"]");
+		System.out.println()
+		//	return registros
+	}
+
 	/**
 	 * @author be54955
 	 * @param aba
@@ -287,7 +330,7 @@ public class RessarcimentoFuncionalidades extends rpaCommands{
 			reprocessaFalhas(aba,a)
 		}
 	}
-	
+
 	/**
 	 * @author T_DCDias
 	 * @param tipoAba
@@ -306,24 +349,35 @@ public class RessarcimentoFuncionalidades extends rpaCommands{
 		System.err.println('Data ['+value+']')
 		return value
 	}
-	
-	
-	
-	
+
+     /**
+      * @author ALZ_SUP54955
+      * @param xpathSubMenu
+      * @param tag
+      * @param situacao
+      * @return
+      */
 	public static boolean recuperaValorInput(String xpathSubMenu, String tag, String situacao){
-	boolean b = false;
-	selecionaListaDeElementos(xpathSubMenu,tag)
-	    for(int i = 0; i < listOfElements.size(); i++){
-		   System.out.println("["+i+"] ["+listOfElements[i].getAttribute("value")+"]" )
-		   if(listOfElements[i].getAttribute("value").contains(situacao.toString())){
-//			   listOfElements[i].click()
-			   b=true;
-			   break
-		   }
-	    }
+		boolean b = false;
+		selecionaListaDeElementos(xpathSubMenu,tag)
+		for(int i = 0; i < listOfElements.size(); i++){
+			System.out.println("["+i+"] ["+listOfElements[i].getAttribute("value")+"]" )
+			if(listOfElements[i].getAttribute("value").contains(situacao.toString())){
+				//			   listOfElements[i].click()
+				b=true;
+				break
+			}
+		}
 		return b;
-    }
-	
+	}
+
+	/**
+	 * @author ALZ_SUP54955
+	 * @param tipo
+	 * @param xpath
+	 * @param tag
+	 * @return
+	 */
 	public static String selecionaItemPendenteLista(String tipo,String xpath , String tag ){
 		String t;
 		WebUI.delay(2)
@@ -340,9 +394,9 @@ public class RessarcimentoFuncionalidades extends rpaCommands{
 		return t;
 		WebUI.delay(2)
 	}
-	
-	
-	
-	
-	
+
+
+
+
+
 }

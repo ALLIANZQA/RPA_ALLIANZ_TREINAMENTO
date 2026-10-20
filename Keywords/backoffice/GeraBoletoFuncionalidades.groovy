@@ -119,15 +119,19 @@ public class GeraBoletoFuncionalidades extends rpaCommands {
 	 */
 	public static fluxoGeraBoleto(String aba){
 		System.out.println()
-		String dataInicio = ExtractDates.dataAtual();
-		String horaInicial =  ExtractDates.horaAtualizada();
-		start = Instant.now();
+		if(FileInput.validaExistenciaDeArquivo(pathFile)){
+			FileInput.criaLog( ExtractDates.dataAtual() , pathFile);
+			FileInput.atualizaLog( ExtractDates.horaAtualizada() , pathFile);
+			FileInput.atualizaLog( Instant.now().toString(), pathFile)
+		}
 		initDataFiles()
 		fluxoCompletoGeraBoleto(aba)
 		reprocessaFalhas(aba)
-		//enviarEmailGeraBoleto(aba)
-		end =  Instant.now();
-		timeLapnse = Duration.between(start, end);
+		FileInput.atualizaLog(Instant.now().toString(), pathFile)
+		List<String> times = rpaCommands.convertToInstant(pathFile);
+		String dataInicio = times[0];
+		String horaInicial =  times[1];
+		timeLapnse = Duration.between( Instant.parse(times[2]), Instant.parse(times[3]));
 		String dataFinal = ExtractDates.dataAtual();
 		String horaFinal =  ExtractDates.horaAtualizada();
 		try{
@@ -166,6 +170,7 @@ public class GeraBoletoFuncionalidades extends rpaCommands {
 					initDataFiles();
 					// ENVIA E-MAIL DINAMICO
 					emailDinamico.enviaEmailDinamico(sender, emaildestination, tipoAba, path, docName, emailDinamico.listaDeAlertas(data, cellCheckAlert)  , hours, horaInicial, horaFinal,  GetHost.getHostname() , dataInicio, dataFinal, "" );
+					FileInput.deletaArquivoPdf(pathFile);
 				}
 			} catch (Exception e){}
 		}
@@ -242,31 +247,48 @@ public class GeraBoletoFuncionalidades extends rpaCommands {
 			validaJuros(registros[2])
 			//Aceitar
 			clickXpath('//*[@id="Inadimplencia"]', 0);
-			WebUI.delay(10);
+			WebUI.delay(15);
+            System.out.println();
+            transfereArquivoDePasta("AllianzSegurosBrasil")
+            WebUI.delay(10);
 			alerta = recuperaValor('//*[@id="dataErrorSection"]/table/tbody/tr/td[2]', 'textContent', 2)
 			System.err.println("ALERTA ["+alerta+"]")
 			WebUI.delay(2);
-			alteraJanejaGenerica(2, 2)
-			fecharJanela()
-			alteraJanejaGenerica(1, 5)
+			
+			if(!alertListBlocList(alerta)){
+			   alteraJanejaGenerica(2, 2)
+			   fecharJanela()
+			   alteraJanejaGenerica(1, 5)
 
-			if(alerta.contains("atributo nao encontrado")){
-				alerta = "Boleto gerado."
+			   if(alerta.contains("atributo nao encontrado")){
+				  alerta = "Boleto gerado."
+			   }
+			
+			   enviado = true
+
+			   try{
+				  deleteFileDiretory("C:\\Users\\Public\\AllianzSegurosBrasil.pdf")
+			   } catch (Exception e){}
+
+			   try{
+				  deleteFileDiretory("C:\\Users\\Public\\AllianzSegurosBrasil (1).pdf")
+			   } catch (Exception e){}
+
+			   try{
+				  deleteFileDiretory("C:\\Users\\Public\\AllianzSegurosBrasil (2).pdf")
+			   } catch (Exception e){}
+			
+			
+			} else {
+			  System.out.println()
+			  enviado = false
+			  alteraJanejaGenerica(2, 2)
+			  fecharJanela()
+			  alteraJanejaGenerica(1, 5)
+			  MenuMatriz.producaoSinistro()
+			  MenuMatriz.subMenuNome("a", "Duplicados Recibos")
 			}
 			
-			enviado = true
-
-			try{
-				deleteFileDiretory("C:\\Users\\Public\\AllianzSegurosBrasil.pdf")
-			} catch (Exception e){}
-
-			try{
-				deleteFileDiretory("C:\\Users\\Public\\AllianzSegurosBrasil (1).pdf")
-			} catch (Exception e){}
-
-			try{
-				deleteFileDiretory("C:\\Users\\Public\\AllianzSegurosBrasil (2).pdf")
-			} catch (Exception e){}
 
 		} catch (Exception e){
 			enviado = false

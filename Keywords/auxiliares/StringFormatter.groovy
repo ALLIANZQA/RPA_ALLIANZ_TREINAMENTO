@@ -22,6 +22,7 @@ import internal.GlobalVariable
 
 import RegexCharacter
 
+
 public class StringFormatter {
 
 
@@ -821,7 +822,52 @@ public class StringFormatter {
 		}
 		return l;
 	}
-
+	
+	/**
+	 * @author ALZ_SUP54955
+	 * @param linha
+	 * @param antecessor
+	 * @param tipo
+	 * @return
+	 */
+	public static String buscaListaDeAntecessoresEmTexto(String linha, int antecessor, String tipo ){
+		System.out.println("\nBUSCA COM ANTECESSOR \n")
+		String msg;
+		StringBuilder sb = new StringBuilder();
+		Map<Integer, String> mapWrds = new HashMap<Integer, String>();
+		System.out.println("\nSCANNER\n")
+		ArrayList<String> scannerList = new ArrayList<String>()
+		Scanner scanner = new Scanner(linha);
+		int totalPalavras = 0;
+		while (scanner.hasNext()) {
+			String palavra = scanner.next();
+		//	System.out.println("["+totalPalavras+"] ["+palavra+"]");
+			mapWrds.put(totalPalavras,palavra);
+			totalPalavras++;
+		}
+		scanner.close();
+		for(int x; x < totalPalavras; x++){
+			scannerList.add(mapWrds.get(x));
+		}
+		System.out.println("Total de palavras na scannlist: "+scannerList.size()+"\n");
+	    for(int x; x < scannerList.size(); x++){
+			System.out.println("["+scannerList.get(x)+"]")
+			if(scannerList.get(x).contains(tipo)){
+				int i = x-antecessor;
+				System.out.println("["+x+"] ["+scannerList.get(i).replace("*","")+"]")
+				sb.append(" "+scannerList.get(i).replace("*",""))+" ";
+			}
+		}
+		return  sb.toString();
+	}
+	
+    /**
+     * @author ALZ_SUP54955
+     * @param linha
+     * @param antecessor
+     * @param a
+     * @return
+     */
 	public static int buscaComAntecessorSelecionavel(List<String> linha, String antecessor, int a ){
 		System.out.println("BUSCA COM ANTECESSOR SELECIONAVEL\n")
 		int l;

@@ -49,7 +49,7 @@ public static enviaEmailContactCenter(String tipoAba, String path, String file){
 //												   "2025"
 //												    );
 			
-			sendEmail.CreateEmail.createEmailSendSantanderAnexos('denilson.inmetricsext@allpronet.com.br', 
+			sendEmail.CreateEmail.createEmailSendSantanderAnexos('rpa_azb@allianz.com.br', 
 				                                                 'denilson.inmetricsext@allpronet.com.br', 
 																 'TMU-CS.MAIL.ALLIANZ', 
 												                 '587', 

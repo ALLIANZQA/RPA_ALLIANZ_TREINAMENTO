@@ -1,0 +1,1051 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="RPA" time="2185.438" tests="2" failures="0" errors="0">
+   <testsuite name="RPA" tests="2" failures="0" errors="0" time="2185.438" timestamp="2026-07-14 13:43:17" hostname="ALZ_SUP54955 - BRCLVLRPA06.agf.com.br" id="Test Suites/RPA FILES/RPA">
+      <properties>
+         <property name="deviceName" value=""/>
+         <property name="devicePlatform" value=""/>
+         <property name="logFolder" value="C:\\Users\\Public\\RPA_ALLIANZ\\Reports\\20260714_134313\\RPA FILES\\RPA\\20260714_134313"/>
+         <property name="logFiles" value="C:\\Users\\Public\\RPA_ALLIANZ\\Reports\\20260714_134313\\RPA FILES\\RPA\\20260714_134313\\execution0.log"/>
+         <property name="attachments" value=""/>
+         <property name="hostName" value="ALZ_SUP54955 - BRCLVLRPA06.agf.com.br"/>
+         <property name="os" value="Windows Server 2016 64bit"/>
+         <property name="katalonVersion" value="7.2.1.1"/>
+         <property name="browser" value="Chrome 150.0.0.0"/>
+         <property name="hostAddress" value="44.90.46.226"/>
+         <property name="sessionId" value="681ae6bec0bf4b794f458b22c7b0df59"/>
+         <property name="seleniumVersion" value="3.141.59"/>
+         <property name="proxyInformation" value="ProxyInformation{proxyOption=NO_PROXY, proxyServerType=HTTP, password=, proxyServerAddress=, proxyServerPort=0, executionList=}"/>
+         <property name="platform" value="Windows Server 2016"/>
+      </properties>
+      <testcase name="Test Cases/Web UI Test/Backoffce/CadastroCorretorFilialFisica" time="687.335" classname="Test Cases/Web UI Test/Backoffce/CadastroCorretorFilialFisica" status="PASSED">
+         <system-out><![CDATA[2026-07-14 13:43:18 - [TEST_CASE][PASSED] - Test Cases/Web UI Test/Backoffce/CadastroCorretorFilialFisica: Test Cases/Web UI Test/Backoffce/CadastroCorretorFilialFisica
+
+2026-07-14 13:43:19 - [TEST_STEP][PASSED] - try: Delayed 5 second(s)
+
+2026-07-14 13:43:19 - [TEST_STEP][PASSED] - CadastroCorretorFilialFisica.cadastroCorretorFilialFisica("CadastroCorretorFilialFisica"): Delayed 5 second(s)
+
+2026-07-14 13:54:40 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2026-07-14 13:54:45 - [MESSAGE][PASSED] - Delayed 5 second(s)]]></system-out>
+         <system-err><![CDATA[]]></system-err>
+      </testcase>
+      <testcase name="Test Cases/Web UI Test/Marketing/GestaoReclamacao" time="1497.18" classname="Test Cases/Web UI Test/Marketing/GestaoReclamacao" status="PASSED">
+         <system-out><![CDATA[2026-07-14 13:54:46 - [TEST_CASE][PASSED] - Test Cases/Web UI Test/Marketing/GestaoReclamacao: Test Cases/Web UI Test/Marketing/GestaoReclamacao
+
+2026-07-14 13:54:46 - [TEST_STEP][PASSED] - try: Browser is closed
+
+2026-07-14 13:54:46 - [TEST_STEP][PASSED] - GestaoReclamacaoFuncionalidades.fluxoCotacaoRenovacaoInterna("GestaoReclamacao", "PRD"): Delayed 5 second(s)
+
+2026-07-14 13:54:46 - [MESSAGE][INFO] - Starting 'Chrome' driver
+
+2026-07-14 13:54:46 - [MESSAGE][INFO] - User set preference: ['prefs', '{download.default_directory= , profile.default_content_settings.popups=0.0, download.prompt_for_download=false, download.directory_upgrade=true, plugins.always_open_pdf_externally=true, pdfjs.disabled=true, safebrowsing.enabled=false, savefile.default_directory= , profile.default_content_setting_values.automatic_downloads=1.0, browser.enabled_labs_experiments=[download-bubble-v2@2, download-bubble@2]}']
+
+2026-07-14 13:54:46 - [MESSAGE][INFO] - User set preference: ['args', '[--start-maximized, --disable-infobars,  safebrowsing-disable-download-protection,  safebrowsing-disable-extension-blacklist, --test-type, --disable-extensions, --disable-features=DownloadBubble,DownloadBubbleV2,InsecureDownloadWarning, --safebrowsing-disable-download-protection, --disable-web-security, --allow-running-insecure-content]']
+
+2026-07-14 13:54:46 - [MESSAGE][INFO] - User set preference: ['CapabilityType.ACCEPT_SSL_CERTS', 'true']
+
+2026-07-14 13:54:46 - [MESSAGE][INFO] - User set preference: ['pageLoadStrategy', 'normal']
+
+2026-07-14 13:54:46 - [MESSAGE][INFO] - Action delay is set to 0 seconds
+
+2026-07-14 13:54:49 - [MESSAGE][PASSED] - Browser is opened with url: ''
+
+2026-07-14 13:55:04 - [MESSAGE][PASSED] - Delayed 15 second(s)
+
+2026-07-14 13:55:04 - [MESSAGE][PASSED] - Current window maximized
+
+2026-07-14 13:55:07 - [MESSAGE][PASSED] - Navigate to 'https://www.br.intrallianz.com/ngx-intranet/public/home' successfully
+
+2026-07-14 13:55:12 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2026-07-14 13:55:14 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 13:55:17 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 13:55:18 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2026-07-14 13:55:28 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2026-07-14 13:55:38 - [MESSAGE][PASSED] - Delayed 10 second(s)
+
+2026-07-14 13:55:40 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 13:55:42 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 13:55:47 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2026-07-14 13:55:48 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2026-07-14 13:55:55 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 13:56:00 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2026-07-14 13:56:01 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2026-07-14 13:56:03 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 13:56:07 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2026-07-14 13:56:08 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2026-07-14 13:56:13 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2026-07-14 13:56:15 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 13:56:17 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 13:56:22 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2026-07-14 13:56:24 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 13:56:27 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 13:56:30 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 13:56:32 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 13:56:35 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 13:56:38 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 13:56:41 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 13:56:44 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2026-07-14 13:56:49 - [MESSAGE][PASSED] - Delayed 4 second(s)
+
+2026-07-14 13:56:51 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 13:56:54 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 13:56:59 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2026-07-14 13:57:00 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2026-07-14 13:57:02 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 13:57:09 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2026-07-14 13:57:10 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2026-07-14 13:57:12 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 13:57:15 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2026-07-14 13:57:16 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2026-07-14 13:57:21 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2026-07-14 13:57:23 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 13:57:25 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 13:57:31 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2026-07-14 13:57:33 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 13:57:35 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 13:57:38 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 13:57:40 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 13:57:43 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 13:57:46 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 13:57:48 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 13:57:52 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2026-07-14 13:57:57 - [MESSAGE][PASSED] - Delayed 4 second(s)
+
+2026-07-14 13:57:59 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 13:58:01 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 13:58:06 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2026-07-14 13:58:07 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2026-07-14 13:58:09 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 13:58:15 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2026-07-14 13:58:16 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2026-07-14 13:58:18 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 13:58:22 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2026-07-14 13:58:23 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2026-07-14 13:58:28 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2026-07-14 13:58:30 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 13:58:32 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 13:58:37 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2026-07-14 13:58:39 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 13:58:42 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 13:58:44 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 13:58:47 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 13:58:49 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 13:58:52 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 13:58:55 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 13:58:59 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2026-07-14 13:59:04 - [MESSAGE][PASSED] - Delayed 4 second(s)
+
+2026-07-14 13:59:06 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 13:59:09 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 13:59:14 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2026-07-14 13:59:15 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2026-07-14 13:59:17 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 13:59:22 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2026-07-14 13:59:23 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2026-07-14 13:59:25 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 13:59:30 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2026-07-14 13:59:31 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2026-07-14 13:59:36 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2026-07-14 13:59:38 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 13:59:40 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 13:59:45 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2026-07-14 13:59:47 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 13:59:50 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 13:59:53 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 13:59:55 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 13:59:57 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:00:00 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:00:03 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:00:07 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2026-07-14 14:00:12 - [MESSAGE][PASSED] - Delayed 4 second(s)
+
+2026-07-14 14:00:15 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:00:17 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:00:22 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2026-07-14 14:00:23 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2026-07-14 14:00:25 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:00:30 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2026-07-14 14:00:31 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2026-07-14 14:00:33 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:00:37 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2026-07-14 14:00:38 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2026-07-14 14:00:43 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2026-07-14 14:00:45 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:00:47 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:00:53 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2026-07-14 14:00:55 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:00:57 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:01:00 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:01:02 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:01:04 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:01:08 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:01:11 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:01:16 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2026-07-14 14:01:20 - [MESSAGE][PASSED] - Delayed 4 second(s)
+
+2026-07-14 14:01:23 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:01:25 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:01:30 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2026-07-14 14:01:31 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2026-07-14 14:01:33 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:01:38 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2026-07-14 14:01:39 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2026-07-14 14:01:41 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:01:45 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2026-07-14 14:01:46 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2026-07-14 14:01:51 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2026-07-14 14:01:53 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:01:55 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:02:01 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2026-07-14 14:02:03 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:02:05 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:02:08 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:02:10 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:02:13 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:02:17 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:02:19 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:02:24 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2026-07-14 14:02:29 - [MESSAGE][PASSED] - Delayed 4 second(s)
+
+2026-07-14 14:02:31 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:02:33 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:02:39 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2026-07-14 14:02:40 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2026-07-14 14:02:42 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:02:47 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2026-07-14 14:02:48 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2026-07-14 14:02:50 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:02:54 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2026-07-14 14:02:55 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2026-07-14 14:03:00 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2026-07-14 14:03:02 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:03:04 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:03:09 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2026-07-14 14:03:11 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:03:14 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:03:17 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:03:19 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:03:22 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:03:27 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:03:30 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:03:33 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2026-07-14 14:03:38 - [MESSAGE][PASSED] - Delayed 4 second(s)
+
+2026-07-14 14:03:40 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:03:42 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:03:48 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2026-07-14 14:03:49 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2026-07-14 14:03:51 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:03:56 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2026-07-14 14:03:57 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2026-07-14 14:03:59 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:04:03 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2026-07-14 14:04:04 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2026-07-14 14:04:09 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2026-07-14 14:04:11 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:04:13 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:04:18 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2026-07-14 14:04:20 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:04:23 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:04:25 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:04:28 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:04:30 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:04:36 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:04:38 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:04:43 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2026-07-14 14:04:48 - [MESSAGE][PASSED] - Delayed 4 second(s)
+
+2026-07-14 14:04:50 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:04:52 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:04:57 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2026-07-14 14:04:59 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2026-07-14 14:05:01 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:05:06 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2026-07-14 14:05:07 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2026-07-14 14:05:09 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:05:12 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2026-07-14 14:05:13 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2026-07-14 14:05:18 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2026-07-14 14:05:20 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:05:22 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:05:28 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2026-07-14 14:05:30 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:05:32 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:05:35 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:05:37 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:05:40 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:05:44 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:05:46 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:05:51 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2026-07-14 14:05:56 - [MESSAGE][PASSED] - Delayed 4 second(s)
+
+2026-07-14 14:05:58 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:06:00 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:06:05 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2026-07-14 14:06:06 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2026-07-14 14:06:08 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:06:13 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2026-07-14 14:06:14 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2026-07-14 14:06:16 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:06:20 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2026-07-14 14:06:21 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2026-07-14 14:06:26 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2026-07-14 14:06:28 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:06:30 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:06:35 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2026-07-14 14:06:37 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:06:40 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:06:43 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:06:45 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:06:48 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:06:51 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:06:53 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:06:58 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2026-07-14 14:07:03 - [MESSAGE][PASSED] - Delayed 4 second(s)
+
+2026-07-14 14:07:05 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:07:07 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:07:12 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2026-07-14 14:07:13 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2026-07-14 14:07:15 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:07:21 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2026-07-14 14:07:22 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2026-07-14 14:07:24 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:07:27 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2026-07-14 14:07:28 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2026-07-14 14:07:33 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2026-07-14 14:07:35 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:07:37 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:07:43 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2026-07-14 14:07:45 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:07:47 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:07:50 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:07:52 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:07:55 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:07:59 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:08:02 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:08:06 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2026-07-14 14:08:11 - [MESSAGE][PASSED] - Delayed 4 second(s)
+
+2026-07-14 14:08:14 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:08:16 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:08:21 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2026-07-14 14:08:22 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2026-07-14 14:08:24 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:08:29 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2026-07-14 14:08:30 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2026-07-14 14:08:32 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:08:36 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2026-07-14 14:08:37 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2026-07-14 14:08:42 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2026-07-14 14:08:44 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:08:46 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:08:51 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2026-07-14 14:08:53 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:08:56 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:08:58 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:09:01 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:09:03 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:09:06 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:09:09 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:09:14 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2026-07-14 14:09:18 - [MESSAGE][PASSED] - Delayed 4 second(s)
+
+2026-07-14 14:09:21 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:09:23 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:09:28 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2026-07-14 14:09:29 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2026-07-14 14:09:31 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:09:36 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2026-07-14 14:09:37 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2026-07-14 14:09:39 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:09:43 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2026-07-14 14:09:44 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2026-07-14 14:09:49 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2026-07-14 14:09:51 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:09:53 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:09:59 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2026-07-14 14:10:01 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:10:03 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:10:06 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:10:08 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:10:11 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:10:14 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:10:17 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:10:20 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2026-07-14 14:10:25 - [MESSAGE][PASSED] - Delayed 4 second(s)
+
+2026-07-14 14:10:27 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:10:29 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:10:35 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2026-07-14 14:10:36 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2026-07-14 14:10:38 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:10:43 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2026-07-14 14:10:44 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2026-07-14 14:10:46 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:10:49 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2026-07-14 14:10:50 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2026-07-14 14:10:55 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2026-07-14 14:10:57 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:10:59 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:11:05 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2026-07-14 14:11:07 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:11:09 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:11:12 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:11:14 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:11:17 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:11:20 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:11:22 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:11:27 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2026-07-14 14:11:32 - [MESSAGE][PASSED] - Delayed 4 second(s)
+
+2026-07-14 14:11:34 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:11:36 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:11:42 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2026-07-14 14:11:43 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2026-07-14 14:11:45 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:11:50 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2026-07-14 14:11:51 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2026-07-14 14:11:53 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:11:57 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2026-07-14 14:11:58 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2026-07-14 14:12:03 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2026-07-14 14:12:05 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:12:07 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:12:12 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2026-07-14 14:12:14 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:12:17 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:12:19 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:12:22 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:12:24 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:12:30 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:12:33 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:12:37 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2026-07-14 14:12:42 - [MESSAGE][PASSED] - Delayed 4 second(s)
+
+2026-07-14 14:12:45 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:12:47 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:12:52 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2026-07-14 14:12:53 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2026-07-14 14:12:55 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:13:00 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2026-07-14 14:13:01 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2026-07-14 14:13:03 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:13:07 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2026-07-14 14:13:08 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2026-07-14 14:13:13 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2026-07-14 14:13:15 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:13:17 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:13:22 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2026-07-14 14:13:24 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:13:27 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:13:29 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:13:32 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:13:34 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:13:38 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:13:41 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:13:44 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2026-07-14 14:13:49 - [MESSAGE][PASSED] - Delayed 4 second(s)
+
+2026-07-14 14:13:51 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:13:53 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:13:59 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2026-07-14 14:14:00 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2026-07-14 14:14:02 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:14:07 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2026-07-14 14:14:08 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2026-07-14 14:14:10 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:14:14 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2026-07-14 14:14:15 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2026-07-14 14:14:20 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2026-07-14 14:14:22 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:14:24 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:14:29 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2026-07-14 14:14:31 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:14:34 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:14:36 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:14:39 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:14:41 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:14:46 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:14:48 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:14:53 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2026-07-14 14:14:58 - [MESSAGE][PASSED] - Delayed 4 second(s)
+
+2026-07-14 14:15:00 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:15:02 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:15:07 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2026-07-14 14:15:08 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2026-07-14 14:15:11 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:15:16 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2026-07-14 14:15:17 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2026-07-14 14:15:19 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:15:22 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2026-07-14 14:15:23 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2026-07-14 14:15:28 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2026-07-14 14:15:30 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:15:32 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:15:37 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2026-07-14 14:15:39 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:15:42 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:15:45 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:15:47 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:15:50 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:15:54 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:15:57 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:16:01 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2026-07-14 14:16:06 - [MESSAGE][PASSED] - Delayed 4 second(s)
+
+2026-07-14 14:16:08 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:16:11 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:16:16 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2026-07-14 14:16:17 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2026-07-14 14:16:19 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:16:24 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2026-07-14 14:16:25 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2026-07-14 14:16:27 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:16:31 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2026-07-14 14:16:32 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2026-07-14 14:16:37 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2026-07-14 14:16:39 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:16:42 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:16:47 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2026-07-14 14:16:49 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:16:52 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:16:54 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:16:56 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:16:59 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:17:02 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:17:04 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:17:09 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2026-07-14 14:17:14 - [MESSAGE][PASSED] - Delayed 4 second(s)
+
+2026-07-14 14:17:16 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:17:18 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:17:23 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2026-07-14 14:17:24 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2026-07-14 14:17:26 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:17:31 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2026-07-14 14:17:32 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2026-07-14 14:17:35 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:17:38 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2026-07-14 14:17:39 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2026-07-14 14:17:44 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2026-07-14 14:17:46 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:17:49 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:17:54 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2026-07-14 14:17:56 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:17:59 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:18:01 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:18:03 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:18:06 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:18:09 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:18:11 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:18:16 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2026-07-14 14:18:21 - [MESSAGE][PASSED] - Delayed 4 second(s)
+
+2026-07-14 14:18:23 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:18:25 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:18:31 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2026-07-14 14:18:32 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2026-07-14 14:18:34 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:18:39 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2026-07-14 14:18:40 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2026-07-14 14:18:42 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:18:46 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2026-07-14 14:18:47 - [MESSAGE][PASSED] - Delayed 1 second(s)
+
+2026-07-14 14:18:52 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2026-07-14 14:18:54 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:18:56 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:19:01 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2026-07-14 14:19:03 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:19:06 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:19:08 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:19:10 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:19:13 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:19:16 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:19:18 - [MESSAGE][PASSED] - Delayed 2 second(s)
+
+2026-07-14 14:19:23 - [MESSAGE][PASSED] - Delayed 3 second(s)
+
+2026-07-14 14:19:28 - [MESSAGE][PASSED] - Delayed 4 second(s)
+
+2026-07-14 14:19:29 - [MESSAGE][PASSED] - Browser is closed
+
+2026-07-14 14:19:38 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2026-07-14 14:19:43 - [MESSAGE][PASSED] - Delayed 5 second(s)
+
+2026-07-14 14:19:43 - [TEST_STEP][PASSED] - closeBrowser(): Browser is closed
+
+2026-07-14 14:19:43 - [MESSAGE][PASSED] - Browser is closed]]></system-out>
+         <system-err><![CDATA[]]></system-err>
+      </testcase>
+      <system-out><![CDATA[2026-07-14 13:43:17 - [TEST_SUITE][PASSED] - RPA: Test Cases/Web UI Test/Marketing/GestaoReclamacao]]></system-out>
+      <system-err><![CDATA[]]></system-err>
+   </testsuite>
+</testsuites>

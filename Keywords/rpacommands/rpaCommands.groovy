@@ -6,6 +6,8 @@ import java.nio.channels.FileChannel
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.time.Duration
+import java.time.Instant
+
 import org.openqa.selenium.By
 import org.openqa.selenium.JavascriptExecutor
 import org.openqa.selenium.Keys
@@ -82,6 +84,7 @@ import org.openqa.selenium.support.ui.Wait
 import org.openqa.selenium.support.ui.WebDriverWait
 import com.kms.katalon.core.webui.common.WebUiCommonHelper as WebUiCommonHelper
 import java.util.List
+import java.util.Map
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -98,6 +101,14 @@ import auxiliares.MenuMatriz
 import auxiliares.ExtractDates
 import auxiliares.StringFormatter
 import auxiliares.GetHost;
+import auxiliares.WriteExcelFactory;
+import java.awt.Robot
+import java.awt.event.KeyEvent
+
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 
 /**
  * @author T_dvlopes
@@ -148,8 +159,120 @@ public class rpaCommands  {
 	 * Valida premio total do fluxo AGCS
 	 */
 	public static int premioTotal
-	
-	
+	public static Map<String, Integer> cellNames;
+	private static String pathEndEmailDinamico = "C:\\Users\\Public\\RPA_ALLIANZ\\Emails\\EnderecoEmailDinamico\\ConfiguracoesEnderecoEmailDinamico.txt";
+	public static String pathFile = "C:\\Users\\Public\\RPA_ALLIANZ\\LogTimeLapse\\logtimelapse.txt";
+	public static String caminhoFonte=diretórioDoUsuário()+"\\Downloads\\";
+	public static String caminhoSaida="C:\\Users\\Public\\"
+	public static String pathproperties = "C:\\Users\\Public\\RPA_ALLIANZ\\ConfigURL\\configUrl.properties";
+
+
+	/**
+	 * @author ALZ_SUP54955
+	 * @return
+	 */
+	public static retornaHashDeColunasExcell(String path){
+		cellNames = WriteExcelFactory.readExcelAllFileOfColunm(path);
+	}
+
+	/**
+	 * @author ALZ_SUP54955
+	 * @return
+	 */
+	public static String diretórioDoUsuário(){
+		try{
+			// Captura o caminho da pasta pessoal do usuário (opcional)
+			String pastaUsuario = System.getProperty("user.home");
+			System.out.println("Diretório do usuário: " + pastaUsuario);
+			return pastaUsuario;
+		} catch (Exception e){
+			e.printStackTrace()
+		}
+	}
+
+	/**
+	 * @author ALZ_SUP54955
+	 * @param caminhoFonte
+	 * @param caminhoSaida
+	 * @return
+	 */
+	public static String transfereArquivoDePasta(String arquivo){
+		// 1. Defina o caminho de origem (onde o arquivo está agora)
+		Path origem = Paths.get(caminhoFonte+arquivo+".pdf");
+
+		// 2. Defina o caminho de destino (para onde ele vai e o nome final)
+		Path destino = Paths.get(caminhoSaida+arquivo+".pdf");
+
+		try {
+			// 3. Executa a mudança de pasta
+			Files.move(origem, destino, StandardCopyOption.REPLACE_EXISTING);
+
+			System.out.println("Arquivo movido com sucesso!");
+
+		} catch (IOException e) {
+			System.err.println("Erro ao mover o arquivo: " + e.getMessage());
+			e.printStackTrace();
+		}
+
+	}
+
+	/**
+	 * @author ALZ_SUP54955
+	 * @param arquivo
+	 */
+	public static void verificaExistenciaDePDF(String arquivo){
+		try{
+			if(!validaExistenciaDeArquivo(caminhoFonte+arquivo+".pdf")){
+				deletaArquivoPdf(caminhoFonte+arquivo+".pdf");
+			}
+
+			if(!validaExistenciaDeArquivo(caminhoSaida+arquivo+".pdf")){
+				deletaArquivoPdf(caminhoSaida+arquivo+".pdf");
+			}
+		}catch (Exception e){ e.printStackTrace()}
+	}
+
+	/**
+	 * @author ALZ_SUP54955
+	 */
+	public static void keyPessEnterAndConfirm(){
+		// LOGO APÓS O CLIQUE QUE ABRIU A JANELA:
+		try {
+			Robot robot = new Robot();
+			robot.delay(1000); // Aguarda 1 segundo para a janela carregar na tela
+			// Pressiona e solta a tecla ENTER para confirmar o "Salvar"
+			robot.keyPress(KeyEvent.VK_ENTER);
+			Thread.sleep(100);
+			robot.keyRelease(KeyEvent.VK_ENTER);
+			WebUI.delay(2);
+			robot.keyPress(KeyEvent.VK_LEFT)   // Move a seleção para a esquerda (onde geralmente fica o SIM)
+			robot.keyRelease(KeyEvent.VK_LEFT)
+			WebUI.delay(1)
+			robot.keyPress(KeyEvent.VK_ENTER)  // Confirma com o Enter
+			robot.keyRelease(KeyEvent.VK_ENTER)
+			WebUI.comment("Confirmação de download realizada!")
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * @author ALZ_SUP54955
+	 */
+	public static void keyPessEnter(){
+		// LOGO APÓS O CLIQUE QUE ABRIU A JANELA:
+		try {
+			Robot robot = new Robot();
+			robot.delay(1000); // Aguarda 1 segundo para a janela carregar na tela
+			// Pressiona e solta a tecla ENTER para confirmar o "Salvar"
+			robot.keyPress(KeyEvent.VK_ENTER);
+			Thread.sleep(100);
+			robot.keyRelease(KeyEvent.VK_ENTER);
+			WebUI.comment("Confirmação de download realizada!")
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 
 	/**
@@ -186,13 +309,11 @@ public class rpaCommands  {
 	 * @author Dvlopes
 	 */
 	public static void realizaLoginIntraNetProducaoTransacionalCommands(String nomeArquivo, String generico){
+		System.out.println(generico)
 		try{
-			auxiliares.UserPassword.getUsuarioSenha(nomeArquivo)
-			preencheXpathSetText('//*[@id="nx-input-0"]', auxiliares.UserPassword.getUser(), 20);
-			preencheXpathSetText('//*[@id="nx-input-1"]', auxiliares.UserPassword.getSenha(), 1);
-			WebUI.delay(2)
+			WebUI.delay(15);
 			usuarioGenericoTransacional(generico)
-			WebUI.delay(2)
+			WebUI.delay(5)
 			clickXpath('//*/div/button',0);
 		} catch (Exception e) {
 			System.err.println('Falha ao realizar Login MatrizProdução' + e);
@@ -214,7 +335,7 @@ public class rpaCommands  {
 			finalizar();
 		}
 	}
-	
+
 	public static void acessaAmbienteGestorOperacoes( String aba, String a ){
 		try{
 			WebUI.delay(2)
@@ -235,10 +356,12 @@ public class rpaCommands  {
 	 */
 	public static usuarioGenericoTransacional(String generico){
 		//Pesquisar
-		clickXpath('/*/body/div[1]/div/app-root/app-public-home/app-public-home/div/div[1]/div/app-login/div/form/div[1]/div/app-generic-users/nx-formfield/div/div/div/div/div/nx-dropdown/div/div[2]/nx-icon', 1);
-		selecionaListaDeElementos('//*[@id="cdk-overlay-0"]/div/div[2]','div')
+		clickXpath('/*/body/div[1]/main/app-root/app-public-home/app-public-home/div/div[1]/div/app-login/div/form/div[1]/div/app-generic-users/nx-formfield/div/div/div/div/div/nx-dropdown/div/div[2]/nx-icon', 1);
+		WebUI.delay(1);
+		selecionaListaDeElementos('/*/body/div[3]/div[2]/div/div/div[2]','div')
+		System.out.println(listOfElements.size());
 		for(int i = 0; i < listOfElements.size(); i++){
-			//			System.err.println("["+i+"] ["+listOfElements[i].getText()+"]")
+			System.out.println("["+i+"] ["+listOfElements[i].getText()+"]")
 			if(listOfElements[i].getText().contains(generico.toString())){
 				System.err.println("FOUND ["+i+"] ["+listOfElements[i].getText()+"]")
 				listOfElements[i].click()
@@ -278,13 +401,13 @@ public class rpaCommands  {
 		WebDriver driver = DriverFactory.getWebDriver();
 		driver.manage().timeouts().implicitlyWait(delay, TimeUnit.SECONDS);
 	}
-	
+
 	public static waintingEllementLoad(String path){
 		WebDriver driver = DriverFactory.getWebDriver();
 		By myElementLocator = By.xpath(path);
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10)); // Espera até 10 segundos
-        wait.until(ExpectedConditions.visibilityOfElementLocated(myElementLocator));
-	
+		wait.until(ExpectedConditions.visibilityOfElementLocated(myElementLocator));
+
 	}
 
 	/**clickXpath
@@ -537,8 +660,8 @@ public class rpaCommands  {
 		}
 		return msg
 	}
-	
-	
+
+
 	public static okAlerta(){
 		try{
 			WebDriver driver = DriverFactory.getWebDriver();
@@ -546,9 +669,9 @@ public class rpaCommands  {
 		}catch (Exception e){
 		}
 	}
-	
-	
-	
+
+
+
 
 
 	/**Altera aba para pagina do download e fecha o mesmo
@@ -642,7 +765,7 @@ public class rpaCommands  {
 		driver.switchTo().window(parent);
 	}
 
-	
+
 	public static alteraAbaChild(){
 		WebDriver driver = DriverFactory.getWebDriver();
 		Set  st= driver.getWindowHandles();
@@ -652,7 +775,7 @@ public class rpaCommands  {
 		driver.switchTo().window(parent);
 		driver.switchTo().window(child);
 	}
-	
+
 	public static alteraAbaParent(){
 		WebDriver driver = DriverFactory.getWebDriver();
 		Set  st= driver.getWindowHandles();
@@ -703,19 +826,21 @@ public class rpaCommands  {
 
 
 	public static fecharJanelaAtual(int qtd){
-		WebUI.delay(4);
-		String x;
-		WebDriver driver = DriverFactory.getWebDriver();
-		Set  st= driver.getWindowHandles();
-		Iterator it = st.iterator();
-		for(int i=0; i<=qtd; i++){
-			x = i.toString();
-			x = it.next();
-			driver.switchTo().window(x);
-			if(i==qtd){
-				driver.close();
+		try{
+			WebUI.delay(4);
+			String x;
+			WebDriver driver = DriverFactory.getWebDriver();
+			Set  st= driver.getWindowHandles();
+			Iterator it = st.iterator();
+			for(int i=0; i<=qtd; i++){
+				x = i.toString();
+				x = it.next();
+				driver.switchTo().window(x);
+				if(i==qtd){
+					driver.close();
+				}
 			}
-		}
+		} catch (Exception e){}
 	}
 
 
@@ -867,7 +992,7 @@ public class rpaCommands  {
 			WebDriver driver = DriverFactory.getWebDriver();
 			WebElement element = driver.findElement(By.xpath(xpath));
 			String valor = element.getAttribute(atribut);
-			System.out.println("Valor recupetado ["+valor+"]")
+			System.out.println("Valor recupetado ["+valor+"] ["+valor.length()+"]")
 			return valor;
 		}catch (Exception e){
 			//System.out.println(e)
@@ -911,21 +1036,35 @@ public class rpaCommands  {
 
 	//INICIA BROWSER
 
+
+
+
 	/**Retorna URL DESEJADA PARA INCIAR BROWSER
 	 * @param url
 	 * @return
 	 * @author T_dvlopes
 	 */
 	public static String retornaURL(String url){
+		Properties props = new Properties();
+		FileInputStream fis = new FileInputStream(pathproperties);
+		props.load(fis);
+		String MatrizAceitação = props.getProperty("MatrizAceitacao");
+		String MatrizProdução = props.getProperty("MatrizProducao");
+		String AllianznetProdução = props.getProperty("AllianznetProducao");
+		String IntranetProdução = props.getProperty("IntranetProducao");
+		String IntranetSinistro = props.getProperty("IntranetSinistro");
+		String IntranetTransacional = props.getProperty("IntranetTransacional");
+		String IntranetDesenvolvimento = props.getProperty("IntranetDesenvolvimento");
+		String GestorOperacoes = props.getProperty("GestorOperacoes");
 		Map<String, String> urls = new HashMap<String, String>()
-		urls.put('MatrizAceitação', 'https://wwwfdt.br.intrallianz.com/drlf01/web/azb-intranet/login-sso');
-		urls.put('MatrizProdução', 'https://www.br.intrallianz.com/drlf01/web/azb-intranet');
-		urls.put('AllianznetProdução', 'https://www.allianznet.com.br/ngx-epac/public/home');
-		urls.put('IntranetProdução', 'https://www.br.intrallianz.com/ngx-intranet/public/home');
-		urls.put('IntranetSinistro', 'http://crivo_reports.intrallianz.es/#/login');
-		urls.put('IntranetTransacional', 'https://wwwi.br.intrallianz.com/ngx-intranet/public/home');
-		urls.put('IntranetDesenvolvimento', 'https://wwwd.br.intrallianz.com/ngx-intranet/public/home');
-		urls.put('GestorOperacoes', 'https://portal.tech4h.com.br/login');
+		urls.put('MatrizAceitação', MatrizAceitação);
+		urls.put('MatrizProdução', MatrizProdução);
+		urls.put('AllianznetProdução', AllianznetProdução);
+		urls.put('IntranetProdução', IntranetProdução);
+		urls.put('IntranetSinistro', IntranetSinistro);
+		urls.put('IntranetTransacional', IntranetTransacional);
+		urls.put('IntranetDesenvolvimento', IntranetDesenvolvimento);
+		urls.put('GestorOperacoes', GestorOperacoes);
 		return urls.get(url.toString());
 	}
 
@@ -949,7 +1088,7 @@ public class rpaCommands  {
 	 */
 	public static void realizaLoginTelaMatriz(String user, String password){
 
-		System.err.println("User ["+user+"] Pwr ["+password+"]")
+		//System.err.println("User ["+user+"] Pwr ["+password+"]")
 
 		try{
 			WebUI.click(findTestObject('PageBackoffice/Page_Inicio/a_Login'));
@@ -962,23 +1101,23 @@ public class rpaCommands  {
 			finalizar();
 		}
 	}
-	
+
 	public static void realizaLoginGestorOperacoes(String dominio,String email, String password){
-		
-				System.err.println("GOS - Dominio ["+dominio+"] Email "+email+" Pwr ["+password+"]")
-				try{
-					preencheXpath('//*[@id="slug"]', dominio, 0);
-					preencheXpath('//*[@id="email"]', email, 0);
-					preencheXpath('//*[@id="password"]', password, 0);
-					clicarEmElementoDaTela('//*[@id="root"]/div/div/div/div/div[1]/div[2]/div[2]/form[2]/div[5]/button[1]', 0);
-				}catch(Exception e)
-				{
-					System.err.println('Falha ao realizar Login "TELA GESTOR DE OPERAÇÕES"');
-					finalizar();
-				}
-			}
-	
-	
+
+		System.err.println("GOS - Dominio ["+dominio+"] Email "+email+" Pwr ["+password+"]")
+		try{
+			preencheXpath('//*[@id="slug"]', dominio, 0);
+			preencheXpath('//*[@id="email"]', email, 0);
+			preencheXpath('//*[@id="password"]', password, 0);
+			clicarEmElementoDaTela('//*[@id="root"]/div/div/div/div/div[1]/div[2]/div[2]/form[2]/div[5]/button[1]', 0);
+		}catch(Exception e)
+		{
+			System.err.println('Falha ao realizar Login "TELA GESTOR DE OPERAÇÕES"');
+			finalizar();
+		}
+	}
+
+
 
 	/**Realiza Login TelaMatriz recebendo por parametro:
 	 * @param user
@@ -1031,14 +1170,30 @@ public class rpaCommands  {
 	 * @author T_dvlopes
 	 */
 	public static void realizaLoginTelaIntraNetProducao(String user, String password){
-		System.err.println("User ["+user+"] Pwr ["+password+"]")
+		System.err.println("User ["+user+"] Pwr ["+password+"]");
 		try{
-			preencheXpathSetText('//*[@id="nx-input-0"]', user, 20);
-			preencheXpathSetText('//*[@id="nx-input-1"]', password, 1);
-			clickXpath('//*/div/button',0);
+			WebUI.delay(5);
+			String xpath = "/*/body/div/main/app-root/app-public-home/app-public-home/div/div[1]/div/app-login/div/form/div[1]";
+			String tag = "input";
+			selecionaListaDeElementos(xpath,tag)
+			for(int i = 0; i < listOfElements.size(); i++){
+				WebUI.delay(2);
+				if(listOfElements[i].getAttribute("name").equals("username")){
+					listOfElements[i].click()
+					listOfElements[i].sendKeys(user);
+				}
+
+				if(listOfElements[i].getAttribute("name").equals("password")){
+					listOfElements[i].click()
+					listOfElements[i].sendKeys(password);
+				}
+			}
+
+			clickXpath('//*/div/button',1);
+			System.err.println();
 		}catch(Exception e)
 		{
-			System.err.println('Falha ao realizar Login "TELA AllianzNet PRODUÇÃO"');
+			System.err.println('Falha ao realizar Login "TELA AllianzNet PRODUÇÃO"\n'+e);
 			finalizar();
 		}
 	}
@@ -2135,6 +2290,13 @@ public class rpaCommands  {
 
 	/**
 	 * @author T_DCDias
+	 */
+	public static selecionaListaDeElementosCSS(String xpath, String tag){
+		listOfElements = listaDeElementosCSS(xpath, tag)
+	}
+
+	/**
+	 * @author T_DCDias
 	 * @param xpath
 	 * @param tag
 	 * Retorna uma lista de elementos
@@ -2146,6 +2308,21 @@ public class rpaCommands  {
 		List<WebElement> rows_table = Table.findElements(By.tagName(tag))
 		return rows_table
 	}
+
+	/**
+	 * @author T_DCDias
+	 * @param xpath
+	 * @param tag
+	 * Retorna uma lista de elementos
+	 * @return
+	 */
+	public static List<WebElement> listaDeElementosCSS(String xpath, String tag){
+		WebDriver driver = DriverFactory.getWebDriver()
+		WebElement Table = driver.findElement(By.xpath(xpath))
+		List<WebElement> rows_table = Table.findElements(By.cssSelector(tag))
+		return rows_table
+	}
+
 
 
 	/**
@@ -2241,6 +2418,8 @@ public class rpaCommands  {
 		println caminhoSaida
 		return caminhoSaida;
 	}
+
+
 
 	/**
 	 * @author ALZ_ServiceQA
@@ -2501,8 +2680,8 @@ public class rpaCommands  {
 			WebUI.delay(dalayfor)
 		}
 	}
-	
-	
+
+
 	/**
 	 * @author ALZ_ServiceQA
 	 * @param xpath
@@ -2524,10 +2703,10 @@ public class rpaCommands  {
 			WebUI.delay(dalayfor)
 		}
 	}
-	
-	
-	
-	
+
+
+
+
 	/**
 	 * @author ALZ_ServiceQA
 	 * @param xpath
@@ -2545,7 +2724,7 @@ public class rpaCommands  {
 			WebUI.delay(dalayfor)
 		}
 	}
-	
+
 	/**
 	 * @author ALZ_ServiceQA
 	 * @param xpath
@@ -2590,7 +2769,7 @@ public class rpaCommands  {
 					pathTxtEmail = linhas.get(i).toString();
 					break;
 				case 1:
-					sender = linhas.get(i).toString();
+				//	sender = linhas.get(i).toString();
 					break;
 				case 2:
 					pwdsender = linhas.get(i).toString();
@@ -2603,27 +2782,53 @@ public class rpaCommands  {
 					break;
 			}
 		}
+
+		List<String> linhasEndEmail = FileInput.readFile(pathEndEmailDinamico)
+		for(int i = 0; i < linhasEndEmail.size();i++){
+			switch (i)  {
+				case 0:
+					sender = linhasEndEmail.get(i).toString();
+					break;
+			}
+		}
+	}
+
+	public static lerConfiguraçõesAuth(String path){
+		List<String> linhas = FileInput.readFile(path)
+		for(int i = 0; i < linhas.size();i++){
+			switch (i)  {
+				case 0:
+					user = linhas.get(i).toString();
+					break;
+				case 1:
+					pwdsender = linhas.get(i).toString();
+					break;
+				case 2:
+					host = linhas.get(i).toString();
+					break;
+				case 3:
+					porta = linhas.get(i).toString();
+					break;
+			}
+		}
+	}
+
+	
+	/**
+	 *
+	 * @param path
+	 * @return
+	 */
+	public static lerConfiguraçõesAuthProp(String path){
+		Properties props = new Properties();
+		FileInputStream fis = new FileInputStream(path);
+		props.load(fis);
+		user = props.getProperty("user");
+		pwdsender = props.getProperty("pwd");
+		host = props.getProperty("serv");
+		porta = props.getProperty("port");
 	}
 	
-	public static lerConfiguraçõesAuth(String path){
-				List<String> linhas = FileInput.readFile(path)
-				for(int i = 0; i < linhas.size();i++){
-					switch (i)  {
-						case 0:
-							user = linhas.get(i).toString();
-							break;
-						case 1:
-							pwdsender = linhas.get(i).toString();
-							break;
-						case 2:
-							host = linhas.get(i).toString();
-							break;
-						case 3:
-							porta = linhas.get(i).toString();
-							break;
-					}
-				}
-			}
 
 	/**
 	 * @author T_DCDias
@@ -2691,6 +2896,25 @@ public class rpaCommands  {
 
 	}
 
+	/**
+	 * Renomeia arquivo recebendo o PATH e o nome de saida
+	 * @param pathFileValue
+	 * @param namePdf
+	 * @return
+	 */
+	public static renomearArquivoExtencao(String pathFileValue, String name, String extencao){
+		System.err.println('pathFileValue: '+pathFileValue)
+	    File f = new File(pathFileValue);
+	    String nameReplace = name.replace("/", "-").replace(".", "-");
+	    if(f.renameTo(new File("C:\\Users\\Public\\"+nameReplace+extencao)))
+	    {
+		 System.out.println("Arquivo renomeado");
+	    }
+	    else{
+		 System.out.println("Arquivo não renomeado");
+	    }
+	}
+	
 	/**Altera aba para pagina do download e fecha o mesmo
 	 * @return
 	 */
@@ -3162,29 +3386,30 @@ public class rpaCommands  {
 	 * @return
 	 */
 	public static alteraJanejaGenerica(int qtd, int delay){
-
-		if(delay==0){
-			String x;
-			WebDriver driver = DriverFactory.getWebDriver();
-			Set  st= driver.getWindowHandles();
-			Iterator it = st.iterator();
-			for(int i=0; i<=qtd; i++){
-				x = i.toString();
-				x = it.next();
-				driver.switchTo().window(x);
+		try{
+			if(delay==0){
+				String x;
+				WebDriver driver = DriverFactory.getWebDriver();
+				Set  st= driver.getWindowHandles();
+				Iterator it = st.iterator();
+				for(int i=0; i<=qtd; i++){
+					x = i.toString();
+					x = it.next();
+					driver.switchTo().window(x);
+				}
+			} else {
+				WebUI.delay(delay);
+				String x;
+				WebDriver driver = DriverFactory.getWebDriver();
+				Set  st= driver.getWindowHandles();
+				Iterator it = st.iterator();
+				for(int i=0; i<=qtd; i++){
+					x = i.toString();
+					x = it.next();
+					driver.switchTo().window(x);
+				}
 			}
-		} else {
-			WebUI.delay(delay);
-			String x;
-			WebDriver driver = DriverFactory.getWebDriver();
-			Set  st= driver.getWindowHandles();
-			Iterator it = st.iterator();
-			for(int i=0; i<=qtd; i++){
-				x = i.toString();
-				x = it.next();
-				driver.switchTo().window(x);
-			}
-		}
+		} catch (Exception e){}
 	}
 
 	/**
@@ -3373,6 +3598,7 @@ public class rpaCommands  {
 	public static selecionaTipoSelecao(String tipo,String xpath , String tag ){
 		WebUI.delay(2)
 		selecionaListaDeElementos(xpath,tag)
+		System.err.println("TO FOUND ["+tipo+"]")
 		for(int i = 0; i < listOfElements.size(); i++){
 			System.err.println("["+i+"] ["+listOfElements[i].getText()+"]")
 			if(listOfElements[i].getText().contains(tipo.toString())){
@@ -3395,25 +3621,48 @@ public class rpaCommands  {
 		System.out.println("[TIPO  ["+tipo+"]")
 		for(int i = 0; i < listOfElements.size(); i++){
 			System.err.println("["+i+"] Attr ["+listOfElements[i].getAttribute('value')+"] Text ["+listOfElements[i].getText()+"]")
-			if(listOfElements[i].getText().equals(tipo.toString().trim())){
+			if(listOfElements[i].getText().trim().equals(tipo.toString().trim())){
 				System.err.println("FOUND ["+i+"] ["+listOfElements[i].getText()+"]")
 				listOfElements[i].click()
 				f = true
 				break
 			}
 		}
+		System.out.println("["+f+"]")
 		return f
 		WebUI.delay(2)
 	}
-	
-	
+
+
+	/**
+	 * @author T_DCDias
+	 * @return
+	 */
+	public static boolean verificaExistenciaDeItemLista(String tipo,String xpath , String tag ){
+		boolean f = false
+		WebUI.delay(2)
+		selecionaListaDeElementos(xpath,tag)
+		System.out.println("[TIPO  ["+tipo+"]")
+		for(int i = 0; i < listOfElements.size(); i++){
+			System.err.println("["+i+"] Attr ["+listOfElements[i].getAttribute('value')+"] Text ["+listOfElements[i].getText()+"]")
+			if(listOfElements[i].getText().equals(tipo.toString().trim())){
+				System.err.println("FOUND ["+i+"] ["+listOfElements[i].getText()+"]")
+				f = true
+				break
+			}
+		}
+		System.out.println("["+f+"]")
+		return f
+		WebUI.delay(2)
+	}
+
 
 	/**
 	 * @author T_DCDias
 	 * @return
 	 */
 	public static String retornaItemSelecionadoLista(String xpath , String tag, String attribute ){
-		String f; 
+		String f;
 		selecionaListaDeElementos(xpath,tag)
 		for(int i = 0; i < listOfElements.size(); i++){
 			if(listOfElements[i].getAttribute(attribute).equals("true")){
@@ -3424,9 +3673,9 @@ public class rpaCommands  {
 		}
 		return f
 	}
-	
-	
-	
+
+
+
 	/**
 	 * @author T_DCDias
 	 * @return
@@ -3484,6 +3733,7 @@ public class rpaCommands  {
 		return f
 		WebUI.delay(2)
 	}
+
 
 
 	/**
@@ -3584,44 +3834,75 @@ public class rpaCommands  {
 
 		//SELECIONAR
 		System.out.println("Processo ["+processo+"]")
-		MenuMatriz.subMenu('//*[@id="nx-dropdown-modal-1"]', "div",processoFG(processo))
+		MenuMatriz.subMenu('//*[@id="cdk-overlay-0"]/div', "nx-dropdown-item",processoFG(processo))
 
 		switch(processo){
+			case "P-Cancelamento":
+			//Proposta
+				clickXpath('//*[@id="componenteReferencia"]/div/div[1]/div[3]/nx-formfield/div/div/div/div/div/div', 1);
+				preencheXpath('/html/body/div[1]/div/app-root/file-management/app-filereference/div/div/div[1]/div[3]/nx-formfield/div/div/div/div/div/div/input', registros[p],0);
+			//Pesquisar
+				clickXpath('//*[@id="componenteReferencia"]/div/div[1]/div[11]/nx-icon', 1);
+				break;
 			case "P":
 			//Proposta
-				preencheXpath('//*[@id="nx-input-1"]', registros[p],0);
+				clickXpath('//*[@id="componenteReferencia"]/div/div[1]/div[3]/nx-formfield/div/div/div/div/div/div', 1);
+				preencheXpath('/html/body/div[1]/div/app-root/file-management/app-filereference/div/div/div[1]/div[3]/nx-formfield/div/div/div/div/div/div/input', registros[p],0);
 			//Aplica
-				preencheXpath('//*[@id="nx-input-2"]', registros[a],0);
+				clickXpath('//*[@id="componenteReferencia"]/div/div[1]/div[4]/nx-formfield/div/div/div/div/div/div', 1);
+				preencheXpath('/html/body/div[1]/div/app-root/file-management/app-filereference/div/div/div[1]/div[4]/nx-formfield/div/div/div/div/div/div/input', registros[a],0);
 			//Pesquisar
 				clickXpath('//*[@id="componenteReferencia"]/div/div[1]/div[11]/nx-icon', 1);
 				break;
 			case "C":
 			//Proposta
-				preencheXpath('//*[@id="nx-input-4"]', registros[p],0);
+			//	preencheXpath('//*[@id="nx-input-4"]', registros[p],0);
+
+				clickXpath('//*[@id="cliente"]/nx-ibl-identification-number-br/nx-ibl-identification-number-common/div/form/div/div/div[2]', 1);
+				preencheXpath('/html/body/div[1]/div/app-root/file-management/app-filereference/div/div/div[1]/div[5]/nx-ibl-identification-number/nx-ibl-identification-number-br/nx-ibl-identification-number-common/div/form/div/div/div[2]/nx-formfield/div/div[1]/div/div/div/div/input', registros[p],0);
+
 			//Pesquisar
 				clickXpath('//*[@id="componenteReferencia"]/div/div[1]/div[11]/nx-icon', 1);
 				break;
 			case "P-PolizaPRD":
 			//Proposta
-				preencheXpath('//*[@id="nx-input-1"]', registros[p],0);
+			//	preencheXpath('//*[@id="nx-input-1"]', registros[p],0);
 			//Aplica
-				preencheXpath('//*[@id="nx-input-2"]', registros[a],0);
+			//	preencheXpath('//*[@id="nx-input-2"]', registros[a],0);
+
+				clickXpath('//*[@id="componenteReferencia"]/div/div[1]/div[3]/nx-formfield/div/div/div/div/div/div', 1);
+				preencheXpath('/html/body/div[1]/div/app-root/file-management/app-filereference/div/div/div[1]/div[3]/nx-formfield/div/div/div/div/div/div/input', registros[p],0);
+			//Aplica
+				clickXpath('//*[@id="componenteReferencia"]/div/div[1]/div[4]/nx-formfield/div/div/div/div/div/div', 1);
+				preencheXpath('/html/body/div[1]/div/app-root/file-management/app-filereference/div/div/div[1]/div[4]/nx-formfield/div/div/div/div/div/div/input', registros[a],0);
+
 			//Pesquisar
 				clickXpath('//*[@id="componenteReferencia"]/div/div[1]/div[11]/nx-icon', 1);
 				break;
 			case "P-PolizaINT":
 			//Proposta
-				preencheXpath('//*[@id="nx-input-1"]', registros[p],0);
+				clickXpath('//*[@id="componenteReferencia"]/div/div[1]/div[3]/nx-formfield/div/div/div/div/div/div', 1);
+				preencheXpath('/html/body/div[1]/div/app-root/file-management/app-filereference/div/div/div[1]/div[3]/nx-formfield/div/div/div/div/div/div/input', registros[p],0);
 			//Aplica
-				preencheXpath('//*[@id="nx-input-2"]', registros[a],0);
+				clickXpath('//*[@id="componenteReferencia"]/div/div[1]/div[4]/nx-formfield/div/div/div/div/div/div', 1);
+				preencheXpath('/html/body/div[1]/div/app-root/file-management/app-filereference/div/div/div[1]/div[4]/nx-formfield/div/div/div/div/div/div/input', registros[a],0);
 			//Pesquisar
 				clickXpath('//*[@id="componenteReferencia"]/div/div[1]/div[11]/nx-icon', 1);
 				break;
 			case "P-PropostaPRD":
 			//Proposta
-				preencheXpath('//*[@id="nx-input-1"]', registros[p],0);
+				clickXpath('//*[@id="componenteReferencia"]/div/div[1]/div[3]/nx-formfield/div/div/div/div/div/div', 1);
+				preencheXpath('/html/body/div[1]/div/app-root/file-management/app-filereference/div/div/div[1]/div[3]/nx-formfield/div/div/div/div/div/div/input', registros[p],0);
 			//Aplica
-				preencheXpath('//*[@id="nx-input-2"]', registros[a],0);
+				clickXpath('//*[@id="componenteReferencia"]/div/div[1]/div[4]/nx-formfield/div/div/div/div/div/div', 1);
+				preencheXpath('/html/body/div[1]/div/app-root/file-management/app-filereference/div/div/div[1]/div[4]/nx-formfield/div/div/div/div/div/div/input', registros[a],0);
+			//Pesquisar
+				clickXpath('//*[@id="componenteReferencia"]/div/div[1]/div[11]/nx-icon', 1);
+				break;
+			case "S":
+			//Proposta
+				clickXpath('//*[@id="componenteReferencia"]/div/div[1]/div[2]/nx-formfield/div/div/div/div/div', 1);
+				preencheXpath('/html/body/div[1]/div/app-root/file-management/app-filereference/div/div/div[1]/div[2]/nx-formfield/div/div/div/div/div/div/input', registros[p],0);
 			//Pesquisar
 				clickXpath('//*[@id="componenteReferencia"]/div/div[1]/div[11]/nx-icon', 1);
 				break;
@@ -3629,7 +3910,7 @@ public class rpaCommands  {
 			//Pesquisar
 				clickXpath('//*[@id="empledados"]/nx-ibl-identification-number-br/nx-ibl-identification-number-common/div/form/div/div/div[1]/nx-formfield/div/div/div/div/div/nx-dropdown/div/div[2]/nx-icon', 1);
 				try{
-					selecionaListaDeElementos('//*[@id="cdk-overlay-1"]','div')
+					selecionaListaDeElementos('//*[@id="cdk-overlay-1"]','nx-dropdown')
 					for(int i = 0; i < listOfElements.size(); i++){
 						System.out.println("["+i+"] ["+listOfElements[i].getText() +"]" )
 						if(listOfElements[i].getText().equals("CPF / CNPJ")){
@@ -3639,7 +3920,8 @@ public class rpaCommands  {
 					}
 				} catch (Exception e){}
 			//DOCUMENTO
-				preencheXpath('//*[@id="nx-input-5"]', registros[0],0);
+				clickXpath('//*[@id="empledados"]/nx-ibl-identification-number-br/nx-ibl-identification-number-common/div/form/div/div/div[2]', 1);
+				preencheXpath('/html/body/div[1]/div/app-root/file-management/app-filereference/div/div/div[1]/div[6]/nx-ibl-identification-number/nx-ibl-identification-number-br/nx-ibl-identification-number-common/div/form/div/div/div[2]/nx-formfield/div/div[1]/div/div/div/div/input', registros[0],0);
 			//Pesquisar
 				clickXpath('//*[@id="componenteReferencia"]/div/div[1]/div[11]/nx-icon', 1);
 				break;
@@ -3655,12 +3937,14 @@ public class rpaCommands  {
 	public static String  processoFG(String p){
 		Map<String, String> process = new HashMap<String, String>()
 		process.put('P', 'PÓLICE');
+		process.put('P-Cancelamento', 'PÓLICE');
 		process.put('C', 'CLIENTE');
 		process.put('P-PolizaINT', 'POLIZA');
 		process.put('P-PolizaPRD', 'APÓLICE');
 		process.put('P-PropostaPRD', 'APÓLICE');
 		process.put('Prestadores/Oficinas', 'Prestadores/Oficinas');
 		process.put('Agente Susep', 'Agente Susep');
+		process.put('S', 'SINISTRO');
 		return process.get(p.toString());
 	}
 
@@ -3721,7 +4005,7 @@ public class rpaCommands  {
 		System.out.println( proposta+" "+aplica)
 		String xpath
 		String tag
-		
+
 		//ABRIR SELEÇÃO
 		xpath ='//*[@id="idReference"]/nx-formfield/div/div/div/div/div'
 		tag="nx-icon"
@@ -3735,25 +4019,28 @@ public class rpaCommands  {
 				}
 			}
 		} catch (Exception e){}
-		
+
 		//SELECIONAR
-		xpath ='//*[@id="nx-dropdown-modal-1"]'
-		tag="div"
+		//xpath ='/*/body/div[3]'
+		xpath ='//*[@id="cdk-overlay-0"]/div'
+		tag="nx-dropdown-item"
 		try{
-			 selecionaListaDeElementos(xpath,tag)
-			 for(int i = 0; i < listOfElements.size(); i++){
-				 System.out.println("["+i+"] ["+listOfElements[i].getText() +"]" )
-				 if(listOfElements[i].getText().contains("APÓLICE")){
-					 listOfElements[i].click()
-					 //		break
-				 }
-			 }
+			selecionaListaDeElementos(xpath,tag)
+			for(int i = 0; i < listOfElements.size(); i++){
+				System.out.println("["+i+"] ["+listOfElements[i].getText() +"]" )
+				if(listOfElements[i].getText().contains("APÓLICE")){
+					listOfElements[i].click()
+					//		break
+				}
+			}
 		} catch (Exception e){}
 		//MenuMatriz.subMenu('//*[@id="cdk-overlay-0"]/div/div[2]', "span","APÓLICE")
 		//Proposta
-		preencheXpath('//*[@id="nx-input-1"]', proposta,0);
+		clickXpath('//*[@id="componenteReferencia"]/div/div[1]/div[3]/nx-formfield/div/div/div/div/div/div', 1);
+		preencheXpath('/html/body/div[1]/div/app-root/file-management/app-filereference/div/div/div[1]/div[3]/nx-formfield/div/div/div/div/div/div/input', proposta,0);
 		//Aplica
-		preencheXpath('//*[@id="nx-input-2"]', aplica,0);
+		clickXpath('//*[@id="componenteReferencia"]/div/div[1]/div[4]/nx-formfield/div/div/div/div/div/div', 1);
+		preencheXpath('/html/body/div[1]/div/app-root/file-management/app-filereference/div/div/div[1]/div[4]/nx-formfield/div/div/div/div/div/div/input', aplica,0);
 		//Pesquisar
 		clickXpath('//*[@id="componenteReferencia"]/div/div[1]/div[11]/nx-icon', 1);
 
@@ -3918,6 +4205,10 @@ public class rpaCommands  {
 				System.out.println("["+k+"] ["+listOfElements[k].getTagName() +"]" )
 				if(listOfElements[k].getTagName().contains('img'.toString())){
 					listOfElements[k].click()
+					WebUI.delay(15);
+					System.out.println();
+					transfereArquivoDePasta("documento")
+					WebUI.delay(10);
 					b = true
 				}
 			}
@@ -3980,7 +4271,7 @@ public class rpaCommands  {
 	public static boolean alertListBlocList(String alert){
 		System.err.println("\nalertListBloc ["+alert+"]")
 		boolean r = false
-
+        try{
 		if(alert.length()>4){
 			List<String> listOfAlerts = new ArrayList<String>()
 			//listOfAlerts.add("Erro on epac2020 on QA mode")
@@ -4017,6 +4308,7 @@ public class rpaCommands  {
 			listOfAlerts.add(" Estado civil obrigatório")
 			listOfAlerts.add(" Campo necessário")
 			listOfAlerts.add(" Campo Obrigatório")
+			listOfAlerts.add(" Campo obrigatório")
 			listOfAlerts.add(" Categoria do risco obrigatória")
 			listOfAlerts.add(" Código de compañía no valido")
 			listOfAlerts.add(" Banco indisponível para emissão")
@@ -4111,6 +4403,30 @@ public class rpaCommands  {
 			listOfAlerts.add(" Não reposição de apólice")
 			listOfAlerts.add(" Existe uma averiguação ativa para esta apólice")
 			listOfAlerts.add(" Sinistro não encontrado.")
+			listOfAlerts.add(" SÓ VÁLIDO PARA O BRASIL")
+			listOfAlerts.add(" Houve um erro.")
+			listOfAlerts.add("Erro de validação de dados")
+			listOfAlerts.add(" Data erronea")
+			listOfAlerts.add(" A ligação ao Host gerou um erro. Provavelmente a operação não é executado corretamente. Verificá-lo e, em seguida, tente novamente mais tarde. Se o erro persistir, contate o administrador.")
+			listOfAlerts.add(" Selecionar um código postal")
+			listOfAlerts.add("406 Deve informar um tipo de referência valido")
+			listOfAlerts.add(" Indique o Tipo Destino")
+			listOfAlerts.add(" Indique o Meio de Envio")
+			listOfAlerts.add(" Não existe tabela para o ramo da apólice")
+			listOfAlerts.add(" Apólice não encontrada")
+			listOfAlerts.add("Digite um CEP válido XXXXX-XXX")
+			listOfAlerts.add("Documento não é válido!")
+			listOfAlerts.add(" Esta seguro que é preciso duplicar o recibo? Está dentro do prazo de retorno bancário")
+			listOfAlerts.add("Sinistro é obrigatório")
+			listOfAlerts.add("Documento não localizado")
+			listOfAlerts.add("Chassi ou placa duplicado!")
+			listOfAlerts.add("Indicador de Zero km não preenchido!")
+			listOfAlerts.add("CPF/CNPJ Proprietário deve conter um CPF, de acordo com o tipo de Propriedade")
+			//listOfAlerts.add("Valor do veículo não preenchido!")
+			listOfAlerts.add("CPF/CNPJ Proprietário deve ser o mesmo que o tomador da apólice, de acordo com o tipo de Propriedade!")
+			listOfAlerts.add("Placa não preenchida!")
+			listOfAlerts.add(" Para Auto Frotas o mÃ­nimo sÃ£o 1 itens. Cotar no produto Auto Individual.")
+			listOfAlerts.add(" Apolice com sinistro posterior a data de anulacao")
 			
 			for(int i = 0; i < listOfAlerts.size(); i++){
 				System.err.println("["+i+"] ["+listOfAlerts[i]+"]")
@@ -4122,10 +4438,14 @@ public class rpaCommands  {
 			}
 		}
 		System.out.println(r)
+		
+        } catch (Exception e){
+	     r = false;
+	    }
 		return  r
 	}
-	
-	
+
+
 	public static boolean alertListBlocListTESTE(String alert){
 		System.err.println("\nalertListBloc ["+alert+"]")
 		boolean r = false
@@ -4238,7 +4558,7 @@ public class rpaCommands  {
 			listOfAlerts.add(" Erro de cálculo - (RL)")
 			listOfAlerts.add(" ERROR[Modelo inexistente]")
 			listOfAlerts.add(" DATA DE VIGÊNCIA MÁXIMA DA APÓLICE")
-			
+
 			for(int i = 0; i < listOfAlerts.size(); i++){
 				System.err.println("["+i+"] ["+listOfAlerts[i]+"]")
 				if(alert.contains(listOfAlerts[i])){
@@ -4298,7 +4618,7 @@ public class rpaCommands  {
 		listOfAlerts.add(" Tipo de Seguro alterado para Renovação Interna Com Sinistro.")
 		listOfAlerts.add(" Risco sem aceitação - Data de Plantio")
 		listOfAlerts.add(" Restrição técnica - Acúmulo de Risco (Categoria de Risco/Estado)")
-		
+
 		System.out.println("Alert -["+alert+"]-")
 		for(int i = 0; i < listOfAlerts.size(); i++){
 			System.err.println("["+i+"] ["+listOfAlerts[i]+"]")
@@ -4389,7 +4709,11 @@ public class rpaCommands  {
 		listOfAlerts.add("D. COMUNS")
 		listOfAlerts.add("CONFIRMAÇÃO DE EMISSÃO")
 		listOfAlerts.add("GESTÃO INTEGRADA DE SINISTROS")
-//		listOfAlerts.add("Lista bloqueios")
+		listOfAlerts.add("EDITOR CORRESPONDÊNCIA")
+		listOfAlerts.add("CANCELAMENTO E SUSPENSÕES")
+		listOfAlerts.add("EDITOR DE NOTAS/AGENDA")
+		listOfAlerts.add("GESTOR DE OPERAÇÕES")
+		//		listOfAlerts.add("Lista bloqueios")
 		//listOfAlerts.add("PANTALLA ESPECIFICA POR DEFINIR")
 		//	listOfAlerts.add(" Emissão não permitida! Fora do prazo de 30 dias permitido pela SUSEP")
 
@@ -4441,13 +4765,31 @@ public class rpaCommands  {
 		//SELECIONA ARQUIVO
 		clickTable(index)
 		WebUI.delay(15);
+
 		try{
-			selecionaListaDeElementos('//*[@id="nx-tab-content-0-0"]/div/div[6]','button')
+			selecionaListaDeElementos('/html/body/div[1]/div/app-root/file-management/app-listfilemanagement/div/div/div[2]','nx-expansion-panel-title')
+			for(int k = 0; k < listOfElements.size(); k++){
+				System.out.println("["+k+"] ["+listOfElements[k].getText() +"]" )
+				if(listOfElements[k].getText().contains("Documento anexo".toString())){
+					listOfElements[k].click()
+				}
+			}
+
+		} catch (Exception e){}
+
+
+		try{
+			selecionaListaDeElementos('/html/body/div[1]/div/app-root/file-management/app-listfilemanagement/div/div/div[2]','button')
 			for(int k = 0; k < listOfElements.size(); k++){
 				System.out.println("["+k+"] ["+listOfElements[k].getText() +"]" )
 				if(listOfElements[k].getText().contains("Acesso a detalhes estendidos".toString())){
 					//		if(listOfElements[k].getTagName().contains('img'.toString())){
+					System.out.println()
 					listOfElements[k].click()
+					WebUI.delay(15);
+					System.out.println();
+					transfereArquivoDePasta("fichero")
+					WebUI.delay(10);
 					b = true
 				}
 			}
@@ -4591,11 +4933,13 @@ public class rpaCommands  {
 		String str
 		if(s.equals("Referencia Inexistente") || s.equals("Não há dados para mostrar")){
 			str = s
-		} else {
-			str = "Alerta não apresentada"
 		}
-		System.out.println("Ajuste MSGFG IN ["+s+" OUT ["+str+"]")
-		return str
+
+		//else {
+		//	str = "Alerta não apresentada"
+		//}
+		System.out.println("Ajuste MSGFG IN ["+s+"]")
+		return s;
 	}
 
 
@@ -4850,22 +5194,59 @@ public class rpaCommands  {
 		} catch (Exception e){}
 	}
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	/**
+	 * @author ALZ_SUP54955
+	 * @param xpath
+	 * @param label
+	 * @param input
+	 * @param campo
+	 * @return
+	 */
+	public static String retornaValorInput(String xpath, String label, String input, String campo){
+		String valor;
+		selecionaListaDeElementos(xpath,label)
+		for(int i = 0; i < listOfElements.size(); i++){
+			// System.err.println("FOUND ["+i+"] ["+listOfElements[i].getAttribute("outerText")+"]")
+			if(listOfElements[i].getAttribute("outerText").equals(campo)){
+				selecionaListaDeElementos(xpath,input)
+				for(int j = 0; j < listOfElements.size(); j++){
+					//	 System.err.println("FOUND ["+j+"] ["+listOfElements[j].getAttribute("defaultValue")+"]")
+					if(j==i){
+						valor = listOfElements[j].getAttribute("defaultValue");
+					}
+				}
+			}
+		}
+
+		System.out.println("VALOR RECUPERADO ["+valor+"]");
+		return valor;
+	}
+
+
+	/**
+	 * @author ALZ_SUP54955
+	 * @param pathFile
+	 * @return
+	 */
+	public static List<String> convertToInstant(String pathFile){
+		List<String> linhas = FileInput.readFile(pathFile);
+		System.out.println("["+linhas.size()+"]");
+		//	List<Instant> times = new ArrayList<Instant>();
+		for(int i = 0; i< linhas.size();i++){
+			//		times[i] = Instant.parse( linhas[i].toString() );
+			System.out.println("["+i+"] ["+linhas[i]+"]");
+		}
+		return linhas;
+	}
+
+
+
+
+
+
+
+
+
 }
 
 

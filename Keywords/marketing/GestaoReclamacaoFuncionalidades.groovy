@@ -72,14 +72,19 @@ public class GestaoReclamacaoFuncionalidades extends rpaCommands{
 	 */
 	public static fluxoCotacaoRenovacaoInterna(String aba, String a){
 		System.out.println()
-		String dataInicio = ExtractDates.dataAtual();
-		String horaInicial =  ExtractDates.horaAtualizada();
-		start = Instant.now();
+		if(FileInput.validaExistenciaDeArquivo(pathFile)){
+			FileInput.criaLog( ExtractDates.dataAtual() , pathFile);
+			FileInput.atualizaLog( ExtractDates.horaAtualizada() , pathFile);
+			FileInput.atualizaLog( Instant.now().toString(), pathFile)
+		}
 		initDataFiles()
 		fluxoCompletoGestaoReclamacao(aba,a)
 		reprocessaFalhas(aba,a)
-		end =  Instant.now();
-		timeLapnse = Duration.between(start, end);
+		FileInput.atualizaLog(Instant.now().toString(), pathFile)
+		List<String> times = rpaCommands.convertToInstant(pathFile);
+		String dataInicio = times[0];
+		String horaInicial =  times[1];
+		timeLapnse = Duration.between( Instant.parse(times[2]), Instant.parse(times[3]));
 		String dataFinal = ExtractDates.dataAtual();
 		String horaFinal =  ExtractDates.horaAtualizada();
 		try{
@@ -173,13 +178,18 @@ public class GestaoReclamacaoFuncionalidades extends rpaCommands{
 							preencheXpath('//*[@id="origenReclamacion.numero.value"]', registros[22], 0)
 							break;
 					}
-
+					System.out.println()
 					//Lupa
 					clicarEmElementoDaTela('//*[@id="btnBuscarReferencia"]', 0);
 					WebUI.delay(3);
 					try{
 						fechaAlerta()
 					}catch (Exception e){}
+					WebUI.delay(1);
+					try{
+						fechaAlerta()
+					}catch (Exception e){}
+					
 					alerta = recuperaValor('//*[@id="dataErrorSection"]/table/tbody/tr/td[2]', 'innerText', 5)
 					System.out.println("Alerta ["+alerta+"]")
 					if(alertListBlocList(alerta)){
@@ -321,7 +331,8 @@ public class GestaoReclamacaoFuncionalidades extends rpaCommands{
 				initDataFiles();
 				// ENVIA E-MAIL DINAMICO
 				emailDinamico.enviaEmailDinamico(sender, emaildestination, tipoAba, path, docName, emailDinamico.listaDeAlertas(data, cellCheckAlert)  , hours, horaInicial, horaFinal,  GetHost.getHostname() , dataInicio, dataFinal, "" );
-			}
+				FileInput.deletaArquivoPdf(pathFile);
+			 }
 		} catch (Exception e){}
 	}
 

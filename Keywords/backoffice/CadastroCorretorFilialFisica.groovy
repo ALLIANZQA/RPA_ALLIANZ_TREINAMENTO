@@ -6,6 +6,8 @@ import static com.kms.katalon.core.testdata.TestDataFactory.findTestData
 import static com.kms.katalon.core.testobject.ObjectRepository.findTestObject
 import static com.kms.katalon.core.testobject.ObjectRepository.findWindowsObject
 
+import java.time.Duration
+import java.time.Instant
 import java.util.List
 
 import com.kms.katalon.core.annotation.Keyword
@@ -29,7 +31,10 @@ import auxiliares.switchAtualizarExcel
 import auxiliares.switchLeitorExcel
 import auxiliares.RegrasEmailDestination
 import bean.MassaDados
-
+import auxiliares.ExtractDates
+import sendEmail.emailDinamico;
+import auxiliares.timer;
+import auxiliares.GetHost;
 
 
 public class CadastroCorretorFilialFisica extends backofficeFuncionalidades{
@@ -39,7 +44,18 @@ public class CadastroCorretorFilialFisica extends backofficeFuncionalidades{
 	private static String path
 	private static String alerta
 	private static int cellCheck = 18
-
+	
+	private static int cellCheckAlert = 19;
+	private static boolean enviado = true;
+	private static String xpath;
+	private static String tela;
+	private static boolean erroTela = false;
+	private static String msgAlerta
+	private static String status
+	private static Instant start;
+	private static Instant end;
+	private static Duration timeLapnse;
+	private static String docName = "CadastroCorretor.xlsx";
 
 	/**
 	 * @author T_DCDias
@@ -75,9 +91,25 @@ public class CadastroCorretorFilialFisica extends backofficeFuncionalidades{
 	 * @return
 	 */
 	public static cadastroCorretorFilialFisica(String aba){
+		System.out.println()
+		if(FileInput.validaExistenciaDeArquivo(pathFile)){
+			FileInput.criaLog( ExtractDates.dataAtual() , pathFile);
+			FileInput.atualizaLog( ExtractDates.horaAtualizada() , pathFile);
+			FileInput.atualizaLog( Instant.now().toString(), pathFile)
+		}
 		fluxoCadastroCorretorFilialFisica(aba)
 		reprocessaFalhas(aba)
-		enviarCadastroCorretorFilialFisica(aba)
+	    FileInput.atualizaLog(Instant.now().toString(), pathFile)
+		List<String> times = convertToInstant(pathFile);
+		String dataInicio = times[0];
+		String horaInicial =  times[1];
+		timeLapnse = Duration.between( Instant.parse(times[2]), Instant.parse(times[3]));
+		String dataFinal = ExtractDates.dataAtual();
+		String horaFinal =  ExtractDates.horaAtualizada();
+		try{
+			enviaEmailDinamico(aba, timeLapnse, dataInicio, dataFinal, horaInicial, horaFinal );
+		} catch (Exception e){
+		}
 	}
 
 	/**
@@ -101,7 +133,7 @@ public class CadastroCorretorFilialFisica extends backofficeFuncionalidades{
 					} else {
 						try{
 							auxiliares.WriteExcelFactory.updateSheetLine("", j, path, "Processado", 17, aba);
-							auxiliares.WriteExcelFactory.updateSheetLine("", j, path, "Falha ao enviar e-mail: "+alerta, 18, aba);
+							auxiliares.WriteExcelFactory.updateSheetLine("", j, path, "Alerta: Falha ao enviar e-mail: "+alerta, 18, aba);
 						} catch (Exception e){}
 					}
 				}
@@ -189,5 +221,38 @@ public class CadastroCorretorFilialFisica extends backofficeFuncionalidades{
 			anexos[1] = "CadastroCorretor.xlsx"
 			sendEmail.CreateEmail.createEmailSendMultipleFiles(sender, emaildestination, anexos, "CadastroCorretorFilialFisicaFinalProcesso")
 		}
+	}
+	
+	/**
+	 * @author Alz_sup54955
+	 * @param tipoAba
+	 * @param timeLapnse
+	 * @param dataInicio
+	 * @param dataFinal
+	 * @param horaInicial
+	 * @param horaFinal
+	 * @return
+	 */
+	public static enviaEmailDinamico(String tipoAba, Duration timeLapnse, String dataInicio, String dataFinal, String horaInicial, String horaFinal){
+		System.out.println()
+		try{
+			if(!validaDados(cellCheck)){
+				String pathTxtEmailConfig = "C:/Users/Public/RPA_ALLIANZ/Emails/backoffice/CadastroCorretorFilialFisica/ConfiguracoesCadastroCorretorFilialFisica.txt";
+				lerConfigurações(pathTxtEmailConfig)
+				System.out.println(pathTxtEmail)
+				String emaildestination = StringFormatter.formatterEmailDestination(FileInput.readFile(pathTxtEmail));
+				// FORMATA SAIDA DO TEMPO DE EXECUÇÃO
+				long segds = timeLapnse.toSeconds();
+				String hours = timeLapnse.toHours()+"h "+
+						timer.converteMinutos(timeLapnse.toHours(), timeLapnse.toMinutes())+"m "+
+						timer.converteSegundos(timeLapnse.toMinutes(),segds)+"s";
+				// ENVIO DE E-MAIL
+				//DADOS DO DOCUMENTO
+				initDataFiles();
+				// ENVIA E-MAIL DINAMICO
+				emailDinamico.enviaEmailDinamico(sender, emaildestination, 'CadastroCorretorFilialFisicaFinalProcesso', path, docName, emailDinamico.listaDeAlertas(data, cellCheckAlert)  , hours, horaInicial, horaFinal,  GetHost.getHostname() , dataInicio, dataFinal, "" );
+				FileInput.deletaArquivoPdf(pathFile);
+				}
+		} catch (Exception e){}
 	}
 }

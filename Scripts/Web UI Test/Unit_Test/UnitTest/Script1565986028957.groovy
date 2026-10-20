@@ -34,10 +34,66 @@ import auxiliares.leitorPdf;
 
 
 
+import auxiliares.FileInput;
+
+String path = "C:\\Users\\Public\\RPA_ALLIANZ\\Emails\\EnderecoEmailDinamico\\ConfiguracoesEnderecoEmailDinamico.txt";
+
+List<String> linhas = FileInput.readFile(path)
+for(int i = 0; i < linhas.size();i++){
+	switch (i)  {
+		case 0:
+			sender = linhas.get(i).toString();
+			System.out.println(sender);
+			break;
+	}
+}
+
+
+
+
+
+//System.out.println(texo("12,44"))
+
+
+
+public static String texo(String IOF){
+	StringBuilder nstrbdr = new StringBuilder();
+		nstrbdr.append("Origem: Projeto Sicoob SC/RS Digital\n")
+			   .append("Motivo: Trata-se de CANCELAMENTO DEVIDO POR INADIMPLÊNCIA\n")
+			   .append("Ações:\n")
+			   .append("•	Abertura de nova devolução de IOF:\n\n")
+			   .append("Dados do Segurado:\n")
+			   .append("•	NOME (Segurado): TESTE NOME \n")
+			   .append("•	CPF/CNPJ (Segurado): TESTE DOC 2323234\n")
+			   .append("•	Nº Apólice SUSEP: TESTE APOLICE 44343\n")
+			   .append("•	Valor do IOF: "+IOF+"\n\n")
+			   .append("Dados Bancários para Devolução:\n")
+			   .append("•	Nome do titular da conta: "+retornaDadosBancarios("sicoobNomeTitular")+"\n")
+			   .append("•	CNPJ: "+retornaDadosBancarios("sicoobCnpj")+"\n")
+			   .append("•	Nº agência/cooperativa: "+retornaDadosBancarios("sicoobAgencia")+"\n")
+			   .append("•	Nº Conta Corrente: "+retornaDadosBancarios("sicoobConta")+"-")
+			   .append(retornaDadosBancarios("sicoobDig"));
+			   
+	//		   System.out.println("TEXTO\n\n"+nstrbdr.toString());
+	return nstrbdr.toString();
+}
+
+public static String retornaDadosBancarios(String aba){
+	Map<String, String> dadosBancarios = new HashMap<String, String>()
+	dadosBancarios.put("sicoobCnpj","41953108000186");
+	dadosBancarios.put("sicoobNomeTitular","SICOOB SC/RS DIGITAL CORRETORADE SEGUROS S/A");
+	dadosBancarios.put("sicoobAgencia", "3039-2");
+	dadosBancarios.put("sicoobConta", "113703");
+	dadosBancarios.put("sicoobDig","4");
+	dadosBancarios.put("sicoobBanco","SICOOB");
+	return dadosBancarios.get(aba.toString());
+}
+
+
 //System.out.println("["+leitorPdf.existeArquivo("AllianzSegurosBrasil")+"]" )
 
 //rpaCommands.deletaArquivoPdf(leitorPdf.pegaNomeDoArquivo("AllianzSegurosBrasil"))
-identificaArquivo("AllianzSegurosBrasil")
+//identificaArquivo("AllianzSegurosBrasil")
 
 
 public static void identificaArquivo(String arquivoEsperado){
@@ -1333,7 +1389,6 @@ String pathValue ="C:\\Users\\Public\\";
 //List<String> anexos = new ArrayList<>();
 //anexos[0] = "C:\\Users\\Public\\RPA_ALLIANZ\\Data Files\\Saude\\RoboCriticasSIB.xlsx";
 //anexos[1] = "RoboCriticasSIB.xlsx";
-//sendEmail.CreateEmail.createEmailSendMultipleFiles("denilson.inmetricsext@allpronet.com.br", "denilson.inmetricsext@allpronet.com.br", "be549556", anexos, "smtp.intrallianz.es", "25", "CriticasSIB" )
 
 
 //auxiliares.WriteExcelFactory.updateSheetLine("TESTE 2", 100,"C:\\Users\\Public\\RPA_ALLIANZ\\Data Files\\Comercial\\inclusaosusep\\InclusaoSUSEP.xlsx","TESTE" , 0, "recadastramentoSUSEP");

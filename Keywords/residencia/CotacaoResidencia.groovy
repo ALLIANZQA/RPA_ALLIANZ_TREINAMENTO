@@ -94,8 +94,8 @@ public class CotacaoResidencia extends rpaCommands{
 
 						//Loga
 						WebUI.click(findTestObject('0_Page_Inicio/strong_Login'))
-						WebUI.setText(findTestObject('1_Page_Login SSO/input_Usurio__58_login'), 'BE00151')
-						WebUI.setText(findTestObject('1_Page_Login SSO/input_Senha__58_password'), 'az201902')
+						//WebUI.setText(findTestObject('1_Page_Login SSO/input_Usurio__58_login'), 'BE00151')
+						//WebUI.setText(findTestObject('1_Page_Login SSO/input_Senha__58_password'), 'az201902')
 						WebUI.click(findTestObject('1_Page_Login SSO/input_Senha_botonSubmitFormula'))
 
 						//Navega - Menus

@@ -33,8 +33,9 @@ WebUI.maximizeWindow()
 
 //Loga
 WebUI.click(findTestObject('0_Page_Inicio/strong_Login'))
-WebUI.setText(findTestObject('1_Page_Login SSO/input_Usurio__58_login'), 'BE00151')
-WebUI.setEncryptedText(findTestObject('1_Page_Login SSO/input_Senha__58_password'), '3enSPuys5axRqbsBoOYdqg==')
+
+// criar aqui login 
+
 WebUI.click(findTestObject('1_Page_Login SSO/input_Senha_botonSubmitFormula'))
 
 //Navega - Menus

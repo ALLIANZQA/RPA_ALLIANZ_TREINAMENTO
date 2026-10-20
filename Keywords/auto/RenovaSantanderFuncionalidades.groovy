@@ -326,15 +326,21 @@ public class RenovaSantanderFuncionalidades extends rpaCommands {
 	
 	public static fluxoInicialRenovaSantander(String tipoAba,String a,  String[] dataParaExecutar){
 		System.out.println()
-		String dataInicio = ExtractDates.dataAtual();
-		String horaInicial =  ExtractDates.horaAtualizada();
-		start = Instant.now();
+		if(FileInput.validaExistenciaDeArquivo(pathFile)){
+			FileInput.criaLog( ExtractDates.dataAtual() , pathFile);
+			FileInput.atualizaLog( ExtractDates.horaAtualizada() , pathFile);
+			FileInput.atualizaLog( Instant.now().toString(), pathFile)
+		}
 		iniURLDateFiles()
 		initDataFiles(testDataPath, tabCapPath )
 		fluxoCompletoRenovaSantander(tipoAba, a, dataParaExecutar);
 		recursivo(tipoAba,a, dataParaExecutar)
-		end =  Instant.now();
-		timeLapnse = Duration.between(start, end);
+		
+	    FileInput.atualizaLog(Instant.now().toString(), pathFile)
+		List<String> times = rpaCommands.convertToInstant(pathFile);
+		String dataInicio = times[0];
+		String horaInicial =  times[1];
+		timeLapnse = Duration.between( Instant.parse(times[2]), Instant.parse(times[3]));
 		String dataFinal = ExtractDates.dataAtual();
 		String horaFinal =  ExtractDates.horaAtualizada();
 		aba = 'RenovacaoSantander';
@@ -875,46 +881,46 @@ public class RenovaSantanderFuncionalidades extends rpaCommands {
 				case "RenovaSantander":
 				WriteExcelFactory.updateSheetLine('',i, path,'',2,aba);
 				WriteExcelFactory.updateSheetLine('',i, path,'x',3,aba);
-				WriteExcelFactory.updateSheetLine('',i, path,sPacote,25,aba);
-				WriteExcelFactory.updateSheetLine('',i, path,iPrLiqAtlAnt,26,aba);
-				WriteExcelFactory.updateSheetLine('',i, path,dPrliqAtuCalc,27,aba);
-				WriteExcelFactory.updateSheetLine('',i, path,sProposta,28,aba);
-				WriteExcelFactory.updateSheetLine('',i, path,sApoliceRenov,29,aba);
-				WriteExcelFactory.updateSheetLine('',i, path,sAlerta,30,aba);
-				WriteExcelFactory.updateSheetLine('',i, path,sLog,31,aba);
+				WriteExcelFactory.updateSheetLine('',i, path,sPacote,26,aba);
+				WriteExcelFactory.updateSheetLine('',i, path,iPrLiqAtlAnt,27,aba);
+				WriteExcelFactory.updateSheetLine('',i, path,dPrliqAtuCalc,28,aba);
+				WriteExcelFactory.updateSheetLine('',i, path,sProposta,29,aba);
+				WriteExcelFactory.updateSheetLine('',i, path,sApoliceRenov,30,aba);
+				WriteExcelFactory.updateSheetLine('',i, path,sAlerta,31,aba);
+				WriteExcelFactory.updateSheetLine('',i, path,sLog,32,aba);
 				break;
 				case "RenovaSantanderSASAM":
 				WriteExcelFactory.updateSheetLine('',i, path,'',2,aba);
 				WriteExcelFactory.updateSheetLine('',i, path,'x',3,aba);
-				WriteExcelFactory.updateSheetLine('',i, path,sPacote,87,aba);
-				WriteExcelFactory.updateSheetLine('',i, path,iPrLiqAtlAnt,88,aba);
-				WriteExcelFactory.updateSheetLine('',i, path,dPrliqAtuCalc,89,aba);
-				WriteExcelFactory.updateSheetLine('',i, path,sProposta,90,aba);
-				WriteExcelFactory.updateSheetLine('',i, path,sApoliceRenov,91,aba);
-				WriteExcelFactory.updateSheetLine('',i, path,sAlerta,92,aba);
-				WriteExcelFactory.updateSheetLine('',i, path,sLog,93,aba);
+				WriteExcelFactory.updateSheetLine('',i, path,sPacote,88,aba);
+				WriteExcelFactory.updateSheetLine('',i, path,iPrLiqAtlAnt,89,aba);
+				WriteExcelFactory.updateSheetLine('',i, path,dPrliqAtuCalc,90,aba);
+				WriteExcelFactory.updateSheetLine('',i, path,sProposta,91,aba);
+				WriteExcelFactory.updateSheetLine('',i, path,sApoliceRenov,92,aba);
+				WriteExcelFactory.updateSheetLine('',i, path,sAlerta,93,aba);
+				WriteExcelFactory.updateSheetLine('',i, path,sLog,94,aba);
 				break;
 				case "RenovaEmissaoIncorreta":
 				WriteExcelFactory.updateSheetLine('',i, path,'',2,aba);
 				WriteExcelFactory.updateSheetLine('',i, path,'x',3,aba);
-				WriteExcelFactory.updateSheetLine('',i, path,sPacote,77,aba);
-				WriteExcelFactory.updateSheetLine('',i, path,iPrLiqAtlAnt,78,aba);
-				WriteExcelFactory.updateSheetLine('',i, path,dPrliqAtuCalc,79,aba);
-				WriteExcelFactory.updateSheetLine('',i, path,sProposta,80,aba);
-				WriteExcelFactory.updateSheetLine('',i, path,sApoliceRenov,81,aba);
-				WriteExcelFactory.updateSheetLine('',i, path,sAlerta,82,aba);
-				WriteExcelFactory.updateSheetLine('',i, path,sLog,83,aba);
+				WriteExcelFactory.updateSheetLine('',i, path,sPacote,78,aba);
+				WriteExcelFactory.updateSheetLine('',i, path,iPrLiqAtlAnt,79,aba);
+				WriteExcelFactory.updateSheetLine('',i, path,dPrliqAtuCalc,80,aba);
+				WriteExcelFactory.updateSheetLine('',i, path,sProposta,81,aba);
+				WriteExcelFactory.updateSheetLine('',i, path,sApoliceRenov,82,aba);
+				WriteExcelFactory.updateSheetLine('',i, path,sAlerta,83,aba);
+				WriteExcelFactory.updateSheetLine('',i, path,sLog,84,aba);
 				break;
 				case "RenovaSantanderSASAM2":
 				WriteExcelFactory.updateSheetLine('',i, path,'',4,aba);
 				WriteExcelFactory.updateSheetLine('',i, path,'x',5,aba);
-				WriteExcelFactory.updateSheetLine('',i, path,sPacote,53,aba);
-				WriteExcelFactory.updateSheetLine('',i, path,iPrLiqAtlAnt,54,aba);
-				WriteExcelFactory.updateSheetLine('',i, path,dPrliqAtuCalc,55,aba);
-				WriteExcelFactory.updateSheetLine('',i, path,sProposta,56,aba);
-				WriteExcelFactory.updateSheetLine('',i, path,sApoliceRenov,57,aba);
-				WriteExcelFactory.updateSheetLine('',i, path,sAlerta,58,aba);
-				WriteExcelFactory.updateSheetLine('',i, path,sLog,59,aba);
+				WriteExcelFactory.updateSheetLine('',i, path,sPacote,535,aba);
+				WriteExcelFactory.updateSheetLine('',i, path,iPrLiqAtlAnt,55,aba);
+				WriteExcelFactory.updateSheetLine('',i, path,dPrliqAtuCalc,56,aba);
+				WriteExcelFactory.updateSheetLine('',i, path,sProposta,57,aba);
+				WriteExcelFactory.updateSheetLine('',i, path,sApoliceRenov,58,aba);
+				WriteExcelFactory.updateSheetLine('',i, path,sAlerta,59,aba);
+				WriteExcelFactory.updateSheetLine('',i, path,sLog,60,aba);
 				break;
 			}
 
@@ -950,16 +956,16 @@ public class RenovaSantanderFuncionalidades extends rpaCommands {
 		i = i-1;
 		switch (aba){
 			case "RenovaSantander":
-			WriteExcelFactory.updateSheetLine('',i, path,sAlerta,30,aba);
+			WriteExcelFactory.updateSheetLine('',i, path,sAlerta,31,aba);
 			break;
 			case "RenovaSantanderSASAM":
-			WriteExcelFactory.updateSheetLine('',i, path,sAlerta,82,aba);
+			WriteExcelFactory.updateSheetLine('',i, path,sAlerta,83,aba);
 			break;
 			case "RenovaEmissaoIncorreta":
-			WriteExcelFactory.updateSheetLine('',i, path,sAlerta,82,aba);
+			WriteExcelFactory.updateSheetLine('',i, path,sAlerta,83,aba);
 			break;
 			case "RenovaSantanderSASAM2":
-			WriteExcelFactory.updateSheetLine('',i, path,sAlerta,58,aba);
+			WriteExcelFactory.updateSheetLine('',i, path,sAlerta,59,aba);
 			break;
 		}
 
@@ -979,28 +985,28 @@ public class RenovaSantanderFuncionalidades extends rpaCommands {
 			case "RenovaSantander":
 			WriteExcelFactory.updateSheetLine('',i, path,'',2,aba);
 			WriteExcelFactory.updateSheetLine('',i, path,'x',3,aba);
-			WriteExcelFactory.updateSheetLine('',i, path,"",25,aba);
 			WriteExcelFactory.updateSheetLine('',i, path,"",26,aba);
 			WriteExcelFactory.updateSheetLine('',i, path,"",27,aba);
 			WriteExcelFactory.updateSheetLine('',i, path,"",28,aba);
 			WriteExcelFactory.updateSheetLine('',i, path,"",29,aba);
-			WriteExcelFactory.updateSheetLine('',i, path,sAlerta,30,aba);
-			WriteExcelFactory.updateSheetLine('',i, path,"",31,aba);
+			WriteExcelFactory.updateSheetLine('',i, path,"",30,aba);
+			WriteExcelFactory.updateSheetLine('',i, path,sAlerta,31,aba);
+			WriteExcelFactory.updateSheetLine('',i, path,"",32,aba);
 			break;
 			case "RenovaSantanderSASAM":
 			WriteExcelFactory.updateSheetLine('',i, path,'',2,aba);
 			WriteExcelFactory.updateSheetLine('',i, path,'x',3,aba);
-			WriteExcelFactory.updateSheetLine('',i, path,sAlerta,82,aba);
+			WriteExcelFactory.updateSheetLine('',i, path,sAlerta,83,aba);
 			break;
 			case "RenovaEmissaoIncorreta":
 			WriteExcelFactory.updateSheetLine('',i, path,'',2,aba);
 			WriteExcelFactory.updateSheetLine('',i, path,'x',3,aba);
-			WriteExcelFactory.updateSheetLine('',i, path,sAlerta,82,aba);
+			WriteExcelFactory.updateSheetLine('',i, path,sAlerta,83,aba);
 			break;
 			case "RenovaSantanderSASAM2":
 			WriteExcelFactory.updateSheetLine('',i, path,'',4,aba);
 			WriteExcelFactory.updateSheetLine('',i, path,'x',5,aba);
-			WriteExcelFactory.updateSheetLine('',i, path,sAlerta,58,aba);
+			WriteExcelFactory.updateSheetLine('',i, path,sAlerta,59,aba);
 			break;
 		}
 
@@ -1648,7 +1654,7 @@ public class RenovaSantanderFuncionalidades extends rpaCommands {
 		String telaTabelaPrecos = recuperaValor('//*[@id="cellAppPromptHeaderArea"]', 'textContent', 5)
 		System.err.println("telaTabelaPreços - tela ["+telaTabelaPrecos+"] validaTela ["+validaTela+"] Aba ["+aba+"]")
 
-		System.err.println('iDescontoCap ['+iDescontoCap+'] iComissaoCap ['+iComissaoCap+'] sFormaPagamento[ '+sFormaPagamento+']')
+		System.out.println('iDescontoCap ['+iDescontoCap+'] iComissaoCap ['+iComissaoCap+'] sFormaPagamento[ '+sFormaPagamento+']')
 
 		if(telaTabelaPrecos.contains("TABELA DE PREÇOS".toString()) && validaTela.equals(false)){
 
@@ -1817,7 +1823,7 @@ public class RenovaSantanderFuncionalidades extends rpaCommands {
 				if(alertListBlocList(msgTela2) ){
 
 
-					if(pacotesNovos(sPacote).contains(verificaPacoteSelecionado())){
+					if(pacotesNovos(sPacote).contains(verificaPacoteSelecionado()) || pacotesNovos(sPacote).contains(verificaPacoteSelecionadoOpt()) ){
 
 						if(dQtdParcelas.equals("1")){
 							try{
@@ -1896,6 +1902,8 @@ public class RenovaSantanderFuncionalidades extends rpaCommands {
 	 * @return
 	 */
 	public static String verificaPacoteSelecionado(){
+		String pack1="";
+		String pack2="";
 		String pacote
 		String xpath = '//*[@id="blParrillaCellContent"]'
 		String tag = 'input'
@@ -1905,7 +1913,29 @@ public class RenovaSantanderFuncionalidades extends rpaCommands {
 			//	System.err.println("["+j+"] ["+listOfElements.get(j).getAttribute("id")+"] ["+listOfElements.get(j).getAttribute("checked")+"]")
 			if(listOfElements.get(j).getAttribute("checked").equals('true') ){
 				System.err.println("["+j+"] ["+listOfElements.get(j).getAttribute("id")+"] ["+listOfElements.get(j).getAttribute("checked")+"]")
-				pacote = pacotesIndex(j)
+				pacote = pacotesIndex(j);; 
+			} 
+		}
+		return pacote
+	}
+	
+	/**
+	 * @author T_DCDias
+	 * @return
+	 */
+	public static String verificaPacoteSelecionadoOpt(){
+		String pack1="";
+		String pack2="";
+		String pacote
+		String xpath = '//*[@id="blParrillaCellContent"]'
+		String tag = 'input'
+		WebUI.delay(5)
+		selecionaListaDeElementos(xpath,tag)
+		for(int j = 0; j < listOfElements.size(); j++){
+			//	System.err.println("["+j+"] ["+listOfElements.get(j).getAttribute("id")+"] ["+listOfElements.get(j).getAttribute("checked")+"]")
+			if(listOfElements.get(j).getAttribute("checked").equals('true') ){
+				System.err.println("["+j+"] ["+listOfElements.get(j).getAttribute("id")+"] ["+listOfElements.get(j).getAttribute("checked")+"]")
+				pacote = pacotesIndexOpt(j);;
 			}
 		}
 		return pacote
@@ -1980,6 +2010,7 @@ public class RenovaSantanderFuncionalidades extends rpaCommands {
 	 */
 	public static String plano(String pacote){
 		Map<String, String> planos = new HashMap<String, String>()
+		planos.put('Roubo e Furto', 'Roubo e Furto');
 		planos.put('Essencial', 'Plano 1');
 		planos.put('Compacto 1', 'Plano 3');
 		planos.put('Básico', 'Plano 3');
@@ -2003,6 +2034,7 @@ public class RenovaSantanderFuncionalidades extends rpaCommands {
 	 */
 	public static String pacotesNovos(String pacote){
 		Map<String, String> pacotes = new HashMap<String, String>()
+		pacotes.put('Roubo e Furto', 'Roubo e Furto');
 		pacotes.put('Essencial', 'Essencial');
 		pacotes.put('Compacto 1', 'Básico');
 		pacotes.put('Básico', 'Básico');
@@ -3054,6 +3086,20 @@ public class RenovaSantanderFuncionalidades extends rpaCommands {
 		pacotes.put(22,"Exclusivo")
 		return pacotes.get(pacote);
 	}
+	
+	/**
+	 * @author T_DCDias
+	 */
+	public static String pacotesIndexOpt(int pacote){
+		Map<Integer, String> pacotes = new HashMap<Integer, String>()
+		pacotes.put(2, "Roubo e Furto")
+		pacotes.put(6, "Básico")
+		pacotes.put(10,"Ampliado")
+		pacotes.put(14,"Completo")
+		pacotes.put(18,"Master")
+		pacotes.put(22,"Exclusivo")
+		return pacotes.get(pacote);
+	}
 
 
 	/**
@@ -3129,7 +3175,7 @@ public class RenovaSantanderFuncionalidades extends rpaCommands {
 				lerConfigurações(pathTxtEmail)
 				String pathAnexos = "C:/Users/Public/RPA_ALLIANZ/Emails/Auto/RenovaSantander/Anexos.txt"
 				String emaildestination = StringFormatter.formatterEmailDestination(FileInput.readFile(pathTxtEmail));
-				sendEmail.CreateEmail.createEmailSendEmissaoSantander(sender, emaildestination, FileInput.readFile(pathAnexos), tipoAba, dataDoDocumento );
+				//sendEmail.CreateEmail.createEmailSendEmissaoSantander(sender, emaildestination, FileInput.readFile(pathAnexos), tipoAba, dataDoDocumento );
 				b = true;
 				} catch (Exception e){}
 			}
@@ -4025,6 +4071,7 @@ public class RenovaSantanderFuncionalidades extends rpaCommands {
 			System.err.println("\nPacote ["+pacote+"]")
 			boolean r = false
 			List<String> listOfPacs = new ArrayList<String>()
+			listOfPacs.add("Roubo e Furto")
 			listOfPacs.add("Essencial")
 			listOfPacs.add("Básico")
 			listOfPacs.add("Ampliado")
@@ -4149,6 +4196,7 @@ public class RenovaSantanderFuncionalidades extends rpaCommands {
 				// ENVIA E-MAIL DINAMICO
 				System.out.println(sender+" - "+ emaildestination+" - "+ tipoAba+" - "+ path+" - "+ docName+" - "+msgAlertas.size()+" - "+ hours+" - "+ horaInicial+" - "+ horaFinal+" - "+  GetHost.getHostname() +" - "+ dataInicio+" - "+ dataFinal+" - "+ dataDoDocumento)
 				emailDinamico.enviaEmailDinamico(sender, emaildestination, tipoAba, path, docName, msgAlertas  , hours, horaInicial, horaFinal,  GetHost.getHostname() , dataInicio, dataFinal, dataDoDocumento+" - "+GetHost.getHostname() );
+				FileInput.deletaArquivoPdf(pathFile);
 		  } catch (Exception e){}
 		}
 

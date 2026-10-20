@@ -230,7 +230,7 @@ public class RenovacaoAutoFrotaFuncionalidades extends rpaCommands{
 			//Corretor
 			limpaCampo('//*[@id="mediador"]', 2)
 			preencheXpath('//*[@id="mediador"]',renovacao[4], 2);
-			commandTAB('//*[@id="mediador"]')
+	//		commandTAB('//*[@id="mediador"]')
 			WebUI.delay(5);
 
 			/**

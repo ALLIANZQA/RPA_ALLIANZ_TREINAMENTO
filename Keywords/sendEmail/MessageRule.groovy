@@ -78,6 +78,15 @@ public class MessageRule extends AutoTemplateMessage{
 		subject.put('DesvinculaCodigoCorretor', 'RPA - Desvincula Codigo Corretor');
 		subject.put('RenovacaoSantander', 'RPA - Renovação Santander');
 		subject.put('Ressarcimento', 'RPA - Ressarcimento');
+		subject.put('Parcerias', 'RPA - Pro Atividade Parcerias');
+		subject.put('CadastroCorretorFilialFisicaFinalProcesso', 'RPA - Cadastro Corretor Filial Fisica');
+		subject.put('GestaoVerificacoesCancelamento', 'RPA - Gestão Verificações Cancelamento Atribuição');
+		subject.put('CancelamentoApolicesSicoob', 'RPA - Cancelamento de Apolices Sicoob');
+		subject.put('RenovaSantanderCartasAviso15D', "RPA - Renovação Santander");
+		subject.put('GestaoReclamacaoAutomatico', 'RPA - Gestão de Reclamação Automático Workflow');
+		subject.put('DigitacaoSeguroNovoFrota', 'RPA - Digitação Seguro Novo Frota');
+		subject.put('ConfereEmpenhoRamos', 'RPA - Conferencia de Empenho de Ramos');
+
 
 		return subject.get(p.toString());
 	}
@@ -94,6 +103,10 @@ public class MessageRule extends AutoTemplateMessage{
 	 * @return
 	 */
 	public static String messageRules(String[] valores){
+		System.out.println(valores.size())
+		for(int i = 0; i < valores.size(); i++){
+			System.out.println(i+" - "+valores[i])
+		}
 		System.out.println("MESSAGE RULES - RAMO\n"+valores[0])
 		System.out.println()
 		switch (valores[0]){
@@ -147,7 +160,7 @@ public class MessageRule extends AutoTemplateMessage{
 				imagens[18] = "C:/Users/Public/RPA_ALLIANZ/Images/IBLBDM74087/telallnz.png"
 				imagens[19] = "C:/Users/Public/RPA_ALLIANZ/Images/IBLBDM74087/top.png"
 				imagens[20] = "C:/Users/Public/RPA_ALLIANZ/Images/IBLBDM74087/down.png"
-				message.setSubject("Aviso de Renovação Apólice Allianz/Santander - "+valores[2]);
+				message.setSubject("Aviso de Renovação Apólice Allianz/Santander - "+valores[2]+" / "+valores[8]);
 
 				multipart.addBodyPart(adicionaImagem(imagens[0],"Content-ID", "image_id1"))
 			//multipart.addBodyPart(adicionaImagem(imagens[1],"Content-ID", "image_id2"))
@@ -853,6 +866,11 @@ public class MessageRule extends AutoTemplateMessage{
 				multipart.addBodyPart(adicionaImagem(cabecalho,"Content-ID", "image_id1"))
 				multipart.addBodyPart(adicionaImagem(rodape,"Content-ID", "image_id2"))
 				return AutoTemplateMessage.renovaSantander(cabecalho, rodape)
+				break;
+
+			case "emailProatividadePercerias":
+				message.setSubject(valores[4]);
+				return BackOfficeTemplateMessage.parcerias(valores[3]);
 				break;
 
 			case "AlteracoesRenovacaoBanrisul":

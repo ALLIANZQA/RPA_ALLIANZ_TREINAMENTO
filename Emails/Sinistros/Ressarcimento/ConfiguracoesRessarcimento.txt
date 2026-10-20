@@ -1,5 +1,5 @@
 C:/Users/Public/RPA_ALLIANZ/Emails/Sinistros/Ressarcimento/Ressarcimento.txt
-rpa@allianz.com.br
+rpa_azb@allianz.com.br
 
 smtp.intrallianz.es
 00

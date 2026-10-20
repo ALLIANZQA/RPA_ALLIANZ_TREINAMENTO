@@ -29,23 +29,23 @@ import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
 
-String txt = "LOURIVAL LOPES DO NASCIMENTO"
+String txt = "420246741 12/12 0 0 CART 09/04/2026 18/03/2027 226,73 Cobrado 15/04/2026 4033300"
 
-System.out.println(pointStopWord(txt, 0))
+System.out.println(identificaParcelaDoRecibo(txt, "1/12"))
 System.out.println()
 
-public static String pointStopWord(String txt, int stop){
-	int inicio;
+public static boolean identificaParcelaDoRecibo(String txt, String stop){
+	boolean p = false;
 	StringBuilder sb = new StringBuilder();
 	String [] stringList = txt.split(" ");
 	for(int i = 0; i< stringList.size(); i++){
 		System.out.println("["+i+"] ["+stringList[i]+"]")
-		sb.append(stringList[i]+" ");
-		if(i==stop){
+		if(stringList[i].toString().equals(stop)){
+			p = true;
 			break;
 		}
 	}
-	return sb.toString().trim();
+	return p;
 }
 
 

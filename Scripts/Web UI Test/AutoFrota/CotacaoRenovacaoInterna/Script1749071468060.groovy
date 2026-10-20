@@ -19,6 +19,8 @@ try {
 	 * Demanda IBLBDM-70966
 	 * Rapid Frota _Robô para digitação dados Renovação Interna
 	 * Desenvolvimento: 04/06/2025
+	 * Atualização 01/04/26
+	 * Atualização 01/05/26
 	 *
 	 */
 	autofrota.CotacaoRenovacaoInternaFuncionalidades.fluxoCotacaoRenovacaoInterna('CotacaoRenovacaoInterna',"PRD");

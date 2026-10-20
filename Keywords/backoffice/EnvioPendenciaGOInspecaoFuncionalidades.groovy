@@ -55,7 +55,7 @@ public class EnvioPendenciaGOInspecaoFuncionalidades extends backofficeFuncional
 	private static String docName = "PendenciaGOInspecao.xlsx"
 	private static pathTxtEmailDinamico = "C:\\Users\\Public\\RPA_ALLIANZ\\Emails\\backoffice\\EnvioRetornoGo\\ConfiguracoesEnvioRetornoGoFinalProcesso.txt"
 	private static int cellCheckAlert = 12;
-
+//    private static String pathFile = "C:\\Users\\Public\\RPA_ALLIANZ\\LogTimeLapse\\logtimelapse.txt";
 
 	/**
 	 * @author T_DCDias
@@ -115,18 +115,23 @@ public class EnvioPendenciaGOInspecaoFuncionalidades extends backofficeFuncional
 	 */
 	public static fluxoEnvioPendenciaGOInspecao(String aba){
 		System.out.println()
-		String dataInicio = ExtractDates.dataAtual();
-		String horaInicial =  ExtractDates.horaAtualizada();
-		start = Instant.now();
+		if(FileInput.validaExistenciaDeArquivo(pathFile)){
+			FileInput.criaLog( ExtractDates.dataAtual() , pathFile);
+			FileInput.atualizaLog( ExtractDates.horaAtualizada() , pathFile);
+			FileInput.atualizaLog( Instant.now().toString(), pathFile)
+		 }
 		initDataFiles()
 		fluxoCompletoEnvioPendenciaGOInspecao(aba)
 		reprocessaFalhas(aba)
-		//enviaEmailEnvioPendenciaGOInspecao(aba)
-	
-		end =  Instant.now();
-		timeLapnse = Duration.between(start, end);
+		FileInput.atualizaLog(Instant.now().toString(), pathFile)
+		List<String> times = rpaCommands.convertToInstant(pathFile);
+		String dataInicio = times[0];
+		String horaInicial =  times[1];
+		timeLapnse = Duration.between( Instant.parse(times[2]), Instant.parse(times[3]));
 		String dataFinal = ExtractDates.dataAtual();
 		String horaFinal =  ExtractDates.horaAtualizada();
+		
+		
 		try{
 		   enviaEmailDuplicadoRecibosDinamico(aba, timeLapnse, dataInicio, dataFinal, horaInicial, horaFinal );
 		} catch (Exception e){
@@ -161,7 +166,7 @@ public class EnvioPendenciaGOInspecaoFuncionalidades extends backofficeFuncional
 			WebUI.delay(20);
 			MenuMatriz.newFluxoGestaoNome();
 			WebUI.delay(10);
-
+			alteraJanejaGenerica(1, 2)
 			for(int i = 1; i <= data.getRowNumbers(); i++) {
 				int j =  i - 1
 				if (data.getValue(cellCheck, i).equals('Processar')) {
@@ -203,7 +208,7 @@ public class EnvioPendenciaGOInspecaoFuncionalidades extends backofficeFuncional
 		String alertaFG
 		try{
 			alteraJanejaGenerica(1, 2)
-			WebUI.maximizeWindow()
+		//	WebUI.maximizeWindow()
 
 			//FICHA GESTÃO
 			String telaFichaGestao = recuperaValor('/html/body/div/div/app-root/file-management/app-header/div/nx-ibl-header/div/div/div[1]', 'innerText', 1)
@@ -215,7 +220,7 @@ public class EnvioPendenciaGOInspecaoFuncionalidades extends backofficeFuncional
 				 * 
 				 */
 				novaFichaGestaoProcesso(registros,0,1, registros[8])
-				WebUI.delay(5);
+				WebUI.delay(10);
 				alertaFG = recuperaValor('//*[@id="componenteReferencia"]/div/div[2]/div/nx-message/div', 'innerText', 1)
 				System.out.println("alertaFG ["+alertaFG+"]")
 				if(!verificaPendenciaSelectItem(nota)){
@@ -236,11 +241,18 @@ public class EnvioPendenciaGOInspecaoFuncionalidades extends backofficeFuncional
 							preencheXpath('//*[@id="numModCodi"]', registros[7],0);
 							//ACEITAR
 							clickXpath('//*[@id="btnAceptar"]', 1);
+							
+							WebUI.delay(10);
+							System.out.println()
+							if(!verificaListaDePrestadores()){
+							
 							WebUI.delay(5);
 							alerta = recuperaValor('//*[@id="dataErrorSection"]/table/tbody/tr/td[2]', 'innerText', 2)
 							if(!alertListBlock(alerta )){
+								WebUI.delay(5);
 								//Gravar
-								clickXpath('//*[@id="o_11"]', 2);
+								selecionaItemLista('Gravar','//*[@id="divAppContent"]/table/tbody/tr[1]/td/table/tbody/tr[2]/td/table' , "div" )
+								
 								//GESTÃO PROCESSOS
 								alteraJanejaGenerica(1, 2)
 								String telaGestaoConfirmacao = recuperaValor('/html/body/div/div/app-root/file-management/app-header/div/nx-ibl-header/div/div/div[1]', 'innerText', 1)
@@ -261,8 +273,28 @@ public class EnvioPendenciaGOInspecaoFuncionalidades extends backofficeFuncional
 									status = "Processar"
 								}
 							} else {
-								alerta = " FAIL"
+							//	alerta = " FAIL - "+alerta
+								status = "Processado"
+								fecharJanelaAtual(2)
+								alteraJanejaGenerica(1, 1)
+								fecharJanelaAtual(1)
+								alteraJanejaGenerica(0, 1)
+								WebUI.delay(2);
+								MenuMatriz.newFluxoGestaoNome();
 							}
+							
+							} else {
+							  alerta = "Nota GO não enviada: Identificamos a existência de mais de um prestador associado a este sinistro.";
+							  status = "Processado"
+							  fecharJanelaAtual(2)
+							  alteraJanejaGenerica(1, 1)
+							  fecharJanelaAtual(1)
+							  alteraJanejaGenerica(0, 1)
+							  WebUI.delay(2);
+							  MenuMatriz.newFluxoGestaoNome();
+							  enviado = false
+							}
+							
 						} else {
 							enviado = false
 							alerta="Tela 'EDITOR DE NOTAS/AGENDA' não apresentada"
@@ -314,6 +346,29 @@ public class EnvioPendenciaGOInspecaoFuncionalidades extends backofficeFuncional
 		return enviado
 	}
 
+	/**
+	 * @author ALZ_SUP54955
+	 * @return
+	 */
+	public static boolean verificaListaDePrestadores(){
+		System.out.println()
+		boolean b = false;
+		try{
+		alteraJanejaGenerica(3, 1)
+		String xpath = '//*[@id="listDatosProfAsoc_tbody"]'
+		String tag = 'tr'
+		selecionaListaDeElementos(xpath,tag)
+		System.out.println(listOfElements.size())
+		if(listOfElements.size() > 0){
+			b = true; 
+			fecharJanelaAtual(3)
+		}
+		alteraJanejaGenerica(2, 0)
+		} catch (Exception e){}
+		return b;
+	}
+	
+	
 	/**
 	 * @author be54955
 	 * @param nota
@@ -385,7 +440,7 @@ public class EnvioPendenciaGOInspecaoFuncionalidades extends backofficeFuncional
 		boolean r = false
 		List<String> listOfAlerts = new ArrayList<String>()
 		listOfAlerts.add(" Código de UT inexistente")
-
+		listOfAlerts.add(" DNI / NIF prestador errado ou não indicado")
 
 		System.out.println("Alert ["+alert+"]\n")
 		for(int i = 0; i < listOfAlerts.size(); i++){
@@ -429,6 +484,7 @@ public class EnvioPendenciaGOInspecaoFuncionalidades extends backofficeFuncional
 			initDataFiles();
 			// ENVIA E-MAIL DINAMICO
 			emailDinamico.enviaEmailDinamico(sender, emaildestination, tipoAba, path, docName, emailDinamico.listaDeAlertas(data, cellCheckAlert)  , hours, horaInicial, horaFinal,  GetHost.getHostname() , dataInicio, dataFinal, "");
+			FileInput.deletaArquivoPdf(pathFile);
 		 }
 	  } catch (Exception e){}
 	}

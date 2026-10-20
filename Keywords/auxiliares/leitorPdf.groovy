@@ -242,14 +242,18 @@ public class leitorPdf {
 		String ext = ".pdf"
 		List<File> arquivosPdf =  identificaArquivo(path, ext)
 		System.out.println("Quantidade de arquivos PDF encontrados por nome: "+arquivosPdf.size());
-		for(int i = 0; arquivosPdf.size(); i++){
-			if(arquivosPdf[i].toString().contains(nome)){
-			  arquivoNome = arquivosPdf[i].toString()
-			  b=true;
-			  break
-			} else if(arquivosPdf[i].toString().contains("null")){
-			break;
+		if(arquivosPdf.size() >0){
+		  for(int i = 0; arquivosPdf.size(); i++){
+			  if(arquivosPdf[i].toString().contains(nome)){
+			     arquivoNome = arquivosPdf[i].toString()
+			     b=true;
+			     break
+			  } else if(arquivosPdf[i].toString().contains("null")){
+			 break;
 			}
+		}
+		
+		
 		}
 		return arquivoNome;
 	}

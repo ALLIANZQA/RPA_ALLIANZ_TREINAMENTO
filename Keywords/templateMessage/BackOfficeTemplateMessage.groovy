@@ -25,6 +25,17 @@ import sendEmail.*;
 
 public class BackOfficeTemplateMessage extends MessageFactory{
 
+	
+	
+	
+	
+	public static String parcerias(String corpoEmail){
+		String sb = "<head>" +
+		         ""+corpoEmail
+		return sb;
+	}
+	
+	
 	/**
 	 * Aviso de Não Renovação Apólice Allianz/Santander
 	 * @return

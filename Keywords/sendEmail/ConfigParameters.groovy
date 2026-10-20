@@ -24,6 +24,7 @@ public class ConfigParameters {
 	protected String sender;
 	protected String pwrsender;
 	protected String emaildestination;
+	protected String ccemaildestination;
 	protected String subject;
 	protected String messagebory;
 
@@ -64,6 +65,11 @@ public class ConfigParameters {
 	public void setUser(String user) {
 		this.user = user;
 	}
-	
-	
+
+	public String getCcemaildestination() {
+		return ccemaildestination;
+	}
+	public void setCcemaildestination(String ccemaildestination) {
+		this.ccemaildestination = ccemaildestination;
+	}
 }

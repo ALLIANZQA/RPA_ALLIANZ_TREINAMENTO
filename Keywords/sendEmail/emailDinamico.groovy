@@ -26,7 +26,9 @@ import rpacommands.rpaCommands
 
 public class emailDinamico extends rpaCommands {
 
-	private static String authPathConfigEmail = "C:\\Users\\Public\\RPA_ALLIANZ\\Emails\\Credenciais\\ConfigAuthEmail.txt"
+	//	private static String authPathConfigEmail = "C:\\Users\\Public\\RPA_ALLIANZ\\Emails\\Credenciais\\ConfigAuthEmail.txt"
+
+	private static String authPathConfigEmailProp = "C:\\Users\\Public\\RPA_ALLIANZ\\Emails\\Credenciais\\ConfigAuthEmailProp.properties"
 
 	/**
 	 * @author Alz_sup54955
@@ -44,7 +46,10 @@ public class emailDinamico extends rpaCommands {
 	 */
 	public static enviaEmailDinamico(String sender,String emaildestination, String tipoAba, String path, String file,List<String> msgs, String hours, String horaInicial, String horaFinal, String hostName, String dataInicio, String dataFinal, String assunto){
 		try{
-			lerConfiguraçõesAuth(authPathConfigEmail)
+			//	lerConfiguraçõesAuth(authPathConfigEmail)
+			lerConfiguraçõesAuthProp(authPathConfigEmailProp)
+			System.out.println(user+" "+pwdsender+" "+host+" "+porta)
+			
 			List<String> anexos = new ArrayList<>();
 			anexos[0] = path
 			anexos[1] = file
@@ -53,7 +58,7 @@ public class emailDinamico extends rpaCommands {
 					user,
 					pwdsender,
 					anexos,
-				    host,
+					host,
 					porta,
 					tipoAba,
 					Integer.toString(setMessagesTotalAlerts(msgs)),
