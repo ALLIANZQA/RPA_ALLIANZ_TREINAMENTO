@@ -48,11 +48,11 @@ public class SantanderEnvioDeMensagens extends rpaCommands{
 	private static String carta
 	private static String cartaPeriodo
 	private static String tapCap
-	private static String placa 
-	private static String COD_MARCA_MODELO 
-	private static String DS_MODELO  
-	private static String versao  
-	private static String emaildestination 
+	private static String placa
+	private static String COD_MARCA_MODELO
+	private static String DS_MODELO
+	private static String versao
+	private static String emaildestination
 	private static String proposta
 	private static String propostaAnterior
 	private static pathDataFiles = 'Data Files/Auto/RenovacoesSantanderData/RenovaSantander'
@@ -80,7 +80,7 @@ public class SantanderEnvioDeMensagens extends rpaCommands{
 			FileInput.atualizaLog( Instant.now().toString(), pathFile)
 		}
 		initDataFilesCap()
-	    initData(tipo)
+		initData(tipo)
 		renovaSantanderSasam(a,tipo, cartaEnviar)
 		fluxoCompletoEnvioDeMensagens(tipo, dataParaExecutar)
 		processaFalhas(tipo,cartaEnviar,dataParaExecutar)
@@ -92,7 +92,7 @@ public class SantanderEnvioDeMensagens extends rpaCommands{
 		String dataFinal = ExtractDates.dataAtual();
 		String horaFinal =  ExtractDates.horaAtualizada();
 		try{
-		  enviaEmailSantanderEnvioDeMensagens(cartaEnviar, cartaEnviar, dataParaExecutar, tipo, timeLapnse, dataInicio, dataFinal, horaInicial, horaFinal )
+			enviaEmailSantanderEnvioDeMensagens(cartaEnviar, cartaEnviar, dataParaExecutar, tipo, timeLapnse, dataInicio, dataFinal, horaInicial, horaFinal )
 		} catch (Exception e){
 		}
 	}
@@ -149,7 +149,7 @@ public class SantanderEnvioDeMensagens extends rpaCommands{
 	 * @return
 	 */
 	public static fluxoCompletoEnvioDeMensagens(String tipo, String[] dataParaExecutar){
-		System.err.println('fluxo Completo Envio De Mensagens ')
+		System.out.println('fluxo Completo Envio De Mensagens ')
 		try{
 			for(int h = 0; h < dataParaExecutar.size(); h++){
 				System.out.println('\nData ['+h+'] ['+dataParaExecutar[h]+'] ['+tipoProcesso+"] ["+ retornaFINALVIG(tipo)+"]")
@@ -205,11 +205,11 @@ public class SantanderEnvioDeMensagens extends rpaCommands{
 
 										try{
 											if ( data.getValue('Carta (-30d) - Enviar', i).equals('x') && carta.equals("30")) {
-									//			envioCarta30NR(i, "Carta_RenovacaoApolice_30D")
+												//			envioCarta30NR(i, "Carta_RenovacaoApolice_30D")
 											}
 
 											if ( data.getValue('Carta NR - Enviar', i).equals('x') && carta.equals("NR") ) {
-									//			envioCarta30NR(i, "Carta_AvisoNaoRenovacao_NR")
+												//			envioCarta30NR(i, "Carta_AvisoNaoRenovacao_NR")
 											}
 										} catch (Exception e){}
 									} catch (Exception e){
@@ -218,7 +218,7 @@ public class SantanderEnvioDeMensagens extends rpaCommands{
 										continue
 									}
 									break;
-
+									System.err.println();
 								case "RenovaSantander":
 									try{
 										System.err.println("["+i+"] [15 ]["+data.getValue('Carta (-15d) - Enviar', i)+"]" +
@@ -292,33 +292,33 @@ public class SantanderEnvioDeMensagens extends rpaCommands{
 			FINAL_VIG = ExtractDates.formatDateToBR(data.getValue('FINAL_VIG', i))
 			dataAtual = ExtractDates.dataAtual()
 			tapCap = renocacaoCap( data.getValue('GRUPO SEGURADO ATUAL', i) )
-			
+
 			placa = data.getValue('PLACA', i)
 			COD_MARCA_MODELO = data.getValue('COD_MARCA_MODELO', i)
 			DS_MODELO = data.getValue('DS_MODELO', i)
 			versao = data.getValue('VERSAO', i)
 			proposta = data.getValue('PROPOSTA', i)
 			sender ="renovacaosantander@allianz.com.br";
-			emaildestination = data.getValue('E-mail', i)+', arquivorenovacaosantander@allianz.com.br, renovacaosantander@allianz.com.br'
+	//		emaildestination = data.getValue('E-mail', i)+', arquivorenovacaosantander@allianz.com.br, renovacaosantander@allianz.com.br'
 			propostaAnterior = data.getValue('PROPOSTA AZ ANTERIOR', i)
-			
-//			emaildestination = data.getValue('E-mail', i)+", rpa_azb@allianz.com.br" 
-			
+
+			emaildestination = data.getValue('E-mail', i)
+
 			if(enviarEmailAnexo15DA(sender,emaildestination,"Carta_AvisoRenovacao_15DA", segurado, DS_MODELO,versao, placa, apolice,FINAL_VIG, proposta.substring(0, 9), propostaAnterior ))
-			
-			
-//			if( enviarEmailAnexo(data.getValue('E-mail', i)+', renovacaosantander@allianz.com.br',
-//			carta,
-//			segurado,
-//			apolice,
-//			FINAL_VIG,
-//			dataAtual,
-//			data.getValue('PROPOSTA', i).substring(0, 9),
-//			tapCap,  
-//			placa,
-//			COD_MARCA_MODELO,
-//			DS_MODELO,
-//			versao))
+
+
+				//			if( enviarEmailAnexo(data.getValue('E-mail', i)+', renovacaosantander@allianz.com.br',
+				//			carta,
+				//			segurado,
+				//			apolice,
+				//			FINAL_VIG,
+				//			dataAtual,
+				//			data.getValue('PROPOSTA', i).substring(0, 9),
+				//			tapCap,
+				//			placa,
+				//			COD_MARCA_MODELO,
+				//			DS_MODELO,
+				//			versao))
 			{
 				System.err.println("E-mail enviado... ")
 				try{
@@ -357,28 +357,28 @@ public class SantanderEnvioDeMensagens extends rpaCommands{
 		FINAL_VIG = ExtractDates.formatDateToBR(data.getValue('FINAL_VIG', i))
 		dataAtual = ExtractDates.dataAtual()
 		tapCap = renocacaoCap(data.getValue('GRUPO SEGURADO ATUAL', i) )
-		
-		
+
+
 		placa = data.getValue('PLACA', i)
 		DS_MODELO = data.getValue('DS_MODELO', i)
 		versao = data.getValue('VERSAO', i)
 		proposta = data.getValue('PROPOSTA ANTERIOR', i)
 		sender ="renovacaosantander@allianz.com.br";
 		emaildestination = data.getValue('E-mail', i)+', arquivorenovacaosantander@allianz.com.br, renovacaosantander@allianz.com.br';
-		
-//		sender ="denilson.inmetricsext@allpronet.com.br";
-//		emaildestination = 'denilson.inmetricsext@allpronet.com.br , andre.antunes@allianz.com.br';
-		
-				
+
+		//		sender ="denilson.inmetricsext@allpronet.com.br";
+		//		emaildestination = 'denilson.inmetricsext@allpronet.com.br , andre.antunes@allianz.com.br';
+
+
 		if(enviarEmailAnexoNR(sender, emaildestination, "Carta_AvisoRenovacao_15DA", segurado, DS_MODELO , versao, placa , apolice, FINAL_VIG, proposta))
 
-//		if( enviarEmail(data.getValue('E-mail', i)+', renovacaosantander@allianz.com.br',
-//		carta,
-//		segurado,
-//		apolice,
-//		FINAL_VIG,
-//		dataAtual,
-//		tapCap ) ) 
+			//		if( enviarEmail(data.getValue('E-mail', i)+', renovacaosantander@allianz.com.br',
+			//		carta,
+			//		segurado,
+			//		apolice,
+			//		FINAL_VIG,
+			//		dataAtual,
+			//		tapCap ) )
 		{
 			try{
 				alerta = ""
@@ -390,7 +390,7 @@ public class SantanderEnvioDeMensagens extends rpaCommands{
 		}
 	}
 
-	
+
 	/**
 	 * @author BE54955
 	 * @param i
@@ -409,28 +409,30 @@ public class SantanderEnvioDeMensagens extends rpaCommands{
 		FINAL_VIG = ExtractDates.formatDateToBR(data.getValue('FINAL_VIG', i))
 		dataAtual = ExtractDates.dataAtual()
 		tapCap = renocacaoCap(data.getValue('GRUPO SEGURADO ATUAL', i) )
-		
-		
+
+
 		placa = data.getValue('PLACA', i)
 		DS_MODELO = data.getValue('DS_MODELO', i)
 		versao = data.getValue('VERSAO', i)
 		proposta = data.getValue('PROPOSTA ANTERIOR', i)
 		sender ="renovacaosantander@allianz.com.br";
-		emaildestination = data.getValue('E-mail', i)+', arquivorenovacaosantander@allianz.com.br, renovacaosantander@allianz.com.br';
+	//	emaildestination = data.getValue('E-mail', i)+', arquivorenovacaosantander@allianz.com.br, renovacaosantander@allianz.com.br';
 		
-//		sender ="denilson.inmetricsext@allpronet.com.br";
-//		emaildestination = 'denilson.inmetricsext@allpronet.com.br , andre.antunes@allianz.com.br';
-		
-				
+		emaildestination = data.getValue('E-mail', i);
+
+		//		sender ="denilson.inmetricsext@allpronet.com.br";
+		//emaildestination = 'denilson.inmetricsext@allpronet.com.br , andre.antunes@allianz.com.br';
+
+
 		if(enviarEmailAnexoNR(sender, emaildestination, "Carta_AvisoNaoRenovacao", segurado, DS_MODELO , versao, placa , apolice, FINAL_VIG, proposta))
 
-//		if( enviarEmail(data.getValue('E-mail', i)+', renovacaosantander@allianz.com.br',
-//		carta,
-//		segurado,
-//		apolice,
-//		FINAL_VIG,
-//		dataAtual,
-//		tapCap ) )
+			//		if( enviarEmail(data.getValue('E-mail', i)+', renovacaosantander@allianz.com.br',
+			//		carta,
+			//		segurado,
+			//		apolice,
+			//		FINAL_VIG,
+			//		dataAtual,
+			//		tapCap ) )
 		{
 			try{
 				alerta = ""
@@ -441,7 +443,7 @@ public class SantanderEnvioDeMensagens extends rpaCommands{
 			salvarEnvios("FAIL", 'RenovaSantander', i,alerta, tipoProcesso, cartaPeriodo)
 		}
 	}
-	
+
 	/**
 	 * @author ALZ_SUP54955
 	 * @param sender
@@ -464,7 +466,7 @@ public class SantanderEnvioDeMensagens extends rpaCommands{
 		sendEmail.CreateEmail.createEmailSendSantanderAnexos(sender, emaildestination, ramo, segurado, apolice, vigencia, "", "",placa, "", dsmodelo, versao, propostaAnterior, anexos )
 		return true;
 	}
-	
+
 	/**
 	 * @author ALZ_SUP54955
 	 * @param sender
@@ -480,12 +482,12 @@ public class SantanderEnvioDeMensagens extends rpaCommands{
 	 * @return
 	 */
 	public static boolean enviarEmailAnexoNR(String sender, String emaildestination, String ramo, String segurado, String dsmodelo,String versao, String placa , String apolice, String vigencia, String proposta){
-	    System.out.println('Sender ['+sender+'] Ramo ['+ramo+"] Proposta ["+proposta+"]")
-	    sendEmail.CreateEmail.createEmailSendSantanderSemAnexos(sender, emaildestination, ramo, segurado, apolice, vigencia, "", "",placa, "", dsmodelo, versao)
-	    return true;
-    }
-	
-	
+		System.out.println('Sender ['+sender+'] Ramo ['+ramo+"] Proposta ["+proposta+"]")
+		sendEmail.CreateEmail.createEmailSendSantanderSemAnexos(sender, emaildestination, ramo, segurado, apolice, vigencia, "", "",placa, "", dsmodelo, versao)
+		return true;
+	}
+
+
 	/**
 	 * @author Alz_sup54955
 	 * @param segurado
@@ -555,7 +557,7 @@ public class SantanderEnvioDeMensagens extends rpaCommands{
 
 		return tipo;
 	}
-	
+
 	/**
 	 * @author T_DCDias
 	 * @param str
@@ -709,9 +711,9 @@ public class SantanderEnvioDeMensagens extends rpaCommands{
 	public static int returnCellValueCheck(String carta){
 		int cellNum
 		Map<String, String> cellNunber = new HashMap<String, String>()
-		cellNunber.put('15', '22')
-		cellNunber.put('30', '20')
-		cellNunber.put('NR', '24')
+		cellNunber.put('15', '23')
+		cellNunber.put('30', '22')
+		cellNunber.put('NR', '25')
 		cellNum = Integer.parseInt(cellNunber.get(carta).toString())
 		return cellNum
 	}
@@ -867,9 +869,9 @@ public class SantanderEnvioDeMensagens extends rpaCommands{
 		tipoProcesso = tipo
 		carta = cartaEnviar
 		initData(tipo)
-		
+
 		System.out.println("DATA ROWS ["+data.getRowNumbers()+"]")
-		
+
 		try{
 			for(int h = 0; h < dataParaExecutar.size(); h++){
 				System.out.println('\nSend e-mail: Data ['+h+'] ['+dataParaExecutar[h]+'] ['+ tipo+"] "+dia+"]")
@@ -906,16 +908,16 @@ public class SantanderEnvioDeMensagens extends rpaCommands{
 						anexos[1] = "RenovaSantanderSasam2.xlsx"
 						break;
 				}
-			//	sendEmail.CreateEmail.createEmailSendMultipleFilesCartasAvisoSantander(sender, emaildestination, anexos, tipoAba, assunto)
-				
+				//	sendEmail.CreateEmail.createEmailSendMultipleFilesCartasAvisoSantander(sender, emaildestination, anexos, tipoAba, assunto)
+
 				enviaEmailGestaoReclamacao(tipoAba, timeLapnse, dataInicio, dataFinal, horaInicial, horaFinal , assunto);
-				
+
 			}
 		} catch (Exception e){
 			System.err.println("sendEmail exception\n"+e)
 		}
 	}
-	
+
 	/**
 	 * @author Alz_sup54955
 	 * @param tipoAba
@@ -929,22 +931,22 @@ public class SantanderEnvioDeMensagens extends rpaCommands{
 	public static enviaEmailGestaoReclamacao(String tipoAba, Duration timeLapnse, String dataInicio, String dataFinal, String horaInicial, String horaFinal, String assunto){
 		System.out.println()
 		try{
-		//	if(!validaDados(cellCheck)){
-				String pathTxtEmailConfig =  "C:/Users/Public/RPA_ALLIANZ/Emails/Auto/RenovaSantander/ConfiguracoesRenovaSantander.txt";
-				lerConfigurações(pathTxtEmailConfig)
-				System.out.println(pathTxtEmail)
-				String emaildestination = StringFormatter.formatterEmailDestination(FileInput.readFile(pathTxtEmail));
-				// FORMATA SAIDA DO TEMPO DE EXECUÇÃO
-				long segds = timeLapnse.toSeconds();
-				String hours = timeLapnse.toHours()+"h "+
-						timer.converteMinutos(timeLapnse.toHours(), timeLapnse.toMinutes())+"m "+
-						timer.converteSegundos(timeLapnse.toMinutes(),segds)+"s";
-				// ENVIO DE E-MAIL
-				//DADOS DO DOCUMENTO
-				initDataFiles();
-				// ENVIA E-MAIL DINAMICO
-				emailDinamico.enviaEmailDinamico(sender, emaildestination, tipoAba, path, docName, emailDinamico.listaDeAlertas(data, cellCheckAlert)  , hours, horaInicial, horaFinal,  GetHost.getHostname() , dataInicio, dataFinal, assunto );
-				FileInput.deletaArquivoPdf(pathFile);
+			//	if(!validaDados(cellCheck)){
+			String pathTxtEmailConfig =  "C:/Users/Public/RPA_ALLIANZ/Emails/Auto/RenovaSantander/ConfiguracoesRenovaSantander.txt";
+			lerConfigurações(pathTxtEmailConfig)
+			System.out.println(pathTxtEmail)
+			String emaildestination = StringFormatter.formatterEmailDestination(FileInput.readFile(pathTxtEmail));
+			// FORMATA SAIDA DO TEMPO DE EXECUÇÃO
+			long segds = timeLapnse.toSeconds();
+			String hours = timeLapnse.toHours()+"h "+
+					timer.converteMinutos(timeLapnse.toHours(), timeLapnse.toMinutes())+"m "+
+					timer.converteSegundos(timeLapnse.toMinutes(),segds)+"s";
+			// ENVIO DE E-MAIL
+			//DADOS DO DOCUMENTO
+			initDataFiles();
+			// ENVIA E-MAIL DINAMICO
+			emailDinamico.enviaEmailDinamico(sender, emaildestination, tipoAba, path, docName, emailDinamico.listaDeAlertas(data, cellCheckAlert)  , hours, horaInicial, horaFinal,  GetHost.getHostname() , dataInicio, dataFinal, assunto );
+			FileInput.deletaArquivoPdf(pathFile);
 			// }
 		} catch (Exception e){}
 	}
