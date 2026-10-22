@@ -299,10 +299,10 @@ public class SantanderEnvioDeMensagens extends rpaCommands{
 			versao = data.getValue('VERSAO', i)
 			proposta = data.getValue('PROPOSTA', i)
 			sender ="renovacaosantander@allianz.com.br";
-	//		emaildestination = data.getValue('E-mail', i)+', arquivorenovacaosantander@allianz.com.br, renovacaosantander@allianz.com.br'
+			emaildestination = data.getValue('E-mail', i)+', arquivorenovacaosantander@allianz.com.br, renovacaosantander@allianz.com.br'
 			propostaAnterior = data.getValue('PROPOSTA AZ ANTERIOR', i)
 
-			emaildestination = data.getValue('E-mail', i)
+	//		emaildestination = data.getValue('E-mail', i)
 
 			if(enviarEmailAnexo15DA(sender,emaildestination,"Carta_AvisoRenovacao_15DA", segurado, DS_MODELO,versao, placa, apolice,FINAL_VIG, proposta.substring(0, 9), propostaAnterior ))
 
@@ -416,9 +416,9 @@ public class SantanderEnvioDeMensagens extends rpaCommands{
 		versao = data.getValue('VERSAO', i)
 		proposta = data.getValue('PROPOSTA ANTERIOR', i)
 		sender ="renovacaosantander@allianz.com.br";
-	//	emaildestination = data.getValue('E-mail', i)+', arquivorenovacaosantander@allianz.com.br, renovacaosantander@allianz.com.br';
+		emaildestination = data.getValue('E-mail', i)+', arquivorenovacaosantander@allianz.com.br, renovacaosantander@allianz.com.br';
 		
-		emaildestination = data.getValue('E-mail', i);
+	//	emaildestination = data.getValue('E-mail', i);
 
 		//		sender ="denilson.inmetricsext@allpronet.com.br";
 		//emaildestination = 'denilson.inmetricsext@allpronet.com.br , andre.antunes@allianz.com.br';
