@@ -195,9 +195,9 @@ public class MenuMatriz extends rpaCommands{
 	public static avisoDeCredito(){
 		subMenuEquals(xpathSubMenu, "a", "Aviso de Crédito")
 	}
-	
-	
-	
+
+
+
 
 	/**
 	 * @author ALZ_ServiceQA
@@ -217,7 +217,7 @@ public class MenuMatriz extends rpaCommands{
 			}
 		}
 	}
-	
+
 	/**
 	 * @author ALZ_ServiceQA
 	 * @param xpath
@@ -278,7 +278,7 @@ public class MenuMatriz extends rpaCommands{
 		} catch (Exception e){
 		}
 	}
-	
+
 	/**NAVEGA NOS NOVOS MENUS!!!
 	 * Consultas & Estatísticas
 	 * Arquivo Digital

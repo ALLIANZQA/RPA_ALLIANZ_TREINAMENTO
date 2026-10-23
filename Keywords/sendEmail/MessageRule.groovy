@@ -208,7 +208,7 @@ public class MessageRule extends AutoTemplateMessage{
 				imagens[18] = "C:/Users/Public/RPA_ALLIANZ/Images/IBLBDM74087/telallnz.png"
 				imagens[19] = "C:/Users/Public/RPA_ALLIANZ/Images/IBLBDM74087/top.png"
 				imagens[20] = "C:/Users/Public/RPA_ALLIANZ/Images/IBLBDM74087/down.png"
-				message.setSubject("Aviso de Não Renovação Apólice Allianz/Santander - "+valores[2]);
+				message.setSubject("Aviso de Não Renovação Apólice Allianz/Santander - "+valores[2]+" / "+valores[8]);
 
 				multipart.addBodyPart(adicionaImagem(imagens[0],"Content-ID", "image_id1"))
 			//multipart.addBodyPart(adicionaImagem(imagens[1],"Content-ID", "image_id2"))

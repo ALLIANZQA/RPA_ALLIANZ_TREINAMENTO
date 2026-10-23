@@ -370,7 +370,7 @@ public class SantanderEnvioDeMensagens extends rpaCommands{
 		//		emaildestination = 'denilson.inmetricsext@allpronet.com.br , andre.antunes@allianz.com.br';
 
 
-		if(enviarEmailAnexoNR(sender, emaildestination, "Carta_AvisoRenovacao_15DA", segurado, DS_MODELO , versao, placa , apolice, FINAL_VIG, proposta))
+		if(enviarEmailAnexoNR(sender, emaildestination, "Carta_AvisoRenovacao_15DA", segurado, DS_MODELO , versao, placa , apolice, FINAL_VIG, proposta,""))
 
 			//		if( enviarEmail(data.getValue('E-mail', i)+', renovacaosantander@allianz.com.br',
 			//		carta,
@@ -417,14 +417,16 @@ public class SantanderEnvioDeMensagens extends rpaCommands{
 		proposta = data.getValue('PROPOSTA ANTERIOR', i)
 		sender ="renovacaosantander@allianz.com.br";
 		emaildestination = data.getValue('E-mail', i)+', arquivorenovacaosantander@allianz.com.br, renovacaosantander@allianz.com.br';
+		propostaAnterior = data.getValue('PROPOSTA AZ ANTERIOR', i)
 		
-	//	emaildestination = data.getValue('E-mail', i);
+		
+	//   emaildestination = data.getValue('E-mail', i)+", andre.antunes@allianz.com.br";
 
 		//		sender ="denilson.inmetricsext@allpronet.com.br";
 		//emaildestination = 'denilson.inmetricsext@allpronet.com.br , andre.antunes@allianz.com.br';
 
 
-		if(enviarEmailAnexoNR(sender, emaildestination, "Carta_AvisoNaoRenovacao", segurado, DS_MODELO , versao, placa , apolice, FINAL_VIG, proposta))
+		if(enviarEmailAnexoNR(sender, emaildestination, "Carta_AvisoNaoRenovacao", segurado, DS_MODELO , versao, placa , apolice, FINAL_VIG, proposta, propostaAnterior))
 
 			//		if( enviarEmail(data.getValue('E-mail', i)+', renovacaosantander@allianz.com.br',
 			//		carta,
@@ -481,9 +483,9 @@ public class SantanderEnvioDeMensagens extends rpaCommands{
 	 * @param proposta
 	 * @return
 	 */
-	public static boolean enviarEmailAnexoNR(String sender, String emaildestination, String ramo, String segurado, String dsmodelo,String versao, String placa , String apolice, String vigencia, String proposta){
+	public static boolean enviarEmailAnexoNR(String sender, String emaildestination, String ramo, String segurado, String dsmodelo,String versao, String placa , String apolice, String vigencia, String proposta, String propostaAnterior){
 		System.out.println('Sender ['+sender+'] Ramo ['+ramo+"] Proposta ["+proposta+"]")
-		sendEmail.CreateEmail.createEmailSendSantanderSemAnexos(sender, emaildestination, ramo, segurado, apolice, vigencia, "", "",placa, "", dsmodelo, versao)
+		sendEmail.CreateEmail.createEmailSendSantanderSemAnexos(sender, emaildestination, ramo, segurado, apolice, vigencia, "", "",placa, "", dsmodelo, versao, propostaAnterior)
 		return true;
 	}
 

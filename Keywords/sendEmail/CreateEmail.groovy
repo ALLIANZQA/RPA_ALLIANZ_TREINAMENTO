@@ -380,7 +380,7 @@ public class CreateEmail  extends rpaCommands{
 	 * @return
 	 * Envio de e-mail sem anexo
 	 */
-	public static boolean createEmailSendSantanderSemAnexos(String sender, String emaildestination, String ramo, String segurado, String apolice,String FINAL_VIG, String dataAtual, String tapCap,String placa, String COD_MARCA_MODELO, String DS_MODELO, String versao){
+	public static boolean createEmailSendSantanderSemAnexos(String sender, String emaildestination, String ramo, String segurado, String apolice,String FINAL_VIG, String dataAtual, String tapCap,String placa, String COD_MARCA_MODELO, String DS_MODELO, String versao,String propostaAnterior){
 		boolean send
 		//	lerConfiguraçõesAuth(authPathConfigEmail)
 		lerConfiguraçõesAuthProp(authPathConfigEmailProp)
@@ -388,7 +388,7 @@ public class CreateEmail  extends rpaCommands{
 		try{
 			ConfigOutlook configEmail = new ConfigOutlook();
 			MessageFactory messageFactory = new MessageFactory(sender,user,pwdsender,emaildestination );
-			messageFactory.createMessage(configEmail.configureOutLookAuth(host, porta), ramo, segurado, apolice, FINAL_VIG, placa, COD_MARCA_MODELO, DS_MODELO, versao);
+			messageFactory.createMessage(configEmail.configureOutLookAuth(host, porta), ramo, segurado, apolice, FINAL_VIG, placa, COD_MARCA_MODELO, DS_MODELO, versao , propostaAnterior);
 			send = true
 		} catch(Exception e){
 			System.err.println("FAIL\n"+e);

@@ -110,6 +110,16 @@ public class CotacaoRenovacaoInternaFuncionalidades extends rpaCommands{
 	 */
 	public static fluxoCompletoCotacaoRenovacaoInterna(String aba,String a){
 		
+		fluxoSinistro(aba,a);
+		fluxoRenovacao(aba,a);
+	
+	}
+	
+	public static void fluxoSinistro(String aba,String a){
+		
+	}
+	
+	public static void fluxoRenovacao(String aba,String a){
 		System.out.println();
 		try{
 			if(validaDados(cellCheck)){
@@ -143,6 +153,7 @@ public class CotacaoRenovacaoInternaFuncionalidades extends rpaCommands{
 		WebUI.closeBrowser();
 	}
 	
+	
 	/**
 	 * @author ALZ_SUP54955
 	 * @param apolice
@@ -158,6 +169,7 @@ public class CotacaoRenovacaoInternaFuncionalidades extends rpaCommands{
 		//boolean b = existeSinistros(apolice,item);
 		//System.out.println("Existe sinistro ["+b+"]")
 		if(existeSinistros(apolice,item)){
+			
 			if(Integer.valueOf(bonus)>0){
 		       int s = 0
 		       for(int i = 1; i <= dataOperacaoSinistros.getRowNumbers(); i++) {
@@ -175,6 +187,7 @@ public class CotacaoRenovacaoInternaFuncionalidades extends rpaCommands{
 		      valorFinalBonus = bonus;
 		    }
 		    System.out.println("\nLISTA DE SINISTROS - VALOR DE BONUS ATUALIZADO DE ["+bonus+"] PARA ["+valorFinalBonus+"]");
+			
 		} else {
 		
 		  if( ExtractDates.difDiasDatas(dtInicio, dtFim) > 334 ){

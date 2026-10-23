@@ -40,8 +40,11 @@ try{
      * Atualização 22/10/2025 - IBLBDM-74087 
      * Ajuste na comunicação HTML de renovação automática
      * 
+     * Atualização 21/10/2026
+     * Adiççao da coluna "PROPOSTA AZ ANTERIOR" para inclusão no campo "assunto" no envio de e-mail 
+     * 
 	 */
-	 backoffice.SantanderEnvioDeMensagens.enviaMensagem('PRD','RenovaSantander','15',"01/11/2026")
+	 backoffice.SantanderEnvioDeMensagens.enviaMensagem('PRD','RenovaSantander','NR',"01/11/2026")
 	 WebUI.closeBrowser()
    } catch (Exception e){
 	 System.err.println("Falha ao enviar cartas de aviso santander")
